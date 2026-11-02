@@ -391,29 +391,30 @@ const App = {
     const contentEl = document.getElementById('notes-content-body');
     contentEl.innerHTML = '<div class="text-center py-20 text-xs text-neutral-400">Loading synthesized notes...</div>';
 
-    let data = null;
-    if (window.STUDY_DATA && window.STUDY_DATA.topics && window.STUDY_DATA.topics[topicId]) {
-      data = window.STUDY_DATA.topics[topicId];
-    }
     try {
-      const res = await fetch(`/api/topics/${topicId}`);
-      if (res.ok) data = await res.json();
-    } catch (e) {}
+      let data = null;
+      if (window.STUDY_DATA && window.STUDY_DATA.topics && window.STUDY_DATA.topics[topicId]) {
+        data = window.STUDY_DATA.topics[topicId];
+      }
+      try {
+        const res = await fetch(`/api/topics/${topicId}`);
+        if (res.ok) data = await res.json();
+      } catch (err) {}
 
-    if (!data) {
-      contentEl.innerHTML = '<div class="p-8 text-center text-xs text-neutral-400">Lecture notes not found.</div>';
-      return;
-    }
+      if (!data) {
+        contentEl.innerHTML = '<div class="p-8 text-center text-xs text-neutral-400">Lecture notes not found.</div>';
+        return;
+      }
 
-    if (data.status !== 'completed') {
-      contentEl.innerHTML = `
-        <div class="p-8 text-center rounded-2xl bg-card border border-neutral-200 dark:border-neutral-800 shadow-soft space-y-2">
-          <h3 class="font-medium text-sm">Notes are ${data.status}</h3>
-          <p class="text-xs text-neutral-500">${data.error_message || 'This lecture is currently queued or being curated. Check back in a moment.'}</p>
-        </div>
-      `;
-      return;
-    }
+      if (data.status !== 'completed') {
+        contentEl.innerHTML = `
+          <div class="p-8 text-center rounded-2xl bg-card border border-neutral-200 dark:border-neutral-800 shadow-soft space-y-2">
+            <h3 class="font-medium text-sm">Notes are ${data.status}</h3>
+            <p class="text-xs text-neutral-500">${data.error_message || 'This lecture is currently queued or being curated. Check back in a moment.'}</p>
+          </div>
+        `;
+        return;
+      }
 
       contentEl.innerHTML = marked.parse(data.notes_markdown || '# No notes synthesized.');
 
@@ -483,19 +484,20 @@ const App = {
       return;
     }
 
-    let examData = null;
-    if (window.STUDY_DATA && window.STUDY_DATA.exams && window.STUDY_DATA.exams[moduleId]) {
-      examData = window.STUDY_DATA.exams[moduleId];
-    }
     try {
-      const res = await fetch(`/api/modules/${moduleId}/exam`);
-      if (res.ok) examData = await res.json();
-    } catch (e) {}
+      let examData = null;
+      if (window.STUDY_DATA && window.STUDY_DATA.exams && window.STUDY_DATA.exams[moduleId]) {
+        examData = window.STUDY_DATA.exams[moduleId];
+      }
+      try {
+        const res = await fetch(`/api/modules/${moduleId}/exam`);
+        if (res.ok) examData = await res.json();
+      } catch (err) {}
 
-    if (!examData || !examData.mcqs || examData.mcqs.length === 0) {
-      alert('No MCQs available in this module yet. Add videos and curate notes first!');
-      return;
-    }
+      if (!examData || !examData.mcqs || examData.mcqs.length === 0) {
+        alert('No MCQs available in this module yet. Add videos and curate notes first!');
+        return;
+      }
 
       this.examQuestions = examData.mcqs;
       this.subjectiveQuestions = examData.subjective_questions || [];
@@ -581,6 +583,8 @@ const App = {
   // Settings
   // -------------------------------------------------------------
 };
+
+window.App = App;
 
 window.addEventListener('DOMContentLoaded', () => {
   App.init();
