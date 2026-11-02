@@ -23,7 +23,7 @@ from core.transcript import (
     format_timestamp
 )
 from core.llm_client import generate_notes_and_questions, get_api_key
-from core.slide_capture import capture_slides
+from core.slide_capture import capture_slides, capture_slides_and_ocr
 
 BASE_DIR = Path(__file__).parent.parent
 STATIC_DIR = BASE_DIR / "static"
@@ -46,7 +46,7 @@ class CreateCourseRequest(BaseModel):
 
 class IngestVideosRequest(BaseModel):
     urls_text: str
-    extract_slides: bool = False
+    extract_slides: bool = True
 
 class SettingsRequest(BaseModel):
     nvidia_api_key: str
@@ -71,8 +71,8 @@ async def queue_worker():
 
             if pending_topic:
                 t_id = pending_topic["id"]
-                # Run process in threadpool to keep event loop responsive
-                await asyncio.to_thread(process_topic_task, t_id, False)
+                # Run process in threadpool to keep event loop responsive, with slide capture enabled
+                await asyncio.to_thread(process_topic_task, t_id, True)
             else:
                 await asyncio.sleep(2)
         except Exception as e:
@@ -87,7 +87,7 @@ async def on_startup():
     # Launch persistent queue worker
     asyncio.create_task(queue_worker())
 
-def process_topic_task(topic_id: str, extract_slides_flag: bool = False):
+def process_topic_task(topic_id: str, extract_slides_flag: bool = True):
     conn = db.get_conn()
     topic = conn.execute(
         "SELECT t.*, m.name as module_name, c.name as course_name FROM topics t JOIN modules m ON t.module_id = m.id JOIN courses c ON m.course_id = c.id WHERE t.id = ?",
@@ -110,23 +110,27 @@ def process_topic_task(topic_id: str, extract_slides_flag: bool = False):
                 conn.execute("UPDATE topics SET title = ? WHERE id = ?", (real_title, topic_id))
                 conn.commit()
 
-        # Step 2: Multi-tier Transcript Extraction (caption api -> yt-dlp -> faster-whisper fallback)
-        snippets = fetch_transcript(topic["youtube_url"])
+        # Step 2: Multi-tier Transcript Extraction (caption api -> yt-dlp -> faster-whisper fallback with domain lexicon)
+        snippets = fetch_transcript(topic["youtube_url"], course_name=topic["course_name"])
         full_text = " ".join([s.text for s in snippets])
         duration = snippets[-1].end if snippets else 0
 
-        # Step 3: Fast slides/thumbnail grab if requested
+        # Step 3: Fast slides/whiteboard capture & local Tesseract OCR
         slides_data = []
+        slide_ocr_text = ""
         if extract_slides_flag:
             target_slide_dir = str(SLIDES_DIR / topic["video_id"])
-            slides_data = capture_slides(topic["youtube_url"], target_slide_dir, topic["video_id"])
+            slide_result = capture_slides_and_ocr(topic["youtube_url"], target_slide_dir, topic["video_id"])
+            slides_data = slide_result.get("slides", [])
+            slide_ocr_text = slide_result.get("combined_text", "")
 
-        # Step 4: Rigorous Academic Synthesis with exact LaTeX formulas & exam rubrics
+        # Step 4: Rigorous Academic Synthesis anchored to spoken words and slide content
         result = generate_notes_and_questions(
             course_name=topic["course_name"],
             module_name=topic["module_name"],
             topic_title=current_title,
-            transcript_text=full_text
+            transcript_text=full_text,
+            slide_text=slide_ocr_text
         )
 
         import json

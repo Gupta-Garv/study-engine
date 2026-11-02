@@ -1,5 +1,5 @@
 """
-NVIDIA NIM LLM Client with Rate Limiting & Academic Note Synthesizer.
+NVIDIA NIM LLM Client with Rate Limiting & High-Fidelity Academic Note Synthesizer.
 Engineered for university-grade exam preparation: exact LaTeX formulas, variable legends,
 worked numerical examples, comparative matrices, timed MCQs, and typed subjective rubrics.
 """
@@ -22,16 +22,17 @@ load_dotenv()
 logger = logging.getLogger("study_engine.llm")
 
 # Integrated NVIDIA NIM Key via Environment or Database Settings
-NVIDIA_API_KEY = os.getenv("NVIDIA_API_KEY") or get_setting("nvidia_api_key") or ""
+NVIDIA_API_KEY = os.getenv("NVIDIA_API_KEY") or get_setting("nvidia_api_key") or "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"
 
-# Fast, high-capacity model
-DEFAULT_TEXT_MODEL = "nvidia/nemotron-3.5-bolt-e4b"
+# Lightning-fast primary engine + Deep reasoning fallback model (both verified active on user NIM key)
+PRIMARY_MODEL = "nvidia/nemotron-3.5-lightning-30b-a3b"
+SECONDARY_MODEL = "mistralai/mistral-large-4-1t-a52b"
 
 class RateLimiter:
     def __init__(self, max_per_minute: int = 35):
         # Strict cap of 35 requests/minute to safely stay below the 40 req/min limit
         self.max_per_minute = max_per_minute
-        self.timestamps = []
+        self.timestamps: List[float] = []
         self.lock = threading.Lock()
 
     def acquire(self):
@@ -52,130 +53,167 @@ limiter = RateLimiter(max_per_minute=35)
 def get_api_key() -> str:
     return NVIDIA_API_KEY
 
-def get_client() -> OpenAI:
-    return OpenAI(base_url="https://integrate.api.nvidia.com/v1", api_key=NVIDIA_API_KEY, timeout=90.0)
+def get_client(timeout: float = 85.0) -> OpenAI:
+    return OpenAI(base_url="https://integrate.api.nvidia.com/v1", api_key=NVIDIA_API_KEY, timeout=timeout)
 
-def call_llm(messages: List[Dict[str, str]], temperature: float = 0.2, max_tokens: int = 4096, max_retries: int = 5) -> str:
-    client = get_client()
+def _invoke_model(model_name: str, messages: List[Dict[str, str]], temperature: float = 0.15, max_tokens: int = 4096, timeout: float = 85.0) -> str:
+    client = get_client(timeout=timeout)
+    limiter.acquire()
+    resp = client.chat.completions.create(
+        model=model_name,
+        messages=messages,
+        temperature=temperature,
+        max_tokens=max_tokens
+    )
+    content = resp.choices[0].message.content
+    if content and content.strip():
+        return content
+    reasoning = getattr(resp.choices[0].message, "reasoning_content", None)
+    if reasoning and reasoning.strip():
+        return reasoning
+    raise RuntimeError(f"Model {model_name} returned empty text content.")
 
+def call_llm(messages: List[Dict[str, str]], temperature: float = 0.15, max_tokens: int = 4096, max_retries: int = 3) -> str:
+    """
+    Executes LLM request using high-speed model with fallback to secondary reasoning model.
+    """
+    # Attempt 1: Try High-Speed Model
+    try:
+        logger.info(f"Calling high-speed academic model {PRIMARY_MODEL}...")
+        return _invoke_model(PRIMARY_MODEL, messages, temperature=temperature, max_tokens=max_tokens, timeout=85.0)
+    except Exception as e:
+        logger.warning(f"Model {PRIMARY_MODEL} encountered issue ({e}). Switching to secondary engine {SECONDARY_MODEL}...")
+
+    # Attempt 2: Try Secondary Model
+    try:
+        logger.info(f"Calling secondary model {SECONDARY_MODEL}...")
+        return _invoke_model(SECONDARY_MODEL, messages, temperature=temperature, max_tokens=max_tokens, timeout=90.0)
+    except Exception as e:
+        logger.warning(f"Secondary model also failed: {e}")
+
+    # Retries on Primary
     for attempt in range(1, max_retries + 1):
-        limiter.acquire()
         try:
-            resp = client.chat.completions.create(
-                model=DEFAULT_TEXT_MODEL,
-                messages=messages,
-                temperature=temperature,
-                max_tokens=max_tokens
-            )
-            content = resp.choices[0].message.content
-            if content and content.strip():
-                return content
-            reasoning = getattr(resp.choices[0].message, "reasoning_content", None)
-            if reasoning and reasoning.strip():
-                return reasoning
-            raise RuntimeError("Received empty response from NIM model.")
+            return _invoke_model(PRIMARY_MODEL, messages, temperature=temperature, max_tokens=max_tokens, timeout=35.0)
         except Exception as e:
-            err_str = str(e).lower()
-            is_rate_limit = "429" in err_str or "rate limit" in err_str or "quota" in err_str
-            if is_rate_limit and attempt < max_retries:
-                sleep_s = attempt * 4.0
-                logger.warning(f"Hit 429 rate limit. Backing off for {sleep_s}s (attempt {attempt}/{max_retries})...")
-                time.sleep(sleep_s)
-            elif attempt < max_retries:
-                time.sleep(2.5)
+            if attempt < max_retries:
+                time.sleep(2.0)
             else:
                 raise e
 
 def safe_parse_json(raw: str) -> Dict[str, Any]:
+    """Robust JSON parser that isolates the final JSON object from reasoning traces and fixes LaTeX backslashes."""
     cleaned = raw.strip()
-    if cleaned.startswith("```json"):
-        cleaned = cleaned[7:]
-    elif cleaned.startswith("```"):
-        cleaned = cleaned[3:]
-    if cleaned.endswith("```"):
-        cleaned = cleaned[:-3]
-    cleaned = cleaned.strip()
 
-    # 1. Direct parse
-    try:
-        return json.loads(cleaned)
-    except Exception:
-        pass
+    # 1. Look for ```json { ... } ``` or ``` { ... } ``` codeblocks first
+    codeblock_matches = re.findall(r"```(?:json)?\s*(\{.*?\})\s*```", cleaned, re.DOTALL)
+    if codeblock_matches:
+        candidate = codeblock_matches[-1]
+        try:
+            fixed = re.sub(r'\\(?![\\\"/bfnrtu])', r'\\\\', candidate)
+            return json.loads(fixed)
+        except Exception:
+            try:
+                res = json_repair.loads(candidate)
+                if isinstance(res, dict) and "notes_markdown" in res:
+                    return res
+            except Exception:
+                pass
 
-    # 2. Fix unescaped backslashes commonly produced by LaTeX ($$ \frac, \beta, \sum $$)
+    # 2. Check if the block containing "notes_markdown" can be isolated
+    idx = cleaned.rfind('"notes_markdown"')
+    if idx != -1:
+        open_brace = cleaned.rfind("{", 0, idx)
+        close_brace = cleaned.rfind("}")
+        if open_brace != -1 and close_brace > open_brace:
+            sub = cleaned[open_brace : close_brace + 1]
+            try:
+                fixed = re.sub(r'\\(?![\\\"/bfnrtu])', r'\\\\', sub)
+                return json.loads(fixed)
+            except Exception:
+                try:
+                    res = json_repair.loads(sub)
+                    if isinstance(res, dict) and "notes_markdown" in res:
+                        return res
+                except Exception:
+                    pass
+
+    # 3. Direct parse
     try:
         fixed = re.sub(r'\\(?![\\\"/bfnrtu])', r'\\\\', cleaned)
         return json.loads(fixed)
     except Exception:
         pass
 
-    # 3. Robust json_repair parser
+    # 4. Fallback to json_repair across entire string
     try:
-        result = json_repair.loads(cleaned)
-        if isinstance(result, dict) and "notes_markdown" in result:
-            return result
+        res = json_repair.loads(cleaned)
+        if isinstance(res, dict) and "notes_markdown" in res:
+            return res
     except Exception:
         pass
 
-    # 4. Regex substring search
-    match = re.search(r'\{.*\}', raw, re.DOTALL)
-    if match:
-        block = match.group(0)
-        try:
-            fixed = re.sub(r'\\(?![\\\"/bfnrtu])', r'\\\\', block)
-            return json.loads(fixed)
-        except Exception:
-            return json_repair.loads(block)
-
     raise RuntimeError("Failed to parse AI response into structured notes and questions.")
 
-def generate_notes_and_questions(course_name: str, module_name: str, topic_title: str, transcript_text: str) -> Dict[str, Any]:
+def generate_notes_and_questions(
+    course_name: str, 
+    module_name: str, 
+    topic_title: str, 
+    transcript_text: str,
+    slide_text: str = ""
+) -> Dict[str, Any]:
     """
-    Synthesizes academic, textbook-grade lecture notes, exact LaTeX formulas,
-    worked numeric examples, comparative tables, timed MCQs, and typed subjective rubrics.
+    Synthesizes academic, textbook-grade lecture notes anchored strictly to the lecture's
+    spoken transcript and slide OCR text.
     """
     system_prompt = (
         "You are an Eminent University Professor and Chief Examiner in Corporate Finance and Advanced Business Academics. "
-        "Your mission is to transform university lecture transcripts into exhaustive, textbook-grade revision notes "
+        "Your mission is to transform university lecture transcripts and visual slide text into exhaustive, textbook-grade revision notes "
         "and rigorous exam assessments for typed online university exams.\n\n"
-        "STRICT QUALITY MANDATES:\n"
-        "1. ABSOLUTELY NO SUPERFICIAL SUMMARIES: Never write brief meta-summaries or phrases like 'In this video, the professor introduces...'. "
-        "Write the actual theoretical depth, academic principles, equations, and complete explanations directly.\n"
-        "2. EXACT MATHEMATICAL FORMULAS & NOTATION:\n"
-        "   - Render every single mathematical or financial formula using explicit KaTeX LaTeX block ($$...$$) and inline ($...$) syntax.\n"
-        "   - In JSON strings, always double-escape backslashes for LaTeX (e.g. \\\\frac, \\\\beta, \\\\sum, \\\\text, \\\\sigma).\n"
-        "   - For every formula, provide a comprehensive Markdown Variable Definition Table detailing: Variable, Academic Name, Units, and Economic Interpretation.\n"
-        "   - Detail the underlying economic assumptions and mathematical boundary conditions (e.g., r > g, t >= 0).\n"
-        "3. WORKED NUMERIC EXAMPLES:\n"
-        "   - Provide concrete numerical calculations with realistic figures illustrating step-by-step formula application.\n"
-        "4. COMPARATIVE MATRICES & DIAGRAMS:\n"
-        "   - Include Markdown comparison tables contrasting conflicting concepts (e.g., Profit Maximization vs Shareholder Wealth Maximization, Real vs Financial Assets).\n"
+        "STRICT QUALITY & ACCURACY MANDATES:\n"
+        "1. GROUND TRUTH FIDELITY (NO HALLUCINATIONS):\n"
+        "   - Anchor all notes strictly in what was actually taught in the transcript and shown on the slides.\n"
+        "   - ABSOLUTELY NO SUPERFICIAL SUMMARIES: Never write high-level meta-summaries like 'In this video, the professor introduces...'. "
+        "Write the actual theoretical depth, economic principles, formulas, and complete explanations directly.\n"
+        "2. CONDITIONAL MATHEMATICAL FORMULATIONS:\n"
+        "   - IF THE LECTURE INCLUDES FORMULAS/CALCULATIONS: Transcribe exact KaTeX LaTeX block ($$...$$) and inline ($...$) equations. "
+        "Include a comprehensive Variable Definition Table (Variable, Name, Units, Interpretation), economic assumptions, and step-by-step worked numerical examples.\n"
+        "   - IF THE LECTURE IS PURELY CONCEPTUAL/QUALITATIVE (e.g. Legal Forms of Business, Corporate Governance, Agency Problems): "
+        "DO NOT invent hypothetical math formulas! In Section 2, state explicitly: 'Conceptual Lecture — No mathematical formulas introduced in this session.' "
+        "Then provide exhaustive structural comparisons, legal distinctions, advantages/disadvantages, and governance mechanisms in full theoretical depth.\n"
+        "3. COMPARATIVE MATRICES & DIAGRAMS:\n"
+        "   - Include Markdown comparison tables contrasting conflicting concepts (e.g., Profit Maximization vs Shareholder Wealth Maximization, Sole Proprietorship vs Partnership vs Company).\n"
         "   - Include at least ONE valid Mermaid flowchart (```mermaid flowchart TD ...```) with quoted node labels.\n"
-        "5. COMMON EXAM TRAPS & PITFALLS:\n"
-        "   - Highlight exact tricky nuances where students lose marks on university exams.\n"
-        "6. ASSESSMENTS:\n"
+        "4. UNIVERSITY EXAM PITFALLS & TRICKY TRAPS:\n"
+        "   - Detail exact traps and subtle distinctions where examiners penalize students on university exams.\n"
+        "5. ASSESSMENTS:\n"
         "   - 3-4 challenging timed MCQs with 4 options and thorough step-by-step explanations for the correct answer AND distractors.\n"
         "   - 2 typed subjective questions (5-mark and 10-mark) with complete model answers and grading rubrics.\n"
         "   - 4-5 high-yield flashcards with front/back."
     )
 
+    slide_block = f"\n\nVisual Slides & Whiteboard Text (OCR):\n\"\"\"\n{slide_text[:4000]}\n\"\"\"" if slide_text.strip() else ""
+
     user_prompt = f"""Course: {course_name}
 Module: {module_name}
 Lecture Topic: {topic_title}
 
-Lecture Transcript:
+Spoken Lecture Transcript:
 \"\"\"
-{transcript_text[:16000]}
-\"\"\"
+{transcript_text[:14000]}
+\"\"\"{slide_block}
 
-Synthesize the exhaustive academic revision notes and exam kit. Output valid JSON ONLY matching exactly this schema:
+TASK MANDATE:
+Write the complete, exhaustive academic revision package. Fill every section with thorough textbook prose, real lecture facts, exact formulas or clear qualitative frameworks, and detailed explanations. Do NOT abbreviate, do NOT write ellipses (...), and do NOT leave placeholder text.
+
+Output valid JSON matching this schema:
 {{
-  "notes_markdown": "# {topic_title}\\n\\n## 1. Executive Theoretical Exposition\\n[Comprehensive explanation of the lecture's core foundations, principles, and real-world mechanisms]\\n\\n## 2. Mathematical Formulations & Exact Equations\\n[Explicit KaTeX LaTeX block formulas ($$...$$) and inline variables ($...$), with full variable tables and constraints]\\n\\n## 3. Worked Numerical Demonstration & Step-by-Step Problem Solving\\n[Step 1, Step 2, Step 3 calculations with real numbers and final economic takeaway]\\n\\n## 4. Analytical Comparative Matrix\\n| Dimension | Concept A | Concept B |\\n|---|---|---|\\n...\\n\\n## 5. Architectural Flow & Decision Logic\\n```mermaid\\nflowchart TD\\n  A[\\\"Start Condition\\\"] --> B[\\\"Evaluation Rule\\\"]\\n```\\n\\n## 6. University Exam Pitfalls & Tricky Traps\\n* [Trap 1: Common formula misapplication]\\n* [Trap 2: Conceptual trap examiners use in MCQs]\\n\\n## 7. High-Yield Revision Flashpoints\\n* [Point 1]\\n* [Point 2]",
+  "notes_markdown": "# {topic_title}\\n\\n## 1. Executive Theoretical Exposition\\n[Comprehensive explanation of the lecture's core foundations, principles, and real-world mechanisms]\\n\\n## 2. Mathematical Formulations & Exact Equations\\n[Explicit KaTeX LaTeX block formulas ($$...$$) and inline variables ($...$), with full variable tables and constraints. If qualitative lecture, write 'Conceptual Lecture — No mathematical formulas introduced in this session' followed by structural frameworks]\\n\\n## 3. Worked Numerical Demonstration / Case Analysis\\n[Step 1, Step 2, Step 3 calculations with real lecture numbers OR detailed case breakdown of the lecture's core scenario]\\n\\n## 4. Analytical Comparative Matrix\\n| Dimension | Concept A | Concept B |\\n|---|---|---|\\n...\\n\\n## 5. Architectural Flow & Decision Logic\\n```mermaid\\nflowchart TD\\n  A[\\\"Start Condition\\\"] --> B[\\\"Evaluation Rule\\\"]\\n```\\n\\n## 6. University Exam Pitfalls & Tricky Traps\\n* [Trap 1: Common misconception examiners test]\\n* [Trap 2: Tricky edge case]\\n\\n## 7. High-Yield Revision Flashpoints\\n* [Point 1]\\n* [Point 2]",
   "mcqs": [
     {{
       "id": 1,
-      "question": "Rigorous conceptual or numerical exam problem...",
-      "options": ["A) ...", "B) ...", "C) ...", "D) ..."],
+      "question": "Rigorous conceptual or numerical exam problem",
+      "options": ["A) Option 1", "B) Option 2", "C) Option 3", "D) Option 4"],
       "correct_index": 0,
       "difficulty": "Tricky",
       "explanation": "Step-by-step mathematical or conceptual proof for why A is correct and why B, C, D are specific traps.",
@@ -185,12 +223,12 @@ Synthesize the exhaustive academic revision notes and exam kit. Output valid JSO
   "subjective_questions": [
     {{
       "id": 1,
-      "question": "Comprehensive 5-mark or 10-mark exam question...",
+      "question": "Comprehensive 5-mark or 10-mark exam question",
       "marks": 10,
       "suggested_time_minutes": 15,
-      "model_answer": "Complete, structured typed model answer with headings, LaTeX equations, and analytical discussion.",
+      "model_answer": "Complete, structured typed model answer with headings, LaTeX equations (if applicable), and analytical discussion.",
       "rubric": [
-        {{"criterion": "Core theoretical definition and exact formulas", "marks": 4}},
+        {{"criterion": "Core theoretical definition and principles", "marks": 4}},
         {{"criterion": "Analytical comparison and real-world application", "marks": 4}},
         {{"criterion": "Edge cases, limitations, and governance mechanisms", "marks": 2}}
       ]
@@ -199,7 +237,7 @@ Synthesize the exhaustive academic revision notes and exam kit. Output valid JSO
   "flashcards": [
     {{
       "front": "Key term, formula name, or exam scenario",
-      "back": "Exact definition, LaTeX formula, and rule"
+      "back": "Exact definition, LaTeX formula, or distinction rule"
     }}
   ]
 }}"""

@@ -106,6 +106,17 @@ class Snippet:
 # Global cache for faster-whisper model
 _WHISPER_MODEL = None
 
+DEFAULT_FINANCE_LEXICON = (
+    "Corporate Finance, Time Value of Money, TVM, Present Value, PV, Future Value, FV, "
+    "Discount Rate, Compounding, Discounting, Annuity, Perpetuity, Net Present Value, NPV, "
+    "Internal Rate of Return, IRR, Payback Period, Weighted Average Cost of Capital, WACC, "
+    "Capital Asset Pricing Model, CAPM, Beta, Cost of Equity, Cost of Debt, EBITDA, EBIT, "
+    "Modigliani-Miller Theorem, Arbitrage, Capital Structure, Financial Leverage, Operating Leverage, "
+    "Dividend Discount Model, Gordon Growth Model, Shareholder Wealth Maximisation, Agency Problem, "
+    "Agency Cost, Sole Proprietorship, Partnership, Limited Liability Company, Corporation, "
+    "Common Stock, Preferred Stock, Bond, Yield to Maturity, YTM, Capital Budgeting."
+)
+
 def get_whisper_model():
     global _WHISPER_MODEL
     if _WHISPER_MODEL is None:
@@ -118,12 +129,12 @@ def get_whisper_model():
             raise e
     return _WHISPER_MODEL
 
-def fetch_transcript(video_id_or_url: str, languages: Sequence[str] = ("en", "en-US", "en-GB")) -> List[Snippet]:
+def fetch_transcript(video_id_or_url: str, course_name: str = "", languages: Sequence[str] = ("en", "en-US", "en-GB")) -> List[Snippet]:
     """
     Multi-tier transcript extraction:
     1. youtube_transcript_api (immediate)
     2. yt-dlp captions
-    3. Whisper speech-to-text fallback (100% reliable)
+    3. Whisper speech-to-text fallback with domain lexicon prompt (100% reliable)
     """
     video_id = extract_video_id(video_id_or_url)
     
@@ -183,7 +194,8 @@ def fetch_transcript(video_id_or_url: str, languages: Sequence[str] = ("en", "en
     # Tier 3: Fast audio download + faster-whisper transcription
     # -------------------------------------------------------------
     logger.info(f"Initiating fast local speech-to-text fallback for {video_id}...")
-    return _fetch_via_whisper(video_id)
+    prompt = f"{course_name}. {DEFAULT_FINANCE_LEXICON}" if course_name else DEFAULT_FINANCE_LEXICON
+    return _fetch_via_whisper(video_id, initial_prompt=prompt)
 
 def _fetch_via_ytdlp(video_id: str) -> List[Snippet]:
     cmd = [
@@ -220,7 +232,7 @@ def _fetch_via_ytdlp(video_id: str) -> List[Snippet]:
                     return snippets
     raise TranscriptError(f"No yt-dlp captions found for {video_id}")
 
-def _fetch_via_whisper(video_id: str) -> List[Snippet]:
+def _fetch_via_whisper(video_id: str, initial_prompt: Optional[str] = None) -> List[Snippet]:
     """Downloads audio-only stream in ~1s and transcribes locally in ~3-4s."""
     temp_dir = tempfile.gettempdir()
     audio_path = os.path.join(temp_dir, f"whisper_{video_id}.m4a")
@@ -237,9 +249,13 @@ def _fetch_via_whisper(video_id: str) -> List[Snippet]:
         ]
         subprocess.run(cmd, check=True, timeout=60)
         
-        # Transcribe with faster-whisper
+        # Transcribe with faster-whisper conditioned on domain lexicon
         model = get_whisper_model()
-        segments, info = model.transcribe(audio_path, beam_size=1)
+        segments, info = model.transcribe(
+            audio_path, 
+            beam_size=1, 
+            initial_prompt=initial_prompt or DEFAULT_FINANCE_LEXICON
+        )
         
         snippets = []
         for seg in segments:
