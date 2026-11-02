@@ -1,0 +1,149 @@
+/* Clean Modern Ledger Design System (Aligned with cult-ui & aisdkagents.com) */
+
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;450;500;600&family=Geist+Mono:wght@400;500&family=Silkscreen&display=swap');
+
+:root {
+  --canvas: #fafafa;
+  --card: #ffffff;
+  --card-muted: #f5f5f5;
+  --ink: #171717;
+  --ink-secondary: #666666;
+  --ink-tertiary: #999999;
+  --border: #ebebeb;
+  
+  --elevation-soft-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --elevation-soft: 0 0 0 1px rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06), 0 2px 4px 0 rgb(0 0 0 / 0.04);
+  --elevation-soft-md: 0 0 0 1px rgb(0 0 0 / 0.08), 0 4px 6px -2px rgb(0 0 0 / 0.05), 0 10px 15px -3px rgb(0 0 0 / 0.08);
+}
+
+.dark {
+  --canvas: #0a0a0a;
+  --card: #141414;
+  --card-muted: #1f1f1f;
+  --ink: #ededed;
+  --ink-secondary: #a1a1a1;
+  --ink-tertiary: #525252;
+  --border: #262626;
+
+  --elevation-soft-sm: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+  --elevation-soft: 0 0 0 1px rgb(255 255 255 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.4), 0 2px 4px 0 rgb(0 0 0 / 0.3);
+  --elevation-soft-md: 0 0 0 1px rgb(255 255 255 / 0.12), 0 4px 6px -2px rgb(0 0 0 / 0.5), 0 10px 15px -3px rgb(0 0 0 / 0.4);
+}
+
+body {
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--canvas);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.font-pixel {
+  font-family: 'Silkscreen', monospace;
+}
+
+.font-mono {
+  font-family: 'Geist Mono', monospace;
+}
+
+.shadow-soft-sm {
+  box-shadow: var(--elevation-soft-sm);
+}
+
+.shadow-soft {
+  box-shadow: var(--elevation-soft);
+}
+
+.shadow-soft-md {
+  box-shadow: var(--elevation-soft-md);
+}
+
+/* Ink Pills */
+.pill-ink {
+  background-color: var(--ink);
+  color: var(--canvas);
+  border-radius: 9999px;
+  padding: 0.5rem 1.25rem;
+  font-weight: 500;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+.pill-ink:hover {
+  opacity: 0.9;
+}
+.pill-ink:active {
+  transform: scale(0.98);
+}
+
+.pill-muted {
+  background-color: var(--card-muted);
+  color: var(--ink);
+  border-radius: 9999px;
+  padding: 0.5rem 1.25rem;
+  font-weight: 500;
+  transition: background-color 0.15s ease;
+}
+.pill-muted:hover {
+  background-color: var(--border);
+}
+
+/* Reading Typography */
+.prose-ledger {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--ink);
+}
+.prose-ledger h1 {
+  font-size: 2.25rem;
+  font-weight: 450;
+  letter-spacing: -0.04em;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+.prose-ledger h2 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border);
+}
+.prose-ledger h3 {
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.prose-ledger p {
+  margin-bottom: 1.25rem;
+  color: var(--ink);
+}
+.prose-ledger blockquote {
+  border-left: 2px solid var(--ink);
+  padding: 0.75rem 1.25rem;
+  background-color: var(--card-muted);
+  border-radius: 0 0.75rem 0.75rem 0;
+  margin: 1.5rem 0;
+}
+.prose-ledger code:not(pre code) {
+  background-color: var(--card-muted);
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.9em;
+}
+
+/* 3D Flip Card */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
