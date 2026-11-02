@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyEngine | Clean Modern Lecture & Exam Vault</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            canvas: 'var(--canvas)',
+            card: 'var(--card)',
+            'card-muted': 'var(--card-muted)',
+            ink: 'var(--ink)',
+            'ink-secondary': 'var(--ink-secondary)',
+            'ink-tertiary': 'var(--ink-tertiary)',
+            border: 'var(--border)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Marked.js (Markdown) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- KaTeX for Math Equations -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Mermaid.js for Diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.4.0/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: false, theme: 'dark', securityLevel: 'loose' });
+  </script>
+
+  <!-- Custom Ledger CSS -->
+  <link rel="stylesheet" href="./static/css/style.css">
+</head>
+<body class="min-h-screen flex flex-col bg-canvas text-ink transition-colors duration-200">
+
+  <!-- Header (Clean Modern Ledger Style) -->
+  <header class="sticky top-0 z-40 backdrop-blur border-b border-border bg-canvas/80">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      
+      <!-- Logo / Title -->
+      <div class="flex items-center gap-3">
+        <a href="#" onclick="App.switchView('syllabus')" class="flex items-center gap-2 text-ink font-medium tracking-tight">
+          <div class="w-8 h-8 rounded-xl bg-ink text-canvas flex items-center justify-center font-pixel text-xs font-bold">
+            SE
+          </div>
+          <span class="text-base font-semibold">StudyEngine</span>
+        </a>
+      </div>
+
+      <!-- Navigation Pills -->
+      <nav class="flex items-center gap-1 p-1 rounded-full bg-card-muted border border-border text-xs">
+        <button id="tab-syllabus" onclick="App.switchView('syllabus')" class="px-3.5 py-1.5 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-medium">
+          Syllabus & Upload
+        </button>
+        <button id="tab-notes" onclick="App.switchView('notes')" class="px-3.5 py-1.5 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium">
+          Study Hall
+        </button>
+        <button id="tab-exam" onclick="App.switchView('exam')" class="px-3.5 py-1.5 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium">
+          Exam Arena
+        </button>
+      </nav>
+
+      <!-- Right Controls -->
+      <div class="flex items-center gap-2">
+        <button onclick="App.toggleTheme()" class="p-2 rounded-xl border border-border hover:bg-card-muted transition" title="Toggle Theme">
+          <i data-lucide="moon" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main View Container -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-8">
+
+    <!-- ============================================================= -->
+    <!-- VIEW 1: SYLLABUS & INGESTION (Where user adds subjects & videos) -->
+    <!-- ============================================================= -->
+    <div id="view-syllabus" class="space-y-8">
+      
+      <!-- Ledger Hero Stack -->
+      <div class="max-w-2xl space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card-muted border border-border text-xs font-mono text-ink-secondary">
+          <span class="font-pixel text-[10px] text-emerald-500">EXAM PREP</span>
+          <span>Semester Lecture Curation & Timed Testing</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-[450] tracking-[-0.04em] leading-tight text-balance">
+          Curate university notes <span class="font-pixel text-2xl sm:text-3xl text-ink">on the spot</span> from your video lectures.
+        </h1>
+        <p class="text-sm text-ink-secondary leading-relaxed">
+          Add your 4–5 subjects and paste your 20–30 YouTube lecture links per module. The engine transcribes, captures whiteboard frames, and synthesizes syllabus notes and timed exam questions.
+        </p>
+        <div class="pt-2">
+          <button onclick="App.openCreateCourseModal()" class="pill-ink text-xs inline-flex items-center gap-2">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i> Add New Subject
+          </button>
+        </div>
+      </div>
+
+      <!-- Courses List Container -->
+      <div id="courses-list" class="space-y-6">
+        <!-- Rendered dynamically -->
+      </div>
+
+    </div>
+
+    <!-- ============================================================= -->
+    <!-- VIEW 2: STUDY HALL (Note Reader with LaTeX, Mermaid, Slides) -->
+    <!-- ============================================================= -->
+    <div id="view-notes" class="hidden h-[calc(100vh-8rem)] flex rounded-[1.5rem] bg-card border border-border shadow-soft overflow-hidden">
+      
+      <!-- Sidebar Tree -->
+      <aside class="w-72 shrink-0 border-r border-border bg-card-muted/50 p-4 overflow-y-auto space-y-4">
+        <div class="text-[11px] font-mono uppercase tracking-wider text-neutral-400 font-semibold">Course Syllabus</div>
+        <div id="notes-syllabus-tree" class="space-y-4">
+          <!-- Populated by JS -->
+        </div>
+      </aside>
+
+      <!-- Main Reader Pane -->
+      <section class="flex-1 overflow-y-auto p-8 sm:p-12 space-y-6">
+        <div id="notes-content-body" class="prose-ledger max-w-3xl">
+          <div class="text-center py-20 text-xs text-neutral-400">Select a completed lecture from the left sidebar.</div>
+        </div>
+
+        <!-- Slide Frames Gallery -->
+        <div id="notes-slide-gallery" class="hidden max-w-3xl pt-8 border-t border-border space-y-3">
+          <div class="text-xs font-mono uppercase tracking-wider text-neutral-400 flex items-center gap-2">
+            <i data-lucide="image" class="w-4 h-4"></i> Captured Whiteboard & Slide Diagrams
+          </div>
+          <div id="slide-thumbs-container" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ============================================================= -->
+    <!-- VIEW 3: EXAM ARENA (Timed MCQ Simulator) -->
+    <!-- ============================================================= -->
+    <div id="view-exam" class="hidden max-w-3xl mx-auto space-y-6">
+      
+      <div id="exam-setup-box" class="rounded-[1.5rem] bg-card border border-border shadow-soft p-8 space-y-5">
+        <div>
+          <h2 class="text-xl font-medium tracking-tight">Timed MCQ Examination Arena</h2>
+          <p class="text-xs text-ink-secondary mt-1">Select any module to start a timed mock with negative marking (-0.25).</p>
+        </div>
+
+        <div class="space-y-3">
+          <div>
+            <label class="block text-xs font-mono uppercase text-ink-secondary mb-1">Select Module Scope</label>
+            <select id="exam-module-select" class="w-full text-xs rounded-xl border border-border bg-canvas p-2.5 font-medium">
+              <!-- Populated by JS -->
+            </select>
+          </div>
+        </div>
+
+        <button onclick="App.startExam()" class="pill-ink text-xs inline-flex items-center gap-2">
+          <i data-lucide="play" class="w-3.5 h-3.5"></i> Launch Timed Mock
+        </button>
+      </div>
+
+      <!-- Exam Runner Box -->
+      <div id="exam-runner-box" class="hidden rounded-[1.5rem] bg-card border border-border shadow-soft p-8 space-y-6">
+        <div class="flex items-center justify-between border-b border-border pb-3">
+          <span id="exam-q-counter" class="text-xs font-mono font-medium text-ink-secondary">Question 1</span>
+          <span class="text-xs font-mono px-2 py-0.5 rounded-full bg-card-muted border border-border">-0.25 Negative Marking</span>
+        </div>
+
+        <h3 id="exam-q-text" class="text-base font-medium leading-relaxed">Question text...</h3>
+
+        <div id="exam-q-options" class="space-y-2">
+          <!-- Dynamic options -->
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-border">
+          <button onclick="App.prevExamQuestion()" class="pill-muted text-xs">Previous</button>
+          <div class="flex gap-2">
+            <button onclick="App.nextExamQuestion()" class="pill-muted text-xs">Next</button>
+            <button onclick="App.finishExam()" class="pill-ink text-xs">Finish Exam</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ============================================================= -->
+  <!-- MODAL: CREATE COURSE -->
+  <!-- ============================================================= -->
+  <div id="modal-create-course" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="w-full max-w-md rounded-[1.5rem] bg-card border border-border shadow-soft-md p-6 space-y-5">
+      <div class="flex items-center justify-between">
+        <h3 class="text-base font-semibold tracking-tight">Add New Subject</h3>
+        <button onclick="App.closeCreateCourseModal()" class="text-neutral-400 hover:text-ink"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-mono uppercase text-ink-secondary mb-1">Subject Name</label>
+          <input type="text" id="new-course-name" placeholder="e.g. Corporate Finance" class="w-full p-2.5 rounded-xl border border-border bg-canvas focus:outline-none text-sm font-medium">
+        </div>
+        <div>
+          <label class="block font-mono uppercase text-ink-secondary mb-1">Description (Optional)</label>
+          <input type="text" id="new-course-desc" placeholder="Brief outline of syllabus or course overview" class="w-full p-2.5 rounded-xl border border-border bg-canvas focus:outline-none">
+        </div>
+        <div>
+          <label class="block font-mono uppercase text-ink-secondary mb-1.5">Number of Modules in Syllabus</label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="flex items-center gap-2 p-2.5 rounded-xl border border-border bg-canvas cursor-pointer">
+              <input type="radio" name="module-count" value="8" checked class="text-ink">
+              <span class="font-medium">8 Modules</span>
+            </label>
+            <label class="flex items-center gap-2 p-2.5 rounded-xl border border-border bg-canvas cursor-pointer">
+              <input type="radio" name="module-count" value="4" class="text-ink">
+              <span class="font-medium">4 Modules</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-2 pt-2">
+        <button onclick="App.closeCreateCourseModal()" class="pill-muted text-xs">Cancel</button>
+        <button onclick="App.submitCreateCourse()" class="pill-ink text-xs">Create Subject</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- MODAL: BATCH INGEST VIDEOS -->
+  <!-- ============================================================= -->
+  <div id="modal-ingest" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="w-full max-w-xl rounded-[1.5rem] bg-card border border-border shadow-soft-md p-6 space-y-5 max-h-[90vh] flex flex-col">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-base font-semibold tracking-tight">Add Lectures: <span id="ingest-module-title" class="font-normal text-ink-secondary">Module</span></h3>
+          <p class="text-xs text-ink-secondary mt-0.5">Paste 20–30 YouTube video links (one per line) or a playlist URL.</p>
+        </div>
+        <button onclick="App.closeIngestModal()" class="text-neutral-400 hover:text-ink"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+
+      <div class="space-y-4 text-xs overflow-y-auto flex-1 pr-1">
+        <div>
+          <label class="block font-mono uppercase text-ink-secondary mb-1">YouTube Video Links or Playlist</label>
+          <textarea id="ingest-urls-textarea" rows="6" placeholder="https://www.youtube.com/watch?v=...&#10;https://www.youtube.com/watch?v=...&#10;or https://www.youtube.com/playlist?list=..." class="w-full p-3 rounded-xl border border-border bg-canvas font-mono text-[11px] focus:outline-none"></textarea>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <input type="checkbox" id="ingest-extract-slides" class="rounded">
+          <label for="ingest-extract-slides" class="text-ink-secondary cursor-pointer">
+            Extract whiteboard & slide diagrams with FFmpeg scene detection
+          </label>
+        </div>
+
+        <button id="btn-start-curation" onclick="App.submitIngest()" class="w-full pill-ink text-xs py-2.5">
+          Curate Notes & Questions On The Spot
+        </button>
+
+        <div class="pt-3 border-t border-border space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="font-mono uppercase text-[11px] text-ink-secondary">Current Videos in this Module</div>
+            <button type="button" onclick="App.recurateModule()" class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-ink font-semibold transition-colors">
+              Re-curate All with Rigorous Notes
+            </button>
+          </div>
+          <div id="module-topics-status-list" class="space-y-1.5 max-h-48 overflow-y-auto">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bundled Study Data for 24/7 GitHub Pages Access -->
+  <script src="./study_data.js"></script>
+  <!-- App Script -->
+  <script src="./static/js/app.js"></script>
+</body>
+</html>
+

@@ -150,6 +150,7 @@ def process_topic_task(topic_id: str, extract_slides_flag: bool = False):
             topic_id
         ))
         conn.commit()
+        db.export_static_data()
     except Exception as e:
         conn.execute("UPDATE topics SET status = 'error', error_message = ? WHERE id = ?", (str(e), topic_id))
         conn.commit()
@@ -159,7 +160,11 @@ def process_topic_task(topic_id: str, extract_slides_flag: bool = False):
 # -------------------------------------------------------------
 @app.get("/")
 def serve_index():
-    return FileResponse(STATIC_DIR / "index.html")
+    return FileResponse(BASE_DIR / "index.html")
+
+@app.get("/study_data.js")
+def serve_study_data():
+    return FileResponse(BASE_DIR / "study_data.js")
 
 @app.get("/api/courses")
 def list_courses():

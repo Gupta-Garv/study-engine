@@ -120,3 +120,28 @@ def set_setting(key: str, value: str):
     with conn:
         conn.execute("INSERT OR REPLACE INTO settings (key, value) VALUES (?, ?)", (key, value))
 
+def export_static_data():
+    """Exports SQLite vault to static study_data.js for 24/7 GitHub Pages hosting."""
+    try:
+        courses = get_all_courses()
+        conn = get_conn()
+        topics = {}
+        for row in conn.execute("SELECT * FROM topics").fetchall():
+            d = dict(row)
+            d["mcqs"] = json.loads(d.get("mcqs_json") or "[]")
+            d["subjective_questions"] = json.loads(d.get("subjectives_json") or "[]")
+            d["flashcards"] = json.loads(d.get("flashcards_json") or "[]")
+            d["slides"] = json.loads(d.get("slides_json") or "[]")
+            topics[d["id"]] = d
+            
+        exams = {}
+        for c in courses:
+            for m in c["modules"]:
+                exams[m["id"]] = get_module_quiz(m["id"])
+                
+        out_path = Path(__file__).parent.parent / "study_data.js"
+        bundle = {"courses": courses, "topics": topics, "exams": exams}
+        with open(out_path, "w", encoding="utf-8") as f:
+            f.write("window.STUDY_DATA = " + json.dumps(bundle, ensure_ascii=False, indent=2) + ";\n")
+    except Exception as e:
+        print("Failed to export static data:", e)
