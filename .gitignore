@@ -20,4 +20,5 @@ Thumbs.db
 # Temporary artifacts
 /tmp/
 *.log
+static/slides/
 
