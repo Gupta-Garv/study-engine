@@ -131,6 +131,9 @@ def get_whisper_model():
             raise e
     return _WHISPER_MODEL
 
+# Global state to fast-track directly to Whisper when YouTube blocks automated caption scraping
+_YOUTUBE_CAPTIONS_BLOCKED = False
+
 def fetch_transcript(video_id_or_url: str, course_name: str = "", languages: Sequence[str] = ("en", "en-US", "en-GB")) -> List[Snippet]:
     """
     Multi-tier transcript extraction:
@@ -138,59 +141,68 @@ def fetch_transcript(video_id_or_url: str, course_name: str = "", languages: Seq
     2. yt-dlp captions
     3. Whisper speech-to-text fallback with domain lexicon prompt (100% reliable)
     """
+    global _YOUTUBE_CAPTIONS_BLOCKED
     video_id = extract_video_id(video_id_or_url)
     
-    # -------------------------------------------------------------
-    # Tier 1: youtube_transcript_api
-    # -------------------------------------------------------------
-    try:
-        from youtube_transcript_api import YouTubeTranscriptApi
-        api = YouTubeTranscriptApi()
-        
-        if hasattr(api, "list"):
-            transcripts = api.list(video_id)
-            transcript_obj = None
-            try:
-                transcript_obj = transcripts.find_transcript(languages)
-            except Exception:
-                # If direct English isn't available, check for any transcript and auto-translate
-                transcript_obj = next(iter(transcripts), None)
-                if transcript_obj and getattr(transcript_obj, "is_translatable", False):
-                    try:
-                        transcript_obj = transcript_obj.translate("en")
-                    except Exception:
-                        pass
+    if not _YOUTUBE_CAPTIONS_BLOCKED:
+        # -------------------------------------------------------------
+        # Tier 1: youtube_transcript_api
+        # -------------------------------------------------------------
+        try:
+            from youtube_transcript_api import YouTubeTranscriptApi
+            api = YouTubeTranscriptApi()
             
-            if transcript_obj:
-                raw = transcript_obj.fetch()
-                snippets = []
-                for item in raw:
-                    text = getattr(item, "text", None) or (item.get("text") if isinstance(item, dict) else str(item))
-                    start = getattr(item, "start", 0.0) or (item.get("start", 0.0) if isinstance(item, dict) else 0.0)
-                    duration = getattr(item, "duration", 0.0) or (item.get("duration", 0.0) if isinstance(item, dict) else 0.0)
-                    if text and text.strip():
-                        snippets.append(Snippet(text=text.strip(), start=float(start), duration=float(duration)))
+            if hasattr(api, "list"):
+                transcripts = api.list(video_id)
+                transcript_obj = None
+                try:
+                    transcript_obj = transcripts.find_transcript(languages)
+                except Exception:
+                    transcript_obj = next(iter(transcripts), None)
+                    if transcript_obj and getattr(transcript_obj, "is_translatable", False):
+                        try:
+                            transcript_obj = transcript_obj.translate("en")
+                        except Exception:
+                            pass
+                
+                if transcript_obj:
+                    raw = transcript_obj.fetch()
+                    snippets = []
+                    for item in raw:
+                        text = getattr(item, "text", None) or (item.get("text") if isinstance(item, dict) else str(item))
+                        start = getattr(item, "start", 0.0) or (item.get("start", 0.0) if isinstance(item, dict) else 0.0)
+                        duration = getattr(item, "duration", 0.0) or (item.get("duration", 0.0) if isinstance(item, dict) else 0.0)
+                        if text and text.strip():
+                            snippets.append(Snippet(text=text.strip(), start=float(start), duration=float(duration)))
+                    if snippets:
+                        logger.info(f"Retrieved {len(snippets)} snippets via youtube_transcript_api for {video_id}")
+                        return snippets
+            elif hasattr(YouTubeTranscriptApi, "get_transcript"):
+                raw = YouTubeTranscriptApi.get_transcript(video_id, languages=languages)
+                snippets = [Snippet(text=r["text"], start=float(r["start"]), duration=float(r["duration"])) for r in raw if r.get("text")]
                 if snippets:
-                    logger.info(f"Retrieved {len(snippets)} snippets via youtube_transcript_api for {video_id}")
                     return snippets
-        elif hasattr(YouTubeTranscriptApi, "get_transcript"):
-            raw = YouTubeTranscriptApi.get_transcript(video_id, languages=languages)
-            snippets = [Snippet(text=r["text"], start=float(r["start"]), duration=float(r["duration"])) for r in raw if r.get("text")]
-            if snippets:
-                return snippets
-    except Exception as e:
-        logger.warning(f"youtube_transcript_api unavailable for {video_id}: {e}")
+        except Exception as e:
+            err_str = str(e).lower()
+            if "429" in err_str or "blocking" in err_str or "too many" in err_str:
+                _YOUTUBE_CAPTIONS_BLOCKED = True
+                logger.info("YouTube IP rate limit detected. Skipping caption scraping and routing directly to high-speed Whisper.")
+            else:
+                logger.warning(f"youtube_transcript_api unavailable for {video_id}: {e}")
 
-    # -------------------------------------------------------------
-    # Tier 2: yt-dlp timedtext / subtitles
-    # -------------------------------------------------------------
-    try:
-        snippets = _fetch_via_ytdlp(video_id)
-        if snippets:
-            logger.info(f"Retrieved {len(snippets)} snippets via yt-dlp captions for {video_id}")
-            return snippets
-    except Exception as e:
-        logger.warning(f"yt-dlp caption download failed for {video_id}: {e}")
+        # -------------------------------------------------------------
+        # Tier 2: yt-dlp timedtext / subtitles
+        # -------------------------------------------------------------
+        if not _YOUTUBE_CAPTIONS_BLOCKED:
+            try:
+                snippets = _fetch_via_ytdlp(video_id)
+                if snippets:
+                    logger.info(f"Retrieved {len(snippets)} snippets via yt-dlp captions for {video_id}")
+                    return snippets
+            except Exception as e:
+                if "429" in str(e):
+                    _YOUTUBE_CAPTIONS_BLOCKED = True
+                logger.warning(f"yt-dlp caption download failed for {video_id}: {e}")
 
     # -------------------------------------------------------------
     # Tier 3: Fast audio download + faster-whisper transcription

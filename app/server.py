@@ -7,7 +7,11 @@ and on-the-spot AI lecture curation.
 import os
 import uuid
 import asyncio
+import logging
 from pathlib import Path
+
+logger = logging.getLogger("study_engine.server")
+logging.basicConfig(level=logging.INFO)
 from typing import List, Optional
 from pydantic import BaseModel
 from fastapi import FastAPI, HTTPException, BackgroundTasks
@@ -52,31 +56,43 @@ class SettingsRequest(BaseModel):
     nvidia_api_key: str
 
 # -------------------------------------------------------------
-# Background Curation Task & Queue Worker
+# Background Curation Task & Queue Worker (2 Concurrent Workers)
 # -------------------------------------------------------------
 is_worker_running = False
+
+async def worker_loop(worker_id: int):
+    while True:
+        t_id = None
+        try:
+            conn = db.get_conn()
+            with conn:
+                row = conn.execute(
+                    "SELECT id FROM topics WHERE status = 'pending' ORDER BY created_at ASC LIMIT 1"
+                ).fetchone()
+                if row:
+                    t_id = row["id"]
+                    conn.execute("UPDATE topics SET status = 'processing', error_message = '' WHERE id = ?", (t_id,))
+            
+            if t_id:
+                logger.info(f"[Worker {worker_id}] Starting topic {t_id}...")
+                await asyncio.to_thread(process_topic_task, t_id, False)
+                logger.info(f"[Worker {worker_id}] Finished topic {t_id}.")
+            else:
+                await asyncio.sleep(2)
+        except Exception as e:
+            logger.error(f"[Worker {worker_id}] Error in curation queue: {e}")
+            await asyncio.sleep(2)
 
 async def queue_worker():
     global is_worker_running
     if is_worker_running:
         return
     is_worker_running = True
-
-    while True:
-        try:
-            conn = db.get_conn()
-            pending_topic = conn.execute(
-                "SELECT id FROM topics WHERE status = 'pending' ORDER BY created_at ASC LIMIT 1"
-            ).fetchone()
-
-            if pending_topic:
-                t_id = pending_topic["id"]
-                # Run process in threadpool with fast transcript-first synthesis (skipping slide extraction for maximum speed)
-                await asyncio.to_thread(process_topic_task, t_id, False)
-            else:
-                await asyncio.sleep(2)
-        except Exception as e:
-            await asyncio.sleep(2)
+    logger.info("Launching dual-worker parallel curation queue (2 concurrent workers)...")
+    await asyncio.gather(
+        worker_loop(1),
+        worker_loop(2)
+    )
 
 @app.on_event("startup")
 async def on_startup():
@@ -110,12 +126,18 @@ def process_topic_task(topic_id: str, extract_slides_flag: bool = False):
                 conn.execute("UPDATE topics SET title = ? WHERE id = ?", (real_title, topic_id))
                 conn.commit()
 
-        # Step 2: Multi-tier Transcript Extraction (caption api -> yt-dlp -> faster-whisper fallback with domain lexicon)
-        snippets = fetch_transcript(topic["youtube_url"], course_name=topic["course_name"])
-        full_text = " ".join([s.text for s in snippets])
-        duration = snippets[-1].end if snippets else 0
+        # Step 2: Multi-tier Transcript Extraction (or use cached transcript)
+        cached_transcript = topic["transcript_text"] if "transcript_text" in topic.keys() else ""
+        if cached_transcript and cached_transcript.strip():
+            logger.info(f"Using cached transcript for {topic_id} ({len(cached_transcript)} chars)...")
+            full_text = cached_transcript
+            duration = topic["duration_seconds"] or 0
+        else:
+            snippets = fetch_transcript(topic["youtube_url"], course_name=topic["course_name"])
+            full_text = " ".join([s.text for s in snippets])
+            duration = snippets[-1].end if snippets else 0
 
-        # Step 3: Fast slides/whiteboard capture & local Tesseract OCR
+        # Step 3: Fast slides/whiteboard capture & local Tesseract OCR (skipped if false)
         slides_data = []
         slide_ocr_text = ""
         if extract_slides_flag:
@@ -138,6 +160,7 @@ def process_topic_task(topic_id: str, extract_slides_flag: bool = False):
             UPDATE topics 
             SET status = 'completed',
                 duration_seconds = ?,
+                transcript_text = ?,
                 notes_markdown = ?,
                 mcqs_json = ?,
                 subjectives_json = ?,
@@ -146,6 +169,7 @@ def process_topic_task(topic_id: str, extract_slides_flag: bool = False):
             WHERE id = ?
         """, (
             duration,
+            full_text,
             result.get("notes_markdown", ""),
             json.dumps(result.get("mcqs", []), ensure_ascii=False),
             json.dumps(result.get("subjective_questions", []), ensure_ascii=False),

@@ -53,31 +53,21 @@ limiter = RateLimiter(max_per_minute=35)
 def get_api_key() -> str:
     return NVIDIA_API_KEY
 
-def get_client(timeout: float = 60.0) -> OpenAI:
+def get_client(timeout: float = 75.0) -> OpenAI:
     return OpenAI(base_url="https://integrate.api.nvidia.com/v1", api_key=NVIDIA_API_KEY, timeout=timeout)
 
-def _invoke_model(model_name: str, messages: List[Dict[str, str]], temperature: float = 0.15, max_tokens: int = 4096, timeout: float = 60.0) -> str:
+def _invoke_model(model_name: str, messages: List[Dict[str, str]], temperature: float = 0.15, max_tokens: int = 3000, timeout: float = 75.0) -> str:
     client = get_client(timeout=timeout)
     limiter.acquire()
     
-    # Disable hidden reasoning loops to ensure fast (~4-10s) responses and prevent token budget exhaustion
-    extra_body = {"chat_template_kwargs": {"thinking": False}}
-    try:
-        resp = client.chat.completions.create(
-            model=model_name,
-            messages=messages,
-            temperature=temperature,
-            max_tokens=max_tokens,
-            extra_body=extra_body
-        )
-    except Exception as e:
-        logger.warning(f"Invocation with thinking:false failed ({e}), retrying standard call...")
-        resp = client.chat.completions.create(
-            model=model_name,
-            messages=messages,
-            temperature=temperature,
-            max_tokens=max_tokens
-        )
+    # Strictly disable hidden reasoning loops to ensure fast generation and prevent token budget exhaustion
+    resp = client.chat.completions.create(
+        model=model_name,
+        messages=messages,
+        temperature=temperature,
+        max_tokens=max_tokens,
+        extra_body={"chat_template_kwargs": {"thinking": False}}
+    )
 
     content = resp.choices[0].message.content
     if content and content.strip():
@@ -87,33 +77,24 @@ def _invoke_model(model_name: str, messages: List[Dict[str, str]], temperature: 
         return reasoning
     raise RuntimeError(f"Model {model_name} returned empty text content.")
 
-def call_llm(messages: List[Dict[str, str]], temperature: float = 0.15, max_tokens: int = 4096, max_retries: int = 2) -> str:
+def call_llm(messages: List[Dict[str, str]], temperature: float = 0.15, max_tokens: int = 3000) -> str:
     """
-    Executes LLM request using high-speed model with fallback to secondary reasoning model.
+    Executes LLM request using high-speed model with fallback to secondary engine.
     """
     # Attempt 1: Try High-Speed Model
     try:
         logger.info(f"Calling high-speed academic model {PRIMARY_MODEL}...")
-        return _invoke_model(PRIMARY_MODEL, messages, temperature=temperature, max_tokens=max_tokens, timeout=50.0)
+        return _invoke_model(PRIMARY_MODEL, messages, temperature=temperature, max_tokens=max_tokens, timeout=75.0)
     except Exception as e:
         logger.warning(f"Model {PRIMARY_MODEL} encountered issue ({e}). Switching to secondary engine {SECONDARY_MODEL}...")
 
     # Attempt 2: Try Secondary Model
     try:
         logger.info(f"Calling secondary model {SECONDARY_MODEL}...")
-        return _invoke_model(SECONDARY_MODEL, messages, temperature=temperature, max_tokens=max_tokens, timeout=60.0)
+        return _invoke_model(SECONDARY_MODEL, messages, temperature=temperature, max_tokens=max_tokens, timeout=80.0)
     except Exception as e:
         logger.warning(f"Secondary model also failed: {e}")
-
-    # Retries on Primary
-    for attempt in range(1, max_retries + 1):
-        try:
-            return _invoke_model(PRIMARY_MODEL, messages, temperature=temperature, max_tokens=max_tokens, timeout=35.0)
-        except Exception as e:
-            if attempt < max_retries:
-                time.sleep(1.5)
-            else:
-                raise e
+        raise e
 
 def safe_parse_json(raw: str, fallback_title: str = "Lecture Notes") -> Dict[str, Any]:
     """Robust JSON parser that isolates the JSON object and gracefully salvages content if JSON fails."""
@@ -291,5 +272,5 @@ You must return a single valid JSON object with the following exact keys:
         {"role": "user", "content": user_prompt}
     ]
 
-    raw = call_llm(messages, temperature=0.15, max_tokens=4096)
+    raw = call_llm(messages, temperature=0.15, max_tokens=3000)
     return safe_parse_json(raw, fallback_title=topic_title)

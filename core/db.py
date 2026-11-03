@@ -46,6 +46,7 @@ def init_db():
                 video_id TEXT NOT NULL,
                 duration_seconds REAL DEFAULT 0,
                 status TEXT DEFAULT 'pending', -- 'pending', 'processing', 'completed', 'error'
+                transcript_text TEXT DEFAULT '',
                 notes_markdown TEXT DEFAULT '',
                 mcqs_json TEXT DEFAULT '[]',
                 subjectives_json TEXT DEFAULT '[]',
