@@ -10,6 +10,7 @@ const App = {
   selectedModuleId: null,
   selectedTopicId: null,
   expandedModuleIds: new Set(),
+  isSidebarOpen: true,
   isCopilotOpen: true,
   copilotMessages: [],
   isCopilotLoading: false,
@@ -33,6 +34,7 @@ const App = {
       const banner = document.getElementById('static-viewer-banner');
       if (banner) banner.classList.remove('hidden');
     }
+    this.initResizers();
     await this.loadCourses();
     if (window.lucide) window.lucide.createIcons();
     this.startPolling();
@@ -412,18 +414,154 @@ const App = {
     this.renderNotesSidebar();
   },
 
+  // -------------------------------------------------------------
+  // Resizable Panes & Sidebar / Copilot Toggles
+  // -------------------------------------------------------------
+  initResizers() {
+    const sidebar = document.getElementById('notes-sidebar');
+    const resizerSidebar = document.getElementById('resizer-sidebar');
+    const copilot = document.getElementById('copilot-panel');
+    const resizerCopilot = document.getElementById('resizer-copilot');
+    const viewNotes = document.getElementById('view-notes');
+
+    // 1. Restore saved pane widths
+    const savedSidebarWidth = localStorage.getItem('study_engine_sidebar_width');
+    if (savedSidebarWidth && sidebar) {
+      sidebar.style.width = savedSidebarWidth;
+    }
+    const savedCopilotWidth = localStorage.getItem('study_engine_copilot_width');
+    if (savedCopilotWidth && copilot) {
+      copilot.style.width = savedCopilotWidth;
+    }
+
+    // 2. Restore collapse states
+    if (localStorage.getItem('study_engine_sidebar_open') === 'false') {
+      this.isSidebarOpen = false;
+      if (sidebar) sidebar.classList.add('hidden');
+      if (resizerSidebar) resizerSidebar.classList.add('hidden');
+      const toggleText = document.getElementById('sidebar-toggle-text');
+      if (toggleText) toggleText.textContent = 'Show Syllabus';
+    }
+    if (localStorage.getItem('study_engine_copilot_open') === 'false') {
+      this.isCopilotOpen = false;
+      if (copilot) copilot.classList.add('hidden');
+      if (resizerCopilot) resizerCopilot.classList.add('hidden');
+      const label = document.getElementById('copilot-toggle-label');
+      if (label) label.textContent = 'Open Copilot';
+    }
+
+    // 3. Syllabus Sidebar Drag-to-Resize
+    if (resizerSidebar && sidebar && viewNotes) {
+      let isDragging = false;
+
+      const onMouseDown = (e) => {
+        isDragging = true;
+        e.preventDefault();
+        document.body.style.cursor = 'col-resize';
+        document.body.style.userSelect = 'none';
+        resizerSidebar.classList.add('resizer-active');
+        sidebar.style.transition = 'none';
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
+      };
+
+      const onMouseMove = (e) => {
+        if (!isDragging) return;
+        const rect = viewNotes.getBoundingClientRect();
+        let newWidth = e.clientX - rect.left;
+        if (newWidth < 170) newWidth = 170;
+        if (newWidth > 480) newWidth = 480;
+        sidebar.style.width = `${newWidth}px`;
+      };
+
+      const onMouseUp = () => {
+        if (!isDragging) return;
+        isDragging = false;
+        document.body.style.cursor = '';
+        document.body.style.userSelect = '';
+        resizerSidebar.classList.remove('resizer-active');
+        window.removeEventListener('mousemove', onMouseMove);
+        window.removeEventListener('mouseup', onMouseUp);
+        localStorage.setItem('study_engine_sidebar_width', sidebar.style.width);
+      };
+
+      resizerSidebar.addEventListener('mousedown', onMouseDown);
+    }
+
+    // 4. Lecture Copilot Drag-to-Resize
+    if (resizerCopilot && copilot && viewNotes) {
+      let isDragging = false;
+
+      const onMouseDown = (e) => {
+        isDragging = true;
+        e.preventDefault();
+        document.body.style.cursor = 'col-resize';
+        document.body.style.userSelect = 'none';
+        resizerCopilot.classList.add('resizer-active');
+        copilot.style.transition = 'none';
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
+      };
+
+      const onMouseMove = (e) => {
+        if (!isDragging) return;
+        const rect = viewNotes.getBoundingClientRect();
+        let newWidth = rect.right - e.clientX;
+        if (newWidth < 260) newWidth = 260;
+        if (newWidth > 600) newWidth = 600;
+        copilot.style.width = `${newWidth}px`;
+      };
+
+      const onMouseUp = () => {
+        if (!isDragging) return;
+        isDragging = false;
+        document.body.style.cursor = '';
+        document.body.style.userSelect = '';
+        resizerCopilot.classList.remove('resizer-active');
+        window.removeEventListener('mousemove', onMouseMove);
+        window.removeEventListener('mouseup', onMouseUp);
+        localStorage.setItem('study_engine_copilot_width', copilot.style.width);
+      };
+
+      resizerCopilot.addEventListener('mousedown', onMouseDown);
+    }
+  },
+
+  toggleSidebar() {
+    const sidebar = document.getElementById('notes-sidebar');
+    const resizer = document.getElementById('resizer-sidebar');
+    const toggleText = document.getElementById('sidebar-toggle-text');
+    if (!sidebar) return;
+    this.isSidebarOpen = !this.isSidebarOpen;
+    if (this.isSidebarOpen) {
+      sidebar.classList.remove('hidden');
+      if (resizer) resizer.classList.remove('hidden');
+      if (toggleText) toggleText.textContent = 'Syllabus';
+    } else {
+      sidebar.classList.add('hidden');
+      if (resizer) resizer.classList.add('hidden');
+      if (toggleText) toggleText.textContent = 'Show Syllabus';
+    }
+    localStorage.setItem('study_engine_sidebar_open', this.isSidebarOpen ? 'true' : 'false');
+    if (window.lucide) window.lucide.createIcons();
+  },
+
   toggleCopilot() {
     const panel = document.getElementById('copilot-panel');
+    const resizer = document.getElementById('resizer-copilot');
     const label = document.getElementById('copilot-toggle-label');
     if (!panel) return;
     this.isCopilotOpen = !this.isCopilotOpen;
     if (this.isCopilotOpen) {
       panel.classList.remove('hidden');
+      if (resizer) resizer.classList.remove('hidden');
       if (label) label.textContent = 'AI Copilot';
     } else {
       panel.classList.add('hidden');
-      if (label) label.textContent = 'Show Copilot';
+      if (resizer) resizer.classList.add('hidden');
+      if (label) label.textContent = 'Open Copilot';
     }
+    localStorage.setItem('study_engine_copilot_open', this.isCopilotOpen ? 'true' : 'false');
     if (window.lucide) window.lucide.createIcons();
   },
 
@@ -462,7 +600,7 @@ const App = {
             return `
               <div class="rounded-xl border ${hasActiveTopic ? 'border-neutral-900/40 dark:border-white/40' : 'border-border'} overflow-hidden bg-card transition shadow-soft-sm">
                 <!-- Module Header Accordion Trigger -->
-                <button onclick="App.toggleModule('${m.id}')" class="w-full px-3 py-2 flex items-center justify-between text-left hover:bg-muted/50 transition">
+                <button onclick="App.toggleModule('${m.id}')" title="${m.name}" class="w-full px-3 py-2 flex items-center justify-between text-left hover:bg-muted/50 transition">
                   <div class="flex items-center gap-2 min-w-0">
                     <i data-lucide="${isExpanded ? 'chevron-down' : 'chevron-right'}" class="w-3.5 h-3.5 text-neutral-400 shrink-0"></i>
                     <span class="text-xs font-medium text-foreground truncate">${m.name}</span>
@@ -477,7 +615,7 @@ const App = {
                     ${m.topics.map(t => {
                       const isSelected = t.id === this.selectedTopicId;
                       return `
-                        <button onclick="App.loadTopicNotes('${t.id}')" class="w-full text-left text-xs px-2.5 py-1.5 rounded-lg flex items-center justify-between gap-2 transition ${
+                        <button onclick="App.loadTopicNotes('${t.id}')" title="${t.title}" class="w-full text-left text-xs px-2.5 py-1.5 rounded-lg flex items-center justify-between gap-2 transition ${
                           isSelected 
                             ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-medium shadow-soft-sm' 
                             : 'text-neutral-600 dark:text-neutral-400 hover:bg-muted'
@@ -613,6 +751,7 @@ const App = {
     const badge = document.getElementById('reader-topic-badge');
     if (badge) {
       badge.textContent = topic ? topic.title : 'Ready';
+      badge.title = topic ? topic.title : '';
     }
 
     const container = document.getElementById('copilot-messages');

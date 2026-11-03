@@ -46,10 +46,10 @@
   <!-- Custom Ledger CSS -->
   <link rel="stylesheet" href="./static/css/style.css">
 </head>
-<body class="min-h-screen flex flex-col bg-canvas text-ink transition-colors duration-200">
+<body class="h-screen flex flex-col bg-canvas text-ink transition-colors duration-200 overflow-hidden">
 
   <!-- Header (Clean Modern Ledger Style) -->
-  <header class="sticky top-0 z-40 backdrop-blur border-b border-border bg-canvas/80">
+  <header class="sticky top-0 z-40 shrink-0 backdrop-blur border-b border-border bg-canvas/80">
     <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
       
       <!-- Logo / Title -->
@@ -85,119 +85,246 @@
     </div>
   </header>
 
-  <!-- Main View Container -->
-  <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-8">
+  <!-- Static Viewer Mode Banner (Shown only on GitHub Pages) -->
+  <div id="static-viewer-banner" class="hidden shrink-0 bg-neutral-900 text-neutral-300 dark:bg-neutral-800 text-[11px] py-1.5 px-4 text-center border-b border-border font-mono flex items-center justify-center gap-2">
+    <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+    <span>24/7 Study Vault</span>
+    <span>&bull;</span>
+    <span>To curate new lectures with local Whisper & OCR, open <a href="http://127.0.0.1:8000" class="text-white underline font-medium">http://127.0.0.1:8000</a> on your Mac</span>
+  </div>
+
+  <!-- Main View Container (Full Edge-to-Edge Container) -->
+  <main class="flex-1 w-full flex flex-col min-h-0 overflow-hidden">
 
     <!-- ============================================================= -->
     <!-- VIEW 1: SYLLABUS & INGESTION (Where user adds subjects & videos) -->
     <!-- ============================================================= -->
-    <div id="view-syllabus" class="space-y-8">
-      
-      <!-- Ledger Hero Stack -->
-      <div class="max-w-2xl space-y-3">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card-muted border border-border text-xs font-mono text-ink-secondary">
-          <span class="font-pixel text-[10px] text-emerald-500">EXAM PREP</span>
-          <span>Semester Lecture Curation & Timed Testing</span>
+    <div id="view-syllabus" class="flex-1 w-full overflow-y-auto px-4 py-8">
+      <div class="max-w-6xl mx-auto space-y-8">
+        
+        <!-- Ledger Hero Stack -->
+        <div class="max-w-2xl space-y-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card-muted border border-border text-xs font-mono text-ink-secondary">
+            <span class="font-pixel text-[10px] text-emerald-500">EXAM PREP</span>
+            <span>Semester Lecture Curation & Timed Testing</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-[450] tracking-[-0.04em] leading-tight text-balance">
+            Curate university notes <span class="font-pixel text-2xl sm:text-3xl text-ink">on the spot</span> from your video lectures.
+          </h1>
+          <p class="text-sm text-ink-secondary leading-relaxed">
+            Add your 4–5 subjects and paste your 20–30 YouTube lecture links per module. The engine transcribes, captures whiteboard frames, and synthesizes syllabus notes and timed exam questions.
+          </p>
+          <div class="pt-2">
+            <button onclick="App.openCreateCourseModal()" class="pill-ink text-xs inline-flex items-center gap-2">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i> Add New Subject
+            </button>
+          </div>
         </div>
-        <h1 class="text-3xl sm:text-4xl font-[450] tracking-[-0.04em] leading-tight text-balance">
-          Curate university notes <span class="font-pixel text-2xl sm:text-3xl text-ink">on the spot</span> from your video lectures.
-        </h1>
-        <p class="text-sm text-ink-secondary leading-relaxed">
-          Add your 4–5 subjects and paste your 20–30 YouTube lecture links per module. The engine transcribes, captures whiteboard frames, and synthesizes syllabus notes and timed exam questions.
-        </p>
-        <div class="pt-2">
-          <button onclick="App.openCreateCourseModal()" class="pill-ink text-xs inline-flex items-center gap-2">
-            <i data-lucide="plus" class="w-3.5 h-3.5"></i> Add New Subject
-          </button>
+
+        <!-- Courses List Container -->
+        <div id="courses-list" class="space-y-6">
+          <!-- Rendered dynamically -->
         </div>
-      </div>
 
-      <!-- Courses List Container -->
-      <div id="courses-list" class="space-y-6">
-        <!-- Rendered dynamically -->
       </div>
-
     </div>
 
     <!-- ============================================================= -->
-    <!-- VIEW 2: STUDY HALL (Note Reader with LaTeX, Mermaid, Slides) -->
+    <!-- VIEW 2: STUDY HALL (Edge-to-Edge Resizable Workspace) -->
     <!-- ============================================================= -->
-    <div id="view-notes" class="hidden h-[calc(100vh-8rem)] flex rounded-[1.5rem] bg-card border border-border shadow-soft overflow-hidden">
+    <div id="view-notes" class="hidden w-full flex-1 flex overflow-hidden border-t border-border bg-canvas">
       
-      <!-- Sidebar Tree -->
-      <aside class="w-72 shrink-0 border-r border-border bg-card-muted/50 p-4 overflow-y-auto space-y-4">
-        <div class="text-[11px] font-mono uppercase tracking-wider text-neutral-400 font-semibold">Course Syllabus</div>
-        <div id="notes-syllabus-tree" class="space-y-4">
+      <!-- Sidebar Tree (Collapsible & Resizable Accordion) -->
+      <aside id="notes-sidebar" class="shrink-0 bg-card border-r border-border p-3 overflow-y-auto space-y-3 flex flex-col select-none" style="width: 250px;">
+        <div class="flex items-center justify-between pb-2 border-b border-border/60 shrink-0">
+          <div class="text-[11px] font-mono uppercase tracking-wider text-ink-secondary font-semibold flex items-center gap-1.5">
+            <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+            <span>Syllabus</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <button onclick="App.toggleAllModules()" class="text-[10px] text-ink-muted hover:text-ink transition font-mono px-1.5 py-0.5 rounded hover:bg-muted" title="Expand / Collapse All">Toggle All</button>
+            <button onclick="App.toggleSidebar()" class="p-1 text-ink-muted hover:text-ink rounded hover:bg-muted transition" title="Collapse Syllabus Sidebar">
+              <i data-lucide="chevrons-left" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+        <div id="notes-syllabus-tree" class="flex-1 space-y-2 overflow-y-auto pr-1">
           <!-- Populated by JS -->
         </div>
       </aside>
 
-      <!-- Main Reader Pane -->
-      <section class="flex-1 overflow-y-auto p-8 sm:p-12 space-y-6">
-        <div id="notes-content-body" class="prose-ledger max-w-3xl">
-          <div class="text-center py-20 text-xs text-neutral-400">Select a completed lecture from the left sidebar.</div>
+      <!-- Left Resizer Handle (Between Sidebar and Reader) -->
+      <div id="resizer-sidebar" class="w-1.5 shrink-0 bg-border/40 hover:bg-neutral-400 dark:hover:bg-neutral-600 active:bg-neutral-600 dark:active:bg-neutral-400 cursor-col-resize transition-colors relative z-10 flex items-center justify-center group select-none" title="Drag to resize syllabus">
+        <div class="w-0.5 h-6 rounded-full bg-neutral-300 dark:bg-neutral-700 group-hover:bg-neutral-500 dark:group-hover:bg-neutral-400 transition-colors pointer-events-none"></div>
+      </div>
+
+      <!-- Main Reader Pane (Edge-to-Edge Full Sized) -->
+      <section id="notes-content-section" class="flex-1 h-full overflow-hidden bg-card flex flex-col min-w-0">
+        
+        <!-- Reader Sticky Top Bar -->
+        <div class="shrink-0 flex items-center justify-between px-6 py-3 border-b border-border bg-card-muted/30 backdrop-blur">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <button id="sidebar-toggle-btn" onclick="App.toggleSidebar()" class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink-secondary hover:text-ink transition flex items-center gap-1.5 text-xs shrink-0" title="Toggle Syllabus Sidebar">
+              <i data-lucide="panel-left" class="w-3.5 h-3.5"></i>
+              <span id="sidebar-toggle-text" class="hidden sm:inline text-[11px] font-mono">Syllabus</span>
+            </button>
+            <span id="reader-topic-badge" class="text-[11px] font-mono px-2.5 py-1 rounded-full bg-muted text-ink-secondary font-medium truncate max-w-xs sm:max-w-md">Ready</span>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <button onclick="App.toggleCopilot()" class="pill-muted text-xs inline-flex items-center gap-1.5">
+              <i data-lucide="bot" class="w-3.5 h-3.5"></i>
+              <span id="copilot-toggle-label">AI Copilot</span>
+            </button>
+          </div>
         </div>
 
-        <!-- Slide Frames Gallery -->
-        <div id="notes-slide-gallery" class="hidden max-w-3xl pt-8 border-t border-border space-y-3">
-          <div class="text-xs font-mono uppercase tracking-wider text-neutral-400 flex items-center gap-2">
-            <i data-lucide="image" class="w-4 h-4"></i> Captured Whiteboard & Slide Diagrams
-          </div>
-          <div id="slide-thumbs-container" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            <!-- Populated by JS -->
+        <!-- Scrollable Notes Content Wrapper -->
+        <div class="flex-1 overflow-y-auto px-6 sm:px-10 lg:px-14 py-8">
+          <div class="max-w-4xl w-full mx-auto space-y-6">
+            <div id="notes-content-body" class="prose-ledger w-full">
+              <div class="text-center py-20 text-xs text-neutral-400">Select a completed lecture from the left sidebar to begin studying.</div>
+            </div>
+
+            <!-- Slide Frames Gallery -->
+            <div id="notes-slide-gallery" class="hidden w-full pt-8 border-t border-border space-y-3">
+              <div class="text-xs font-mono uppercase tracking-wider text-neutral-400 flex items-center gap-2">
+                <i data-lucide="image" class="w-4 h-4"></i> Captured Whiteboard & Slide Diagrams
+              </div>
+              <div id="slide-thumbs-container" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <!-- Populated by JS -->
+              </div>
+            </div>
           </div>
         </div>
       </section>
+
+      <!-- Right Resizer Handle (Between Reader and Copilot) -->
+      <div id="resizer-copilot" class="w-1.5 shrink-0 bg-border/40 hover:bg-neutral-400 dark:hover:bg-neutral-600 active:bg-neutral-600 dark:active:bg-neutral-400 cursor-col-resize transition-colors relative z-10 flex items-center justify-center group select-none" title="Drag to resize copilot">
+        <div class="w-0.5 h-6 rounded-full bg-neutral-300 dark:bg-neutral-700 group-hover:bg-neutral-500 dark:group-hover:bg-neutral-400 transition-colors pointer-events-none"></div>
+      </div>
+
+      <!-- Dedicated AI Lecture Copilot Panel (In-Context Doubt Solver) -->
+      <aside id="copilot-panel" class="shrink-0 bg-card border-l border-border flex flex-col h-full overflow-hidden select-text" style="width: 350px;">
+        <!-- Copilot Header -->
+        <div class="p-4 border-b border-border flex items-center justify-between bg-card-muted/30 shrink-0">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-7 h-7 rounded-lg bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 flex items-center justify-center shrink-0">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            </div>
+            <div class="min-w-0">
+              <div class="text-xs font-semibold text-ink flex items-center gap-1.5">
+                <span>Lecture Copilot</span>
+                <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">GLM-5.3</span>
+              </div>
+              <div id="copilot-active-topic" class="text-[10px] text-ink-secondary truncate">No lecture selected</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-1">
+            <button onclick="App.clearTopicChat()" title="Reset chat for this video" class="p-1.5 text-ink-muted hover:text-ink rounded-lg hover:bg-muted transition text-xs">
+              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+            </button>
+            <button onclick="App.toggleCopilot()" title="Close Copilot" class="p-1.5 text-ink-muted hover:text-ink rounded-lg hover:bg-muted transition text-xs">
+              <i data-lucide="x" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Chat Messages List -->
+        <div id="copilot-messages" class="flex-1 overflow-y-auto p-4 space-y-3 text-xs">
+          <div class="text-center py-16 text-neutral-400 space-y-2">
+            <div class="w-8 h-8 rounded-full bg-muted mx-auto flex items-center justify-center text-neutral-400">
+              <i data-lucide="message-square" class="w-4 h-4"></i>
+            </div>
+            <p class="font-medium text-ink">In-Context Study Tutor</p>
+            <p class="text-[11px] text-ink-secondary max-w-[200px] mx-auto">Select any video to ask doubts. Every video remembers its own chat history forever.</p>
+          </div>
+        </div>
+
+        <!-- Suggestion Chips -->
+        <div id="copilot-chips" class="px-4 py-2 border-t border-border/50 bg-card-muted/10 flex flex-wrap gap-1.5 shrink-0">
+          <button onclick="App.askSuggestedQuestion('Summarize this lecture in 3 crisp bullet points.')" class="text-[10px] px-2.5 py-1 rounded-full border border-border bg-background hover:bg-muted text-ink-secondary transition">
+            💡 3-Point Summary
+          </button>
+          <button onclick="App.askSuggestedQuestion('Explain the core formula from this video with an intuitive example.')" class="text-[10px] px-2.5 py-1 rounded-full border border-border bg-background hover:bg-muted text-ink-secondary transition">
+            📐 Explain Formula
+          </button>
+          <button onclick="App.askSuggestedQuestion('What tricky questions or traps can come from this on exams?')" class="text-[10px] px-2.5 py-1 rounded-full border border-border bg-background hover:bg-muted text-ink-secondary transition">
+            🎯 Exam Traps
+          </button>
+        </div>
+
+        <!-- Chat Input Form -->
+        <form id="copilot-form" onsubmit="App.handleCopilotSubmit(event)" class="p-3 border-t border-border bg-card shrink-0">
+          <div class="relative flex items-center">
+            <input 
+              id="copilot-input" 
+              type="text" 
+              placeholder="Ask a doubt about this video..." 
+              autocomplete="off"
+              class="w-full text-xs pl-3 pr-10 py-2.5 rounded-xl border border-border bg-background text-ink placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-neutral-900 dark:focus:ring-white transition"
+            />
+            <button 
+              id="copilot-send-btn"
+              type="submit" 
+              class="absolute right-1.5 p-1.5 rounded-lg bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 hover:opacity-90 disabled:opacity-40 transition"
+            >
+              <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </form>
+      </aside>
 
     </div>
 
     <!-- ============================================================= -->
     <!-- VIEW 3: EXAM ARENA (Timed MCQ Simulator) -->
     <!-- ============================================================= -->
-    <div id="view-exam" class="hidden max-w-3xl mx-auto space-y-6">
-      
-      <div id="exam-setup-box" class="rounded-[1.5rem] bg-card border border-border shadow-soft p-8 space-y-5">
-        <div>
-          <h2 class="text-xl font-medium tracking-tight">Timed MCQ Examination Arena</h2>
-          <p class="text-xs text-ink-secondary mt-1">Select any module to start a timed mock with negative marking (-0.25).</p>
-        </div>
-
-        <div class="space-y-3">
+    <div id="view-exam" class="hidden flex-1 w-full overflow-y-auto px-4 py-8">
+      <div class="max-w-3xl mx-auto space-y-6">
+        
+        <div id="exam-setup-box" class="rounded-[1.5rem] bg-card border border-border shadow-soft p-8 space-y-5">
           <div>
-            <label class="block text-xs font-mono uppercase text-ink-secondary mb-1">Select Module Scope</label>
-            <select id="exam-module-select" class="w-full text-xs rounded-xl border border-border bg-canvas p-2.5 font-medium">
-              <!-- Populated by JS -->
-            </select>
+            <h2 class="text-xl font-medium tracking-tight">Timed MCQ Examination Arena</h2>
+            <p class="text-xs text-ink-secondary mt-1">Select any module to start a timed mock with negative marking (-0.25).</p>
+          </div>
+
+          <div class="space-y-3">
+            <div>
+              <label class="block text-xs font-mono uppercase text-ink-secondary mb-1">Select Module Scope</label>
+              <select id="exam-module-select" class="w-full text-xs rounded-xl border border-border bg-canvas p-2.5 font-medium">
+                <!-- Populated by JS -->
+              </select>
+            </div>
+          </div>
+
+          <button onclick="App.startExam()" class="pill-ink text-xs inline-flex items-center gap-2">
+            <i data-lucide="play" class="w-3.5 h-3.5"></i> Launch Timed Mock
+          </button>
+        </div>
+
+        <!-- Exam Runner Box -->
+        <div id="exam-runner-box" class="hidden rounded-[1.5rem] bg-card border border-border shadow-soft p-8 space-y-6">
+          <div class="flex items-center justify-between border-b border-border pb-3">
+            <span id="exam-q-counter" class="text-xs font-mono font-medium text-ink-secondary">Question 1</span>
+            <span class="text-xs font-mono px-2 py-0.5 rounded-full bg-card-muted border border-border">-0.25 Negative Marking</span>
+          </div>
+
+          <h3 id="exam-q-text" class="text-base font-medium leading-relaxed">Question text...</h3>
+
+          <div id="exam-q-options" class="space-y-2">
+            <!-- Dynamic options -->
+          </div>
+
+          <div class="flex items-center justify-between pt-4 border-t border-border">
+            <button onclick="App.prevExamQuestion()" class="pill-muted text-xs">Previous</button>
+            <div class="flex gap-2">
+              <button onclick="App.nextExamQuestion()" class="pill-muted text-xs">Next</button>
+              <button onclick="App.finishExam()" class="pill-ink text-xs">Finish Exam</button>
+            </div>
           </div>
         </div>
 
-        <button onclick="App.startExam()" class="pill-ink text-xs inline-flex items-center gap-2">
-          <i data-lucide="play" class="w-3.5 h-3.5"></i> Launch Timed Mock
-        </button>
       </div>
-
-      <!-- Exam Runner Box -->
-      <div id="exam-runner-box" class="hidden rounded-[1.5rem] bg-card border border-border shadow-soft p-8 space-y-6">
-        <div class="flex items-center justify-between border-b border-border pb-3">
-          <span id="exam-q-counter" class="text-xs font-mono font-medium text-ink-secondary">Question 1</span>
-          <span class="text-xs font-mono px-2 py-0.5 rounded-full bg-card-muted border border-border">-0.25 Negative Marking</span>
-        </div>
-
-        <h3 id="exam-q-text" class="text-base font-medium leading-relaxed">Question text...</h3>
-
-        <div id="exam-q-options" class="space-y-2">
-          <!-- Dynamic options -->
-        </div>
-
-        <div class="flex items-center justify-between pt-4 border-t border-border">
-          <button onclick="App.prevExamQuestion()" class="pill-muted text-xs">Previous</button>
-          <div class="flex gap-2">
-            <button onclick="App.nextExamQuestion()" class="pill-muted text-xs">Next</button>
-            <button onclick="App.finishExam()" class="pill-ink text-xs">Finish Exam</button>
-          </div>
-        </div>
-      </div>
-
     </div>
 
   </main>
