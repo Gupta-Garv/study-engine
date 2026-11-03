@@ -10,8 +10,25 @@ const App = {
   selectedModuleId: null,
   selectedTopicId: null,
 
+  isStaticHost() {
+    return window.location.hostname.includes('github.io');
+  },
+
+  notifyStaticViewer(action = "curate or modify content") {
+    alert(
+      `⚠️ Static Viewer Notice:\n\n` +
+      `You are currently on the GitHub Pages static viewer (gupta-garv.github.io).\n\n` +
+      `GitHub Pages is a static file host for reading notes and taking mock exams 24/7. It cannot run the local Python server, Whisper AI, or FFmpeg OCR.\n\n` +
+      `To ${action}, please open http://127.0.0.1:8000 on your Mac where your Python engine runs. Once curated, the notes will sync here!`
+    );
+  },
+
   async init() {
     this.initTheme();
+    if (this.isStaticHost()) {
+      const banner = document.getElementById('static-viewer-banner');
+      if (banner) banner.classList.remove('hidden');
+    }
     await this.loadCourses();
     if (window.lucide) window.lucide.createIcons();
     this.startPolling();
@@ -166,6 +183,10 @@ const App = {
   },
 
   async submitCreateCourse() {
+    if (this.isStaticHost()) {
+      this.notifyStaticViewer("add new subjects");
+      return;
+    }
     const name = document.getElementById('new-course-name').value.trim();
     const desc = document.getElementById('new-course-desc').value.trim();
     const moduleCount = parseInt(document.querySelector('input[name="module-count"]:checked').value, 10);
@@ -191,6 +212,10 @@ const App = {
   },
 
   async deleteCourse(courseId) {
+    if (this.isStaticHost()) {
+      this.notifyStaticViewer("delete subjects");
+      return;
+    }
     if (!confirm('Are you sure you want to delete this course and all its module notes?')) return;
     try {
       await fetch(`/api/courses/${courseId}`, { method: 'DELETE' });
@@ -230,11 +255,25 @@ const App = {
     btn.innerHTML = `<span class="animate-spin inline-block mr-1">↻</span> Starting Ingestion...`;
 
     try {
+      if (window.location.hostname.includes('github.io')) {
+        alert(
+          "⚠️ Static Host Notice:\n\n" +
+          "You are on the static GitHub Pages viewer (gupta-garv.github.io).\n\n" +
+          "GitHub Pages only hosts static files and cannot run the Python video processor, Whisper AI, or FFmpeg OCR.\n\n" +
+          "To curate new lecture videos, please open http://127.0.0.1:8000 on your Mac where your local Python engine is running. Once curated, the notes will sync here automatically!"
+        );
+        return;
+      }
+
       const res = await fetch(`/api/modules/${this.selectedModuleId}/ingest`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ urls_text: text, extract_slides: extractSlides })
       });
+      if (!res.ok) {
+        const errText = await res.text();
+        throw new Error(`Server returned HTTP ${res.status}: ${errText.slice(0, 150)}`);
+      }
       const data = await res.json();
       document.getElementById('ingest-urls-textarea').value = '';
       alert(`Queued ${data.added_count} videos for processing! Curation will run on the spot in the background.`);
@@ -294,6 +333,10 @@ const App = {
   },
 
   async retryTopic(topicId) {
+    if (this.isStaticHost()) {
+      this.notifyStaticViewer("retry curation");
+      return;
+    }
     try {
       await fetch(`/api/topics/${topicId}/retry`, { method: 'POST' });
       await this.loadCourses();
@@ -304,6 +347,10 @@ const App = {
   },
 
   async recurateModule() {
+    if (this.isStaticHost()) {
+      this.notifyStaticViewer("re-curate module notes");
+      return;
+    }
     if (!this.selectedModuleId) return;
     try {
       await fetch(`/api/modules/${this.selectedModuleId}/recurate`, { method: 'POST' });
