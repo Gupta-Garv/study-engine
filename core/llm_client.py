@@ -12,6 +12,7 @@ import json
 import re
 import threading
 import logging
+from pathlib import Path
 from typing import Dict, List, Any, Optional
 from openai import OpenAI
 import json_repair
@@ -27,6 +28,18 @@ NVIDIA_API_KEY = os.getenv("NVIDIA_API_KEY") or get_setting("nvidia_api_key") or
 # Lightning-fast primary engine + Deep reasoning fallback model (both verified active on user NIM key)
 PRIMARY_MODEL = "nvidia/nemotron-3.5-lightning-30b-a3b"
 SECONDARY_MODEL = "mistralai/mistral-large-4-1t-a52b"
+
+PROMPTS_DIR = Path(__file__).parent / "prompts"
+RULES_FILE = PROMPTS_DIR / "note_synthesis_rules.md"
+
+def load_note_synthesis_rules() -> str:
+    """Loads external guidelines and rules file for academic note synthesis."""
+    if RULES_FILE.exists():
+        try:
+            return RULES_FILE.read_text(encoding="utf-8")
+        except Exception as e:
+            logger.warning(f"Could not read {RULES_FILE}: {e}")
+    return ""
 
 class RateLimiter:
     def __init__(self, max_per_minute: int = 35):
@@ -191,24 +204,28 @@ def generate_notes_and_questions(
     slide_text: str = ""
 ) -> Dict[str, Any]:
     """
-    Synthesizes academic, textbook-grade lecture notes anchored strictly to the lecture's
-    spoken transcript and slide OCR text.
+    Synthesizes academic, conceptual lecture notes and application-oriented MCQs
+    anchored strictly to the lecture's spoken transcript, governed by core/prompts/note_synthesis_rules.md.
     """
+    rules_content = load_note_synthesis_rules()
+    
     system_prompt = (
-        "You are an expert academic note synthesizer for university students. "
-        "Your mission is to produce clear, structured, high-yield lecture notes based STRICTLY AND ONLY on what is taught in the provided video transcript.\n\n"
-        "STRICT QUALITY & CONCISENESS RULES:\n"
-        "1. GROUND TRUTH FIDELITY (NO OUTSIDE FILLER):\n"
-        "   - Anchor notes strictly in what the professor explains in this specific video. Do NOT import unrelated encyclopedia theories or excessive fluff.\n"
-        "2. REQUIRED NOTE STRUCTURE:\n"
-        "   - Section 1: Executive Summary & Core Explanation (A clear, intuitive summary explaining what happens in this video and the underlying logic).\n"
-        "   - Section 2: Concise Point-Wise Key Takeaways (Bullet-pointed key concepts and core principles taught in this session. Crisp and easy to review).\n"
-        "   - Section 3: Key Formulas & Worked Examples (IF formulas are discussed in this video: show exact KaTeX LaTeX formulas ($$...$$ and $...$), variable definition table explaining each symbol/constant, and step-by-step example from the lecture. IF the video is purely qualitative/conceptual: state 'Conceptual session — no mathematical formulas introduced in this video' and summarize the conceptual framework).\n"
-        "   - Section 4: University Exam Pitfalls & Tricky Traps (2-3 common misconceptions or exam traps examiners test on this specific lecture).\n"
+        "You are an expert academic note synthesizer specializing in university examinations.\n"
+        "Your students are preparing for conceptual, MCQ-heavy exams that test deep understanding, parameter sensitivity, and mental models rather than rote textbook memorization.\n\n"
+        f"OPERATIONAL GUIDELINES & SYNTHESIS RULES (FROM note_synthesis_rules.md):\n"
+        f"\"\"\"\n{rules_content}\n\"\"\"\n\n"
+        "CORE DIRECTIVES:\n"
+        "1. GROUND TRUTH FIDELITY: Base notes STRICTLY AND ONLY on what the professor actually explains in this specific video transcript. Do NOT add outside encyclopedic fluff or textbook history.\n"
+        "2. REQUIRED STRUCTURE:\n"
+        "   - ## 1. Executive Mental Model & Core Intuition (Core thesis, business dilemma, and underlying logic in 1-2 paragraphs)\n"
+        "   - ## 2. Concise Point-Wise Conceptual Mechanics (Cause & Effect) (Parameter shifts: 'If X increases -> Y decreases because...', boundary conditions)\n"
+        "   - ## 3. Conceptual Distinctions & Versus Matrix (Markdown comparison table clarifying easily confused terms from the lecture)\n"
+        "   - ## 4. Key Formulas & Numerical Application (Exact KaTeX $$...$$, variable definition table, worked lecture numbers; OR explicitly write '*Conceptual Session: No mathematical formulas introduced in this lecture.*' followed by decision criteria)\n"
+        "   - ## 5. MCQ Trap Radar & Examiner Gotchas (3-4 specific cognitive traps and distractor tricks examiners use on this topic)\n"
         "3. ASSESSMENTS:\n"
-        "   - 2-3 focused MCQs with options, correct answer, and clear explanation.\n"
-        "   - 1 subjective exam question (5-mark or 10-mark) with model answer and grading rubric.\n"
-        "   - 3-4 concise high-yield revision flashcards."
+        "   - 4 to 6 conceptual, application-oriented MCQs testing parameter shifts, scenarios, and misconceptions (NO trivial recall). Each MCQ must have 4 options and a detailed explanation explaining why the correct option is right AND why distractors are wrong.\n"
+        "   - 1 university subjective question with full model answer and marking rubric.\n"
+        "   - 3-4 conceptual flashcards."
     )
 
     slide_block = f"\n\nVisual Slides & Whiteboard Text (OCR):\n\"\"\"\n{slide_text[:3000]}\n\"\"\"" if slide_text.strip() else ""
@@ -223,37 +240,46 @@ Spoken Lecture Transcript:
 \"\"\"{slide_block}
 
 TASK INSTRUCTIONS:
-Synthesize concise, high-yield university lecture notes strictly grounded in this video's transcript.
-Do NOT pad with outside textbook trivia. Follow the required structure cleanly.
+Follow the rules in note_synthesis_rules.md strictly:
+1. Ground truth fidelity: Only summarize concepts, mechanics, and examples actually spoken in this video transcript.
+2. Structure:
+   ## 1. Executive Mental Model & Core Intuition
+   ## 2. Concise Point-Wise Conceptual Mechanics (Cause & Effect)
+   ## 3. Conceptual Distinctions & Versus Matrix
+   ## 4. Key Formulas & Numerical Application (or state that it is a conceptual session)
+   ## 5. MCQ Trap Radar & Examiner Gotchas
+3. Provide 4 to 6 conceptual, application-oriented MCQs (scenario-based or sensitivity-based).
+4. Provide 1 university subjective question with model answer and marking rubric.
+5. Provide 3-4 conceptual flashcards.
 
 Output a single valid JSON object with the following exact keys:
 {{
-  "notes_markdown": "# {topic_title}\\n\\n## 1. Executive Summary & Core Explanation\\n(Direct, clear explanation of what is taught in this video...)\\n\\n## 2. Concise Point-Wise Key Takeaways\\n* **Key Concept 1**: Concise explanation\\n* **Key Concept 2**: Concise explanation\\n\\n## 3. Key Formulas & Worked Examples\\n(Formulas with variable definition tables, or state that this is a conceptual session)\\n\\n## 4. University Exam Pitfalls & Tricky Traps\\n* **Common Trap**: Distinction to remember",
+  "notes_markdown": "# {topic_title}\\n\\n## 1. Executive Mental Model & Core Intuition\\n...\\n\\n## 2. Concise Point-Wise Conceptual Mechanics (Cause & Effect)\\n* **Parameter Sensitivity**: If X increases, Y ...\\n\\n## 3. Conceptual Distinctions & Versus Matrix\\n| Dimension | Concept A | Concept B | MCQ Diagnostic |\\n|---|---|---|---|\\n\\n## 4. Key Formulas & Numerical Application\\n(Formulas with variable definition tables, or state that this is a conceptual session)\\n\\n## 5. MCQ Trap Radar & Examiner Gotchas\\n* **Trap 1**: ...",
   "mcqs": [
     {{
       "id": 1,
-      "question": "Exam question based strictly on this video",
+      "question": "Scenario or conceptual question testing cause-and-effect",
       "options": ["A) Option 1", "B) Option 2", "C) Option 3", "D) Option 4"],
       "correct_index": 0,
-      "difficulty": "Tricky",
-      "explanation": "Clear explanation of correct answer and traps",
+      "difficulty": "Moderate | Tricky",
+      "explanation": "Why correct answer is right and why distractors are wrong",
       "key_concept": "Concept name"
     }}
   ],
   "subjective_questions": [
     {{
       "id": 1,
-      "question": "Exam question based on this video",
+      "question": "University exam question based on this video",
       "marks": 10,
       "suggested_time_minutes": 15,
       "model_answer": "Complete structured model answer",
-      "rubric": [{{"criterion": "Core principles", "marks": 5}}, {{"criterion": "Analysis and application", "marks": 5}}]
+      "rubric": [{{"criterion": "Core conceptual understanding", "marks": 5}}, {{"criterion": "Analytical application", "marks": 5}}]
     }}
   ],
   "flashcards": [
     {{
-      "front": "Key Term / Concept from this lecture",
-      "back": "Clear definition and takeaway"
+      "front": "Conceptual diagnostic question",
+      "back": "Key conceptual takeaway"
     }}
   ]
 }}"""
@@ -263,5 +289,5 @@ Output a single valid JSON object with the following exact keys:
         {"role": "user", "content": user_prompt}
     ]
 
-    raw = call_llm(messages, temperature=0.15, max_tokens=3000)
+    raw = call_llm(messages, temperature=0.15, max_tokens=3500)
     return safe_parse_json(raw, fallback_title=topic_title)
