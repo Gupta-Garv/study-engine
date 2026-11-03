@@ -109,9 +109,25 @@ def call_llm(messages: List[Dict[str, str]], temperature: float = 0.15, max_toke
         logger.warning(f"Secondary model also failed: {e}")
         raise e
 
+def clean_text_formatting(text: str) -> str:
+    """Removes em dashes, fixes LaTeX carriage return escapes, and ensures clean formatting."""
+    if not isinstance(text, str):
+        return text
+    # Eliminate all em dashes and en dashes
+    text = re.sub(r"\s*—\s*", ", ", text)
+    text = text.replace("—", ", ")
+    text = text.replace("–", "-")
+    # Fix broken arrows and raw escapes
+    text = text.replace(r"\rightarrow", "→")
+    text = text.replace("$ightarrow$", "→")
+    text = text.replace("ightarrow", "→")
+    return text.strip()
+
 def safe_parse_json(raw: str, fallback_title: str = "Lecture Notes") -> Dict[str, Any]:
     """Robust JSON parser that isolates the JSON object and gracefully salvages content if JSON fails."""
+    # Pre-clean raw text of problematic escapes before parsing
     cleaned = raw.strip()
+    cleaned = cleaned.replace(r"\rightarrow", "→")
 
     # 1. Look for ```json { ... } ``` or ``` { ... } ``` codeblocks first
     codeblock_matches = re.findall(r"```(?:json)?\s*(\{.*?\})\s*```", cleaned, re.DOTALL)
@@ -120,12 +136,12 @@ def safe_parse_json(raw: str, fallback_title: str = "Lecture Notes") -> Dict[str
             fixed = re.sub(r'\\(?![\\\"/bfnrtu])', r'\\\\', candidate)
             parsed = json.loads(fixed)
             if isinstance(parsed, dict) and "notes_markdown" in parsed:
-                return parsed
+                return sanitize_result(parsed, fallback_title)
         except Exception:
             try:
                 res = json_repair.loads(candidate)
                 if isinstance(res, dict) and "notes_markdown" in res:
-                    return res
+                    return sanitize_result(res, fallback_title)
             except Exception:
                 pass
 
@@ -140,12 +156,12 @@ def safe_parse_json(raw: str, fallback_title: str = "Lecture Notes") -> Dict[str
                 fixed = re.sub(r'\\(?![\\\"/bfnrtu])', r'\\\\', sub)
                 parsed = json.loads(fixed)
                 if isinstance(parsed, dict) and "notes_markdown" in parsed:
-                    return parsed
+                    return sanitize_result(parsed, fallback_title)
             except Exception:
                 try:
                     res = json_repair.loads(sub)
                     if isinstance(res, dict) and "notes_markdown" in res:
-                        return res
+                        return sanitize_result(res, fallback_title)
                 except Exception:
                     pass
 
@@ -154,31 +170,27 @@ def safe_parse_json(raw: str, fallback_title: str = "Lecture Notes") -> Dict[str
         fixed = re.sub(r'\\(?![\\\"/bfnrtu])', r'\\\\', cleaned)
         parsed = json.loads(fixed)
         if isinstance(parsed, dict) and "notes_markdown" in parsed:
-            return parsed
+            return sanitize_result(parsed, fallback_title)
     except Exception:
         pass
 
     try:
         res = json_repair.loads(cleaned)
         if isinstance(res, dict) and "notes_markdown" in res:
-            return res
+            return sanitize_result(res, fallback_title)
     except Exception:
         pass
 
-    # 4. Bulletproof Fallback: Never raise RuntimeError!
-    # If the AI generated direct Markdown or corrupted JSON, preserve the entire notes content!
+    # 4. Bulletproof Fallback
     logger.warning("Could not parse strict JSON. Applying intelligent markdown extraction fallback.")
     
-    # Check if there is a raw notes_markdown field we can extract via regex
     notes_match = re.search(r'"notes_markdown"\s*:\s*"(.*?)(?:"\s*,\s*"(?:mcqs|subjective_questions|flashcards)"|\Z)', cleaned, re.DOTALL)
     if notes_match:
         notes_content = notes_match.group(1).replace('\\"', '"').replace('\\n', '\n')
     else:
-        # Strip markdown codeblock markers if present
         notes_content = re.sub(r"^```(?:markdown)?\s*", "", cleaned).strip()
         notes_content = re.sub(r"\s*```$", "", notes_content).strip()
 
-    # Extract any MCQs embedded in text or provide high-yield defaults
     mcqs = []
     mcq_block = re.search(r'"mcqs"\s*:\s*(\[.*?\])', cleaned, re.DOTALL)
     if mcq_block:
@@ -189,11 +201,46 @@ def safe_parse_json(raw: str, fallback_title: str = "Lecture Notes") -> Dict[str
         except Exception:
             pass
 
-    return {
+    return sanitize_result({
         "notes_markdown": notes_content if len(notes_content) > 50 else f"# {fallback_title}\n\n{notes_content}",
         "mcqs": mcqs,
         "subjective_questions": [],
         "flashcards": []
+    }, fallback_title)
+
+def sanitize_result(result: Dict[str, Any], fallback_title: str) -> Dict[str, Any]:
+    """Ensures all generated fields are stripped of em dashes and formatting bugs."""
+    notes = clean_text_formatting(result.get("notes_markdown", f"# {fallback_title}"))
+    
+    mcqs = result.get("mcqs", [])
+    if isinstance(mcqs, list):
+        for m in mcqs:
+            if isinstance(m, dict):
+                m["question"] = clean_text_formatting(m.get("question", ""))
+                m["explanation"] = clean_text_formatting(m.get("explanation", ""))
+                m["key_concept"] = clean_text_formatting(m.get("key_concept", ""))
+                if "options" in m and isinstance(m["options"], list):
+                    m["options"] = [clean_text_formatting(opt) for opt in m["options"]]
+
+    subjectives = result.get("subjective_questions", [])
+    if isinstance(subjectives, list):
+        for s in subjectives:
+            if isinstance(s, dict):
+                s["question"] = clean_text_formatting(s.get("question", ""))
+                s["model_answer"] = clean_text_formatting(s.get("model_answer", ""))
+
+    flashcards = result.get("flashcards", [])
+    if isinstance(flashcards, list):
+        for f in flashcards:
+            if isinstance(f, dict):
+                f["front"] = clean_text_formatting(f.get("front", ""))
+                f["back"] = clean_text_formatting(f.get("back", ""))
+
+    return {
+        "notes_markdown": notes,
+        "mcqs": mcqs,
+        "subjective_questions": subjectives,
+        "flashcards": flashcards
     }
 
 def generate_notes_and_questions(
@@ -210,22 +257,17 @@ def generate_notes_and_questions(
     rules_content = load_note_synthesis_rules()
     
     system_prompt = (
-        "You are an expert academic note synthesizer specializing in university examinations.\n"
-        "Your students are preparing for conceptual, MCQ-heavy exams that test deep understanding, parameter sensitivity, and mental models rather than rote textbook memorization.\n\n"
+        "You are an expert academic note synthesizer for university undergraduate students.\n"
+        "Your students are 3rd-year undergraduates preparing for conceptual, MCQ-heavy exams that test deep understanding, parameter sensitivity, and mental models rather than rote textbook memorization.\n\n"
         f"OPERATIONAL GUIDELINES & SYNTHESIS RULES (FROM note_synthesis_rules.md):\n"
         f"\"\"\"\n{rules_content}\n\"\"\"\n\n"
-        "CORE DIRECTIVES:\n"
-        "1. GROUND TRUTH FIDELITY: Base notes STRICTLY AND ONLY on what the professor actually explains in this specific video transcript. Do NOT add outside encyclopedic fluff or textbook history.\n"
-        "2. REQUIRED STRUCTURE:\n"
-        "   - ## 1. Executive Mental Model & Core Intuition (Core thesis, business dilemma, and underlying logic in 1-2 paragraphs)\n"
-        "   - ## 2. Concise Point-Wise Conceptual Mechanics (Cause & Effect) (Parameter shifts: 'If X increases -> Y decreases because...', boundary conditions)\n"
-        "   - ## 3. Conceptual Distinctions & Versus Matrix (Markdown comparison table clarifying easily confused terms from the lecture)\n"
-        "   - ## 4. Key Formulas & Numerical Application (Exact KaTeX $$...$$, variable definition table, worked lecture numbers; OR explicitly write '*Conceptual Session: No mathematical formulas introduced in this lecture.*' followed by decision criteria)\n"
-        "   - ## 5. MCQ Trap Radar & Examiner Gotchas (3-4 specific cognitive traps and distractor tricks examiners use on this topic)\n"
-        "3. ASSESSMENTS:\n"
-        "   - 4 to 6 conceptual, application-oriented MCQs testing parameter shifts, scenarios, and misconceptions (NO trivial recall). Each MCQ must have 4 options and a detailed explanation explaining why the correct option is right AND why distractors are wrong.\n"
-        "   - 1 university subjective question with full model answer and marking rubric.\n"
-        "   - 3-4 conceptual flashcards."
+        "CRITICAL WRITING & STYLE RULES:\n"
+        "1. SENTENCE STRUCTURE: Write in clear, direct, active-voice sentences. Keep sentences simple and straightforward to comprehend. Avoid stacking multiple clauses.\n"
+        "2. ZERO EM DASHES (—): Never use em dashes (—) anywhere in the notes or questions. Use standard periods and clean sentences.\n"
+        "3. NO PRETENTIOUS FILLER: Do NOT use SAT words like 'dichotomy', 'held in abeyance', 'probabilistic outcome', 'manifests as'. Use clear, accurate finance terms.\n"
+        "4. STRICT GROUND TRUTH: Base notes STRICTLY AND ONLY on what the professor actually explains in this specific video transcript. If the video is a 1-minute overview (like Lecture 1), keep it as a clean roadmap. Do NOT guess or hallucinate outside theories like Separation Principle or Hedging Principle.\n"
+        "5. REAL EXAMPLES: Always include the professor's exact named examples (e.g. Infosys, Gautam Adani, Mukesh Ambani, Tyco International, corporate jets, external auditors) with their real numbers.\n"
+        "6. CLEAN ARROWS: Use Unicode arrows →, ↑, ↓ for cause-and-effect mechanics (e.g., Interest Rate (r) ↑  →  Present Value (PV) ↓)."
     )
 
     slide_block = f"\n\nVisual Slides & Whiteboard Text (OCR):\n\"\"\"\n{slide_text[:3000]}\n\"\"\"" if slide_text.strip() else ""
@@ -240,21 +282,24 @@ Spoken Lecture Transcript:
 \"\"\"{slide_block}
 
 TASK INSTRUCTIONS:
-Follow the rules in note_synthesis_rules.md strictly:
-1. Ground truth fidelity: Only summarize concepts, mechanics, and examples actually spoken in this video transcript.
-2. Structure:
+Synthesize undergraduate-level conceptual notes and MCQs strictly grounded in this transcript:
+1. Ground truth fidelity: Only summarize what is actually spoken in this video. If it is an introductory roadmap, do NOT invent outside theories.
+2. Writing style: Simple, direct sentences. Absolutely NO em dashes (—). Zero pretentious filler.
+3. Include the professor's exact real-world examples (companies, people, numbers).
+4. Use Unicode arrows (→, ↑, ↓) for parameter shifts and sensitivity.
+5. Structure:
    ## 1. Executive Mental Model & Core Intuition
    ## 2. Concise Point-Wise Conceptual Mechanics (Cause & Effect)
-   ## 3. Conceptual Distinctions & Versus Matrix
+   ## 3. Conceptual Distinctions & Versus Matrix (Markdown comparison table)
    ## 4. Key Formulas & Numerical Application (or state that it is a conceptual session)
    ## 5. MCQ Trap Radar & Examiner Gotchas
-3. Provide 4 to 6 conceptual, application-oriented MCQs (scenario-based or sensitivity-based).
-4. Provide 1 university subjective question with model answer and marking rubric.
-5. Provide 3-4 conceptual flashcards.
+6. Provide 4 to 6 conceptual, application-oriented MCQs (scenario-based or sensitivity-based).
+7. Provide 1 university subjective question with model answer and marking rubric.
+8. Provide 3-4 conceptual flashcards.
 
 Output a single valid JSON object with the following exact keys:
 {{
-  "notes_markdown": "# {topic_title}\\n\\n## 1. Executive Mental Model & Core Intuition\\n...\\n\\n## 2. Concise Point-Wise Conceptual Mechanics (Cause & Effect)\\n* **Parameter Sensitivity**: If X increases, Y ...\\n\\n## 3. Conceptual Distinctions & Versus Matrix\\n| Dimension | Concept A | Concept B | MCQ Diagnostic |\\n|---|---|---|---|\\n\\n## 4. Key Formulas & Numerical Application\\n(Formulas with variable definition tables, or state that this is a conceptual session)\\n\\n## 5. MCQ Trap Radar & Examiner Gotchas\\n* **Trap 1**: ...",
+  "notes_markdown": "# {topic_title}\\n\\n## 1. Executive Mental Model & Core Intuition\\n...\\n\\n## 2. Concise Point-Wise Conceptual Mechanics (Cause & Effect)\\n* **Parameter Sensitivity**: If Interest Rate (r) ↑  →  Present Value (PV) ↓ because...\\n\\n## 3. Conceptual Distinctions & Versus Matrix\\n| Dimension | Concept A | Concept B | MCQ Diagnostic |\\n|---|---|---|---|\\n\\n## 4. Key Formulas & Numerical Application\\n(Formulas with variable definition tables, or state that this is a conceptual session)\\n\\n## 5. MCQ Trap Radar & Examiner Gotchas\\n* **Trap 1**: ...",
   "mcqs": [
     {{
       "id": 1,
