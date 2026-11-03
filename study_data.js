@@ -1183,5 +1183,23 @@ window.STUDY_DATA = {
       "subjective_questions": [],
       "flashcards": []
     }
+  },
+  "chats": {
+    "7d802895": [
+      {
+        "id": "75c73ac6-e88",
+        "topic_id": "7d802895",
+        "role": "user",
+        "content": "Why does a rupee today have more value than a rupee one year from now?",
+        "created_at": "2026-11-03 08:49:07"
+      },
+      {
+        "id": "954cac2f-237",
+        "topic_id": "7d802895",
+        "role": "assistant",
+        "content": "Based on the lecture's core theoretical foundation, a rupee today is more valuable than a rupee one year from now due to the **opportunity cost of deferred consumption** and the potential for **capital compounding**.\n\nHere is the breakdown of why this occurs:\n\n### 1. The Power of Compounding (Investment)\nThe primary reason is the ability to invest. If you possess 1,00,000 rupees today, you can deploy that capital immediately. Assuming a positive interest rate ($r > 0$), the money grows over time.\n\nThe mathematical proof from the lecture is the Future Value formula:\n$$FV = PV \\times (1 + r)^n$$\n\n*   **$PV$ (Present Value):** 1,00,000 rupees today.\n*   **$r$:** The positive annual interest rate.\n*   **$n$:** 1 year.\n\nIf you choose to receive the money one year from now (Choice 2 in the lecture), you miss out on one year of growth. By receiving it today (Choice 1), you are guaranteed to have $1,00,000 \\times (1 + r)$ rupees after one year. Since $r > 0$, $1,00,000 \\times (1 + r)$ is strictly greater than 1,00,000.\n\n### 2. Consumption and Utility\nBeyond pure mathematics, there is an element of utility. Most individuals prefer current consumption over future consumption. Having the rupee today allows you to satisfy needs or desires immediately, rather than waiting a full year.\n\n### 3. The \"Time Value\" Axiom\nThe lecture established that this preference ordering—choosing the certain sum today over the certain sum tomorrow—is the fundamental axiom of the Time Value of Money. It establishes that **money is not neutral across time**; its value is inherently tied to the timing of receipt.\n\n***\n\n**Exam Tip:** On exams, if you are asked to compare two certain cash flows at different times, always ask: *\"Can I invest the earlier sum at a positive rate?\"* If the answer is yes, the earlier sum is always more valuable because of the guaranteed growth ($FV > PV$).",
+        "created_at": "2026-11-03 08:50:09"
+      }
+    ]
   }
 };

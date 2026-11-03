@@ -60,10 +60,21 @@ def init_db():
                 key TEXT PRIMARY KEY,
                 value TEXT NOT NULL
             );
+
+            CREATE TABLE IF NOT EXISTS topic_chats (
+                id TEXT PRIMARY KEY,
+                topic_id TEXT NOT NULL REFERENCES topics(id) ON DELETE CASCADE,
+                role TEXT NOT NULL,
+                content TEXT NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
         """)
-        # Pre-seed integrated NVIDIA NIM Key
+        # Pre-seed integrated NVIDIA NIM Keys
         conn.execute(
             "INSERT OR REPLACE INTO settings (key, value) VALUES ('nvidia_api_key', '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')"
+        )
+        conn.execute(
+            "INSERT OR REPLACE INTO settings (key, value) VALUES ('copilot_api_key', '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')"
         )
 
 def get_all_courses() -> List[Dict[str, Any]]:
@@ -121,6 +132,25 @@ def set_setting(key: str, value: str):
     with conn:
         conn.execute("INSERT OR REPLACE INTO settings (key, value) VALUES (?, ?)", (key, value))
 
+def get_topic_chat(topic_id: str) -> List[Dict[str, Any]]:
+    conn = get_conn()
+    rows = conn.execute(
+        "SELECT id, topic_id, role, content, created_at FROM topic_chats WHERE topic_id = ? ORDER BY created_at ASC",
+        (topic_id,)
+    ).fetchall()
+    return [dict(r) for r in rows]
+
+def save_chat_message(topic_id: str, role: str, content: str) -> Dict[str, Any]:
+    import uuid
+    msg_id = str(uuid.uuid4())[:12]
+    conn = get_conn()
+    with conn:
+        conn.execute(
+            "INSERT INTO topic_chats (id, topic_id, role, content) VALUES (?, ?, ?, ?)",
+            (msg_id, topic_id, role, content)
+        )
+    return {"id": msg_id, "topic_id": topic_id, "role": role, "content": content}
+
 def export_static_data():
     """Exports SQLite vault to static study_data.js for 24/7 GitHub Pages hosting."""
     try:
@@ -139,9 +169,16 @@ def export_static_data():
         for c in courses:
             for m in c["modules"]:
                 exams[m["id"]] = get_module_quiz(m["id"])
+
+        chats = {}
+        for row in conn.execute("SELECT id, topic_id, role, content, created_at FROM topic_chats ORDER BY created_at ASC").fetchall():
+            tid = row["topic_id"]
+            if tid not in chats:
+                chats[tid] = []
+            chats[tid].append(dict(row))
                 
         out_path = Path(__file__).parent.parent / "study_data.js"
-        bundle = {"courses": courses, "topics": topics, "exams": exams}
+        bundle = {"courses": courses, "topics": topics, "exams": exams, "chats": chats}
         with open(out_path, "w", encoding="utf-8") as f:
             f.write("window.STUDY_DATA = " + json.dumps(bundle, ensure_ascii=False, indent=2) + ";\n")
     except Exception as e:

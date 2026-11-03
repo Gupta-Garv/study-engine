@@ -195,32 +195,23 @@ def generate_notes_and_questions(
     spoken transcript and slide OCR text.
     """
     system_prompt = (
-        "You are an Eminent University Professor and Chief Examiner in Corporate Finance and Advanced Business Academics. "
-        "Your mission is to transform university lecture transcripts and visual slide text into exhaustive, textbook-grade revision notes "
-        "and rigorous exam assessments for typed online university exams.\n\n"
-        "STRICT QUALITY & ACCURACY MANDATES:\n"
-        "1. GROUND TRUTH FIDELITY (NO HALLUCINATIONS):\n"
-        "   - Anchor all notes strictly in what was actually taught in the transcript and shown on the slides.\n"
-        "   - ABSOLUTELY NO SUPERFICIAL SUMMARIES: Never write high-level meta-summaries like 'In this video, the professor introduces...'. "
-        "Write the actual theoretical depth, economic principles, formulas, and complete explanations directly.\n"
-        "2. CONDITIONAL MATHEMATICAL FORMULATIONS:\n"
-        "   - IF THE LECTURE INCLUDES FORMULAS/CALCULATIONS: Transcribe exact KaTeX LaTeX block ($$...$$) and inline ($...$) equations. "
-        "Include a comprehensive Variable Definition Table (Variable, Name, Units, Interpretation), economic assumptions, and step-by-step worked numerical examples.\n"
-        "   - IF THE LECTURE IS PURELY CONCEPTUAL/QUALITATIVE (e.g. Legal Forms of Business, Corporate Governance, Agency Problems): "
-        "DO NOT invent hypothetical math formulas! In Section 2, state explicitly: 'Conceptual Lecture — No mathematical formulas introduced in this session.' "
-        "Then provide exhaustive structural comparisons, legal distinctions, advantages/disadvantages, and governance mechanisms in full theoretical depth.\n"
-        "3. COMPARATIVE MATRICES & DIAGRAMS:\n"
-        "   - Include Markdown comparison tables contrasting conflicting concepts (e.g., Profit Maximization vs Shareholder Wealth Maximization, Sole Proprietorship vs Partnership vs Company).\n"
-        "   - Include at least ONE valid Mermaid flowchart (```mermaid flowchart TD ...```) with quoted node labels.\n"
-        "4. UNIVERSITY EXAM PITFALLS & TRICKY TRAPS:\n"
-        "   - Detail exact traps and subtle distinctions where examiners penalize students on university exams.\n"
-        "5. ASSESSMENTS:\n"
-        "   - 3-4 challenging timed MCQs with 4 options and thorough step-by-step explanations for the correct answer AND distractors.\n"
-        "   - 2 typed subjective questions (5-mark and 10-mark) with complete model answers and grading rubrics.\n"
-        "   - 4-5 high-yield flashcards with front/back."
+        "You are an expert academic note synthesizer for university students. "
+        "Your mission is to produce clear, structured, high-yield lecture notes based STRICTLY AND ONLY on what is taught in the provided video transcript.\n\n"
+        "STRICT QUALITY & CONCISENESS RULES:\n"
+        "1. GROUND TRUTH FIDELITY (NO OUTSIDE FILLER):\n"
+        "   - Anchor notes strictly in what the professor explains in this specific video. Do NOT import unrelated encyclopedia theories or excessive fluff.\n"
+        "2. REQUIRED NOTE STRUCTURE:\n"
+        "   - Section 1: Executive Summary & Core Explanation (A clear, intuitive summary explaining what happens in this video and the underlying logic).\n"
+        "   - Section 2: Concise Point-Wise Key Takeaways (Bullet-pointed key concepts and core principles taught in this session. Crisp and easy to review).\n"
+        "   - Section 3: Key Formulas & Worked Examples (IF formulas are discussed in this video: show exact KaTeX LaTeX formulas ($$...$$ and $...$), variable definition table explaining each symbol/constant, and step-by-step example from the lecture. IF the video is purely qualitative/conceptual: state 'Conceptual session — no mathematical formulas introduced in this video' and summarize the conceptual framework).\n"
+        "   - Section 4: University Exam Pitfalls & Tricky Traps (2-3 common misconceptions or exam traps examiners test on this specific lecture).\n"
+        "3. ASSESSMENTS:\n"
+        "   - 2-3 focused MCQs with options, correct answer, and clear explanation.\n"
+        "   - 1 subjective exam question (5-mark or 10-mark) with model answer and grading rubric.\n"
+        "   - 3-4 concise high-yield revision flashcards."
     )
 
-    slide_block = f"\n\nVisual Slides & Whiteboard Text (OCR):\n\"\"\"\n{slide_text[:4000]}\n\"\"\"" if slide_text.strip() else ""
+    slide_block = f"\n\nVisual Slides & Whiteboard Text (OCR):\n\"\"\"\n{slide_text[:3000]}\n\"\"\"" if slide_text.strip() else ""
 
     user_prompt = f"""Course: {course_name}
 Module: {module_name}
@@ -232,27 +223,27 @@ Spoken Lecture Transcript:
 \"\"\"{slide_block}
 
 TASK INSTRUCTIONS:
-Transform the spoken lecture into an exhaustive, textbook-grade study and revision guide.
-CRITICAL: Write actual, comprehensive textbook notes in "notes_markdown". Do NOT use ellipses (...), do NOT use placeholders, do NOT summarize briefly. Write thorough explanations, exact KaTeX LaTeX formulas ($$...$$ and $...$), variable definition tables, real lecture examples, comparative tables, and at least one Mermaid diagram.
+Synthesize concise, high-yield university lecture notes strictly grounded in this video's transcript.
+Do NOT pad with outside textbook trivia. Follow the required structure cleanly.
 
-You must return a single valid JSON object with the following exact keys:
+Output a single valid JSON object with the following exact keys:
 {{
-  "notes_markdown": "# Detailed Title\\n\\n## 1. Executive Theoretical Foundation\\n(Write deep theoretical explanation here)\\n\\n## 2. Mathematical Formulations & Exact Equations\\n(Write KaTeX equations with variable tables, or state that it is a conceptual lecture)\\n\\n## 3. Worked Numerical Demonstration & Real Scenarios\\n\\n## 4. Analytical Comparative Matrix\\n\\n## 5. Architectural Flow & Decision Logic\\n```mermaid\\nflowchart TD\\n  A[\\\"Start Condition\\\"] --> B[\\\"Result\\\"]\\n```\\n\\n## 6. University Exam Pitfalls & Tricky Traps\\n\\n## 7. High-Yield Revision Flashpoints",
+  "notes_markdown": "# {topic_title}\\n\\n## 1. Executive Summary & Core Explanation\\n(Direct, clear explanation of what is taught in this video...)\\n\\n## 2. Concise Point-Wise Key Takeaways\\n* **Key Concept 1**: Concise explanation\\n* **Key Concept 2**: Concise explanation\\n\\n## 3. Key Formulas & Worked Examples\\n(Formulas with variable definition tables, or state that this is a conceptual session)\\n\\n## 4. University Exam Pitfalls & Tricky Traps\\n* **Common Trap**: Distinction to remember",
   "mcqs": [
     {{
       "id": 1,
-      "question": "Rigorous exam question",
+      "question": "Exam question based strictly on this video",
       "options": ["A) Option 1", "B) Option 2", "C) Option 3", "D) Option 4"],
       "correct_index": 0,
       "difficulty": "Tricky",
-      "explanation": "Detailed explanation for correct answer and distractors",
-      "key_concept": "Core concept"
+      "explanation": "Clear explanation of correct answer and traps",
+      "key_concept": "Concept name"
     }}
   ],
   "subjective_questions": [
     {{
       "id": 1,
-      "question": "Exam question",
+      "question": "Exam question based on this video",
       "marks": 10,
       "suggested_time_minutes": 15,
       "model_answer": "Complete structured model answer",
@@ -261,8 +252,8 @@ You must return a single valid JSON object with the following exact keys:
   ],
   "flashcards": [
     {{
-      "front": "Key Term / Concept",
-      "back": "Detailed definition and exam distinction"
+      "front": "Key Term / Concept from this lecture",
+      "back": "Clear definition and takeaway"
     }}
   ]
 }}"""

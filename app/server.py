@@ -27,6 +27,7 @@ from core.transcript import (
     format_timestamp
 )
 from core.llm_client import generate_notes_and_questions, get_api_key
+from core.copilot import answer_lecture_doubt
 from core.slide_capture import capture_slides, capture_slides_and_ocr
 
 BASE_DIR = Path(__file__).parent.parent
@@ -54,6 +55,9 @@ class IngestVideosRequest(BaseModel):
 
 class SettingsRequest(BaseModel):
     nvidia_api_key: str
+
+class ChatMessageRequest(BaseModel):
+    message: str
 
 # -------------------------------------------------------------
 # Background Curation Task & Queue Worker (2 Concurrent Workers)
@@ -297,4 +301,16 @@ def get_settings():
 def save_settings(req: SettingsRequest):
     db.set_setting("nvidia_api_key", req.nvidia_api_key.strip())
     return {"message": "NVIDIA NIM API key saved successfully."}
+
+@app.get("/api/topics/{topic_id}/chat")
+def get_topic_chat_history(topic_id: str):
+    return db.get_topic_chat(topic_id)
+
+@app.post("/api/topics/{topic_id}/chat")
+def post_topic_chat_message(topic_id: str, req: ChatMessageRequest):
+    if not req.message or not req.message.strip():
+        raise HTTPException(400, "Message cannot be empty")
+    reply = answer_lecture_doubt(topic_id, req.message.strip())
+    db.export_static_data()
+    return {"reply": reply}
 

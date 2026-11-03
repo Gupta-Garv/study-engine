@@ -9,6 +9,10 @@ const App = {
   selectedCourseId: null,
   selectedModuleId: null,
   selectedTopicId: null,
+  expandedModuleIds: new Set(),
+  isCopilotOpen: true,
+  copilotMessages: [],
+  isCopilotLoading: false,
 
   isStaticHost() {
     return window.location.hostname.includes('github.io');
@@ -383,8 +387,46 @@ const App = {
   },
 
   // -------------------------------------------------------------
-  // Study Hall / Notes Reader
+  // Study Hall / Notes Reader & Collapsible Accordion
   // -------------------------------------------------------------
+  toggleModule(moduleId) {
+    if (this.expandedModuleIds.has(moduleId)) {
+      this.expandedModuleIds.delete(moduleId);
+    } else {
+      this.expandedModuleIds.add(moduleId);
+    }
+    this.renderNotesSidebar();
+  },
+
+  toggleAllModules() {
+    const allModuleIds = [];
+    for (const c of this.courses) {
+      for (const m of c.modules) allModuleIds.push(m.id);
+    }
+    const allOpen = allModuleIds.length > 0 && allModuleIds.every(id => this.expandedModuleIds.has(id));
+    if (allOpen) {
+      this.expandedModuleIds.clear();
+    } else {
+      for (const id of allModuleIds) this.expandedModuleIds.add(id);
+    }
+    this.renderNotesSidebar();
+  },
+
+  toggleCopilot() {
+    const panel = document.getElementById('copilot-panel');
+    const label = document.getElementById('copilot-toggle-label');
+    if (!panel) return;
+    this.isCopilotOpen = !this.isCopilotOpen;
+    if (this.isCopilotOpen) {
+      panel.classList.remove('hidden');
+      if (label) label.textContent = 'AI Copilot';
+    } else {
+      panel.classList.add('hidden');
+      if (label) label.textContent = 'Show Copilot';
+    }
+    if (window.lucide) window.lucide.createIcons();
+  },
+
   renderNotesSidebar() {
     const tree = document.getElementById('notes-syllabus-tree');
     if (!tree) return;
@@ -394,28 +436,67 @@ const App = {
       return;
     }
 
+    // Default expand the first module that has topics if none is expanded
+    if (this.expandedModuleIds.size === 0) {
+      for (const c of this.courses) {
+        for (const m of c.modules) {
+          if (m.topics && m.topics.length > 0) {
+            this.expandedModuleIds.add(m.id);
+            break;
+          }
+        }
+        if (this.expandedModuleIds.size > 0) break;
+      }
+    }
+
     tree.innerHTML = this.courses.map(c => `
-      <div class="space-y-1">
-        <div class="text-[11px] font-mono uppercase tracking-wider text-neutral-400 px-2 py-1 font-semibold">${c.name}</div>
-        <div class="space-y-2 pl-2">
-          ${c.modules.map(m => `
-            <div class="space-y-0.5">
-              <div class="text-xs font-medium text-neutral-500 px-2">Mod ${m.number}: ${m.name}</div>
-              <div class="space-y-0.5 pl-2 border-l border-neutral-200 dark:border-neutral-800">
-                ${m.topics.map(t => `
-                  <button onclick="App.loadTopicNotes('${t.id}')" class="w-full text-left text-xs px-2.5 py-1.5 rounded-lg flex items-center justify-between gap-2 transition ${
-                    t.id === this.selectedTopicId ? 'bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-medium' : 'text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800'
-                  }">
-                    <span class="truncate">${t.title}</span>
-                    <span class="w-2 h-2 rounded-full ${t.status === 'completed' ? 'bg-emerald-500' : 'bg-neutral-300 dark:bg-neutral-700'}"></span>
-                  </button>
-                `).join('')}
+      <div class="space-y-2">
+        <div class="flex items-center justify-between px-1">
+          <span class="text-[11px] font-mono uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-semibold truncate">${c.name}</span>
+          <span class="text-[10px] font-mono text-neutral-400">${c.modules.length} Mods</span>
+        </div>
+        <div class="space-y-1.5">
+          ${c.modules.map(m => {
+            const isExpanded = this.expandedModuleIds.has(m.id);
+            const hasActiveTopic = m.topics.some(t => t.id === this.selectedTopicId);
+            return `
+              <div class="rounded-xl border ${hasActiveTopic ? 'border-neutral-900/40 dark:border-white/40' : 'border-border'} overflow-hidden bg-card transition shadow-soft-sm">
+                <!-- Module Header Accordion Trigger -->
+                <button onclick="App.toggleModule('${m.id}')" class="w-full px-3 py-2 flex items-center justify-between text-left hover:bg-muted/50 transition">
+                  <div class="flex items-center gap-2 min-w-0">
+                    <i data-lucide="${isExpanded ? 'chevron-down' : 'chevron-right'}" class="w-3.5 h-3.5 text-neutral-400 shrink-0"></i>
+                    <span class="text-xs font-medium text-foreground truncate">${m.name}</span>
+                  </div>
+                  <span class="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-muted text-neutral-500 shrink-0">${m.topics.length}</span>
+                </button>
+
+                <!-- Collapsible Topic List -->
+                ${isExpanded ? `
+                  <div class="p-1.5 space-y-0.5 border-t border-border/60 bg-muted/20">
+                    ${m.topics.length === 0 ? '<div class="text-[11px] text-neutral-400 px-2 py-1">No lectures uploaded</div>' : ''}
+                    ${m.topics.map(t => {
+                      const isSelected = t.id === this.selectedTopicId;
+                      return `
+                        <button onclick="App.loadTopicNotes('${t.id}')" class="w-full text-left text-xs px-2.5 py-1.5 rounded-lg flex items-center justify-between gap-2 transition ${
+                          isSelected 
+                            ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-medium shadow-soft-sm' 
+                            : 'text-neutral-600 dark:text-neutral-400 hover:bg-muted'
+                        }">
+                          <span class="truncate">${t.title}</span>
+                          <span class="w-1.5 h-1.5 rounded-full shrink-0 ${t.status === 'completed' ? (isSelected ? 'bg-emerald-400' : 'bg-emerald-500') : 'bg-neutral-300 dark:bg-neutral-700'}"></span>
+                        </button>
+                      `;
+                    }).join('')}
+                  </div>
+                ` : ''}
               </div>
-            </div>
-          `).join('')}
+            `;
+          }).join('')}
         </div>
       </div>
     `).join('');
+
+    if (window.lucide) window.lucide.createIcons();
   },
 
   autoSelectFirstCompletedTopic() {
@@ -433,7 +514,19 @@ const App = {
 
   async loadTopicNotes(topicId) {
     this.selectedTopicId = topicId;
+
+    // Auto-expand module containing this topic
+    for (const c of this.courses) {
+      for (const m of c.modules) {
+        if (m.topics.some(t => t.id === topicId)) {
+          this.expandedModuleIds.add(m.id);
+          break;
+        }
+      }
+    }
+
     this.renderNotesSidebar();
+    this.loadTopicChat(topicId);
 
     const contentEl = document.getElementById('notes-content-body');
     contentEl.innerHTML = '<div class="text-center py-20 text-xs text-neutral-400">Loading synthesized notes...</div>';
@@ -505,6 +598,211 @@ const App = {
     } catch (e) {
       contentEl.innerHTML = `<div class="text-rose-500 text-xs">Error loading notes: ${e}</div>`;
     }
+  },
+
+  // -------------------------------------------------------------
+  // In-Context AI Lecture Copilot (Per-Video Persistent History)
+  // -------------------------------------------------------------
+  async loadTopicChat(topicId) {
+    const topic = this.getTopicById(topicId);
+    const activeLabel = document.getElementById('copilot-active-topic');
+    if (activeLabel) {
+      activeLabel.textContent = topic ? topic.title : 'No lecture selected';
+    }
+
+    const badge = document.getElementById('reader-topic-badge');
+    if (badge) {
+      badge.textContent = topic ? topic.title : 'Ready';
+    }
+
+    const container = document.getElementById('copilot-messages');
+    if (!container) return;
+
+    container.innerHTML = '<div class="text-center py-10 text-xs text-neutral-400">Loading saved doubts for this lecture...</div>';
+
+    // 1. Fetch from SQLite database
+    let messages = [];
+    try {
+      const res = await fetch(`/api/topics/${topicId}/chat`);
+      if (res.ok) {
+        messages = await res.json();
+      }
+    } catch (err) {}
+
+    // 2. Fallback to STUDY_DATA bundle or localStorage (GitHub Pages / offline support)
+    if ((!messages || messages.length === 0) && window.STUDY_DATA && window.STUDY_DATA.chats && window.STUDY_DATA.chats[topicId]) {
+      messages = window.STUDY_DATA.chats[topicId];
+    }
+    if (!messages || messages.length === 0) {
+      const saved = localStorage.getItem(`copilot_chat_${topicId}`);
+      if (saved) {
+        try { messages = JSON.parse(saved); } catch (e) {}
+      }
+    }
+
+    this.copilotMessages = messages || [];
+    this.renderCopilotMessages();
+  },
+
+  renderCopilotMessages() {
+    const container = document.getElementById('copilot-messages');
+    if (!container) return;
+
+    const topic = this.getTopicById(this.selectedTopicId);
+    const topicTitle = topic ? topic.title : 'this lecture';
+
+    if (this.copilotMessages.length === 0) {
+      container.innerHTML = `
+        <div class="text-center py-12 text-neutral-400 space-y-2">
+          <div class="w-8 h-8 rounded-full bg-muted mx-auto flex items-center justify-center text-neutral-400">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+          </div>
+          <p class="font-medium text-ink">Lecture AI Copilot</p>
+          <p class="text-[11px] text-ink-secondary max-w-[220px] mx-auto">
+            I am reading <strong>${topicTitle}</strong> with you. Ask any doubts about this video's concepts, formulas, or tricky exam traps!
+          </p>
+        </div>
+      `;
+      if (window.lucide) window.lucide.createIcons();
+      return;
+    }
+
+    container.innerHTML = this.copilotMessages.map(m => {
+      const isUser = m.role === 'user';
+      let formattedContent = m.content;
+      if (!isUser && window.marked) {
+        try {
+          formattedContent = window.marked.parse(m.content);
+        } catch (e) {}
+      }
+      return `
+        <div class="flex flex-col ${isUser ? 'items-end' : 'items-start'} space-y-1">
+          <span class="text-[9px] font-mono text-ink-muted uppercase">${isUser ? 'You' : 'AI Copilot (GLM)'}</span>
+          <div class="max-w-[90%] rounded-2xl px-3.5 py-2.5 text-xs shadow-soft-sm ${
+            isUser 
+              ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 rounded-br-sm' 
+              : 'bg-card border border-border text-foreground rounded-bl-sm prose-ledger'
+          }">
+            ${formattedContent}
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Render KaTeX in Copilot responses
+    if (window.renderMathInElement) {
+      window.renderMathInElement(container, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false }
+        ],
+        throwOnError: false
+      });
+    }
+
+    container.scrollTop = container.scrollHeight;
+    if (window.lucide) window.lucide.createIcons();
+  },
+
+  async handleCopilotSubmit(e) {
+    if (e) e.preventDefault();
+    if (!this.selectedTopicId) {
+      alert("Please select a lecture first to ask doubts in context.");
+      return;
+    }
+
+    const input = document.getElementById('copilot-input');
+    const question = input ? input.value.trim() : '';
+    if (!question || this.isCopilotLoading) return;
+
+    input.value = '';
+
+    // Add user message to UI immediately
+    const userMsg = { role: 'user', content: question, created_at: new Date().toISOString() };
+    this.copilotMessages.push(userMsg);
+    this.renderCopilotMessages();
+
+    // Show typing indicator
+    const container = document.getElementById('copilot-messages');
+    const typingId = 'copilot-typing-indicator';
+    container.insertAdjacentHTML('beforeend', `
+      <div id="${typingId}" class="flex flex-col items-start space-y-1">
+        <span class="text-[9px] font-mono text-ink-muted uppercase">AI Copilot</span>
+        <div class="rounded-2xl px-3 py-2 text-xs bg-card border border-border text-ink-muted flex items-center gap-1.5 rounded-bl-sm">
+          <span class="w-1.5 h-1.5 rounded-full bg-neutral-400 animate-pulse"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-neutral-400 animate-pulse delay-75"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-neutral-400 animate-pulse delay-150"></span>
+          <span class="text-[11px] ml-1">Analyzing lecture context...</span>
+        </div>
+      </div>
+    `);
+    container.scrollTop = container.scrollHeight;
+
+    this.isCopilotLoading = true;
+    const sendBtn = document.getElementById('copilot-send-btn');
+    if (sendBtn) sendBtn.disabled = true;
+
+    try {
+      let replyText = "";
+      if (this.isStaticHost()) {
+        replyText = "💡 Notice: You are viewing on GitHub Pages. For live AI answers with your GLM-5.3 Flash & Nemotron API, open http://127.0.0.1:8000 on your Mac where your local Python engine is running!";
+      } else {
+        const res = await fetch(`/api/topics/${this.selectedTopicId}/chat`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: question })
+        });
+        const data = await res.json();
+        replyText = data.reply || "No response received.";
+      }
+
+      const typingEl = document.getElementById(typingId);
+      if (typingEl) typingEl.remove();
+
+      const assistantMsg = { role: 'assistant', content: replyText, created_at: new Date().toISOString() };
+      this.copilotMessages.push(assistantMsg);
+
+      // Save to localStorage for instant client persistence
+      localStorage.setItem(`copilot_chat_${this.selectedTopicId}`, JSON.stringify(this.copilotMessages));
+
+      this.renderCopilotMessages();
+    } catch (err) {
+      const typingEl = document.getElementById(typingId);
+      if (typingEl) typingEl.remove();
+      this.copilotMessages.push({ role: 'assistant', content: `Error: ${err.message}` });
+      this.renderCopilotMessages();
+    } finally {
+      this.isCopilotLoading = false;
+      if (sendBtn) sendBtn.disabled = false;
+    }
+  },
+
+  askSuggestedQuestion(q) {
+    const input = document.getElementById('copilot-input');
+    if (input) {
+      input.value = q;
+      this.handleCopilotSubmit();
+    }
+  },
+
+  clearTopicChat() {
+    if (!this.selectedTopicId) return;
+    if (confirm("Reset chat history for this specific lecture?")) {
+      this.copilotMessages = [];
+      localStorage.removeItem(`copilot_chat_${this.selectedTopicId}`);
+      this.renderCopilotMessages();
+    }
+  },
+
+  getTopicById(topicId) {
+    for (const c of this.courses) {
+      for (const m of c.modules) {
+        for (const t of m.topics) {
+          if (t.id === topicId) return t;
+        }
+      }
+    }
+    return null;
   },
 
   // -------------------------------------------------------------
