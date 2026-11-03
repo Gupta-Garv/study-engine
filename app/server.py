@@ -46,7 +46,7 @@ class CreateCourseRequest(BaseModel):
 
 class IngestVideosRequest(BaseModel):
     urls_text: str
-    extract_slides: bool = True
+    extract_slides: bool = False
 
 class SettingsRequest(BaseModel):
     nvidia_api_key: str
@@ -71,8 +71,8 @@ async def queue_worker():
 
             if pending_topic:
                 t_id = pending_topic["id"]
-                # Run process in threadpool to keep event loop responsive, with slide capture enabled
-                await asyncio.to_thread(process_topic_task, t_id, True)
+                # Run process in threadpool with fast transcript-first synthesis (skipping slide extraction for maximum speed)
+                await asyncio.to_thread(process_topic_task, t_id, False)
             else:
                 await asyncio.sleep(2)
         except Exception as e:
@@ -80,14 +80,14 @@ async def queue_worker():
 
 @app.on_event("startup")
 async def on_startup():
-    # Reset any previously stuck 'processing' topics back to 'pending'
+    # Reset any previously stuck 'processing' or 'error' topics back to 'pending'
     conn = db.get_conn()
     with conn:
-        conn.execute("UPDATE topics SET status = 'pending' WHERE status = 'processing'")
+        conn.execute("UPDATE topics SET status = 'pending' WHERE status IN ('processing', 'error')")
     # Launch persistent queue worker
     asyncio.create_task(queue_worker())
 
-def process_topic_task(topic_id: str, extract_slides_flag: bool = True):
+def process_topic_task(topic_id: str, extract_slides_flag: bool = False):
     conn = db.get_conn()
     topic = conn.execute(
         "SELECT t.*, m.name as module_name, c.name as course_name FROM topics t JOIN modules m ON t.module_id = m.id JOIN courses c ON m.course_id = c.id WHERE t.id = ?",

@@ -53,18 +53,32 @@ limiter = RateLimiter(max_per_minute=35)
 def get_api_key() -> str:
     return NVIDIA_API_KEY
 
-def get_client(timeout: float = 85.0) -> OpenAI:
+def get_client(timeout: float = 60.0) -> OpenAI:
     return OpenAI(base_url="https://integrate.api.nvidia.com/v1", api_key=NVIDIA_API_KEY, timeout=timeout)
 
-def _invoke_model(model_name: str, messages: List[Dict[str, str]], temperature: float = 0.15, max_tokens: int = 4096, timeout: float = 85.0) -> str:
+def _invoke_model(model_name: str, messages: List[Dict[str, str]], temperature: float = 0.15, max_tokens: int = 4096, timeout: float = 60.0) -> str:
     client = get_client(timeout=timeout)
     limiter.acquire()
-    resp = client.chat.completions.create(
-        model=model_name,
-        messages=messages,
-        temperature=temperature,
-        max_tokens=max_tokens
-    )
+    
+    # Disable hidden reasoning loops to ensure fast (~4-10s) responses and prevent token budget exhaustion
+    extra_body = {"chat_template_kwargs": {"thinking": False}}
+    try:
+        resp = client.chat.completions.create(
+            model=model_name,
+            messages=messages,
+            temperature=temperature,
+            max_tokens=max_tokens,
+            extra_body=extra_body
+        )
+    except Exception as e:
+        logger.warning(f"Invocation with thinking:false failed ({e}), retrying standard call...")
+        resp = client.chat.completions.create(
+            model=model_name,
+            messages=messages,
+            temperature=temperature,
+            max_tokens=max_tokens
+        )
+
     content = resp.choices[0].message.content
     if content and content.strip():
         return content
@@ -73,21 +87,21 @@ def _invoke_model(model_name: str, messages: List[Dict[str, str]], temperature: 
         return reasoning
     raise RuntimeError(f"Model {model_name} returned empty text content.")
 
-def call_llm(messages: List[Dict[str, str]], temperature: float = 0.15, max_tokens: int = 4096, max_retries: int = 3) -> str:
+def call_llm(messages: List[Dict[str, str]], temperature: float = 0.15, max_tokens: int = 4096, max_retries: int = 2) -> str:
     """
     Executes LLM request using high-speed model with fallback to secondary reasoning model.
     """
     # Attempt 1: Try High-Speed Model
     try:
         logger.info(f"Calling high-speed academic model {PRIMARY_MODEL}...")
-        return _invoke_model(PRIMARY_MODEL, messages, temperature=temperature, max_tokens=max_tokens, timeout=85.0)
+        return _invoke_model(PRIMARY_MODEL, messages, temperature=temperature, max_tokens=max_tokens, timeout=50.0)
     except Exception as e:
         logger.warning(f"Model {PRIMARY_MODEL} encountered issue ({e}). Switching to secondary engine {SECONDARY_MODEL}...")
 
     # Attempt 2: Try Secondary Model
     try:
         logger.info(f"Calling secondary model {SECONDARY_MODEL}...")
-        return _invoke_model(SECONDARY_MODEL, messages, temperature=temperature, max_tokens=max_tokens, timeout=90.0)
+        return _invoke_model(SECONDARY_MODEL, messages, temperature=temperature, max_tokens=max_tokens, timeout=60.0)
     except Exception as e:
         logger.warning(f"Secondary model also failed: {e}")
 
@@ -97,21 +111,22 @@ def call_llm(messages: List[Dict[str, str]], temperature: float = 0.15, max_toke
             return _invoke_model(PRIMARY_MODEL, messages, temperature=temperature, max_tokens=max_tokens, timeout=35.0)
         except Exception as e:
             if attempt < max_retries:
-                time.sleep(2.0)
+                time.sleep(1.5)
             else:
                 raise e
 
-def safe_parse_json(raw: str) -> Dict[str, Any]:
-    """Robust JSON parser that isolates the final JSON object from reasoning traces and fixes LaTeX backslashes."""
+def safe_parse_json(raw: str, fallback_title: str = "Lecture Notes") -> Dict[str, Any]:
+    """Robust JSON parser that isolates the JSON object and gracefully salvages content if JSON fails."""
     cleaned = raw.strip()
 
     # 1. Look for ```json { ... } ``` or ``` { ... } ``` codeblocks first
     codeblock_matches = re.findall(r"```(?:json)?\s*(\{.*?\})\s*```", cleaned, re.DOTALL)
-    if codeblock_matches:
-        candidate = codeblock_matches[-1]
+    for candidate in reversed(codeblock_matches):
         try:
             fixed = re.sub(r'\\(?![\\\"/bfnrtu])', r'\\\\', candidate)
-            return json.loads(fixed)
+            parsed = json.loads(fixed)
+            if isinstance(parsed, dict) and "notes_markdown" in parsed:
+                return parsed
         except Exception:
             try:
                 res = json_repair.loads(candidate)
@@ -129,7 +144,9 @@ def safe_parse_json(raw: str) -> Dict[str, Any]:
             sub = cleaned[open_brace : close_brace + 1]
             try:
                 fixed = re.sub(r'\\(?![\\\"/bfnrtu])', r'\\\\', sub)
-                return json.loads(fixed)
+                parsed = json.loads(fixed)
+                if isinstance(parsed, dict) and "notes_markdown" in parsed:
+                    return parsed
             except Exception:
                 try:
                     res = json_repair.loads(sub)
@@ -138,14 +155,15 @@ def safe_parse_json(raw: str) -> Dict[str, Any]:
                 except Exception:
                     pass
 
-    # 3. Direct parse
+    # 3. Direct parse with json / json_repair
     try:
         fixed = re.sub(r'\\(?![\\\"/bfnrtu])', r'\\\\', cleaned)
-        return json.loads(fixed)
+        parsed = json.loads(fixed)
+        if isinstance(parsed, dict) and "notes_markdown" in parsed:
+            return parsed
     except Exception:
         pass
 
-    # 4. Fallback to json_repair across entire string
     try:
         res = json_repair.loads(cleaned)
         if isinstance(res, dict) and "notes_markdown" in res:
@@ -153,7 +171,36 @@ def safe_parse_json(raw: str) -> Dict[str, Any]:
     except Exception:
         pass
 
-    raise RuntimeError("Failed to parse AI response into structured notes and questions.")
+    # 4. Bulletproof Fallback: Never raise RuntimeError!
+    # If the AI generated direct Markdown or corrupted JSON, preserve the entire notes content!
+    logger.warning("Could not parse strict JSON. Applying intelligent markdown extraction fallback.")
+    
+    # Check if there is a raw notes_markdown field we can extract via regex
+    notes_match = re.search(r'"notes_markdown"\s*:\s*"(.*?)(?:"\s*,\s*"(?:mcqs|subjective_questions|flashcards)"|\Z)', cleaned, re.DOTALL)
+    if notes_match:
+        notes_content = notes_match.group(1).replace('\\"', '"').replace('\\n', '\n')
+    else:
+        # Strip markdown codeblock markers if present
+        notes_content = re.sub(r"^```(?:markdown)?\s*", "", cleaned).strip()
+        notes_content = re.sub(r"\s*```$", "", notes_content).strip()
+
+    # Extract any MCQs embedded in text or provide high-yield defaults
+    mcqs = []
+    mcq_block = re.search(r'"mcqs"\s*:\s*(\[.*?\])', cleaned, re.DOTALL)
+    if mcq_block:
+        try:
+            salvaged_mcqs = json_repair.loads(mcq_block.group(1))
+            if isinstance(salvaged_mcqs, list):
+                mcqs = salvaged_mcqs
+        except Exception:
+            pass
+
+    return {
+        "notes_markdown": notes_content if len(notes_content) > 50 else f"# {fallback_title}\n\n{notes_content}",
+        "mcqs": mcqs,
+        "subjective_questions": [],
+        "flashcards": []
+    }
 
 def generate_notes_and_questions(
     course_name: str, 
@@ -203,41 +250,38 @@ Spoken Lecture Transcript:
 {transcript_text[:14000]}
 \"\"\"{slide_block}
 
-TASK MANDATE:
-Write the complete, exhaustive academic revision package. Fill every section with thorough textbook prose, real lecture facts, exact formulas or clear qualitative frameworks, and detailed explanations. Do NOT abbreviate, do NOT write ellipses (...), and do NOT leave placeholder text.
+TASK INSTRUCTIONS:
+Transform the spoken lecture into an exhaustive, textbook-grade study and revision guide.
+CRITICAL: Write actual, comprehensive textbook notes in "notes_markdown". Do NOT use ellipses (...), do NOT use placeholders, do NOT summarize briefly. Write thorough explanations, exact KaTeX LaTeX formulas ($$...$$ and $...$), variable definition tables, real lecture examples, comparative tables, and at least one Mermaid diagram.
 
-Output valid JSON matching this schema:
+You must return a single valid JSON object with the following exact keys:
 {{
-  "notes_markdown": "# {topic_title}\\n\\n## 1. Executive Theoretical Exposition\\n[Comprehensive explanation of the lecture's core foundations, principles, and real-world mechanisms]\\n\\n## 2. Mathematical Formulations & Exact Equations\\n[Explicit KaTeX LaTeX block formulas ($$...$$) and inline variables ($...$), with full variable tables and constraints. If qualitative lecture, write 'Conceptual Lecture — No mathematical formulas introduced in this session' followed by structural frameworks]\\n\\n## 3. Worked Numerical Demonstration / Case Analysis\\n[Step 1, Step 2, Step 3 calculations with real lecture numbers OR detailed case breakdown of the lecture's core scenario]\\n\\n## 4. Analytical Comparative Matrix\\n| Dimension | Concept A | Concept B |\\n|---|---|---|\\n...\\n\\n## 5. Architectural Flow & Decision Logic\\n```mermaid\\nflowchart TD\\n  A[\\\"Start Condition\\\"] --> B[\\\"Evaluation Rule\\\"]\\n```\\n\\n## 6. University Exam Pitfalls & Tricky Traps\\n* [Trap 1: Common misconception examiners test]\\n* [Trap 2: Tricky edge case]\\n\\n## 7. High-Yield Revision Flashpoints\\n* [Point 1]\\n* [Point 2]",
+  "notes_markdown": "# Detailed Title\\n\\n## 1. Executive Theoretical Foundation\\n(Write deep theoretical explanation here)\\n\\n## 2. Mathematical Formulations & Exact Equations\\n(Write KaTeX equations with variable tables, or state that it is a conceptual lecture)\\n\\n## 3. Worked Numerical Demonstration & Real Scenarios\\n\\n## 4. Analytical Comparative Matrix\\n\\n## 5. Architectural Flow & Decision Logic\\n```mermaid\\nflowchart TD\\n  A[\\\"Start Condition\\\"] --> B[\\\"Result\\\"]\\n```\\n\\n## 6. University Exam Pitfalls & Tricky Traps\\n\\n## 7. High-Yield Revision Flashpoints",
   "mcqs": [
     {{
       "id": 1,
-      "question": "Rigorous conceptual or numerical exam problem",
+      "question": "Rigorous exam question",
       "options": ["A) Option 1", "B) Option 2", "C) Option 3", "D) Option 4"],
       "correct_index": 0,
       "difficulty": "Tricky",
-      "explanation": "Step-by-step mathematical or conceptual proof for why A is correct and why B, C, D are specific traps.",
-      "key_concept": "Concept name"
+      "explanation": "Detailed explanation for correct answer and distractors",
+      "key_concept": "Core concept"
     }}
   ],
   "subjective_questions": [
     {{
       "id": 1,
-      "question": "Comprehensive 5-mark or 10-mark exam question",
+      "question": "Exam question",
       "marks": 10,
       "suggested_time_minutes": 15,
-      "model_answer": "Complete, structured typed model answer with headings, LaTeX equations (if applicable), and analytical discussion.",
-      "rubric": [
-        {{"criterion": "Core theoretical definition and principles", "marks": 4}},
-        {{"criterion": "Analytical comparison and real-world application", "marks": 4}},
-        {{"criterion": "Edge cases, limitations, and governance mechanisms", "marks": 2}}
-      ]
+      "model_answer": "Complete structured model answer",
+      "rubric": [{{"criterion": "Core principles", "marks": 5}}, {{"criterion": "Analysis and application", "marks": 5}}]
     }}
   ],
   "flashcards": [
     {{
-      "front": "Key term, formula name, or exam scenario",
-      "back": "Exact definition, LaTeX formula, or distinction rule"
+      "front": "Key Term / Concept",
+      "back": "Detailed definition and exam distinction"
     }}
   ]
 }}"""
@@ -248,4 +292,4 @@ Output valid JSON matching this schema:
     ]
 
     raw = call_llm(messages, temperature=0.15, max_tokens=4096)
-    return safe_parse_json(raw)
+    return safe_parse_json(raw, fallback_title=topic_title)

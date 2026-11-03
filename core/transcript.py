@@ -122,8 +122,10 @@ def get_whisper_model():
     if _WHISPER_MODEL is None:
         try:
             from faster_whisper import WhisperModel
-            logger.info("Initializing faster-whisper (tiny.en, int8 on CPU)...")
-            _WHISPER_MODEL = WhisperModel("tiny.en", device="cpu", compute_type="int8")
+            import os
+            threads = os.cpu_count() or 8
+            logger.info(f"Initializing faster-whisper (tiny.en, int8 on CPU with {threads} threads)...")
+            _WHISPER_MODEL = WhisperModel("tiny.en", device="cpu", compute_type="int8", cpu_threads=threads)
         except Exception as e:
             logger.error(f"Failed to load faster-whisper model: {e}")
             raise e
