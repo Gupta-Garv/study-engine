@@ -81,6 +81,7 @@ async def worker_loop(worker_id: int):
                 logger.info(f"[Worker {worker_id}] Starting topic {t_id}...")
                 await asyncio.to_thread(process_topic_task, t_id, False)
                 logger.info(f"[Worker {worker_id}] Finished topic {t_id}.")
+                await asyncio.sleep(1)  # Thermal breathing room
             else:
                 await asyncio.sleep(2)
         except Exception as e:

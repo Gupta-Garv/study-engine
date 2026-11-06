@@ -29,3 +29,4 @@ print("Block types in outline:", types)
 sample_items = list(blocks.items())[:10]
 for bid, b in sample_items:
     print(f"[{b.get('type')}] id={bid} | name={b.get('display_name')} | children={len(b.get('children', []))}")
+

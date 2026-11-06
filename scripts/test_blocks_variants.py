@@ -43,3 +43,4 @@ run();
 driver.set_script_timeout(20)
 res = driver.execute_async_script(script)
 print(json.dumps(res, indent=2))
+

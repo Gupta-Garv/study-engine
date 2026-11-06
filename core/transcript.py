@@ -123,7 +123,7 @@ def get_whisper_model():
         try:
             from faster_whisper import WhisperModel
             import os
-            threads = os.cpu_count() or 8
+            threads = 2  # Eco-Mode: Strictly capped to 2 threads to prevent CPU heat and fan noise
             logger.info(f"Initializing faster-whisper (tiny.en, int8 on CPU with {threads} threads)...")
             _WHISPER_MODEL = WhisperModel("tiny.en", device="cpu", compute_type="int8", cpu_threads=threads)
         except Exception as e:

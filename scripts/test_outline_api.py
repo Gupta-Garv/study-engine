@@ -39,3 +39,4 @@ check();
 driver.set_script_timeout(15)
 res = driver.execute_async_script(script, course_id)
 print(json.dumps(res, indent=2))
+

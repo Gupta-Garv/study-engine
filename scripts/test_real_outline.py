@@ -28,3 +28,4 @@ if isinstance(res, dict):
     sample_blocks = list(blocks.items())[:5]
     for bid, b in sample_blocks:
         print(f"[{b.get('type')}] {b.get('display_name')}")
+

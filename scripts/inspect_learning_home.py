@@ -23,3 +23,4 @@ return {
 res = driver.execute_script(script)
 import json
 print(json.dumps(res, indent=2))
+
