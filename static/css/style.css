@@ -197,3 +197,55 @@ body {
   transform: rotateY(180deg);
 }
 
+/* ============================================================= */
+/* Global Search & Target Pulse (Clean Modern Ledger Style)      */
+/* ============================================================= */
+mark.search-highlight {
+  background-color: rgba(245, 158, 11, 0.25);
+  color: inherit;
+  padding: 0.1rem 0.28rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.4);
+}
+
+.dark mark.search-highlight {
+  background-color: rgba(245, 158, 11, 0.35);
+  color: #fef08a;
+  box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.5);
+}
+
+@keyframes searchTargetPulse {
+  0% {
+    background-color: rgba(245, 158, 11, 0.28);
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.5);
+  }
+  35% {
+    background-color: rgba(245, 158, 11, 0.18);
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.35);
+  }
+  70% {
+    background-color: rgba(245, 158, 11, 0.08);
+    box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.2);
+  }
+  100% {
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+.search-target-pulse {
+  animation: searchTargetPulse 3.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  border-radius: 0.5rem;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.search-result-item {
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+.search-result-item:hover,
+.search-result-item.search-item-active {
+  background-color: var(--card-muted);
+}
+
+

@@ -50,20 +50,72 @@
 
   <!-- Header (Clean Modern Ledger Style) -->
   <header class="sticky top-0 z-40 shrink-0 backdrop-blur border-b border-border bg-canvas/80">
-    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
       
       <!-- Logo / Title -->
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-3 shrink-0">
         <a href="#" onclick="App.switchView('syllabus')" class="flex items-center gap-2 text-ink font-medium tracking-tight">
           <div class="w-8 h-8 rounded-xl bg-ink text-canvas flex items-center justify-center font-pixel text-xs font-bold">
             SE
           </div>
-          <span class="text-base font-semibold">StudyEngine</span>
+          <span class="text-base font-semibold hidden md:inline">StudyEngine</span>
         </a>
       </div>
 
+      <!-- Global Search Bar Container -->
+      <div class="relative flex-1 max-w-lg mx-1 sm:mx-3" id="global-search-container">
+        <div class="relative flex items-center">
+          <div class="absolute left-3 text-neutral-400 pointer-events-none flex items-center">
+            <i data-lucide="search" class="w-4 h-4"></i>
+          </div>
+          <input 
+            type="text" 
+            id="global-search-input" 
+            placeholder="Search all 463 lectures, concepts, equations..." 
+            autocomplete="off" 
+            spellcheck="false"
+            oninput="App.onSearchInput(this.value)"
+            onfocus="App.onSearchFocus()"
+            onkeydown="App.onSearchKeydown(event)"
+            class="w-full pl-9 pr-14 py-1.5 rounded-full bg-card border border-border text-xs text-ink placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-ink focus:border-ink transition shadow-soft-sm"
+          />
+          <div class="absolute right-2.5 flex items-center gap-1.5">
+            <button 
+              id="global-search-clear" 
+              onclick="App.clearSearch()" 
+              class="hidden p-0.5 text-neutral-400 hover:text-ink rounded-full transition"
+              title="Clear search"
+            >
+              <i data-lucide="x" class="w-3.5 h-3.5"></i>
+            </button>
+            <kbd class="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono text-neutral-400 bg-card-muted border border-border rounded pointer-events-none select-none">⌘K</kbd>
+          </div>
+        </div>
+
+        <!-- Search Results Dropdown -->
+        <div 
+          id="search-results-dropdown" 
+          class="hidden absolute left-0 right-0 top-full mt-2 bg-card border border-border rounded-2xl shadow-soft-md overflow-hidden z-50 max-h-[75vh] flex flex-col"
+        >
+          <!-- Results Header & Counter -->
+          <div id="search-results-header" class="px-4 py-2 border-b border-border/60 bg-card-muted/40 flex items-center justify-between text-[11px] text-neutral-500">
+            <span id="search-results-count" class="font-mono">Type to search...</span>
+            <div class="hidden sm:flex items-center gap-2 text-[10px] text-neutral-400">
+              <span><kbd class="px-1 py-0.5 rounded bg-card border border-border font-mono">↑↓</kbd> navigate</span>
+              <span><kbd class="px-1 py-0.5 rounded bg-card border border-border font-mono">↵</kbd> jump</span>
+              <span><kbd class="px-1 py-0.5 rounded bg-card border border-border font-mono">esc</kbd> close</span>
+            </div>
+          </div>
+
+          <!-- Results List Scrollable -->
+          <div id="search-results-list" class="flex-1 overflow-y-auto divide-y divide-border/40 p-1.5 space-y-1">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+
       <!-- Navigation Pills -->
-      <nav class="flex items-center gap-1 p-1 rounded-full bg-card-muted border border-border text-xs">
+      <nav class="flex items-center gap-1 p-1 rounded-full bg-card-muted border border-border text-xs shrink-0">
         <button id="tab-syllabus" onclick="App.switchView('syllabus')" class="px-3.5 py-1.5 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-medium">
           Syllabus & Upload
         </button>
@@ -76,7 +128,7 @@
       </nav>
 
       <!-- Right Controls -->
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-2 shrink-0">
         <button onclick="App.toggleTheme()" class="p-2 rounded-xl border border-border hover:bg-card-muted transition" title="Toggle Theme">
           <i data-lucide="moon" class="w-4 h-4"></i>
         </button>

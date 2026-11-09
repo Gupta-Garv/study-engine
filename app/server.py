@@ -5,6 +5,7 @@ and on-the-spot AI lecture curation.
 """
 
 import os
+import re
 import uuid
 import asyncio
 import logging
@@ -14,7 +15,7 @@ logger = logging.getLogger("study_engine.server")
 logging.basicConfig(level=logging.INFO)
 from typing import List, Optional
 from pydantic import BaseModel
-from fastapi import FastAPI, HTTPException, BackgroundTasks
+from fastapi import FastAPI, HTTPException, BackgroundTasks, Query
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
 
@@ -198,6 +199,89 @@ def serve_index():
 @app.get("/study_data.js")
 def serve_study_data():
     return FileResponse(BASE_DIR / "study_data.js")
+
+@app.get("/api/search")
+def search_vault(q: str = Query(..., min_length=1), limit: int = 50):
+    conn = db.get_conn()
+    query = q.strip().lower()
+    if not query:
+        return []
+
+    rows = conn.execute("""
+        SELECT t.id, t.title, t.notes_markdown,
+               m.id as module_id, m.name as module_name, m.number as module_number,
+               c.id as course_id, c.name as course_name
+        FROM topics t
+        JOIN modules m ON t.module_id = m.id
+        JOIN courses c ON m.course_id = c.id
+        WHERE t.status = 'completed' AND (lower(t.title) LIKE ? OR lower(t.notes_markdown) LIKE ? OR lower(t.transcript_text) LIKE ?)
+    """, (f"%{query}%", f"%{query}%", f"%{query}%")).fetchall()
+
+    results = []
+    for r in rows:
+        title = r["title"]
+        notes = r["notes_markdown"] or ""
+        title_lower = title.lower()
+        notes_lower = notes.lower()
+
+        occurrences = notes_lower.count(query)
+        if query in title_lower:
+            occurrences += 1
+
+        # 1. Title match if query is in title
+        if query in title_lower:
+            results.append({
+                "topic_id": r["id"],
+                "title": title,
+                "module_id": r["module_id"],
+                "module_name": r["module_name"],
+                "module_number": r["module_number"],
+                "course_id": r["course_id"],
+                "course_name": r["course_name"],
+                "heading": "Lecture Title",
+                "snippet": title,
+                "match_count": occurrences,
+                "score": 300 if query == title_lower else 200
+            })
+
+        # 2. Section matches
+        sections = re.split(r'\n(?=#{1,4}\s+)', notes)
+        sec_idx = 0
+        for sec in sections:
+            sec_lower = sec.lower()
+            if query in sec_lower:
+                hdg_match = re.match(r'^#{1,4}\s+([^\n]+)', sec)
+                heading = hdg_match.group(1).strip() if hdg_match else "Overview"
+                # Avoid duplicate if heading is identical to title match
+                if heading.lower() == title_lower and query in title_lower:
+                    continue
+
+                pos = sec_lower.find(query)
+                start = max(0, pos - 45)
+                end = min(len(sec), pos + len(query) + 55)
+                snip = sec[start:end].replace('\n', ' ').strip()
+                if start > 0:
+                    snip = '...' + snip
+                if end < len(sec):
+                    snip = snip + '...'
+
+                results.append({
+                    "topic_id": r["id"],
+                    "title": title,
+                    "module_id": r["module_id"],
+                    "module_name": r["module_name"],
+                    "module_number": r["module_number"],
+                    "course_id": r["course_id"],
+                    "course_name": r["course_name"],
+                    "heading": heading,
+                    "snippet": snip,
+                    "match_count": occurrences,
+                    "score": 100 - min(sec_idx, 30)
+                })
+                sec_idx += 1
+
+    results.sort(key=lambda x: x["score"], reverse=True)
+    return results[:limit]
 
 @app.get("/api/courses")
 def list_courses():
