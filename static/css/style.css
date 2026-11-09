@@ -72,6 +72,12 @@ body {
   overflow-y: auto;
 }
 
+#view-dashboard.hidden,
+#view-notes.hidden,
+#view-exam.hidden {
+  display: none !important;
+}
+
 #view-dashboard:not(.hidden) {
   display: block !important;
 }
@@ -84,31 +90,24 @@ body {
   display: block !important;
 }
 
-/* Studio Workspace Pane proportions */
+/* Studio Workspace Pane proportions - clean 50/50 split with zero clipping */
 #pane-video:not(.hidden) {
   display: flex !important;
-  flex: 0 0 45%;
-  max-width: 50%;
-  min-width: 320px;
-}
-
-@media (max-width: 1024px) {
-  #pane-video:not(.hidden) {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
+  flex: 1 1 0% !important;
+  min-width: 0 !important;
+  max-width: 50% !important;
 }
 
 #pane-notes:not(.hidden) {
   display: block !important;
-  flex: 1 1 0%;
-  min-width: 320px;
+  flex: 1 1 0% !important;
+  min-width: 0 !important;
 }
 
 #pane-canvas:not(.hidden) {
   display: flex !important;
-  flex: 1 1 0%;
-  min-width: 320px;
+  flex: 1 1 0% !important;
+  min-width: 0 !important;
 }
 
 #copilot-panel:not(.hidden) {

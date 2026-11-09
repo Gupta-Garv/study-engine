@@ -44,7 +44,7 @@
   </script>
 
   <!-- Custom Ledger CSS -->
-  <link rel="stylesheet" href="./static/css/style.css">
+  <link rel="stylesheet" href="./static/css/style.css?v=2.2">
 </head>
 <body class="h-screen flex flex-col bg-canvas text-ink transition-colors duration-200 overflow-hidden">
 
@@ -291,7 +291,7 @@
     <!-- ============================================================= -->
     <!-- VIEW 2: STUDY HALL (Edge-to-Edge Resizable Workspace) -->
     <!-- ============================================================= -->
-    <div id="view-notes" class="hidden w-full flex-1 overflow-hidden border-t border-border bg-canvas" style="display: none;">
+    <div id="view-notes" class="hidden w-full flex-1 overflow-hidden border-t border-border bg-canvas">
       
       <!-- Sidebar Tree (Collapsible & Resizable Accordion) -->
       <aside id="notes-sidebar" class="shrink-0 bg-card border-r border-border p-3 overflow-y-auto space-y-3 flex flex-col select-none" style="width: 250px;">
@@ -374,7 +374,7 @@
         <div id="studio-workspace" class="flex-1 w-full h-full flex overflow-hidden min-h-0 divide-x divide-border">
 
           <!-- PANE 1: Embedded Video Player -->
-          <div id="pane-video" class="flex-1 h-full flex flex-col bg-canvas overflow-y-auto p-4 space-y-3 min-w-[320px]">
+          <div id="pane-video" class="flex-1 h-full flex flex-col bg-canvas overflow-y-auto p-4 space-y-3 min-w-0">
             <!-- 16:9 Video Box -->
             <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-neutral-900 border border-border shadow-soft flex items-center justify-center">
               <iframe 
@@ -425,7 +425,7 @@
           </div>
 
           <!-- PANE 2: Synthesized Notes Reader -->
-          <div id="pane-notes" class="flex-1 h-full overflow-y-auto px-6 sm:px-10 py-6 bg-card min-w-[320px]">
+          <div id="pane-notes" class="flex-1 h-full overflow-y-auto px-6 sm:px-10 py-6 bg-card min-w-0">
             <div class="max-w-3xl w-full mx-auto space-y-6">
               <div id="notes-content-body" class="prose-ledger w-full">
                 <div class="text-center py-20 text-xs text-neutral-400">Select a lecture to view synthesized notes.</div>
@@ -434,7 +434,7 @@
           </div>
 
           <!-- PANE 3: Personal Visual Canvas (Option A "Ledger Board") -->
-          <div id="pane-canvas" class="hidden flex-1 h-full flex flex-col bg-canvas min-w-[320px] relative select-none">
+          <div id="pane-canvas" class="hidden flex-1 h-full flex flex-col bg-canvas min-w-0 relative select-none">
             
             <!-- Canvas Toolbar -->
             <div class="shrink-0 px-4 py-2 border-b border-border bg-card flex items-center justify-between text-xs">
@@ -555,7 +555,7 @@
     <!-- ============================================================= -->
     <!-- VIEW 3: EXAM ARENA (Timed MCQ Simulator) -->
     <!-- ============================================================= -->
-    <div id="view-exam" class="hidden flex-1 w-full overflow-y-auto px-4 py-8" style="display: none;">
+    <div id="view-exam" class="hidden flex-1 w-full overflow-y-auto px-4 py-8">
       <div class="max-w-3xl mx-auto space-y-6">
         
         <div id="exam-setup-box" class="rounded-[1.5rem] bg-card border border-border shadow-soft p-8 space-y-5">
@@ -732,10 +732,10 @@
     </div>
   </div>
 
+  <!-- App Script (Loaded first with cache-buster so window.App is immediately ready) -->
+  <script src="./static/js/app.js?v=2.2"></script>
   <!-- Bundled Study Data for 24/7 GitHub Pages Access -->
-  <script src="./study_data.js"></script>
-  <!-- App Script -->
-  <script src="./static/js/app.js"></script>
+  <script src="./study_data.js?v=2.2" defer></script>
 </body>
 </html>
 

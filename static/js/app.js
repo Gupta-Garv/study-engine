@@ -1494,10 +1494,10 @@ const App = {
       if (el) {
         if (isActive) {
           el.classList.remove('hidden');
-          el.style.display = (k === 'notes') ? 'flex' : 'block';
+          el.removeAttribute('style');
         } else {
           el.classList.add('hidden');
-          el.style.display = 'none';
+          el.removeAttribute('style');
         }
       }
 
