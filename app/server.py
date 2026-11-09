@@ -387,6 +387,21 @@ def save_settings(req: SettingsRequest):
     db.set_setting("nvidia_api_key", req.nvidia_api_key.strip())
     return {"message": "NVIDIA NIM API key saved successfully."}
 
+class CanvasDataRequest(BaseModel):
+    cards: List[dict] = []
+    connections: List[dict] = []
+
+@app.get("/api/topics/{topic_id}/canvas")
+def get_topic_canvas_endpoint(topic_id: str):
+    return db.get_topic_canvas(topic_id)
+
+@app.post("/api/topics/{topic_id}/canvas")
+def save_topic_canvas_endpoint(topic_id: str, req: CanvasDataRequest):
+    data = {"cards": req.cards, "connections": req.connections}
+    saved = db.save_topic_canvas(topic_id, data)
+    db.export_static_data()
+    return saved
+
 @app.get("/api/topics/{topic_id}/chat")
 def get_topic_chat_history(topic_id: str):
     return db.get_topic_chat(topic_id)

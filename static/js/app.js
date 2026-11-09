@@ -4,7 +4,7 @@
  */
 
 const App = {
-  currentView: 'syllabus',
+  currentView: 'dashboard',
   courses: [],
   selectedCourseId: null,
   selectedModuleId: null,
@@ -18,6 +18,23 @@ const App = {
   activeSearchResultIndex: -1,
   searchResults: [],
   lastSearchQuery: '',
+  studiedTopicIds: new Set(),
+  lastStudiedTopicId: null,
+  examSchedule: {
+    title: 'Term Examinations',
+    targetDate: '2026-11-05T09:30',
+    notes: 'Nov 5–6 Degree Examinations'
+  },
+  checklistFilter: 'all',
+  checklistItems: [],
+  countdownInterval: null,
+  paneState: { video: true, notes: true, canvas: false, copilot: false },
+  activePreset: 'lecture',
+  videoSpeed: 1,
+  currentTopicCanvas: { cards: [], connections: [] },
+  draggingCardId: null,
+  dragOffset: { x: 0, y: 0 },
+  connectingFromCardId: null,
 
   isStaticHost() {
     return window.location.hostname.includes('github.io');
@@ -40,6 +57,8 @@ const App = {
     }
     this.initResizers();
     this.initSearch();
+    this.initDashboard();
+    this.initCanvasListeners();
     await this.loadCourses();
     if (window.lucide) window.lucide.createIcons();
     this.startPolling();
@@ -563,30 +582,886 @@ const App = {
   },
 
   // -------------------------------------------------------------
-  // Navigation / Views
+  // Degree Command Dashboard & Exam Countdown
   // -------------------------------------------------------------
-  switchView(viewName) {
-    this.currentView = viewName;
-    ['syllabus', 'notes', 'exam', 'flashcards'].forEach(v => {
-      const el = document.getElementById(`view-${v}`);
-      const tab = document.getElementById(`tab-${v}`);
-      if (el) el.classList.toggle('hidden', v !== viewName);
-      if (tab) {
-        if (v === viewName) {
-          tab.className = 'px-3 py-1.5 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-medium text-xs transition';
+  initDashboard() {
+    try {
+      const savedStudied = localStorage.getItem('study_engine_studied_topics');
+      if (savedStudied) {
+        this.studiedTopicIds = new Set(JSON.parse(savedStudied));
+      }
+      this.lastStudiedTopicId = localStorage.getItem('study_engine_last_studied_topic');
+
+      const savedSchedule = localStorage.getItem('study_engine_exam_schedule');
+      if (savedSchedule) {
+        this.examSchedule = JSON.parse(savedSchedule);
+      }
+
+      const savedChecklist = localStorage.getItem('study_engine_checklist');
+      if (savedChecklist) {
+        this.checklistItems = JSON.parse(savedChecklist);
+      } else {
+        this.checklistItems = this.getDefaultChecklist();
+      }
+    } catch (e) {
+      this.checklistItems = this.getDefaultChecklist();
+    }
+
+    this.startExamCountdown();
+  },
+
+  getDefaultChecklist() {
+    return [
+      { id: 'task-1', text: 'Corporate Finance: Master DCF & WACC formula mechanics', subject: 'corporate-finance', completed: false },
+      { id: 'task-2', text: 'Corporate Finance: Review Beta vs Standalone Project Risk Examiner Gotchas', subject: 'corporate-finance', completed: false },
+      { id: 'task-3', text: 'Family Business Strategy: Master Entrepreneurial Family Galaxy & Orbital Ventures', subject: 'family-business', completed: false },
+      { id: 'task-4', text: 'Family Business Strategy: Review 3-Circle Governance Alignment Matrix', subject: 'family-business', completed: false },
+      { id: 'task-5', text: 'Critical Thinking: Master Top 10 Fallacy Traps in MCQ radar', subject: 'critical-thinking', completed: false },
+      { id: 'task-6', text: 'Startup Dilemmas: Compare Founder Equity Split Models & Vesting Pitfalls', subject: 'startup-dilemmas', completed: false },
+      { id: 'task-7', text: 'Data Visualisation: Memorize Chart Selection Matrix (Distribution vs Composition)', subject: 'data-visualisation', completed: false }
+    ];
+  },
+
+  startExamCountdown() {
+    clearInterval(this.countdownInterval);
+    const update = () => {
+      const now = new Date().getTime();
+      const target = new Date(this.examSchedule.targetDate).getTime();
+      const diff = target - now;
+
+      const titleEl = document.getElementById('exam-countdown-title');
+      const targetDisplay = document.getElementById('countdown-target-display');
+      if (titleEl) titleEl.textContent = this.examSchedule.title || 'Term Exams';
+      if (targetDisplay) targetDisplay.textContent = this.examSchedule.notes || 'Target: Nov 5–6';
+
+      const daysEl = document.getElementById('countdown-days');
+      const hoursEl = document.getElementById('countdown-hours');
+      const minsEl = document.getElementById('countdown-mins');
+
+      if (diff <= 0) {
+        if (daysEl) daysEl.textContent = '00';
+        if (hoursEl) hoursEl.textContent = '00';
+        if (minsEl) minsEl.textContent = '00';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+      if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+      if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+      if (minsEl) minsEl.textContent = String(mins).padStart(2, '0');
+    };
+
+    update();
+    this.countdownInterval = setInterval(update, 30000);
+  },
+
+  openExamDateModal() {
+    const modal = document.getElementById('modal-exam-dates');
+    if (!modal) return;
+    const titleInput = document.getElementById('exam-modal-title');
+    const dtInput = document.getElementById('exam-modal-datetime');
+    const notesInput = document.getElementById('exam-modal-notes');
+
+    if (titleInput) titleInput.value = this.examSchedule.title || 'Term Examinations';
+    if (dtInput) dtInput.value = this.examSchedule.targetDate || '2026-11-05T09:30';
+    if (notesInput) notesInput.value = this.examSchedule.notes || 'Nov 5–6 Degree Examinations';
+
+    modal.classList.remove('hidden');
+    if (window.lucide) window.lucide.createIcons();
+  },
+
+  closeExamDateModal() {
+    const modal = document.getElementById('modal-exam-dates');
+    if (modal) modal.classList.add('hidden');
+  },
+
+  saveExamDates() {
+    const titleInput = document.getElementById('exam-modal-title');
+    const dtInput = document.getElementById('exam-modal-datetime');
+    const notesInput = document.getElementById('exam-modal-notes');
+
+    if (titleInput && titleInput.value.trim()) {
+      this.examSchedule.title = titleInput.value.trim();
+    }
+    if (dtInput && dtInput.value) {
+      this.examSchedule.targetDate = dtInput.value;
+    }
+    if (notesInput) {
+      this.examSchedule.notes = notesInput.value.trim();
+    }
+
+    localStorage.setItem('study_engine_exam_schedule', JSON.stringify(this.examSchedule));
+    this.closeExamDateModal();
+    this.startExamCountdown();
+  },
+
+  renderDashboard() {
+    this.renderRecentLectureBanner();
+    this.renderSubjectMasteryCards();
+    this.renderChecklist();
+    if (window.lucide) window.lucide.createIcons();
+  },
+
+  renderRecentLectureBanner() {
+    const banner = document.getElementById('dashboard-recent-lecture-banner');
+    if (!banner) return;
+
+    let recentTopic = null;
+    let recentCourse = null;
+
+    if (this.lastStudiedTopicId && this.courses) {
+      for (const c of this.courses) {
+        for (const m of (c.modules || [])) {
+          const t = (m.topics || []).find(x => x.id === this.lastStudiedTopicId);
+          if (t) {
+            recentTopic = t;
+            recentCourse = c;
+            break;
+          }
+        }
+        if (recentTopic) break;
+      }
+    }
+
+    if (recentTopic && recentCourse) {
+      banner.innerHTML = `
+        <div class="inline-flex items-center gap-3 p-2.5 px-4 rounded-2xl bg-card border border-border shadow-soft-sm">
+          <div class="w-8 h-8 rounded-xl bg-ink text-canvas flex items-center justify-center shrink-0">
+            <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+          </div>
+          <div class="min-w-0 pr-2">
+            <div class="text-[10px] font-mono text-neutral-400 uppercase truncate">Continue where you left off &bull; ${this.escapeHtml(recentCourse.name)}</div>
+            <div class="text-xs font-semibold text-ink truncate max-w-sm">${this.escapeHtml(recentTopic.title)}</div>
+          </div>
+          <button onclick="App.jumpToTopic('${recentTopic.id}')" class="pill-ink text-xs px-3.5 py-1.5 shrink-0 flex items-center gap-1">
+            <span>Resume Lecture</span>
+            <i data-lucide="arrow-right" class="w-3 h-3"></i>
+          </button>
+        </div>
+      `;
+    } else {
+      banner.innerHTML = `
+        <button onclick="App.switchView('notes')" class="pill-ink text-xs px-4 py-2 inline-flex items-center gap-2">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+          <span>Launch Study Studio (463 Lectures Ready)</span>
+        </button>
+      `;
+    }
+  },
+
+  renderSubjectMasteryCards() {
+    const container = document.getElementById('dashboard-subject-cards');
+    const overallProgressEl = document.getElementById('overall-degree-progress');
+    if (!container) return;
+
+    if (!this.courses || this.courses.length === 0) {
+      container.innerHTML = '<div class="col-span-3 text-center py-8 text-neutral-400 text-xs">Loading curriculum...</div>';
+      return;
+    }
+
+    let totalDegreeLectures = 0;
+    let totalDegreeStudied = 0;
+
+    container.innerHTML = this.courses.map(c => {
+      const courseStyle = this.getCourseColor(c.name);
+      const totalLectures = (c.modules || []).reduce((acc, m) => acc + (m.topics ? m.topics.length : 0), 0);
+      const studiedCount = (c.modules || []).reduce((acc, m) => {
+        return acc + (m.topics ? m.topics.filter(t => this.studiedTopicIds.has(t.id)).length : 0);
+      }, 0);
+
+      totalDegreeLectures += totalLectures;
+      totalDegreeStudied += studiedCount;
+
+      const pct = totalLectures > 0 ? Math.round((studiedCount / totalLectures) * 100) : 0;
+      const firstTopicId = (c.modules && c.modules[0] && c.modules[0].topics && c.modules[0].topics[0]) ? c.modules[0].topics[0].id : null;
+      const firstModuleId = (c.modules && c.modules[0]) ? c.modules[0].id : null;
+
+      return `
+        <div class="rounded-[1.5rem] bg-card border border-border shadow-soft p-5 flex flex-col justify-between space-y-4 hover:shadow-soft-md transition">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full border ${courseStyle.bg} font-medium">
+                ${c.modules ? c.modules.length : 0} Modules
+              </span>
+              <span class="text-xs font-mono font-semibold text-ink">${pct}%</span>
+            </div>
+            <div>
+              <h3 class="text-base font-semibold text-ink tracking-tight">${this.escapeHtml(c.name)}</h3>
+              <p class="text-xs text-neutral-400 line-clamp-1 mt-0.5">${this.escapeHtml(c.description || `${totalLectures} comprehensive video lectures & notes`)}</p>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <!-- Progress Bar -->
+            <div class="w-full h-1.5 rounded-full bg-card-muted overflow-hidden">
+              <div class="h-full bg-ink rounded-full transition-all duration-300" style="width: ${pct}%"></div>
+            </div>
+            <div class="flex items-center justify-between text-[11px] font-mono text-neutral-400">
+              <span>${studiedCount} / ${totalLectures} studied</span>
+              <span>${totalLectures - studiedCount} remaining</span>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="grid grid-cols-2 gap-2 pt-2 border-t border-border/60">
+            <button onclick="App.launchCourseStudy('${firstTopicId}')" class="pill-muted text-xs py-1.5 px-3 flex items-center justify-center gap-1.5 font-medium">
+              <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+              <span>Study Studio</span>
+            </button>
+            <button onclick="App.launchCourseExam('${firstModuleId}')" class="px-3 py-1.5 rounded-full border border-border hover:bg-card-muted text-xs text-ink flex items-center justify-center gap-1.5 font-medium transition">
+              <i data-lucide="award" class="w-3.5 h-3.5"></i>
+              <span>Mock Quiz</span>
+            </button>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    const overallPct = totalDegreeLectures > 0 ? Math.round((totalDegreeStudied / totalDegreeLectures) * 100) : 0;
+    if (overallProgressEl) {
+      overallProgressEl.innerHTML = `Degree Progress: <span class="font-semibold text-ink">${overallPct}%</span> (${totalDegreeStudied}/${totalDegreeLectures} studied)`;
+    }
+  },
+
+  launchCourseStudy(topicId) {
+    this.switchView('notes');
+    if (topicId) {
+      this.loadTopicNotes(topicId);
+    }
+  },
+
+  launchCourseExam(moduleId) {
+    this.switchView('exam');
+    if (moduleId) {
+      const select = document.getElementById('exam-module-select');
+      if (select) {
+        select.value = moduleId;
+        this.loadModuleExam(moduleId);
+      }
+    }
+  },
+
+  jumpToTopic(topicId) {
+    this.switchView('notes');
+    this.loadTopicNotes(topicId);
+  },
+
+  // -------------------------------------------------------------
+  // Degree Study Checklist Controller
+  // -------------------------------------------------------------
+  filterChecklist(subject) {
+    this.checklistFilter = subject;
+    const pills = document.querySelectorAll('.checklist-filter-pill');
+    pills.forEach(p => {
+      if (p.getAttribute('data-filter') === subject) {
+        p.className = 'checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium bg-neutral-900 text-white dark:bg-white dark:text-neutral-900';
+      } else {
+        p.className = 'checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted';
+      }
+    });
+    this.renderChecklist();
+  },
+
+  renderChecklist() {
+    const container = document.getElementById('checklist-items-container');
+    const progressText = document.getElementById('checklist-progress-text');
+    if (!container) return;
+
+    const filtered = this.checklistItems.filter(item => {
+      if (this.checklistFilter === 'all') return true;
+      return item.subject === this.checklistFilter;
+    });
+
+    const completedTotal = this.checklistItems.filter(i => i.completed).length;
+    if (progressText) {
+      progressText.textContent = `${completedTotal} of ${this.checklistItems.length} completed`;
+    }
+
+    if (filtered.length === 0) {
+      container.innerHTML = '<div class="py-6 text-center text-xs text-neutral-400">No tasks in this category. Add your goals above!</div>';
+      return;
+    }
+
+    const subjectLabels = {
+      'corporate-finance': 'Corporate Finance',
+      'family-business': 'Family Business',
+      'critical-thinking': 'Critical Thinking',
+      'startup-dilemmas': 'Startup Dilemmas',
+      'data-visualisation': 'Data Visualisation'
+    };
+
+    container.innerHTML = filtered.map(item => {
+      const courseStyle = this.getCourseColor(subjectLabels[item.subject] || item.subject);
+      return `
+        <div class="flex items-center justify-between gap-3 py-2.5 group">
+          <div class="flex items-center gap-3 min-w-0">
+            <button onclick="App.toggleChecklistItem('${item.id}')" class="w-5 h-5 rounded-md border ${item.completed ? 'bg-ink border-ink text-canvas' : 'border-neutral-300 dark:border-neutral-700 bg-card'} flex items-center justify-center transition shrink-0">
+              ${item.completed ? '<i data-lucide="check" class="w-3.5 h-3.5 stroke-[3]"></i>' : ''}
+            </button>
+            <span class="text-xs ${item.completed ? 'line-through text-neutral-400' : 'text-ink font-medium'} truncate">
+              ${this.escapeHtml(item.text)}
+            </span>
+            <span class="text-[9px] font-mono px-2 py-0.5 rounded-full border ${courseStyle.bg} shrink-0 hidden sm:inline-block">
+              ${subjectLabels[item.subject] || item.subject}
+            </span>
+          </div>
+          <button onclick="App.deleteChecklistItem('${item.id}')" class="text-neutral-400 hover:text-rose-500 opacity-0 group-hover:opacity-100 transition p-1 shrink-0" title="Delete task">
+            <i data-lucide="trash" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      `;
+    }).join('');
+
+    if (window.lucide) window.lucide.createIcons();
+  },
+
+  toggleChecklistItem(id) {
+    const item = this.checklistItems.find(i => i.id === id);
+    if (item) {
+      item.completed = !item.completed;
+      this.saveChecklist();
+      this.renderChecklist();
+    }
+  },
+
+  addChecklistItem() {
+    const input = document.getElementById('new-checklist-input');
+    const select = document.getElementById('new-checklist-subject');
+    if (!input || !input.value.trim()) return;
+
+    const newTask = {
+      id: 'task-' + Date.now(),
+      text: input.value.trim(),
+      subject: select ? select.value : 'corporate-finance',
+      completed: false
+    };
+
+    this.checklistItems.unshift(newTask);
+    this.saveChecklist();
+    input.value = '';
+    this.renderChecklist();
+  },
+
+  deleteChecklistItem(id) {
+    this.checklistItems = this.checklistItems.filter(i => i.id !== id);
+    this.saveChecklist();
+    this.renderChecklist();
+  },
+
+  resetDefaultChecklist() {
+    if (confirm('Reset to the default high-yield exam tasks?')) {
+      this.checklistItems = this.getDefaultChecklist();
+      this.saveChecklist();
+      this.renderChecklist();
+    }
+  },
+
+  saveChecklist() {
+    localStorage.setItem('study_engine_checklist', JSON.stringify(this.checklistItems));
+  },
+
+  // -------------------------------------------------------------
+  // Multi-Pane Active Study Studio Controller
+  // -------------------------------------------------------------
+  applyLayoutPreset(preset) {
+    this.activePreset = preset;
+    if (preset === 'lecture') {
+      this.paneState = { video: true, notes: true, canvas: false, copilot: false };
+    } else if (preset === 'studio') {
+      this.paneState = { video: false, notes: true, canvas: true, copilot: false };
+    } else if (preset === 'tutor') {
+      this.paneState = { video: false, notes: true, canvas: false, copilot: true };
+    } else if (preset === 'zen') {
+      this.paneState = { video: false, notes: false, canvas: true, copilot: false };
+    }
+
+    const presetBtns = ['lecture', 'studio', 'tutor', 'zen'];
+    presetBtns.forEach(p => {
+      const btn = document.getElementById(`preset-${p}`);
+      if (btn) {
+        if (p === preset) {
+          btn.className = 'px-2.5 py-1 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-medium transition';
         } else {
-          tab.className = 'px-3 py-1.5 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium text-xs transition';
+          btn.className = 'px-2.5 py-1 rounded-full text-neutral-500 hover:text-ink transition';
         }
       }
     });
 
-    if (viewName === 'notes' && !this.selectedTopicId) {
+    this.updateStudioLayout();
+  },
+
+  togglePane(pane) {
+    this.paneState[pane] = !this.paneState[pane];
+    this.updateStudioLayout();
+  },
+
+  updateStudioLayout() {
+    ['video', 'notes', 'canvas'].forEach(p => {
+      const el = document.getElementById(`pane-${p}`);
+      const btn = document.getElementById(`toggle-${p}-btn`);
+      if (el) el.classList.toggle('hidden', !this.paneState[p]);
+      if (btn) {
+        btn.classList.toggle('active', !!this.paneState[p]);
+      }
+    });
+
+    const copilotEl = document.getElementById('copilot-panel');
+    const copilotBtn = document.getElementById('toggle-copilot-btn');
+    if (copilotEl) copilotEl.classList.toggle('hidden', !this.paneState.copilot);
+    if (copilotBtn) copilotBtn.classList.toggle('active', !!this.paneState.copilot);
+
+    if (this.paneState.canvas) {
+      this.renderCanvas();
+    }
+    if (window.lucide) window.lucide.createIcons();
+  },
+
+  loadTopicVideo(topic) {
+    const iframe = document.getElementById('lecture-video-iframe');
+    const extLink = document.getElementById('video-external-link');
+    if (!iframe) return;
+
+    if (topic && topic.video_id) {
+      const embedUrl = `https://www.youtube-nocookie.com/embed/${topic.video_id}?enablejsapi=1&rel=0&modestbranding=1`;
+      if (iframe.src !== embedUrl) {
+        iframe.src = embedUrl;
+      }
+      if (extLink) extLink.href = topic.youtube_url || `https://www.youtube.com/watch?v=${topic.video_id}`;
+    } else {
+      iframe.src = '';
+    }
+  },
+
+  setVideoSpeed(speed) {
+    this.videoSpeed = speed;
+    const iframe = document.getElementById('lecture-video-iframe');
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage(JSON.stringify({
+        event: 'command',
+        func: 'setPlaybackRate',
+        args: [speed]
+      }), '*');
+    }
+    const speedBtns = document.querySelectorAll('.speed-btn');
+    speedBtns.forEach(btn => {
+      const s = parseFloat(btn.getAttribute('data-speed'));
+      if (s === speed) {
+        btn.className = 'speed-btn px-1.5 py-0.5 rounded bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-semibold';
+      } else {
+        btn.className = 'speed-btn px-1.5 py-0.5 rounded bg-card-muted hover:bg-muted text-ink-secondary';
+      }
+    });
+  },
+
+  seekVideoToSeconds(seconds) {
+    if (!this.paneState.video) {
+      this.paneState.video = true;
+      this.updateStudioLayout();
+    }
+    const iframe = document.getElementById('lecture-video-iframe');
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage(JSON.stringify({
+        event: 'command',
+        func: 'seekTo',
+        args: [seconds, true]
+      }), '*');
+    }
+  },
+
+  // -------------------------------------------------------------
+  // Option A Visual Card Canvas ("Ledger Board")
+  // -------------------------------------------------------------
+  initCanvasListeners() {
+    document.addEventListener('mousemove', (e) => this.onCanvasMouseMove(e));
+    document.addEventListener('mouseup', (e) => this.onCanvasMouseUp(e));
+
+    const viewport = document.getElementById('canvas-viewport');
+    if (viewport) {
+      viewport.addEventListener('dblclick', (e) => {
+        if (e.target.id === 'canvas-viewport' || e.target.id === 'canvas-cards-container' || e.target.tagName === 'svg') {
+          const rect = viewport.getBoundingClientRect();
+          const x = e.clientX - rect.left + viewport.scrollLeft;
+          const y = e.clientY - rect.top + viewport.scrollTop;
+          this.addCustomCanvasCardAt(x, y);
+        }
+      });
+    }
+  },
+
+  async loadTopicCanvas(topicId) {
+    let canvasData = null;
+
+    // 1. Try local storage
+    const saved = localStorage.getItem(`canvas_${topicId}`);
+    if (saved) {
+      try { canvasData = JSON.parse(saved); } catch (e) {}
+    }
+
+    // 2. Try window.STUDY_DATA static bundle
+    if (!canvasData && window.STUDY_DATA && window.STUDY_DATA.canvases && window.STUDY_DATA.canvases[topicId]) {
+      canvasData = window.STUDY_DATA.canvases[topicId];
+    }
+
+    // 3. Try backend API
+    if (!canvasData) {
+      try {
+        const res = await fetch(`/api/topics/${topicId}/canvas`);
+        if (res.ok) canvasData = await res.json();
+      } catch (e) {}
+    }
+
+    this.currentTopicCanvas = (canvasData && canvasData.cards) ? canvasData : { cards: [], connections: [] };
+    this.renderCanvas();
+  },
+
+  saveTopicCanvas(topicId) {
+    if (!topicId) return;
+    localStorage.setItem(`canvas_${topicId}`, JSON.stringify(this.currentTopicCanvas));
+    fetch(`/api/topics/${topicId}/canvas`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(this.currentTopicCanvas)
+    }).catch(() => {});
+
+    const counter = document.getElementById('canvas-card-counter');
+    if (counter) {
+      const len = this.currentTopicCanvas.cards.length;
+      counter.textContent = `${len} ${len === 1 ? 'card' : 'cards'}`;
+    }
+  },
+
+  renderCanvas() {
+    const container = document.getElementById('canvas-cards-container');
+    const svgLayer = document.getElementById('canvas-svg-layer');
+    const counter = document.getElementById('canvas-card-counter');
+    if (!container) return;
+
+    const cards = this.currentTopicCanvas.cards || [];
+    if (counter) {
+      counter.textContent = `${cards.length} ${cards.length === 1 ? 'card' : 'cards'}`;
+    }
+
+    if (cards.length === 0) {
+      container.innerHTML = `
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-8 text-neutral-400 space-y-2 pointer-events-none">
+          <div class="w-10 h-10 rounded-2xl bg-card border border-border shadow-soft flex items-center justify-center text-neutral-400">
+            <i data-lucide="layout" class="w-5 h-5"></i>
+          </div>
+          <p class="text-xs font-medium text-ink">Personal Mindmap & Note Board</p>
+          <p class="text-[11px] text-neutral-400 max-w-sm">
+            Hover over any note heading or AI explanation to click <strong>[📌 Pin]</strong>, or double-click anywhere here to create your own formula and concept cards.
+          </p>
+        </div>
+      `;
+      if (svgLayer) svgLayer.innerHTML = `
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#a3a3a3"/>
+          </marker>
+        </defs>
+      `;
+      if (window.lucide) window.lucide.createIcons();
+      return;
+    }
+
+    container.innerHTML = cards.map(c => {
+      const isFormula = c.type === 'formula';
+      const isCopilot = c.type === 'copilot';
+      const badgeStyle = isFormula 
+        ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20' 
+        : isCopilot 
+          ? 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20' 
+          : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20';
+
+      const typeLabel = isFormula ? 'FORMULA' : isCopilot ? 'AI EXPLANATION' : 'NOTE';
+
+      let parsedContent = c.content || '';
+      if (window.marked) {
+        try { parsedContent = marked.parse(parsedContent); } catch (e) {}
+      }
+
+      return `
+        <div 
+          id="card-el-${c.id}" 
+          class="ledger-canvas-card bg-card border border-border shadow-soft rounded-2xl p-3.5 space-y-2 select-text" 
+          style="left: ${c.x}px; top: ${c.y}px; width: ${c.width || 300}px;"
+          data-id="${c.id}"
+        >
+          <!-- Card Header & Drag Handle -->
+          <div class="flex items-center justify-between gap-2 pb-1.5 border-b border-border/60">
+            <div class="flex items-center gap-1.5 cursor-grab active:cursor-grabbing handle-drag" onmousedown="App.onCardMouseDown(event, '${c.id}')">
+              <i data-lucide="grip-vertical" class="w-3.5 h-3.5 text-neutral-400"></i>
+              <span class="text-[9px] font-mono px-1.5 py-0.5 rounded border ${badgeStyle} font-medium">${typeLabel}</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <button onclick="App.startConnecting('${c.id}')" class="text-neutral-400 hover:text-ink p-1 rounded hover:bg-muted text-[10px]" title="Connect to another card with an arrow">
+                <i data-lucide="git-commit" class="w-3 h-3"></i>
+              </button>
+              <button onclick="App.deleteCanvasCard('${c.id}')" class="text-neutral-400 hover:text-rose-500 p-1 rounded hover:bg-muted transition" title="Delete Card">
+                <i data-lucide="x" class="w-3 h-3"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card Title -->
+          <div class="text-xs font-semibold text-ink tracking-tight">${this.escapeHtml(c.title || 'Untitled Card')}</div>
+
+          <!-- Card Content Body -->
+          <div class="text-xs text-ink leading-relaxed prose-ledger max-h-60 overflow-y-auto pr-1">
+            ${parsedContent}
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Render SVG connector arrows
+    this.renderCanvasConnections();
+
+    // Render KaTeX in cards
+    if (window.renderMathInElement) {
+      renderMathInElement(container, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ],
+        throwOnError: false
+      });
+    }
+
+    if (window.lucide) window.lucide.createIcons();
+  },
+
+  renderCanvasConnections() {
+    const svgLayer = document.getElementById('canvas-svg-layer');
+    if (!svgLayer) return;
+
+    const connections = this.currentTopicCanvas.connections || [];
+    let svgHtml = `
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#a3a3a3"/>
+        </marker>
+      </defs>
+    `;
+
+    connections.forEach(conn => {
+      const fromEl = document.getElementById(`card-el-${conn.from}`);
+      const toEl = document.getElementById(`card-el-${conn.to}`);
+      if (!fromEl || !toEl) return;
+
+      const fromX = fromEl.offsetLeft + fromEl.offsetWidth / 2;
+      const fromY = fromEl.offsetTop + fromEl.offsetHeight / 2;
+      const toX = toEl.offsetLeft + toEl.offsetWidth / 2;
+      const toY = toEl.offsetTop + toEl.offsetHeight / 2;
+
+      const dx = (toX - fromX) * 0.4;
+      const pathData = `M ${fromX} ${fromY} C ${fromX + dx} ${fromY}, ${toX - dx} ${toY}, ${toX} ${toY}`;
+
+      svgHtml += `<path d="${pathData}" fill="none" stroke="#a3a3a3" stroke-width="1.75" stroke-dasharray="4,4" marker-end="url(#arrow)"/>`;
+    });
+
+    svgLayer.innerHTML = svgHtml;
+  },
+
+  onCardMouseDown(e, cardId) {
+    if (e.target.closest('button') || e.target.closest('input')) return;
+    this.draggingCardId = cardId;
+    const cardEl = document.getElementById(`card-el-${cardId}`);
+    if (cardEl) {
+      cardEl.classList.add('dragging');
+      this.dragOffset = {
+        x: e.clientX - cardEl.offsetLeft,
+        y: e.clientY - cardEl.offsetTop
+      };
+    }
+  },
+
+  onCanvasMouseMove(e) {
+    if (!this.draggingCardId) return;
+    const cardEl = document.getElementById(`card-el-${this.draggingCardId}`);
+    if (!cardEl) return;
+
+    const newX = Math.max(10, e.clientX - this.dragOffset.x);
+    const newY = Math.max(10, e.clientY - this.dragOffset.y);
+
+    cardEl.style.left = `${newX}px`;
+    cardEl.style.top = `${newY}px`;
+
+    const card = this.currentTopicCanvas.cards.find(c => c.id === this.draggingCardId);
+    if (card) {
+      card.x = newX;
+      card.y = newY;
+    }
+
+    this.renderCanvasConnections();
+  },
+
+  onCanvasMouseUp(e) {
+    if (this.draggingCardId) {
+      const cardEl = document.getElementById(`card-el-${this.draggingCardId}`);
+      if (cardEl) cardEl.classList.remove('dragging');
+      this.saveTopicCanvas(this.selectedTopicId);
+      this.draggingCardId = null;
+    }
+  },
+
+  startConnecting(fromCardId) {
+    const toCardId = prompt('Enter target card title or keyword to connect with an arrow:');
+    if (!toCardId) return;
+    const target = this.currentTopicCanvas.cards.find(c => c.id === toCardId || (c.title && c.title.toLowerCase().includes(toCardId.toLowerCase())));
+    if (target && target.id !== fromCardId) {
+      if (!this.currentTopicCanvas.connections) this.currentTopicCanvas.connections = [];
+      this.currentTopicCanvas.connections.push({ from: fromCardId, to: target.id });
+      this.saveTopicCanvas(this.selectedTopicId);
+      this.renderCanvas();
+    }
+  },
+
+  addCustomCanvasCard() {
+    this.addCustomCanvasCardAt(60 + (this.currentTopicCanvas.cards.length % 3) * 320, 60 + Math.floor(this.currentTopicCanvas.cards.length / 3) * 220);
+  },
+
+  addCustomCanvasCardAt(x, y) {
+    const title = prompt('Card Title (e.g. Core Formula, Exam Trap, Personal Note):');
+    if (!title) return;
+    const content = prompt('Card Content (Markdown & math $...$ supported):') || '';
+
+    const newCard = {
+      id: 'card-' + Date.now(),
+      title: title.trim(),
+      content: content.trim(),
+      type: title.toLowerCase().includes('formula') ? 'formula' : 'note',
+      x: Math.round(x),
+      y: Math.round(y),
+      width: 300
+    };
+
+    this.currentTopicCanvas.cards.push(newCard);
+    this.saveTopicCanvas(this.selectedTopicId);
+    this.renderCanvas();
+  },
+
+  pinHeadingToCanvas(btn) {
+    const parentHeading = btn.closest('h1, h2, h3, h4');
+    let title = 'Key Insight';
+    let content = '';
+
+    if (parentHeading) {
+      title = parentHeading.innerText.replace('Pin to Canvas', '').replace('✓ Pinned', '').trim();
+      let next = parentHeading.nextElementSibling;
+      while (next && !['H1', 'H2', 'H3', 'H4'].includes(next.tagName) && content.length < 350) {
+        content += next.innerText + '\n';
+        next = next.nextElementSibling;
+      }
+    }
+
+    const cardsCount = this.currentTopicCanvas.cards.length;
+    const card = {
+      id: 'card-' + Date.now(),
+      title: title,
+      content: content.trim() || title,
+      type: title.toLowerCase().includes('formula') ? 'formula' : 'note',
+      x: 50 + (cardsCount % 3) * 320,
+      y: 50 + Math.floor(cardsCount / 3) * 220,
+      width: 300
+    };
+
+    this.currentTopicCanvas.cards.push(card);
+    this.saveTopicCanvas(this.selectedTopicId);
+    
+    // Auto open canvas pane if closed
+    if (!this.paneState.canvas) {
+      this.paneState.canvas = true;
+      this.updateStudioLayout();
+    } else {
+      this.renderCanvas();
+    }
+
+    btn.innerText = '✓ Pinned';
+    setTimeout(() => { 
+      btn.innerHTML = '<i data-lucide="pin" class="w-3 h-3 inline mr-1"></i>Pin to Canvas'; 
+      if (window.lucide) window.lucide.createIcons(); 
+    }, 1500);
+  },
+
+  pinChatToCanvas(msgIndex) {
+    const msg = this.copilotMessages[msgIndex];
+    if (!msg) return;
+
+    const cardsCount = this.currentTopicCanvas.cards.length;
+    const card = {
+      id: 'card-' + Date.now(),
+      title: 'AI Copilot Explanation',
+      content: msg.content,
+      type: 'copilot',
+      x: 50 + (cardsCount % 3) * 320,
+      y: 50 + Math.floor(cardsCount / 3) * 220,
+      width: 310
+    };
+
+    this.currentTopicCanvas.cards.push(card);
+    this.saveTopicCanvas(this.selectedTopicId);
+
+    // Auto open canvas pane if closed
+    if (!this.paneState.canvas) {
+      this.paneState.canvas = true;
+      this.updateStudioLayout();
+    } else {
+      this.renderCanvas();
+    }
+
+    alert('📌 Copilot explanation clipped to your visual canvas!');
+  },
+
+  deleteCanvasCard(cardId) {
+    this.currentTopicCanvas.cards = this.currentTopicCanvas.cards.filter(c => c.id !== cardId);
+    if (this.currentTopicCanvas.connections) {
+      this.currentTopicCanvas.connections = this.currentTopicCanvas.connections.filter(c => c.from !== cardId && c.to !== cardId);
+    }
+    this.saveTopicCanvas(this.selectedTopicId);
+    this.renderCanvas();
+  },
+
+  clearCurrentCanvas() {
+    if (confirm('Clear all canvas cards for this lecture?')) {
+      this.currentTopicCanvas = { cards: [], connections: [] };
+      this.saveTopicCanvas(this.selectedTopicId);
+      this.renderCanvas();
+    }
+  },
+
+  // -------------------------------------------------------------
+  // Navigation / Views
+  // -------------------------------------------------------------
+  switchView(viewName) {
+    const target = (viewName === 'syllabus' || viewName === 'dashboard') ? 'dashboard' : viewName;
+    this.currentView = target;
+    ['dashboard', 'notes', 'exam', 'flashcards'].forEach(v => {
+      const el = document.getElementById(`view-${v}`);
+      const tab = document.getElementById(`tab-${v}`);
+      if (el) el.classList.toggle('hidden', v !== target);
+      if (tab) {
+        if (v === target) {
+          tab.className = 'px-3.5 py-1.5 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-medium text-xs transition';
+        } else {
+          tab.className = 'px-3.5 py-1.5 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium text-xs transition';
+        }
+      }
+    });
+
+    if (target === 'dashboard') {
+      this.renderDashboard();
+    }
+    if (target === 'notes' && !this.selectedTopicId) {
       this.autoSelectFirstCompletedTopic();
     }
-    if (viewName === 'exam') {
+    if (target === 'exam') {
       this.setupExamView();
     }
-    if (viewName === 'flashcards') {
+    if (target === 'flashcards') {
       this.setupFlashcardsView();
     }
     if (window.lucide) window.lucide.createIcons();
@@ -598,14 +1473,14 @@ const App = {
   async loadCourses() {
     if (window.STUDY_DATA && window.STUDY_DATA.courses && window.STUDY_DATA.courses.length > 0) {
       this.courses = window.STUDY_DATA.courses;
-      this.renderSyllabusView();
+      this.renderDashboard();
       this.renderNotesSidebar();
     }
     try {
       const res = await fetch('/api/courses');
       if (res.ok) {
         this.courses = await res.json();
-        this.renderSyllabusView();
+        this.renderDashboard();
         this.renderNotesSidebar();
       }
     } catch (e) {
@@ -614,73 +1489,7 @@ const App = {
   },
 
   renderSyllabusView() {
-    const container = document.getElementById('courses-list');
-    if (!container) return;
-
-    if (this.courses.length === 0) {
-      container.innerHTML = `
-        <div class="p-12 text-center rounded-[1.5rem] bg-card border border-neutral-200 dark:border-neutral-800 shadow-soft space-y-4 max-w-xl mx-auto my-8">
-          <div class="w-12 h-12 rounded-2xl bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center mx-auto text-neutral-500">
-            <i data-lucide="book-plus" class="w-6 h-6"></i>
-          </div>
-          <div>
-            <h3 class="text-lg font-medium tracking-tight">No courses added yet</h3>
-            <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 max-w-sm mx-auto">
-              Create your real semester subjects below to begin batch-ingesting YouTube lecture videos.
-            </p>
-          </div>
-          <button onclick="App.openCreateCourseModal()" class="pill-ink text-xs inline-flex items-center gap-1.5">
-            <i data-lucide="plus" class="w-3.5 h-3.5"></i> Add First Subject
-          </button>
-        </div>
-      `;
-      if (window.lucide) window.lucide.createIcons();
-      return;
-    }
-
-    container.innerHTML = this.courses.map(c => `
-      <div class="rounded-[1.5rem] bg-card border border-neutral-200 dark:border-neutral-800 shadow-soft p-6 space-y-4">
-        <div class="flex items-start justify-between">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-xs font-mono text-neutral-400 font-medium">${c.modules.length} Modules in Syllabus</span>
-            </div>
-            <h3 class="text-lg font-medium tracking-tight mt-0.5">${c.name}</h3>
-            ${c.description ? `<p class="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">${c.description}</p>` : ''}
-          </div>
-          <button onclick="App.deleteCourse('${c.id}')" class="text-neutral-400 hover:text-rose-500 p-1.5 transition" title="Delete Course">
-            <i data-lucide="trash-2" class="w-4 h-4"></i>
-          </button>
-        </div>
-
-        <!-- Modules Grid -->
-        <div class="space-y-2 pt-2 border-t border-neutral-100 dark:border-neutral-800/80">
-          <div class="text-[11px] font-mono uppercase tracking-wider text-neutral-400">Modules in Syllabus</div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5">
-            ${c.modules.map(m => {
-              const completedCount = m.topics.filter(t => t.status === 'completed').length;
-              const totalCount = m.topics.length;
-              return `
-                <div class="p-3 rounded-xl bg-card-muted border border-neutral-200/60 dark:border-neutral-800/60 flex flex-col justify-between space-y-2">
-                  <div>
-                    <div class="flex items-center justify-between text-[11px] font-mono text-neutral-400">
-                      <span>Module ${m.number}</span>
-                      <span>${completedCount}/${totalCount}</span>
-                    </div>
-                    <div class="text-xs font-medium truncate mt-0.5">${m.name}</div>
-                  </div>
-                  <button onclick="App.openIngestModal('${c.id}', '${m.id}', 'Module ${m.number}')" class="w-full py-1.5 px-2 rounded-lg bg-card hover:bg-neutral-200 dark:hover:bg-neutral-700 text-xs font-medium transition flex items-center justify-center gap-1 shadow-soft-sm">
-                    <i data-lucide="upload" class="w-3 h-3"></i> Add Videos
-                  </button>
-                </div>
-              `;
-            }).join('')}
-          </div>
-        </div>
-      </div>
-    `).join('');
-
-    if (window.lucide) window.lucide.createIcons();
+    this.renderDashboard();
   },
 
   // -------------------------------------------------------------
@@ -1158,6 +1967,10 @@ const App = {
 
   async loadTopicNotes(topicId) {
     this.selectedTopicId = topicId;
+    this.lastStudiedTopicId = topicId;
+    localStorage.setItem('study_engine_last_studied_topic', topicId);
+    this.studiedTopicIds.add(topicId);
+    localStorage.setItem('study_engine_studied_topics', JSON.stringify([...this.studiedTopicIds]));
 
     // Auto-expand module containing this topic
     for (const c of this.courses) {
@@ -1171,6 +1984,7 @@ const App = {
 
     this.renderNotesSidebar();
     this.loadTopicChat(topicId);
+    this.loadTopicCanvas(topicId);
 
     const contentEl = document.getElementById('notes-content-body');
     contentEl.innerHTML = '<div class="text-center py-20 text-xs text-neutral-400">Loading synthesized notes...</div>';
@@ -1190,6 +2004,9 @@ const App = {
         return;
       }
 
+      // Load Video Player in Studio
+      this.loadTopicVideo(data);
+
       if (data.status !== 'completed') {
         contentEl.innerHTML = `
           <div class="p-8 text-center rounded-2xl bg-card border border-neutral-200 dark:border-neutral-800 shadow-soft space-y-2">
@@ -1201,6 +2018,25 @@ const App = {
       }
 
       contentEl.innerHTML = marked.parse(data.notes_markdown || '# No notes synthesized.');
+
+      // Inject pin-to-canvas buttons on headings
+      contentEl.querySelectorAll('h2, h3').forEach(h => {
+        h.classList.add('group', 'flex', 'items-center', 'justify-between', 'gap-2');
+        const pinBtn = document.createElement('button');
+        pinBtn.className = 'pin-note-btn text-[10px] font-mono px-2 py-0.5 rounded bg-muted hover:bg-ink hover:text-canvas text-neutral-400 transition shrink-0';
+        pinBtn.innerHTML = '<i data-lucide="pin" class="w-3 h-3 inline mr-1"></i>Pin to Canvas';
+        pinBtn.onclick = (e) => { e.stopPropagation(); App.pinHeadingToCanvas(pinBtn); };
+        h.appendChild(pinBtn);
+      });
+
+      // Inject clickable timestamp jump buttons
+      contentEl.querySelectorAll('p, li, td').forEach(el => {
+        el.innerHTML = el.innerHTML.replace(/\b(\d{1,2}:\d{2})\b/g, (match, ts) => {
+          const parts = ts.split(':');
+          const secs = parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
+          return `<span class="timestamp-jump-btn" onclick="App.seekVideoToSeconds(${secs})" title="Jump video to ${ts}"><i data-lucide="play" class="w-2.5 h-2.5 fill-current"></i>${ts}</span>`;
+        });
+      });
 
       // KaTeX
       if (window.renderMathInElement) {
@@ -1312,7 +2148,7 @@ const App = {
       return;
     }
 
-    container.innerHTML = this.copilotMessages.map(m => {
+    container.innerHTML = this.copilotMessages.map((m, idx) => {
       const isUser = m.role === 'user';
       let formattedContent = m.content;
       if (!isUser && window.marked) {
@@ -1330,6 +2166,12 @@ const App = {
           }">
             ${formattedContent}
           </div>
+          ${!isUser ? `
+            <button onclick="App.pinChatToCanvas(${idx})" class="text-[10px] font-mono text-neutral-400 hover:text-ink flex items-center gap-1 transition px-1" title="Pin AI explanation to your personal canvas">
+              <i data-lucide="pin" class="w-3 h-3"></i>
+              <span>Pin to Canvas</span>
+            </button>
+          ` : ''}
         </div>
       `;
     }).join('');

@@ -54,7 +54,7 @@
       
       <!-- Logo / Title -->
       <div class="flex items-center gap-3 shrink-0">
-        <a href="#" onclick="App.switchView('syllabus')" class="flex items-center gap-2 text-ink font-medium tracking-tight">
+        <a href="#" onclick="App.switchView('dashboard')" class="flex items-center gap-2 text-ink font-medium tracking-tight">
           <div class="w-8 h-8 rounded-xl bg-ink text-canvas flex items-center justify-center font-pixel text-xs font-bold">
             SE
           </div>
@@ -116,11 +116,11 @@
 
       <!-- Navigation Pills -->
       <nav class="flex items-center gap-1 p-1 rounded-full bg-card-muted border border-border text-xs shrink-0">
-        <button id="tab-syllabus" onclick="App.switchView('syllabus')" class="px-3.5 py-1.5 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-medium">
-          Syllabus & Upload
+        <button id="tab-dashboard" onclick="App.switchView('dashboard')" class="px-3.5 py-1.5 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-medium">
+          Dashboard
         </button>
         <button id="tab-notes" onclick="App.switchView('notes')" class="px-3.5 py-1.5 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium">
-          Study Hall
+          Study Studio
         </button>
         <button id="tab-exam" onclick="App.switchView('exam')" class="px-3.5 py-1.5 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium">
           Exam Arena
@@ -142,40 +142,147 @@
     <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
     <span>24/7 Study Vault</span>
     <span>&bull;</span>
-    <span>To curate new lectures with local Whisper & OCR, open <a href="http://127.0.0.1:8000" class="text-white underline font-medium">http://127.0.0.1:8000</a> on your Mac</span>
+    <span>IIMBx Degree Suite &bull; 5 Subjects &bull; 463 Curated Lectures</span>
   </div>
 
   <!-- Main View Container (Full Edge-to-Edge Container) -->
   <main class="flex-1 w-full flex flex-col min-h-0 overflow-hidden">
 
     <!-- ============================================================= -->
-    <!-- VIEW 1: SYLLABUS & INGESTION (Where user adds subjects & videos) -->
+    <!-- VIEW 1: DEGREE COMMAND DASHBOARD                             -->
     <!-- ============================================================= -->
-    <div id="view-syllabus" class="flex-1 w-full overflow-y-auto px-4 py-8">
+    <div id="view-dashboard" class="flex-1 w-full overflow-y-auto px-4 py-8">
       <div class="max-w-6xl mx-auto space-y-8">
         
-        <!-- Ledger Hero Stack -->
-        <div class="max-w-2xl space-y-3">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card-muted border border-border text-xs font-mono text-ink-secondary">
-            <span class="font-pixel text-[10px] text-emerald-500">EXAM PREP</span>
-            <span>Semester Lecture Curation & Timed Testing</span>
+        <!-- Hero: Degree Header & Live Exam Countdown Radar -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- Welcome & Degree Brief -->
+          <div class="lg:col-span-2 space-y-3">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card-muted border border-border text-xs font-mono text-ink-secondary">
+              <span class="font-pixel text-[10px] text-emerald-500">IIMBx DEGREE</span>
+              <span>Semester Study Studio & Exam Command Center</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-[450] tracking-[-0.04em] leading-tight text-balance">
+              Master your 5 subjects with <span class="font-pixel text-2xl sm:text-3xl text-ink">connected study</span> and active recall.
+            </h1>
+            <p class="text-sm text-ink-secondary leading-relaxed max-w-xl">
+              All 463 lectures, slides, and transcripts are indexed. Study notes with embedded video, pin key formulas to your visual canvas, solve doubts with AI Copilot, and track exam readiness.
+            </p>
+
+            <!-- Quick Action & Resume Banner -->
+            <div id="dashboard-recent-lecture-banner" class="pt-2 flex flex-wrap items-center gap-3">
+              <!-- Populated by JS -->
+            </div>
           </div>
-          <h1 class="text-3xl sm:text-4xl font-[450] tracking-[-0.04em] leading-tight text-balance">
-            Curate university notes <span class="font-pixel text-2xl sm:text-3xl text-ink">on the spot</span> from your video lectures.
-          </h1>
-          <p class="text-sm text-ink-secondary leading-relaxed">
-            Add your 4–5 subjects and paste your 20–30 YouTube lecture links per module. The engine transcribes, captures whiteboard frames, and synthesizes syllabus notes and timed exam questions.
-          </p>
-          <div class="pt-2">
-            <button onclick="App.openCreateCourseModal()" class="pill-ink text-xs inline-flex items-center gap-2">
-              <i data-lucide="plus" class="w-3.5 h-3.5"></i> Add New Subject
-            </button>
+
+          <!-- Exam Countdown Card -->
+          <div class="rounded-[1.5rem] bg-card border border-border shadow-soft p-5 flex flex-col justify-between space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                <span class="text-xs font-mono font-semibold uppercase tracking-wider text-ink" id="exam-countdown-title">Term Exams</span>
+              </div>
+              <button onclick="App.openExamDateModal()" class="text-[11px] font-mono text-ink-secondary hover:text-ink flex items-center gap-1 transition px-2 py-0.5 rounded bg-muted hover:bg-border">
+                <i data-lucide="calendar" class="w-3 h-3"></i>
+                <span>Edit Dates</span>
+              </button>
+            </div>
+
+            <!-- Ticker Grid -->
+            <div class="grid grid-cols-3 gap-2 text-center py-2">
+              <div class="p-3 rounded-xl bg-card-muted border border-border/60">
+                <div id="countdown-days" class="text-2xl font-bold font-mono text-ink tracking-tight">--</div>
+                <div class="text-[10px] font-mono text-neutral-400 uppercase">Days</div>
+              </div>
+              <div class="p-3 rounded-xl bg-card-muted border border-border/60">
+                <div id="countdown-hours" class="text-2xl font-bold font-mono text-ink tracking-tight">--</div>
+                <div class="text-[10px] font-mono text-neutral-400 uppercase">Hours</div>
+              </div>
+              <div class="p-3 rounded-xl bg-card-muted border border-border/60">
+                <div id="countdown-mins" class="text-2xl font-bold font-mono text-ink tracking-tight">--</div>
+                <div class="text-[10px] font-mono text-neutral-400 uppercase">Mins</div>
+              </div>
+            </div>
+
+            <!-- Exam Info Footer -->
+            <div class="text-[11px] text-ink-secondary font-mono flex items-center justify-between pt-2 border-t border-border/60">
+              <span id="countdown-target-display">Target: Nov 5–6</span>
+              <span class="text-emerald-500 font-medium">5 Subjects</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Section 2: Subject Mastery Matrix (5 Cards) -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="text-xs font-mono uppercase tracking-wider text-ink-secondary font-semibold flex items-center gap-2">
+              <i data-lucide="layers" class="w-4 h-4"></i>
+              <span>Degree Curriculum Mastery (5 Subjects • 463 Lectures)</span>
+            </div>
+            <span id="overall-degree-progress" class="text-xs font-mono text-ink-secondary">Overall: 0% Studied</span>
+          </div>
+
+          <!-- Subject Cards Grid -->
+          <div id="dashboard-subject-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Populated by JS -->
           </div>
         </div>
 
-        <!-- Courses List Container -->
-        <div id="courses-list" class="space-y-6">
-          <!-- Rendered dynamically -->
+        <!-- Section 3: Interactive Degree Study Checklist & Exam Sprint -->
+        <div class="rounded-[1.5rem] bg-card border border-border shadow-soft p-6 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-border/60">
+            <div>
+              <div class="text-xs font-mono uppercase tracking-wider text-ink-secondary font-semibold flex items-center gap-2">
+                <i data-lucide="check-square" class="w-4 h-4"></i>
+                <span>Exam Sprint Checklist & High-Yield Revision To-Do</span>
+              </div>
+              <p class="text-xs text-neutral-400 mt-0.5">Track critical concepts, formula derivations, and case studies before exam day.</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="checklist-progress-text" class="text-xs font-mono text-neutral-400">0 of 7 completed</span>
+              <button onclick="App.resetDefaultChecklist()" class="text-[11px] font-mono text-neutral-400 hover:text-ink px-2 py-1 rounded hover:bg-muted transition" title="Restore default high-yield exam tasks">
+                Reset Defaults
+              </button>
+            </div>
+          </div>
+
+          <!-- Subject Filter Pills -->
+          <div id="checklist-filter-pills" class="flex flex-wrap gap-1.5 text-xs">
+            <button onclick="App.filterChecklist('all')" class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium bg-neutral-900 text-white dark:bg-white dark:text-neutral-900" data-filter="all">All</button>
+            <button onclick="App.filterChecklist('corporate-finance')" class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted" data-filter="corporate-finance">Corporate Finance</button>
+            <button onclick="App.filterChecklist('family-business')" class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted" data-filter="family-business">Family Business</button>
+            <button onclick="App.filterChecklist('critical-thinking')" class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted" data-filter="critical-thinking">Critical Thinking</button>
+            <button onclick="App.filterChecklist('startup-dilemmas')" class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted" data-filter="startup-dilemmas">Startup Dilemmas</button>
+            <button onclick="App.filterChecklist('data-visualisation')" class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted" data-filter="data-visualisation">Data Visualisation</button>
+          </div>
+
+          <!-- Add Task Input Form -->
+          <div class="flex flex-col sm:flex-row gap-2">
+            <input 
+              type="text" 
+              id="new-checklist-input" 
+              placeholder="Add personal exam study goal (e.g. Solve 20 Beta practice questions)..." 
+              class="flex-1 px-4 py-2 rounded-xl bg-card-muted border border-border text-xs text-ink placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-ink"
+              onkeydown="if(event.key==='Enter') App.addChecklistItem()"
+            />
+            <select id="new-checklist-subject" class="px-3 py-2 rounded-xl bg-card-muted border border-border text-xs text-ink focus:outline-none font-mono">
+              <option value="corporate-finance">Corporate Finance</option>
+              <option value="family-business">Family Business</option>
+              <option value="critical-thinking">Critical Thinking</option>
+              <option value="startup-dilemmas">Startup Dilemmas</option>
+              <option value="data-visualisation">Data Visualisation</option>
+            </select>
+            <button onclick="App.addChecklistItem()" class="pill-ink text-xs px-4 py-2 shrink-0">
+              Add Task
+            </button>
+          </div>
+
+          <!-- Checklist Items Container -->
+          <div id="checklist-items-container" class="space-y-2 pt-2 divide-y divide-border/40">
+            <!-- Populated by JS -->
+          </div>
         </div>
 
       </div>
@@ -210,43 +317,152 @@
         <div class="w-0.5 h-6 rounded-full bg-neutral-300 dark:bg-neutral-700 group-hover:bg-neutral-500 dark:group-hover:bg-neutral-400 transition-colors pointer-events-none"></div>
       </div>
 
-      <!-- Main Reader Pane (Edge-to-Edge Full Sized) -->
+      <!-- Main Reader / Studio Section -->
       <section id="notes-content-section" class="flex-1 h-full overflow-hidden bg-card flex flex-col min-w-0">
         
-        <!-- Reader Sticky Top Bar -->
-        <div class="shrink-0 flex items-center justify-between px-6 py-3 border-b border-border bg-card-muted/30 backdrop-blur">
-          <div class="flex items-center gap-2.5 min-w-0">
+        <!-- Studio Sticky Top Bar (Layout Presets & Tool Toggles) -->
+        <div class="shrink-0 flex items-center justify-between px-4 sm:px-6 py-2.5 border-b border-border bg-card-muted/40 backdrop-blur gap-2 flex-wrap">
+          
+          <!-- Left: Sidebar Toggle & Topic Badge -->
+          <div class="flex items-center gap-2 min-w-0">
             <button id="sidebar-toggle-btn" onclick="App.toggleSidebar()" class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink-secondary hover:text-ink transition flex items-center gap-1.5 text-xs shrink-0" title="Toggle Syllabus Sidebar">
               <i data-lucide="panel-left" class="w-3.5 h-3.5"></i>
               <span id="sidebar-toggle-text" class="hidden sm:inline text-[11px] font-mono">Syllabus</span>
             </button>
             <span id="reader-topic-badge" class="text-[11px] font-mono px-2.5 py-1 rounded-full bg-muted text-ink-secondary font-medium truncate max-w-xs sm:max-w-md">Ready</span>
           </div>
-          <div class="flex items-center gap-2 shrink-0">
-            <button onclick="App.toggleCopilot()" class="pill-muted text-xs inline-flex items-center gap-1.5">
-              <i data-lucide="bot" class="w-3.5 h-3.5"></i>
-              <span id="copilot-toggle-label">AI Copilot</span>
+
+          <!-- Center: 1-Click Layout Presets -->
+          <div class="hidden md:flex items-center gap-1 p-0.5 rounded-full bg-card border border-border text-[11px] font-mono shrink-0">
+            <button id="preset-lecture" onclick="App.applyLayoutPreset('lecture')" class="px-2.5 py-1 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-medium transition" title="Video + Synthesized Notes">
+              Lecture
+            </button>
+            <button id="preset-studio" onclick="App.applyLayoutPreset('studio')" class="px-2.5 py-1 rounded-full text-neutral-500 hover:text-ink transition" title="Notes + Personal Canvas">
+              Studio
+            </button>
+            <button id="preset-tutor" onclick="App.applyLayoutPreset('tutor')" class="px-2.5 py-1 rounded-full text-neutral-500 hover:text-ink transition" title="Notes + AI Copilot">
+              Tutor
+            </button>
+            <button id="preset-zen" onclick="App.applyLayoutPreset('zen')" class="px-2.5 py-1 rounded-full text-neutral-500 hover:text-ink transition" title="Full Screen Personal Canvas">
+              Zen Board
             </button>
           </div>
+
+          <!-- Right: Individual Tool Toggles -->
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button id="toggle-video-btn" onclick="App.togglePane('video')" class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition active border-border bg-card text-ink" title="Toggle Embedded Video">
+              <i data-lucide="video" class="w-3.5 h-3.5"></i>
+              <span class="hidden sm:inline">Video</span>
+            </button>
+            <button id="toggle-notes-btn" onclick="App.togglePane('notes')" class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition active font-semibold border-border bg-card text-ink" title="Toggle Synthesized Notes">
+              <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+              <span class="hidden sm:inline">Notes</span>
+            </button>
+            <button id="toggle-canvas-btn" onclick="App.togglePane('canvas')" class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition border-border bg-card text-neutral-400 hover:text-ink" title="Toggle Personal Canvas">
+              <i data-lucide="layout" class="w-3.5 h-3.5"></i>
+              <span class="hidden sm:inline">Canvas</span>
+            </button>
+            <button id="toggle-copilot-btn" onclick="App.togglePane('copilot')" class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition border-border bg-card text-neutral-400 hover:text-ink" title="Toggle AI Copilot">
+              <i data-lucide="bot" class="w-3.5 h-3.5"></i>
+              <span class="hidden sm:inline">Copilot</span>
+            </button>
+          </div>
+
         </div>
 
-        <!-- Scrollable Notes Content Wrapper -->
-        <div class="flex-1 overflow-y-auto px-6 sm:px-10 lg:px-14 py-8">
-          <div class="max-w-4xl w-full mx-auto space-y-6">
-            <div id="notes-content-body" class="prose-ledger w-full">
-              <div class="text-center py-20 text-xs text-neutral-400">Select a completed lecture from the left sidebar to begin studying.</div>
+        <!-- Studio Panes Container (Flex Row for Active Panes) -->
+        <div id="studio-workspace" class="flex-1 w-full h-full flex overflow-hidden min-h-0 divide-x divide-border">
+
+          <!-- PANE 1: Embedded Video Player -->
+          <div id="pane-video" class="flex-1 h-full flex flex-col bg-canvas overflow-y-auto p-4 space-y-3 min-w-[320px]">
+            <!-- 16:9 Video Box -->
+            <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-black border border-border shadow-soft">
+              <iframe 
+                id="lecture-video-iframe" 
+                class="w-full h-full"
+                src="" 
+                title="Lecture Video" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen
+              ></iframe>
             </div>
 
-            <!-- Slide Frames Gallery -->
-            <div id="notes-slide-gallery" class="hidden w-full pt-8 border-t border-border space-y-3">
-              <div class="text-xs font-mono uppercase tracking-wider text-neutral-400 flex items-center gap-2">
-                <i data-lucide="image" class="w-4 h-4"></i> Captured Whiteboard & Slide Diagrams
+            <!-- Video Controls Bar -->
+            <div class="flex items-center justify-between text-xs px-1">
+              <div class="flex items-center gap-1.5 text-neutral-400 font-mono text-[11px]">
+                <span>Speed:</span>
+                <button onclick="App.setVideoSpeed(1)" class="speed-btn px-1.5 py-0.5 rounded bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-semibold" data-speed="1">1x</button>
+                <button onclick="App.setVideoSpeed(1.25)" class="speed-btn px-1.5 py-0.5 rounded bg-card-muted hover:bg-muted text-ink-secondary" data-speed="1.25">1.25x</button>
+                <button onclick="App.setVideoSpeed(1.5)" class="speed-btn px-1.5 py-0.5 rounded bg-card-muted hover:bg-muted text-ink-secondary" data-speed="1.5">1.5x</button>
+                <button onclick="App.setVideoSpeed(2)" class="speed-btn px-1.5 py-0.5 rounded bg-card-muted hover:bg-muted text-ink-secondary" data-speed="2">2x</button>
               </div>
-              <div id="slide-thumbs-container" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <div class="flex items-center gap-2">
+                <a id="video-external-link" href="#" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono text-neutral-400 hover:text-ink flex items-center gap-1 transition" title="Open directly on YouTube">
+                  <span>YouTube</span>
+                  <i data-lucide="external-link" class="w-3 h-3"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Captured Whiteboard Diagrams -->
+            <div id="notes-slide-gallery" class="hidden w-full pt-4 border-t border-border space-y-2">
+              <div class="text-[10px] font-mono uppercase tracking-wider text-neutral-400 flex items-center gap-1.5">
+                <i data-lucide="image" class="w-3.5 h-3.5"></i> Captured Whiteboard Diagrams
+              </div>
+              <div id="slide-thumbs-container" class="grid grid-cols-2 gap-2">
                 <!-- Populated by JS -->
               </div>
             </div>
           </div>
+
+          <!-- PANE 2: Synthesized Notes Reader -->
+          <div id="pane-notes" class="flex-1 h-full overflow-y-auto px-6 sm:px-10 py-6 bg-card min-w-[320px]">
+            <div class="max-w-3xl w-full mx-auto space-y-6">
+              <div id="notes-content-body" class="prose-ledger w-full">
+                <div class="text-center py-20 text-xs text-neutral-400">Select a lecture to view synthesized notes.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANE 3: Personal Visual Canvas (Option A "Ledger Board") -->
+          <div id="pane-canvas" class="hidden flex-1 h-full flex flex-col bg-canvas min-w-[320px] relative select-none">
+            
+            <!-- Canvas Toolbar -->
+            <div class="shrink-0 px-4 py-2 border-b border-border bg-card flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2">
+                <button onclick="App.addCustomCanvasCard()" class="pill-ink text-[11px] px-3 py-1 flex items-center gap-1">
+                  <i data-lucide="plus" class="w-3 h-3"></i>
+                  <span>New Card</span>
+                </button>
+                <button onclick="App.clearCurrentCanvas()" class="text-[11px] font-mono text-neutral-400 hover:text-rose-500 px-2 py-1 rounded hover:bg-muted transition" title="Clear Canvas for this lecture">
+                  Clear
+                </button>
+              </div>
+              <div class="text-[11px] font-mono text-neutral-400 flex items-center gap-2">
+                <span id="canvas-card-counter">0 cards</span>
+                <span>&bull;</span>
+                <span class="text-emerald-500">Auto-saved</span>
+              </div>
+            </div>
+
+            <!-- Canvas Viewport with SVG layer for arrows -->
+            <div id="canvas-viewport" class="flex-1 w-full h-full relative overflow-auto bg-canvas p-6 ledger-canvas-grid" style="min-height: 450px;">
+              <svg id="canvas-svg-layer" class="absolute inset-0 w-full h-full pointer-events-none z-0">
+                <defs>
+                  <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" class="text-neutral-400 dark:text-neutral-600"/>
+                  </marker>
+                </defs>
+              </svg>
+              <!-- Cards rendered here by JS -->
+              <div id="canvas-cards-container" class="relative z-10 w-full h-full min-w-[1200px] min-h-[800px]">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </section>
 
@@ -463,6 +679,47 @@
             <!-- Populated by JS -->
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- MODAL: CONFIGURE EXAM DATES & SCHEDULE                       -->
+  <!-- ============================================================= -->
+  <div id="modal-exam-dates" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="w-full max-w-md rounded-[1.5rem] bg-card border border-border shadow-soft-md p-6 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-border">
+        <h3 class="text-sm font-semibold text-ink flex items-center gap-2">
+          <i data-lucide="calendar" class="w-4 h-4"></i>
+          <span>Configure Exam Schedule</span>
+        </h3>
+        <button onclick="App.closeExamDateModal()" class="p-1 rounded-lg hover:bg-muted text-neutral-400 hover:text-ink">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-medium text-ink-secondary mb-1">Exam Event Title</label>
+          <input type="text" id="exam-modal-title" value="Term Examinations" class="w-full px-3 py-2 rounded-xl bg-card-muted border border-border text-ink focus:outline-none focus:ring-1 focus:ring-ink" />
+        </div>
+        <div>
+          <label class="block font-medium text-ink-secondary mb-1">Target Exam Date & Time</label>
+          <input type="datetime-local" id="exam-modal-datetime" class="w-full px-3 py-2 rounded-xl bg-card-muted border border-border text-ink focus:outline-none focus:ring-1 focus:ring-ink font-mono" />
+        </div>
+        <div>
+          <label class="block font-medium text-ink-secondary mb-1">Notes / Schedule Details</label>
+          <input type="text" id="exam-modal-notes" placeholder="e.g. Nov 5 (CF & Strategy), Nov 6 (Critical Thinking & Visualisation)" class="w-full px-3 py-2 rounded-xl bg-card-muted border border-border text-ink focus:outline-none focus:ring-1 focus:ring-ink" />
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-2 border-t border-border">
+        <button onclick="App.closeExamDateModal()" class="px-4 py-2 rounded-full text-xs font-medium text-ink-secondary hover:text-ink hover:bg-muted transition">
+          Cancel
+        </button>
+        <button onclick="App.saveExamDates()" class="pill-ink text-xs px-5 py-2">
+          Save Schedule
+        </button>
       </div>
     </div>
   </div>

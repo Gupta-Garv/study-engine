@@ -248,4 +248,62 @@ mark.search-highlight {
   background-color: var(--card-muted);
 }
 
+/* ============================================================= */
+/* Active Study Studio Canvas & Presets                          */
+/* ============================================================= */
+.ledger-canvas-grid {
+  background-image: radial-gradient(rgba(150, 150, 150, 0.18) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.ledger-canvas-card {
+  position: absolute;
+  cursor: default;
+  transition: box-shadow 0.15s ease;
+  user-select: text;
+}
+.ledger-canvas-card.dragging {
+  cursor: grabbing;
+  z-index: 50 !important;
+  opacity: 0.95;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+}
+.ledger-canvas-card:hover {
+  box-shadow: var(--elevation-soft-md);
+}
+
+.tool-toggle-pill.active {
+  background-color: var(--ink) !important;
+  color: var(--canvas) !important;
+  border-color: var(--ink) !important;
+}
+
+.pin-note-btn {
+  opacity: 0;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+.group:hover .pin-note-btn {
+  opacity: 1;
+}
+
+.timestamp-jump-btn {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.75rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.25rem;
+  background-color: var(--card-muted);
+  border: 1px solid var(--border);
+  color: var(--ink-secondary);
+  transition: all 0.15s ease;
+}
+.timestamp-jump-btn:hover {
+  background-color: var(--ink);
+  color: var(--canvas);
+}
+
+
 

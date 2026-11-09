@@ -68,6 +68,12 @@ def init_db():
                 content TEXT NOT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
+
+            CREATE TABLE IF NOT EXISTS topic_canvases (
+                topic_id TEXT PRIMARY KEY REFERENCES topics(id) ON DELETE CASCADE,
+                canvas_json TEXT NOT NULL DEFAULT '{"cards":[],"connections":[]}',
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
         """)
         # Pre-seed integrated NVIDIA NIM Keys
         conn.execute(
@@ -151,6 +157,26 @@ def save_chat_message(topic_id: str, role: str, content: str) -> Dict[str, Any]:
         )
     return {"id": msg_id, "topic_id": topic_id, "role": role, "content": content}
 
+def get_topic_canvas(topic_id: str) -> Dict[str, Any]:
+    conn = get_conn()
+    row = conn.execute("SELECT canvas_json FROM topic_canvases WHERE topic_id = ?", (topic_id,)).fetchone()
+    if row and row["canvas_json"]:
+        try:
+            return json.loads(row["canvas_json"])
+        except Exception:
+            pass
+    return {"cards": [], "connections": []}
+
+def save_topic_canvas(topic_id: str, canvas_data: Dict[str, Any]) -> Dict[str, Any]:
+    conn = get_conn()
+    canvas_str = json.dumps(canvas_data, ensure_ascii=False)
+    with conn:
+        conn.execute(
+            "INSERT OR REPLACE INTO topic_canvases (topic_id, canvas_json, updated_at) VALUES (?, ?, CURRENT_TIMESTAMP)",
+            (topic_id, canvas_str)
+        )
+    return canvas_data
+
 def export_static_data():
     """Exports SQLite vault to static study_data.js for 24/7 GitHub Pages hosting."""
     try:
@@ -176,9 +202,22 @@ def export_static_data():
             if tid not in chats:
                 chats[tid] = []
             chats[tid].append(dict(row))
+
+        canvases = {}
+        for row in conn.execute("SELECT topic_id, canvas_json FROM topic_canvases").fetchall():
+            try:
+                canvases[row["topic_id"]] = json.loads(row["canvas_json"])
+            except Exception:
+                pass
                 
         out_path = Path(__file__).parent.parent / "study_data.js"
-        bundle = {"courses": courses, "topics": topics, "exams": exams, "chats": chats}
+        bundle = {
+            "courses": courses, 
+            "topics": topics, 
+            "exams": exams, 
+            "chats": chats,
+            "canvases": canvases
+        }
         with open(out_path, "w", encoding="utf-8") as f:
             f.write("window.STUDY_DATA = " + json.dumps(bundle, ensure_ascii=False, indent=2) + ";\n")
     except Exception as e:
