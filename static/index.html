@@ -291,7 +291,7 @@
     <!-- ============================================================= -->
     <!-- VIEW 2: STUDY HALL (Edge-to-Edge Resizable Workspace) -->
     <!-- ============================================================= -->
-    <div id="view-notes" class="hidden w-full flex-1 flex overflow-hidden border-t border-border bg-canvas">
+    <div id="view-notes" class="hidden w-full flex-1 overflow-hidden border-t border-border bg-canvas" style="display: none;">
       
       <!-- Sidebar Tree (Collapsible & Resizable Accordion) -->
       <aside id="notes-sidebar" class="shrink-0 bg-card border-r border-border p-3 overflow-y-auto space-y-3 flex flex-col select-none" style="width: 250px;">
@@ -376,16 +376,24 @@
           <!-- PANE 1: Embedded Video Player -->
           <div id="pane-video" class="flex-1 h-full flex flex-col bg-canvas overflow-y-auto p-4 space-y-3 min-w-[320px]">
             <!-- 16:9 Video Box -->
-            <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-black border border-border shadow-soft">
+            <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-neutral-900 border border-border shadow-soft flex items-center justify-center">
               <iframe 
                 id="lecture-video-iframe" 
-                class="w-full h-full"
+                class="w-full h-full hidden"
                 src="" 
                 title="Lecture Video" 
                 frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen
               ></iframe>
+              <div id="video-placeholder" class="text-center p-6 space-y-2 text-neutral-400">
+                <div class="w-12 h-12 rounded-full bg-white/10 mx-auto flex items-center justify-center text-white shadow-soft-sm">
+                  <i data-lucide="play" class="w-5 h-5 fill-white ml-0.5"></i>
+                </div>
+                <div class="text-xs font-medium text-neutral-200" id="video-placeholder-title">Select a lecture to play video</div>
+                <div class="text-[11px] text-neutral-400">Official IIMBx unlisted lecture video stream</div>
+              </div>
             </div>
 
             <!-- Video Controls Bar -->
@@ -467,12 +475,12 @@
       </section>
 
       <!-- Right Resizer Handle (Between Reader and Copilot) -->
-      <div id="resizer-copilot" class="w-1.5 shrink-0 bg-border/40 hover:bg-neutral-400 dark:hover:bg-neutral-600 active:bg-neutral-600 dark:active:bg-neutral-400 cursor-col-resize transition-colors relative z-10 flex items-center justify-center group select-none" title="Drag to resize copilot">
+      <div id="resizer-copilot" class="hidden w-1.5 shrink-0 bg-border/40 hover:bg-neutral-400 dark:hover:bg-neutral-600 active:bg-neutral-600 dark:active:bg-neutral-400 cursor-col-resize transition-colors relative z-10 flex items-center justify-center group select-none" title="Drag to resize copilot">
         <div class="w-0.5 h-6 rounded-full bg-neutral-300 dark:bg-neutral-700 group-hover:bg-neutral-500 dark:group-hover:bg-neutral-400 transition-colors pointer-events-none"></div>
       </div>
 
       <!-- Dedicated AI Lecture Copilot Panel (In-Context Doubt Solver) -->
-      <aside id="copilot-panel" class="shrink-0 bg-card border-l border-border flex flex-col h-full overflow-hidden select-text" style="width: 350px;">
+      <aside id="copilot-panel" class="hidden shrink-0 bg-card border-l border-border flex flex-col h-full overflow-hidden select-text" style="width: 350px;">
         <!-- Copilot Header -->
         <div class="p-4 border-b border-border flex items-center justify-between bg-card-muted/30 shrink-0">
           <div class="flex items-center gap-2.5 min-w-0">
@@ -547,7 +555,7 @@
     <!-- ============================================================= -->
     <!-- VIEW 3: EXAM ARENA (Timed MCQ Simulator) -->
     <!-- ============================================================= -->
-    <div id="view-exam" class="hidden flex-1 w-full overflow-y-auto px-4 py-8">
+    <div id="view-exam" class="hidden flex-1 w-full overflow-y-auto px-4 py-8" style="display: none;">
       <div class="max-w-3xl mx-auto space-y-6">
         
         <div id="exam-setup-box" class="rounded-[1.5rem] bg-card border border-border shadow-soft p-8 space-y-5">

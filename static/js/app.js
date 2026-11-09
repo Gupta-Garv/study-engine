@@ -59,7 +59,9 @@ const App = {
     this.initSearch();
     this.initDashboard();
     this.initCanvasListeners();
+    this.updateStudioLayout();
     await this.loadCourses();
+    this.switchView('dashboard');
     if (window.lucide) window.lucide.createIcons();
     this.startPolling();
   },
@@ -983,7 +985,7 @@ const App = {
       const btn = document.getElementById(`preset-${p}`);
       if (btn) {
         if (p === preset) {
-          btn.className = 'px-2.5 py-1 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-medium transition';
+          btn.className = 'px-2.5 py-1 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-medium transition shadow-soft-sm';
         } else {
           btn.className = 'px-2.5 py-1 rounded-full text-neutral-500 hover:text-ink transition';
         }
@@ -1004,14 +1006,27 @@ const App = {
       const btn = document.getElementById(`toggle-${p}-btn`);
       if (el) el.classList.toggle('hidden', !this.paneState[p]);
       if (btn) {
-        btn.classList.toggle('active', !!this.paneState[p]);
+        if (this.paneState[p]) {
+          btn.className = 'tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition active font-semibold border-neutral-900 dark:border-white bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-soft-sm';
+        } else {
+          btn.className = 'tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition border-border bg-card text-neutral-400 hover:text-ink';
+        }
       }
     });
 
     const copilotEl = document.getElementById('copilot-panel');
+    const copilotResizer = document.getElementById('resizer-copilot');
     const copilotBtn = document.getElementById('toggle-copilot-btn');
     if (copilotEl) copilotEl.classList.toggle('hidden', !this.paneState.copilot);
-    if (copilotBtn) copilotBtn.classList.toggle('active', !!this.paneState.copilot);
+    if (copilotResizer) copilotResizer.classList.toggle('hidden', !this.paneState.copilot);
+    if (copilotBtn) {
+      if (this.paneState.copilot) {
+        copilotBtn.className = 'tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition active font-semibold border-neutral-900 dark:border-white bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-soft-sm';
+      } else {
+        copilotBtn.className = 'tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition border-border bg-card text-neutral-400 hover:text-ink';
+      }
+    }
+    this.isCopilotOpen = !!this.paneState.copilot;
 
     if (this.paneState.canvas) {
       this.renderCanvas();
@@ -1021,18 +1036,37 @@ const App = {
 
   loadTopicVideo(topic) {
     const iframe = document.getElementById('lecture-video-iframe');
+    const placeholder = document.getElementById('video-placeholder');
+    const placeholderTitle = document.getElementById('video-placeholder-title');
     const extLink = document.getElementById('video-external-link');
     if (!iframe) return;
 
     if (topic && topic.video_id) {
-      const embedUrl = `https://www.youtube-nocookie.com/embed/${topic.video_id}?enablejsapi=1&rel=0&modestbranding=1`;
+      const embedUrl = `https://www.youtube.com/embed/${topic.video_id}?enablejsapi=1&rel=0`;
       if (iframe.src !== embedUrl) {
         iframe.src = embedUrl;
       }
-      if (extLink) extLink.href = topic.youtube_url || `https://www.youtube.com/watch?v=${topic.video_id}`;
+      iframe.classList.remove('hidden');
+      if (placeholder) placeholder.classList.add('hidden');
+      if (extLink) {
+        extLink.href = topic.youtube_url || `https://www.youtube.com/watch?v=${topic.video_id}`;
+        extLink.classList.remove('pointer-events-none', 'opacity-50');
+      }
     } else {
       iframe.src = '';
+      iframe.classList.add('hidden');
+      if (placeholder) {
+        placeholder.classList.remove('hidden');
+        if (placeholderTitle) {
+          placeholderTitle.textContent = topic ? topic.title : 'Select a lecture to play video';
+        }
+      }
+      if (extLink) {
+        extLink.href = '#';
+        extLink.classList.add('pointer-events-none', 'opacity-50');
+      }
     }
+    if (window.lucide) window.lucide.createIcons();
   },
 
   setVideoSpeed(speed) {
@@ -1439,13 +1473,37 @@ const App = {
   switchView(viewName) {
     const target = (viewName === 'syllabus' || viewName === 'dashboard') ? 'dashboard' : viewName;
     this.currentView = target;
-    ['dashboard', 'notes', 'exam', 'flashcards'].forEach(v => {
-      const el = document.getElementById(`view-${v}`);
-      const tab = document.getElementById(`tab-${v}`);
-      if (el) el.classList.toggle('hidden', v !== target);
+
+    const views = {
+      dashboard: document.getElementById('view-dashboard'),
+      notes: document.getElementById('view-notes'),
+      exam: document.getElementById('view-exam')
+    };
+
+    const tabs = {
+      dashboard: document.getElementById('tab-dashboard'),
+      notes: document.getElementById('tab-notes'),
+      exam: document.getElementById('tab-exam')
+    };
+
+    Object.keys(views).forEach(k => {
+      const el = views[k];
+      const tab = tabs[k];
+      const isActive = (k === target);
+
+      if (el) {
+        if (isActive) {
+          el.classList.remove('hidden');
+          el.style.display = (k === 'notes') ? 'flex' : 'block';
+        } else {
+          el.classList.add('hidden');
+          el.style.display = 'none';
+        }
+      }
+
       if (tab) {
-        if (v === target) {
-          tab.className = 'px-3.5 py-1.5 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-medium text-xs transition';
+        if (isActive) {
+          tab.className = 'px-3.5 py-1.5 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-medium text-xs transition shadow-soft-sm';
         } else {
           tab.className = 'px-3.5 py-1.5 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium text-xs transition';
         }
@@ -1454,16 +1512,19 @@ const App = {
 
     if (target === 'dashboard') {
       this.renderDashboard();
-    }
-    if (target === 'notes' && !this.selectedTopicId) {
-      this.autoSelectFirstCompletedTopic();
-    }
-    if (target === 'exam') {
+    } else if (target === 'notes') {
+      this.updateStudioLayout();
+      if (!this.selectedTopicId) {
+        if (this.lastStudiedTopicId) {
+          this.loadTopicNotes(this.lastStudiedTopicId);
+        } else {
+          this.autoSelectFirstCompletedTopic();
+        }
+      }
+    } else if (target === 'exam') {
       this.setupExamView();
     }
-    if (target === 'flashcards') {
-      this.setupFlashcardsView();
-    }
+
     if (window.lucide) window.lucide.createIcons();
   },
 
@@ -1862,22 +1923,9 @@ const App = {
   },
 
   toggleCopilot() {
-    const panel = document.getElementById('copilot-panel');
-    const resizer = document.getElementById('resizer-copilot');
-    const label = document.getElementById('copilot-toggle-label');
-    if (!panel) return;
-    this.isCopilotOpen = !this.isCopilotOpen;
-    if (this.isCopilotOpen) {
-      panel.classList.remove('hidden');
-      if (resizer) resizer.classList.remove('hidden');
-      if (label) label.textContent = 'AI Copilot';
-    } else {
-      panel.classList.add('hidden');
-      if (resizer) resizer.classList.add('hidden');
-      if (label) label.textContent = 'Open Copilot';
-    }
-    localStorage.setItem('study_engine_copilot_open', this.isCopilotOpen ? 'true' : 'false');
-    if (window.lucide) window.lucide.createIcons();
+    this.paneState.copilot = !this.paneState.copilot;
+    this.updateStudioLayout();
+    localStorage.setItem('study_engine_copilot_open', this.paneState.copilot ? 'true' : 'false');
   },
 
   renderNotesSidebar() {
