@@ -359,6 +359,14 @@ mark.search-highlight {
   background-size: 24px 24px;
 }
 
+/* Freeform Drawing Canvas */
+#notepad-drawing-canvas {
+  touch-action: none !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  cursor: crosshair;
+}
+
 /* Freeform Draggable Text Notes */
 .notepad-text-note {
   position: absolute;
@@ -368,9 +376,11 @@ mark.search-highlight {
   border-radius: 1rem;
   box-shadow: var(--elevation-soft);
   transition: box-shadow 0.15s ease, border-color 0.15s ease;
-  min-width: 200px;
+  min-width: 220px;
   max-width: 440px;
-  user-select: text;
+  pointer-events: auto !important;
+  user-select: text !important;
+  -webkit-user-select: text !important;
 }
 
 .notepad-text-note:hover,
@@ -389,6 +399,7 @@ mark.search-highlight {
 .notepad-text-note-handle {
   cursor: grab;
   user-select: none;
+  -webkit-user-select: none;
 }
 
 .notepad-text-note-handle:active {
@@ -407,7 +418,11 @@ mark.search-highlight {
   color: var(--ink);
   padding: 0.4rem 0.75rem 0.75rem 0.75rem;
   overflow-y: hidden;
-  min-height: 48px;
+  min-height: 52px;
+  pointer-events: auto !important;
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  cursor: text !important;
 }
 
 /* Toolbar active states */

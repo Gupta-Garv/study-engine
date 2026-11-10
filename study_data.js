@@ -92569,6 +92569,114 @@ window.STUDY_DATA = {
               "y": 200
             }
           ]
+        },
+        {
+          "tool": "pen",
+          "color": "ink",
+          "width": 2,
+          "opacity": 1,
+          "points": [
+            {
+              "x": 415,
+              "y": 428
+            },
+            {
+              "x": 465,
+              "y": 478
+            },
+            {
+              "x": 515,
+              "y": 478
+            }
+          ]
+        },
+        {
+          "tool": "pen",
+          "color": "ink",
+          "width": 2,
+          "opacity": 1,
+          "points": [
+            {
+              "x": 435,
+              "y": 448
+            },
+            {
+              "x": 450,
+              "y": 458
+            },
+            {
+              "x": 465,
+              "y": 468
+            },
+            {
+              "x": 480,
+              "y": 478
+            },
+            {
+              "x": 495,
+              "y": 488
+            },
+            {
+              "x": 510,
+              "y": 498
+            },
+            {
+              "x": 525,
+              "y": 508
+            },
+            {
+              "x": 540,
+              "y": 518
+            },
+            {
+              "x": 555,
+              "y": 528
+            }
+          ]
+        },
+        {
+          "tool": "pen",
+          "color": "ink",
+          "width": 2,
+          "opacity": 1,
+          "points": [
+            {
+              "x": 435,
+              "y": 448
+            },
+            {
+              "x": 450,
+              "y": 458
+            },
+            {
+              "x": 465,
+              "y": 468
+            },
+            {
+              "x": 480,
+              "y": 478
+            },
+            {
+              "x": 495,
+              "y": 488
+            },
+            {
+              "x": 510,
+              "y": 498
+            },
+            {
+              "x": 525,
+              "y": 508
+            },
+            {
+              "x": 540,
+              "y": 518
+            },
+            {
+              "x": 555,
+              "y": 528
+            }
+          ]
         }
       ],
       "text_notes": [
@@ -92590,11 +92698,11 @@ window.STUDY_DATA = {
         },
         {
           "id": "note_1794290185577_udv0",
-          "x": 64,
-          "y": 76,
+          "x": 164,
+          "y": 176,
           "text": "",
           "width": 280,
-          "zIndex": 32
+          "zIndex": 31
         },
         {
           "id": "note_1794290258426_mw2j",
@@ -92603,6 +92711,14 @@ window.STUDY_DATA = {
           "text": "📌 1. Executive Mental Model & Core IntuitionPin to Canvas",
           "width": 280,
           "zIndex": 31
+        },
+        {
+          "id": "note_1794291096187_rg5q",
+          "x": 485,
+          "y": 448,
+          "text": "Executive Intuition: Cost of Debt is tax-shielded!",
+          "width": 280,
+          "zIndex": 33
         }
       ]
     }

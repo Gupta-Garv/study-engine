@@ -44,7 +44,7 @@
   </script>
 
   <!-- Custom Ledger CSS -->
-  <link rel="stylesheet" href="./static/css/style.css?v=2.2">
+  <link rel="stylesheet" href="./static/css/style.css?v=2.4.1">
 </head>
 <body class="h-screen flex flex-col bg-canvas text-ink transition-colors duration-200 overflow-hidden">
 
@@ -434,28 +434,28 @@
           </div>
 
           <!-- PANE 3: Personal Visual Canvas & Freeform Notepad -->
-          <div id="pane-canvas" class="hidden flex-1 h-full flex flex-col bg-canvas min-w-0 relative select-none">
+          <div id="pane-canvas" class="hidden flex-1 h-full flex flex-col bg-canvas min-w-0 relative">
             
             <!-- Notepad Floating Toolbar -->
             <div class="shrink-0 px-3 py-2 border-b border-border bg-card flex items-center justify-between gap-2 text-xs flex-wrap">
               
               <!-- Left: Tools (Draw Pen, Highlighter, Text Note, Eraser) -->
               <div class="flex items-center gap-1 p-0.5 rounded-lg bg-card-muted border border-border">
-                <button id="np-tool-pen" onclick="App.setNotepadTool('pen')" class="notepad-tool-btn active px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition shadow-soft-sm" title="Pen (Draw equations, mindmaps & sketches)">
+                <button id="np-tool-pen" onclick="App.setNotepadTool('pen')" class="notepad-tool-btn active px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition shadow-soft-sm font-semibold text-ink bg-card" title="Pen (Draw equations, mindmaps & sketches)">
                   <i data-lucide="pen-tool" class="w-3.5 h-3.5"></i>
-                  <span class="hidden sm:inline">Pen</span>
+                  <span class="inline">Pen</span>
                 </button>
-                <button id="np-tool-highlighter" onclick="App.setNotepadTool('highlighter')" class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink" title="Highlighter">
+                <button id="np-tool-highlighter" onclick="App.setNotepadTool('highlighter')" class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink" title="Highlighter (Highlight text & diagrams)">
                   <i data-lucide="highlighter" class="w-3.5 h-3.5"></i>
-                  <span class="hidden sm:inline">Highlighter</span>
+                  <span class="inline">Highlighter</span>
                 </button>
-                <button id="np-tool-text" onclick="App.setNotepadTool('text')" class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink" title="Text (Click anywhere to type a movable note)">
+                <button id="np-tool-text" onclick="App.setNotepadTool('text')" class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink" title="Text Note (Click anywhere to place a note)">
                   <i data-lucide="type" class="w-3.5 h-3.5"></i>
-                  <span class="hidden sm:inline">Text Note</span>
+                  <span class="inline">Text Note</span>
                 </button>
                 <button id="np-tool-eraser" onclick="App.setNotepadTool('eraser')" class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink" title="Eraser (Erase drawing strokes)">
                   <i data-lucide="eraser" class="w-3.5 h-3.5"></i>
-                  <span class="hidden sm:inline">Eraser</span>
+                  <span class="inline">Eraser</span>
                 </button>
               </div>
 
@@ -478,8 +478,8 @@
                 </div>
               </div>
 
-              <!-- Right: Actions (Undo, +Note, Clear, Status) -->
-              <div class="flex items-center gap-1.5 shrink-0">
+              <!-- Right: Actions (Undo, +Note, Clear, Status & Hint) -->
+              <div class="flex items-center gap-2 shrink-0">
                 <button onclick="App.undoNotepadStroke()" class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition" title="Undo last stroke (Cmd+Z)">
                   <i data-lucide="undo-2" class="w-3.5 h-3.5"></i>
                 </button>
@@ -490,7 +490,10 @@
                 <button onclick="App.clearCurrentCanvas()" class="p-1.5 text-neutral-400 hover:text-rose-500 rounded-lg hover:bg-muted transition" title="Clear notepad for this lecture">
                   <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                 </button>
-                <div class="hidden lg:flex items-center gap-1 text-[10px] font-mono text-emerald-500 pl-1 border-l border-border">
+                <div class="hidden xl:flex items-center gap-1.5 text-[10px] font-mono pl-1 border-l border-border">
+                  <span id="notepad-tool-hint" class="text-neutral-400">Pen mode • Drag to draw • Double-click to type</span>
+                </div>
+                <div class="hidden sm:flex items-center gap-1 text-[10px] font-mono text-emerald-500 pl-1 border-l border-border">
                   <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                   <span id="notepad-status-indicator">Auto-saved</span>
                 </div>
@@ -499,18 +502,18 @@
             </div>
 
             <!-- Notepad Canvas Viewport (Scrollable Infinite Stage) -->
-            <div id="notepad-viewport" class="flex-1 w-full h-full relative overflow-auto ledger-notepad-pattern select-none" style="cursor: crosshair;">
+            <div id="notepad-viewport" class="flex-1 w-full h-full relative overflow-auto ledger-notepad-pattern" style="cursor: crosshair;">
               
               <!-- 2400x1800 Drawing & Note Stage -->
               <div id="notepad-stage" class="relative" style="width: 2400px; height: 1800px;">
                 
-                <!-- Drawing Canvas (HTML5) -->
+                <!-- Drawing Canvas (HTML5) with touch-action: none -->
                 <canvas 
                   id="notepad-drawing-canvas" 
                   width="2400" 
                   height="1800" 
                   class="absolute inset-0 w-full h-full pointer-events-auto"
-                  style="z-index: 10;"
+                  style="z-index: 10; touch-action: none;"
                 ></canvas>
 
                 <!-- Floating Movable Text Notes Layer -->
@@ -785,10 +788,10 @@
     </div>
   </div>
 
-  <!-- App Script (Loaded first with cache-buster so window.App is immediately ready) -->
-  <script src="./static/js/app.js?v=2.2"></script>
+  <!-- App Script (Loaded with cache-buster so window.App is immediately ready) -->
+  <script src="./static/js/app.js?v=2.4.1"></script>
   <!-- Bundled Study Data for 24/7 GitHub Pages Access -->
-  <script src="./study_data.js?v=2.2" defer></script>
+  <script src="./study_data.js?v=2.4.1" defer></script>
 </body>
 </html>
 

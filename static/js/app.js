@@ -1116,32 +1116,47 @@ const App = {
   // Freeform Interactive Study Notepad / Scratchpad Engine
   // -------------------------------------------------------------
   initCanvasListeners() {
-    // 1. Drawing Canvas Pointer Events (PointerEvent supports Mouse, Touch, Apple Pencil)
     const canvas = document.getElementById('notepad-drawing-canvas');
     if (canvas) {
+      // Primary Pointer Events with pointer capture and preventDefault
       canvas.addEventListener('pointerdown', (e) => this.onNotepadPointerDown(e));
       canvas.addEventListener('pointermove', (e) => this.onNotepadPointerMove(e));
       canvas.addEventListener('pointerup', (e) => this.onNotepadPointerUp(e));
       canvas.addEventListener('pointercancel', (e) => this.onNotepadPointerUp(e));
-      canvas.addEventListener('pointerleave', (e) => this.onNotepadPointerUp(e));
-    }
 
-    // 2. Viewport Double-click to create note anywhere
-    const viewport = document.getElementById('notepad-viewport');
-    if (viewport) {
-      viewport.addEventListener('dblclick', (e) => {
-        if (e.target.id === 'notepad-viewport' || e.target.id === 'notepad-stage' || e.target.id === 'notepad-drawing-canvas') {
-          const coords = this.getNotepadCanvasCoords(e);
-          this.addFloatingTextNoteAt(coords.x, coords.y);
-        }
+      // Fallback Mouse Events if pointer events are somehow intercepted
+      canvas.addEventListener('mousedown', (e) => {
+        if (!window.PointerEvent) this.onNotepadPointerDown(e);
+      });
+      canvas.addEventListener('mousemove', (e) => {
+        if (!window.PointerEvent) this.onNotepadPointerMove(e);
+      });
+      canvas.addEventListener('mouseup', (e) => {
+        if (!window.PointerEvent) this.onNotepadPointerUp(e);
       });
     }
 
-    // 3. Global Pointer listeners for dragging notes smoothly
+    // Viewport Double-click to create note anywhere on canvas or background
+    const viewport = document.getElementById('notepad-viewport');
+    if (viewport) {
+      viewport.addEventListener('dblclick', (e) => {
+        if (e.target.closest && e.target.closest('.notepad-text-note')) return;
+        const coords = this.getNotepadCanvasCoords(e);
+        this.addFloatingTextNoteAt(coords.x, coords.y);
+      });
+    }
+
+    // Global Pointer listeners for dragging notes smoothly
     window.addEventListener('pointermove', (e) => this.onNotepadGlobalPointerMove(e));
     window.addEventListener('pointerup', (e) => this.onNotepadGlobalPointerUp(e));
+    window.addEventListener('mousemove', (e) => {
+      if (!window.PointerEvent) this.onNotepadGlobalPointerMove(e);
+    });
+    window.addEventListener('mouseup', (e) => {
+      if (!window.PointerEvent) this.onNotepadGlobalPointerUp(e);
+    });
 
-    // 4. Keyboard Shortcuts: Cmd+Z / Ctrl+Z for undoing strokes
+    // Keyboard Shortcuts: Cmd+Z / Ctrl+Z for undoing strokes
     window.addEventListener('keydown', (e) => {
       const tag = (e.target && e.target.tagName) || '';
       const isInput = tag === 'INPUT' || tag === 'TEXTAREA' || (e.target && e.target.isContentEditable);
@@ -1171,13 +1186,22 @@ const App = {
 
     // Update viewport cursor
     const viewport = document.getElementById('notepad-viewport');
-    if (viewport) {
-      if (tool === 'pen' || tool === 'highlighter') {
-        viewport.style.cursor = 'crosshair';
+    const canvas = document.getElementById('notepad-drawing-canvas');
+    const cursor = (tool === 'pen' || tool === 'highlighter') ? 'crosshair' : (tool === 'text' ? 'text' : 'cell');
+    if (viewport) viewport.style.cursor = cursor;
+    if (canvas) canvas.style.cursor = cursor;
+
+    // Update helpful status hint
+    const hintEl = document.getElementById('notepad-tool-hint');
+    if (hintEl) {
+      if (tool === 'pen') {
+        hintEl.textContent = 'Pen mode • Drag to draw • Double-click anywhere to type';
+      } else if (tool === 'highlighter') {
+        hintEl.textContent = 'Highlighter mode • Drag to highlight diagrams & equations';
       } else if (tool === 'text') {
-        viewport.style.cursor = 'text';
+        hintEl.textContent = 'Text mode • Click anywhere on notepad to drop a note';
       } else if (tool === 'eraser') {
-        viewport.style.cursor = 'cell';
+        hintEl.textContent = 'Eraser mode • Drag over any stroke to erase';
       }
     }
   },
@@ -1221,6 +1245,7 @@ const App = {
     const canvas = document.getElementById('notepad-drawing-canvas');
     if (!canvas) return { x: 0, y: 0 };
     const rect = canvas.getBoundingClientRect();
+    if (!rect.width || !rect.height) return { x: 0, y: 0 };
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
     return {
@@ -1230,10 +1255,19 @@ const App = {
   },
 
   onNotepadPointerDown(e) {
-    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    if (e.button !== undefined && e.button !== 0 && e.button !== -1) return;
     
+    // Prevent default gesture scroll and image drag
+    e.preventDefault();
+
+    const canvas = document.getElementById('notepad-drawing-canvas');
+    if (canvas && e.pointerId !== undefined) {
+      try { canvas.setPointerCapture(e.pointerId); } catch (_) {}
+    }
+
     const coords = this.getNotepadCanvasCoords(e);
 
+    // If text tool is active, place a note at click position
     if (this.notepadTool === 'text') {
       this.addFloatingTextNoteAt(coords.x, coords.y);
       this.setNotepadTool('pen');
@@ -1264,6 +1298,7 @@ const App = {
 
   onNotepadPointerMove(e) {
     if (!this.isDrawing) return;
+    e.preventDefault();
     
     const coords = this.getNotepadCanvasCoords(e);
 
@@ -1277,7 +1312,7 @@ const App = {
       const lastPt = pts[pts.length - 1];
       const distSq = (coords.x - lastPt.x) ** 2 + (coords.y - lastPt.y) ** 2;
       
-      if (distSq >= 4) {
+      if (distSq >= 2) {
         const newPt = { x: Math.round(coords.x), y: Math.round(coords.y) };
         pts.push(newPt);
         this.drawLineSegment(lastPt, newPt, this.currentStroke);
@@ -1288,6 +1323,11 @@ const App = {
   onNotepadPointerUp(e) {
     if (!this.isDrawing) return;
     this.isDrawing = false;
+
+    const canvas = document.getElementById('notepad-drawing-canvas');
+    if (canvas && e && e.pointerId !== undefined) {
+      try { canvas.releasePointerCapture(e.pointerId); } catch (_) {}
+    }
 
     if (this.currentStroke && this.currentStroke.points.length > 0) {
       if (!this.currentTopicCanvas.drawings) {
@@ -1436,7 +1476,7 @@ const App = {
 
     // Header / Drag Handle
     const header = document.createElement('div');
-    header.className = 'note-header flex items-center justify-between px-2.5 py-1.5 border-b border-border/70 bg-card-muted/50 rounded-t-xl cursor-grab select-none';
+    header.className = 'notepad-text-note-handle flex items-center justify-between px-2.5 py-1.5 border-b border-border/70 bg-card-muted/50 rounded-t-xl select-none';
     header.innerHTML = `
       <div class="flex items-center gap-1.5 text-neutral-400">
         <i data-lucide="grip-horizontal" class="w-3.5 h-3.5"></i>
@@ -1450,10 +1490,13 @@ const App = {
     header.addEventListener('pointerdown', (e) => {
       this.onNoteHandlePointerDown(e, note.id);
     });
+    header.addEventListener('mousedown', (e) => {
+      if (!window.PointerEvent) this.onNoteHandlePointerDown(e, note.id);
+    });
 
     // Note Body
     const body = document.createElement('div');
-    body.className = 'p-2.5 flex-1 flex flex-col';
+    body.className = 'p-2 flex-1 flex flex-col';
 
     const textarea = document.createElement('textarea');
     textarea.className = 'notepad-note-textarea w-full bg-transparent resize-none outline-none font-sans text-xs text-ink placeholder:text-neutral-400 leading-relaxed';
@@ -1461,8 +1504,13 @@ const App = {
     textarea.value = note.text || '';
     textarea.rows = 2;
 
+    const stopProp = (e) => e.stopPropagation();
+    textarea.addEventListener('pointerdown', stopProp);
+    textarea.addEventListener('mousedown', stopProp);
+    textarea.addEventListener('click', stopProp);
+    textarea.addEventListener('touchstart', stopProp);
+
     textarea.addEventListener('input', (e) => this.onNoteTextInput(e, note.id));
-    textarea.addEventListener('pointerdown', (e) => e.stopPropagation());
     textarea.addEventListener('focus', () => {
       this.maxNoteZIndex = (this.maxNoteZIndex || 30) + 1;
       note.zIndex = this.maxNoteZIndex;
@@ -1475,7 +1523,7 @@ const App = {
 
     setTimeout(() => {
       textarea.style.height = 'auto';
-      textarea.style.height = Math.max(54, textarea.scrollHeight) + 'px';
+      textarea.style.height = Math.max(52, textarea.scrollHeight) + 'px';
     }, 0);
 
     return el;
@@ -1515,11 +1563,13 @@ const App = {
 
       const ta = el.querySelector('textarea');
       if (ta) {
-        ta.focus();
-        if (initialText) {
-          ta.style.height = 'auto';
-          ta.style.height = Math.max(54, ta.scrollHeight) + 'px';
-        }
+        setTimeout(() => {
+          ta.focus();
+          if (initialText) {
+            ta.style.height = 'auto';
+            ta.style.height = Math.max(52, ta.scrollHeight) + 'px';
+          }
+        }, 50);
       }
     }
 
@@ -1529,7 +1579,7 @@ const App = {
   onNoteTextInput(e, noteId) {
     const ta = e.target;
     ta.style.height = 'auto';
-    ta.style.height = Math.max(54, ta.scrollHeight) + 'px';
+    ta.style.height = Math.max(52, ta.scrollHeight) + 'px';
 
     const note = (this.currentTopicCanvas.text_notes || []).find(n => n.id === noteId);
     if (note) {
@@ -1539,7 +1589,7 @@ const App = {
   },
 
   onNoteHandlePointerDown(e, noteId) {
-    if (e.button !== 0 && e.pointerType === 'mouse') return;
+    if (e.button !== undefined && e.button !== 0 && e.button !== -1) return;
     e.preventDefault();
     e.stopPropagation();
 
@@ -1553,7 +1603,7 @@ const App = {
     const el = document.querySelector(`.notepad-text-note[data-note-id="${noteId}"]`);
     if (el) {
       el.style.zIndex = note.zIndex;
-      el.classList.add('shadow-soft-md');
+      el.classList.add('dragging', 'shadow-soft-md');
     }
 
     this.dragNoteOffset = {
@@ -1586,7 +1636,7 @@ const App = {
 
     const el = document.querySelector(`.notepad-text-note[data-note-id="${this.draggingNoteId}"]`);
     if (el) {
-      el.classList.remove('shadow-soft-md');
+      el.classList.remove('dragging', 'shadow-soft-md');
     }
 
     this.draggingNoteId = null;
@@ -1754,7 +1804,7 @@ const App = {
     if (!this.isStaticHost()) {
       try {
         await fetch(`/api/topics/${topicId}/canvas`, {
-          method: 'PUT',
+          method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(this.currentTopicCanvas)
         });
