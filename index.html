@@ -433,40 +433,93 @@
             </div>
           </div>
 
-          <!-- PANE 3: Personal Visual Canvas (Option A "Ledger Board") -->
+          <!-- PANE 3: Personal Visual Canvas & Freeform Notepad -->
           <div id="pane-canvas" class="hidden flex-1 h-full flex flex-col bg-canvas min-w-0 relative select-none">
             
-            <!-- Canvas Toolbar -->
-            <div class="shrink-0 px-4 py-2 border-b border-border bg-card flex items-center justify-between text-xs">
-              <div class="flex items-center gap-2">
-                <button onclick="App.addCustomCanvasCard()" class="pill-ink text-[11px] px-3 py-1 flex items-center gap-1">
+            <!-- Notepad Floating Toolbar -->
+            <div class="shrink-0 px-3 py-2 border-b border-border bg-card flex items-center justify-between gap-2 text-xs flex-wrap">
+              
+              <!-- Left: Tools (Draw Pen, Highlighter, Text Note, Eraser) -->
+              <div class="flex items-center gap-1 p-0.5 rounded-lg bg-card-muted border border-border">
+                <button id="np-tool-pen" onclick="App.setNotepadTool('pen')" class="notepad-tool-btn active px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition shadow-soft-sm" title="Pen (Draw equations, mindmaps & sketches)">
+                  <i data-lucide="pen-tool" class="w-3.5 h-3.5"></i>
+                  <span class="hidden sm:inline">Pen</span>
+                </button>
+                <button id="np-tool-highlighter" onclick="App.setNotepadTool('highlighter')" class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink" title="Highlighter">
+                  <i data-lucide="highlighter" class="w-3.5 h-3.5"></i>
+                  <span class="hidden sm:inline">Highlighter</span>
+                </button>
+                <button id="np-tool-text" onclick="App.setNotepadTool('text')" class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink" title="Text (Click anywhere to type a movable note)">
+                  <i data-lucide="type" class="w-3.5 h-3.5"></i>
+                  <span class="hidden sm:inline">Text Note</span>
+                </button>
+                <button id="np-tool-eraser" onclick="App.setNotepadTool('eraser')" class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink" title="Eraser (Erase drawing strokes)">
+                  <i data-lucide="eraser" class="w-3.5 h-3.5"></i>
+                  <span class="hidden sm:inline">Eraser</span>
+                </button>
+              </div>
+
+              <!-- Center: Colors & Stroke Widths -->
+              <div id="np-draw-controls" class="flex items-center gap-2">
+                <!-- Color dots -->
+                <div class="flex items-center gap-1.5 p-1 rounded-lg bg-card-muted/60 border border-border">
+                  <button onclick="App.setNotepadColor('ink')" class="notepad-color-dot active bg-neutral-900 dark:bg-white" title="Ink (Black/White)" data-color="ink"></button>
+                  <button onclick="App.setNotepadColor('#ef4444')" class="notepad-color-dot bg-red-500" title="Red" data-color="#ef4444"></button>
+                  <button onclick="App.setNotepadColor('#f59e0b')" class="notepad-color-dot bg-amber-500" title="Amber Formula" data-color="#f59e0b"></button>
+                  <button onclick="App.setNotepadColor('#10b981')" class="notepad-color-dot bg-emerald-500" title="Emerald" data-color="#10b981"></button>
+                  <button onclick="App.setNotepadColor('#3b82f6')" class="notepad-color-dot bg-blue-500" title="Blue" data-color="#3b82f6"></button>
+                </div>
+
+                <!-- Stroke Size -->
+                <div class="flex items-center gap-0.5 text-[11px] font-mono p-0.5 rounded-lg bg-card-muted border border-border">
+                  <button onclick="App.setNotepadWidth(2)" class="np-size-btn active px-1.5 py-0.5 rounded text-xs" data-width="2">S</button>
+                  <button onclick="App.setNotepadWidth(4)" class="np-size-btn px-1.5 py-0.5 rounded text-xs text-neutral-400" data-width="4">M</button>
+                  <button onclick="App.setNotepadWidth(8)" class="np-size-btn px-1.5 py-0.5 rounded text-xs text-neutral-400" data-width="8">L</button>
+                </div>
+              </div>
+
+              <!-- Right: Actions (Undo, +Note, Clear, Status) -->
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button onclick="App.undoNotepadStroke()" class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition" title="Undo last stroke (Cmd+Z)">
+                  <i data-lucide="undo-2" class="w-3.5 h-3.5"></i>
+                </button>
+                <button onclick="App.addFloatingTextNote()" class="pill-ink text-[11px] px-2.5 py-1 flex items-center gap-1" title="Add a movable text note anywhere">
                   <i data-lucide="plus" class="w-3 h-3"></i>
-                  <span>New Card</span>
+                  <span>New Note</span>
                 </button>
-                <button onclick="App.clearCurrentCanvas()" class="text-[11px] font-mono text-neutral-400 hover:text-rose-500 px-2 py-1 rounded hover:bg-muted transition" title="Clear Canvas for this lecture">
-                  Clear
+                <button onclick="App.clearCurrentCanvas()" class="p-1.5 text-neutral-400 hover:text-rose-500 rounded-lg hover:bg-muted transition" title="Clear notepad for this lecture">
+                  <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                 </button>
+                <div class="hidden lg:flex items-center gap-1 text-[10px] font-mono text-emerald-500 pl-1 border-l border-border">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  <span id="notepad-status-indicator">Auto-saved</span>
+                </div>
               </div>
-              <div class="text-[11px] font-mono text-neutral-400 flex items-center gap-2">
-                <span id="canvas-card-counter">0 cards</span>
-                <span>&bull;</span>
-                <span class="text-emerald-500">Auto-saved</span>
-              </div>
+
             </div>
 
-            <!-- Canvas Viewport with SVG layer for arrows -->
-            <div id="canvas-viewport" class="flex-1 w-full h-full relative overflow-auto bg-canvas p-6 ledger-canvas-grid" style="min-height: 450px;">
-              <svg id="canvas-svg-layer" class="absolute inset-0 w-full h-full pointer-events-none z-0">
-                <defs>
-                  <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                    <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" class="text-neutral-400 dark:text-neutral-600"/>
-                  </marker>
-                </defs>
-              </svg>
-              <!-- Cards rendered here by JS -->
-              <div id="canvas-cards-container" class="relative z-10 w-full h-full min-w-[1200px] min-h-[800px]">
-                <!-- Populated by JS -->
+            <!-- Notepad Canvas Viewport (Scrollable Infinite Stage) -->
+            <div id="notepad-viewport" class="flex-1 w-full h-full relative overflow-auto ledger-notepad-pattern select-none" style="cursor: crosshair;">
+              
+              <!-- 2400x1800 Drawing & Note Stage -->
+              <div id="notepad-stage" class="relative" style="width: 2400px; height: 1800px;">
+                
+                <!-- Drawing Canvas (HTML5) -->
+                <canvas 
+                  id="notepad-drawing-canvas" 
+                  width="2400" 
+                  height="1800" 
+                  class="absolute inset-0 w-full h-full pointer-events-auto"
+                  style="z-index: 10;"
+                ></canvas>
+
+                <!-- Floating Movable Text Notes Layer -->
+                <div id="notepad-notes-layer" class="absolute inset-0 pointer-events-none" style="z-index: 20;">
+                  <!-- Dynamically rendered text notes -->
+                </div>
+
               </div>
+
             </div>
 
           </div>

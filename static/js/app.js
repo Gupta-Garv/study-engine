@@ -31,10 +31,16 @@ const App = {
   paneState: { video: true, notes: true, canvas: false, copilot: false },
   activePreset: 'lecture',
   videoSpeed: 1,
-  currentTopicCanvas: { cards: [], connections: [] },
-  draggingCardId: null,
-  dragOffset: { x: 0, y: 0 },
-  connectingFromCardId: null,
+  notepadTool: 'pen',
+  notepadColor: 'ink',
+  notepadWidth: 2,
+  isDrawing: false,
+  isErasing: false,
+  currentStroke: null,
+  currentTopicCanvas: { drawings: [], text_notes: [], cards: [] },
+  draggingNoteId: null,
+  dragNoteOffset: { x: 0, y: 0 },
+  saveNotepadDebounceTimer: null,
 
   isStaticHost() {
     return window.location.hostname.includes('github.io');
@@ -79,6 +85,7 @@ const App = {
   toggleTheme() {
     const isDark = document.documentElement.classList.toggle('dark');
     localStorage.setItem('study_engine_theme', isDark ? 'dark' : 'light');
+    if (this.redrawCanvas) this.redrawCanvas();
     if (window.lucide) window.lucide.createIcons();
   },
 
@@ -1106,23 +1113,576 @@ const App = {
   },
 
   // -------------------------------------------------------------
-  // Option A Visual Card Canvas ("Ledger Board")
+  // Freeform Interactive Study Notepad / Scratchpad Engine
   // -------------------------------------------------------------
   initCanvasListeners() {
-    document.addEventListener('mousemove', (e) => this.onCanvasMouseMove(e));
-    document.addEventListener('mouseup', (e) => this.onCanvasMouseUp(e));
+    // 1. Drawing Canvas Pointer Events (PointerEvent supports Mouse, Touch, Apple Pencil)
+    const canvas = document.getElementById('notepad-drawing-canvas');
+    if (canvas) {
+      canvas.addEventListener('pointerdown', (e) => this.onNotepadPointerDown(e));
+      canvas.addEventListener('pointermove', (e) => this.onNotepadPointerMove(e));
+      canvas.addEventListener('pointerup', (e) => this.onNotepadPointerUp(e));
+      canvas.addEventListener('pointercancel', (e) => this.onNotepadPointerUp(e));
+      canvas.addEventListener('pointerleave', (e) => this.onNotepadPointerUp(e));
+    }
 
-    const viewport = document.getElementById('canvas-viewport');
+    // 2. Viewport Double-click to create note anywhere
+    const viewport = document.getElementById('notepad-viewport');
     if (viewport) {
       viewport.addEventListener('dblclick', (e) => {
-        if (e.target.id === 'canvas-viewport' || e.target.id === 'canvas-cards-container' || e.target.tagName === 'svg') {
-          const rect = viewport.getBoundingClientRect();
-          const x = e.clientX - rect.left + viewport.scrollLeft;
-          const y = e.clientY - rect.top + viewport.scrollTop;
-          this.addCustomCanvasCardAt(x, y);
+        if (e.target.id === 'notepad-viewport' || e.target.id === 'notepad-stage' || e.target.id === 'notepad-drawing-canvas') {
+          const coords = this.getNotepadCanvasCoords(e);
+          this.addFloatingTextNoteAt(coords.x, coords.y);
         }
       });
     }
+
+    // 3. Global Pointer listeners for dragging notes smoothly
+    window.addEventListener('pointermove', (e) => this.onNotepadGlobalPointerMove(e));
+    window.addEventListener('pointerup', (e) => this.onNotepadGlobalPointerUp(e));
+
+    // 4. Keyboard Shortcuts: Cmd+Z / Ctrl+Z for undoing strokes
+    window.addEventListener('keydown', (e) => {
+      const tag = (e.target && e.target.tagName) || '';
+      const isInput = tag === 'INPUT' || tag === 'TEXTAREA' || (e.target && e.target.isContentEditable);
+      if (!isInput && (e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'z') {
+        if (this.paneState && this.paneState.canvas) {
+          e.preventDefault();
+          this.undoNotepadStroke();
+        }
+      }
+    });
+  },
+
+  setNotepadTool(tool) {
+    this.notepadTool = tool;
+    
+    // Update toolbar tool buttons
+    const tools = ['pen', 'highlighter', 'text', 'eraser'];
+    tools.forEach(t => {
+      const btn = document.getElementById(`np-tool-${t}`);
+      if (!btn) return;
+      if (t === tool) {
+        btn.className = 'notepad-tool-btn active px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition shadow-soft-sm font-semibold text-ink bg-card';
+      } else {
+        btn.className = 'notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink';
+      }
+    });
+
+    // Update viewport cursor
+    const viewport = document.getElementById('notepad-viewport');
+    if (viewport) {
+      if (tool === 'pen' || tool === 'highlighter') {
+        viewport.style.cursor = 'crosshair';
+      } else if (tool === 'text') {
+        viewport.style.cursor = 'text';
+      } else if (tool === 'eraser') {
+        viewport.style.cursor = 'cell';
+      }
+    }
+  },
+
+  setNotepadColor(color) {
+    this.notepadColor = color;
+    
+    // Update color dots active state
+    const dots = document.querySelectorAll('.notepad-color-dot');
+    dots.forEach(dot => {
+      if (dot.getAttribute('data-color') === color) {
+        dot.classList.add('active', 'ring-2', 'ring-neutral-400', 'scale-110');
+      } else {
+        dot.classList.remove('active', 'ring-2', 'ring-neutral-400', 'scale-110');
+      }
+    });
+
+    if (this.notepadTool === 'eraser' || this.notepadTool === 'text') {
+      this.setNotepadTool('pen');
+    }
+  },
+
+  setNotepadWidth(width) {
+    this.notepadWidth = Number(width) || 2;
+    
+    const sizeBtns = document.querySelectorAll('.np-size-btn');
+    sizeBtns.forEach(btn => {
+      if (Number(btn.getAttribute('data-width')) === this.notepadWidth) {
+        btn.className = 'np-size-btn active px-1.5 py-0.5 rounded text-xs font-semibold text-ink bg-card shadow-soft-sm';
+      } else {
+        btn.className = 'np-size-btn px-1.5 py-0.5 rounded text-xs text-neutral-400 hover:text-ink';
+      }
+    });
+
+    if (this.notepadTool === 'eraser' || this.notepadTool === 'text') {
+      this.setNotepadTool('pen');
+    }
+  },
+
+  getNotepadCanvasCoords(e) {
+    const canvas = document.getElementById('notepad-drawing-canvas');
+    if (!canvas) return { x: 0, y: 0 };
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    return {
+      x: (e.clientX - rect.left) * scaleX,
+      y: (e.clientY - rect.top) * scaleY
+    };
+  },
+
+  onNotepadPointerDown(e) {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    
+    const coords = this.getNotepadCanvasCoords(e);
+
+    if (this.notepadTool === 'text') {
+      this.addFloatingTextNoteAt(coords.x, coords.y);
+      this.setNotepadTool('pen');
+      return;
+    }
+
+    if (this.notepadTool === 'eraser') {
+      this.isDrawing = true;
+      this.eraseStrokesNear(coords.x, coords.y);
+      return;
+    }
+
+    this.isDrawing = true;
+    const isHighlighter = this.notepadTool === 'highlighter';
+    const strokeWidth = isHighlighter ? Math.max(16, this.notepadWidth * 4) : this.notepadWidth;
+    const strokeOpacity = isHighlighter ? 0.35 : 1.0;
+
+    this.currentStroke = {
+      tool: this.notepadTool,
+      color: this.notepadColor,
+      width: strokeWidth,
+      opacity: strokeOpacity,
+      points: [{ x: Math.round(coords.x), y: Math.round(coords.y) }]
+    };
+
+    this.drawSinglePoint(coords.x, coords.y, this.currentStroke);
+  },
+
+  onNotepadPointerMove(e) {
+    if (!this.isDrawing) return;
+    
+    const coords = this.getNotepadCanvasCoords(e);
+
+    if (this.notepadTool === 'eraser') {
+      this.eraseStrokesNear(coords.x, coords.y);
+      return;
+    }
+
+    if (this.currentStroke && this.currentStroke.points.length > 0) {
+      const pts = this.currentStroke.points;
+      const lastPt = pts[pts.length - 1];
+      const distSq = (coords.x - lastPt.x) ** 2 + (coords.y - lastPt.y) ** 2;
+      
+      if (distSq >= 4) {
+        const newPt = { x: Math.round(coords.x), y: Math.round(coords.y) };
+        pts.push(newPt);
+        this.drawLineSegment(lastPt, newPt, this.currentStroke);
+      }
+    }
+  },
+
+  onNotepadPointerUp(e) {
+    if (!this.isDrawing) return;
+    this.isDrawing = false;
+
+    if (this.currentStroke && this.currentStroke.points.length > 0) {
+      if (!this.currentTopicCanvas.drawings) {
+        this.currentTopicCanvas.drawings = [];
+      }
+      this.currentTopicCanvas.drawings.push(this.currentStroke);
+      this.currentStroke = null;
+      this.scheduleSaveCanvas();
+    }
+  },
+
+  drawSinglePoint(x, y, stroke) {
+    const canvas = document.getElementById('notepad-drawing-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const isDark = document.documentElement.classList.contains('dark');
+    const strokeColor = stroke.color === 'ink' ? (isDark ? '#EDEDED' : '#171717') : (stroke.color || (isDark ? '#EDEDED' : '#171717'));
+
+    ctx.save();
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.globalAlpha = stroke.opacity || 1.0;
+    ctx.fillStyle = strokeColor;
+    ctx.beginPath();
+    ctx.arc(x, y, Math.max(1, (stroke.width || 2) / 2), 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  },
+
+  drawLineSegment(p1, p2, stroke) {
+    const canvas = document.getElementById('notepad-drawing-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const isDark = document.documentElement.classList.contains('dark');
+    const strokeColor = stroke.color === 'ink' ? (isDark ? '#EDEDED' : '#171717') : (stroke.color || (isDark ? '#EDEDED' : '#171717'));
+
+    ctx.save();
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.globalAlpha = stroke.opacity || 1.0;
+    ctx.strokeStyle = strokeColor;
+    ctx.lineWidth = stroke.width || 2;
+    ctx.beginPath();
+    ctx.moveTo(p1.x, p1.y);
+    ctx.lineTo(p2.x, p2.y);
+    ctx.stroke();
+    ctx.restore();
+  },
+
+  eraseStrokesNear(x, y) {
+    const drawings = this.currentTopicCanvas.drawings || [];
+    if (drawings.length === 0) return;
+
+    const eraseRadius = 26;
+    const eraseRadiusSq = eraseRadius * eraseRadius;
+    const origLen = drawings.length;
+
+    this.currentTopicCanvas.drawings = drawings.filter(stroke => {
+      if (!stroke.points) return false;
+      for (let i = 0; i < stroke.points.length; i++) {
+        const pt = stroke.points[i];
+        const distSq = (pt.x - x) ** 2 + (pt.y - y) ** 2;
+        if (distSq <= eraseRadiusSq) {
+          return false;
+        }
+      }
+      return true;
+    });
+
+    if (this.currentTopicCanvas.drawings.length !== origLen) {
+      this.redrawCanvas();
+      this.scheduleSaveCanvas();
+    }
+  },
+
+  undoNotepadStroke() {
+    if (this.currentTopicCanvas.drawings && this.currentTopicCanvas.drawings.length > 0) {
+      this.currentTopicCanvas.drawings.pop();
+      this.redrawCanvas();
+      this.scheduleSaveCanvas();
+    }
+  },
+
+  redrawCanvas() {
+    const canvas = document.getElementById('notepad-drawing-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const isDark = document.documentElement.classList.contains('dark');
+    const drawings = this.currentTopicCanvas.drawings || [];
+
+    drawings.forEach(stroke => {
+      if (!stroke.points || stroke.points.length === 0) return;
+      const strokeColor = stroke.color === 'ink' ? (isDark ? '#EDEDED' : '#171717') : (stroke.color || (isDark ? '#EDEDED' : '#171717'));
+
+      ctx.save();
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.globalAlpha = stroke.opacity || 1.0;
+      ctx.strokeStyle = strokeColor;
+      ctx.lineWidth = stroke.width || 2;
+
+      if (stroke.points.length === 1) {
+        ctx.fillStyle = strokeColor;
+        ctx.beginPath();
+        ctx.arc(stroke.points[0].x, stroke.points[0].y, Math.max(1, (stroke.width || 2) / 2), 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        ctx.beginPath();
+        ctx.moveTo(stroke.points[0].x, stroke.points[0].y);
+        for (let i = 1; i < stroke.points.length; i++) {
+          ctx.lineTo(stroke.points[i].x, stroke.points[i].y);
+        }
+        ctx.stroke();
+      }
+      ctx.restore();
+    });
+  },
+
+  // -------------------------------------------------------------
+  // Movable Floating Text Notes Engine
+  // -------------------------------------------------------------
+  renderNotepadNotes() {
+    const container = document.getElementById('notepad-notes-layer');
+    if (!container) return;
+    container.innerHTML = '';
+
+    const notes = this.currentTopicCanvas.text_notes || [];
+    notes.forEach(note => {
+      const el = this.createNoteElement(note);
+      container.appendChild(el);
+    });
+
+    if (window.lucide) window.lucide.createIcons();
+  },
+
+  createNoteElement(note) {
+    const el = document.createElement('div');
+    el.className = 'notepad-text-note absolute bg-card border border-border rounded-xl shadow-soft flex flex-col pointer-events-auto transition-shadow';
+    el.style.left = `${note.x}px`;
+    el.style.top = `${note.y}px`;
+    el.style.width = `${note.width || 280}px`;
+    el.style.zIndex = note.zIndex || 20;
+    el.setAttribute('data-note-id', note.id);
+
+    // Header / Drag Handle
+    const header = document.createElement('div');
+    header.className = 'note-header flex items-center justify-between px-2.5 py-1.5 border-b border-border/70 bg-card-muted/50 rounded-t-xl cursor-grab select-none';
+    header.innerHTML = `
+      <div class="flex items-center gap-1.5 text-neutral-400">
+        <i data-lucide="grip-horizontal" class="w-3.5 h-3.5"></i>
+        <span class="text-[10px] font-mono uppercase tracking-wider text-neutral-400">Note</span>
+      </div>
+      <button onclick="App.deleteNotepadNote('${note.id}')" class="text-neutral-400 hover:text-rose-500 transition p-0.5 rounded" title="Delete note">
+        <i data-lucide="x" class="w-3 h-3"></i>
+      </button>
+    `;
+
+    header.addEventListener('pointerdown', (e) => {
+      this.onNoteHandlePointerDown(e, note.id);
+    });
+
+    // Note Body
+    const body = document.createElement('div');
+    body.className = 'p-2.5 flex-1 flex flex-col';
+
+    const textarea = document.createElement('textarea');
+    textarea.className = 'notepad-note-textarea w-full bg-transparent resize-none outline-none font-sans text-xs text-ink placeholder:text-neutral-400 leading-relaxed';
+    textarea.placeholder = 'Type note, formula, or exam trap...';
+    textarea.value = note.text || '';
+    textarea.rows = 2;
+
+    textarea.addEventListener('input', (e) => this.onNoteTextInput(e, note.id));
+    textarea.addEventListener('pointerdown', (e) => e.stopPropagation());
+    textarea.addEventListener('focus', () => {
+      this.maxNoteZIndex = (this.maxNoteZIndex || 30) + 1;
+      note.zIndex = this.maxNoteZIndex;
+      el.style.zIndex = note.zIndex;
+    });
+
+    body.appendChild(textarea);
+    el.appendChild(header);
+    el.appendChild(body);
+
+    setTimeout(() => {
+      textarea.style.height = 'auto';
+      textarea.style.height = Math.max(54, textarea.scrollHeight) + 'px';
+    }, 0);
+
+    return el;
+  },
+
+  addFloatingTextNote() {
+    const vp = document.getElementById('notepad-viewport');
+    const x = vp ? (vp.scrollLeft + 60 + Math.floor(Math.random() * 30)) : 100;
+    const y = vp ? (vp.scrollTop + 60 + Math.floor(Math.random() * 30)) : 100;
+    this.addFloatingTextNoteAt(x, y, '');
+  },
+
+  addFloatingTextNoteAt(x, y, initialText = '') {
+    if (!this.currentTopicCanvas.text_notes) {
+      this.currentTopicCanvas.text_notes = [];
+    }
+
+    const noteId = 'note_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4);
+    this.maxNoteZIndex = (this.maxNoteZIndex || 30) + 1;
+
+    const note = {
+      id: noteId,
+      x: Math.max(10, Math.round(x)),
+      y: Math.max(10, Math.round(y)),
+      text: initialText,
+      width: 280,
+      zIndex: this.maxNoteZIndex
+    };
+
+    this.currentTopicCanvas.text_notes.push(note);
+
+    const container = document.getElementById('notepad-notes-layer');
+    if (container) {
+      const el = this.createNoteElement(note);
+      container.appendChild(el);
+      if (window.lucide) window.lucide.createIcons();
+
+      const ta = el.querySelector('textarea');
+      if (ta) {
+        ta.focus();
+        if (initialText) {
+          ta.style.height = 'auto';
+          ta.style.height = Math.max(54, ta.scrollHeight) + 'px';
+        }
+      }
+    }
+
+    this.scheduleSaveCanvas();
+  },
+
+  onNoteTextInput(e, noteId) {
+    const ta = e.target;
+    ta.style.height = 'auto';
+    ta.style.height = Math.max(54, ta.scrollHeight) + 'px';
+
+    const note = (this.currentTopicCanvas.text_notes || []).find(n => n.id === noteId);
+    if (note) {
+      note.text = ta.value;
+      this.scheduleSaveCanvas();
+    }
+  },
+
+  onNoteHandlePointerDown(e, noteId) {
+    if (e.button !== 0 && e.pointerType === 'mouse') return;
+    e.preventDefault();
+    e.stopPropagation();
+
+    this.draggingNoteId = noteId;
+    const note = (this.currentTopicCanvas.text_notes || []).find(n => n.id === noteId);
+    if (!note) return;
+
+    this.maxNoteZIndex = (this.maxNoteZIndex || 30) + 1;
+    note.zIndex = this.maxNoteZIndex;
+
+    const el = document.querySelector(`.notepad-text-note[data-note-id="${noteId}"]`);
+    if (el) {
+      el.style.zIndex = note.zIndex;
+      el.classList.add('shadow-soft-md');
+    }
+
+    this.dragNoteOffset = {
+      x: e.clientX - note.x,
+      y: e.clientY - note.y
+    };
+  },
+
+  onNotepadGlobalPointerMove(e) {
+    if (!this.draggingNoteId) return;
+
+    const note = (this.currentTopicCanvas.text_notes || []).find(n => n.id === this.draggingNoteId);
+    if (!note) return;
+
+    const newX = Math.max(10, Math.min(2100, e.clientX - this.dragNoteOffset.x));
+    const newY = Math.max(10, Math.min(1600, e.clientY - this.dragNoteOffset.y));
+
+    note.x = Math.round(newX);
+    note.y = Math.round(newY);
+
+    const el = document.querySelector(`.notepad-text-note[data-note-id="${this.draggingNoteId}"]`);
+    if (el) {
+      el.style.left = `${note.x}px`;
+      el.style.top = `${note.y}px`;
+    }
+  },
+
+  onNotepadGlobalPointerUp(e) {
+    if (!this.draggingNoteId) return;
+
+    const el = document.querySelector(`.notepad-text-note[data-note-id="${this.draggingNoteId}"]`);
+    if (el) {
+      el.classList.remove('shadow-soft-md');
+    }
+
+    this.draggingNoteId = null;
+    this.scheduleSaveCanvas();
+  },
+
+  deleteNotepadNote(noteId) {
+    this.currentTopicCanvas.text_notes = (this.currentTopicCanvas.text_notes || []).filter(n => n.id !== noteId);
+    const el = document.querySelector(`.notepad-text-note[data-note-id="${noteId}"]`);
+    if (el) el.remove();
+    this.scheduleSaveCanvas();
+  },
+
+  // -------------------------------------------------------------
+  // Bridge & Pin Integration
+  // -------------------------------------------------------------
+  renderCanvas() {
+    this.redrawCanvas();
+    this.renderNotepadNotes();
+    if (window.lucide) window.lucide.createIcons();
+  },
+
+  pinHeadingToCanvas(btn) {
+    const headingEl = btn.closest('h1, h2, h3, h4, h5, h6, .notes-section, div');
+    const title = headingEl ? headingEl.innerText.replace('📌', '').trim() : 'Pinned Concept';
+
+    // Ensure Canvas pane is visible in Studio
+    if (!this.paneState.canvas) {
+      this.paneState.canvas = true;
+      this.updateStudioLayout();
+    }
+
+    const vp = document.getElementById('notepad-viewport');
+    const x = (vp ? vp.scrollLeft : 0) + 70 + Math.floor(Math.random() * 40);
+    const y = (vp ? vp.scrollTop : 0) + 70 + Math.floor(Math.random() * 40);
+
+    this.addFloatingTextNoteAt(x, y, `📌 ${title}`);
+    alert(`📌 Pinned "${title.substring(0, 40)}..." to your lecture notepad!`);
+  },
+
+  pinChatToCanvas(msgIndex) {
+    const msg = this.chatMessages[msgIndex];
+    if (!msg) return;
+
+    if (!this.paneState.canvas) {
+      this.paneState.canvas = true;
+      this.updateStudioLayout();
+    }
+
+    const vp = document.getElementById('notepad-viewport');
+    const x = (vp ? vp.scrollLeft : 0) + 80 + Math.floor(Math.random() * 40);
+    const y = (vp ? vp.scrollTop : 0) + 80 + Math.floor(Math.random() * 40);
+
+    const snippet = msg.text.length > 300 ? msg.text.substring(0, 300) + '...' : msg.text;
+    this.addFloatingTextNoteAt(x, y, `💡 Copilot AI Insight:\n${snippet}`);
+    alert('📌 Copilot explanation clipped to your movable notepad!');
+  },
+
+  // Legacy aliases
+  addCustomCanvasCard() {
+    this.addFloatingTextNote();
+  },
+
+  addCustomCanvasCardAt(x, y) {
+    this.addFloatingTextNoteAt(x, y, '');
+  },
+
+  deleteCanvasCard(id) {
+    this.deleteNotepadNote(id);
+  },
+
+  clearCurrentCanvas() {
+    if (confirm('Clear all drawings and notes for this lecture notepad?')) {
+      this.currentTopicCanvas = { drawings: [], text_notes: [], cards: [] };
+      this.saveTopicCanvas(this.selectedTopicId);
+      this.renderCanvas();
+    }
+  },
+
+  // -------------------------------------------------------------
+  // Canvas Persistence (SQLite + LocalStorage)
+  // -------------------------------------------------------------
+  scheduleSaveCanvas() {
+    const indicator = document.getElementById('notepad-status-indicator');
+    if (indicator) {
+      indicator.textContent = 'Saving...';
+      indicator.className = 'text-amber-500';
+    }
+
+    if (this.saveNotepadDebounceTimer) {
+      clearTimeout(this.saveNotepadDebounceTimer);
+    }
+
+    this.saveNotepadDebounceTimer = setTimeout(() => {
+      this.saveTopicCanvas(this.selectedTopicId);
+    }, 400);
   },
 
   async loadTopicCanvas(topicId) {
@@ -1140,333 +1700,75 @@ const App = {
     }
 
     // 3. Try backend API
-    if (!canvasData) {
+    if (!canvasData && !this.isStaticHost()) {
       try {
         const res = await fetch(`/api/topics/${topicId}/canvas`);
-        if (res.ok) canvasData = await res.json();
-      } catch (e) {}
+        if (res.ok) {
+          canvasData = await res.json();
+        }
+      } catch (err) {
+        console.warn('Could not load canvas from API, fallback to default', err);
+      }
     }
 
-    this.currentTopicCanvas = (canvasData && canvasData.cards) ? canvasData : { cards: [], connections: [] };
+    if (!canvasData) {
+      canvasData = { drawings: [], text_notes: [], cards: [] };
+    }
+
+    if (!canvasData.drawings) canvasData.drawings = [];
+    if (!canvasData.text_notes) canvasData.text_notes = [];
+
+    // Backward compatibility: Convert legacy card format to floating text notes if present
+    if (canvasData.text_notes.length === 0 && canvasData.cards && canvasData.cards.length > 0) {
+      canvasData.text_notes = canvasData.cards.map((c, i) => ({
+        id: c.id || ('legacy_' + i),
+        x: c.x || (60 + (i % 3) * 300),
+        y: c.y || (60 + Math.floor(i / 3) * 180),
+        text: (c.title ? `### ${c.title}\n` : '') + (c.content || ''),
+        width: 280,
+        zIndex: 20
+      }));
+    }
+
+    this.currentTopicCanvas = canvasData;
     this.renderCanvas();
+
+    const indicator = document.getElementById('notepad-status-indicator');
+    if (indicator) {
+      indicator.textContent = 'Auto-saved';
+      indicator.className = 'text-emerald-500';
+    }
   },
 
-  saveTopicCanvas(topicId) {
+  async saveTopicCanvas(topicId) {
     if (!topicId) return;
-    localStorage.setItem(`canvas_${topicId}`, JSON.stringify(this.currentTopicCanvas));
-    fetch(`/api/topics/${topicId}/canvas`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(this.currentTopicCanvas)
-    }).catch(() => {});
 
-    const counter = document.getElementById('canvas-card-counter');
-    if (counter) {
-      const len = this.currentTopicCanvas.cards.length;
-      counter.textContent = `${len} ${len === 1 ? 'card' : 'cards'}`;
-    }
-  },
-
-  renderCanvas() {
-    const container = document.getElementById('canvas-cards-container');
-    const svgLayer = document.getElementById('canvas-svg-layer');
-    const counter = document.getElementById('canvas-card-counter');
-    if (!container) return;
-
-    const cards = this.currentTopicCanvas.cards || [];
-    if (counter) {
-      counter.textContent = `${cards.length} ${cards.length === 1 ? 'card' : 'cards'}`;
+    // Always persist to localStorage for instant recovery
+    try {
+      localStorage.setItem(`canvas_${topicId}`, JSON.stringify(this.currentTopicCanvas));
+    } catch (e) {
+      console.warn('LocalStorage save failed:', e);
     }
 
-    if (cards.length === 0) {
-      container.innerHTML = `
-        <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-8 text-neutral-400 space-y-2 pointer-events-none">
-          <div class="w-10 h-10 rounded-2xl bg-card border border-border shadow-soft flex items-center justify-center text-neutral-400">
-            <i data-lucide="layout" class="w-5 h-5"></i>
-          </div>
-          <p class="text-xs font-medium text-ink">Personal Mindmap & Note Board</p>
-          <p class="text-[11px] text-neutral-400 max-w-sm">
-            Hover over any note heading or AI explanation to click <strong>[📌 Pin]</strong>, or double-click anywhere here to create your own formula and concept cards.
-          </p>
-        </div>
-      `;
-      if (svgLayer) svgLayer.innerHTML = `
-        <defs>
-          <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#a3a3a3"/>
-          </marker>
-        </defs>
-      `;
-      if (window.lucide) window.lucide.createIcons();
-      return;
-    }
-
-    container.innerHTML = cards.map(c => {
-      const isFormula = c.type === 'formula';
-      const isCopilot = c.type === 'copilot';
-      const badgeStyle = isFormula 
-        ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20' 
-        : isCopilot 
-          ? 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20' 
-          : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20';
-
-      const typeLabel = isFormula ? 'FORMULA' : isCopilot ? 'AI EXPLANATION' : 'NOTE';
-
-      let parsedContent = c.content || '';
-      if (window.marked) {
-        try { parsedContent = marked.parse(parsedContent); } catch (e) {}
-      }
-
-      return `
-        <div 
-          id="card-el-${c.id}" 
-          class="ledger-canvas-card bg-card border border-border shadow-soft rounded-2xl p-3.5 space-y-2 select-text" 
-          style="left: ${c.x}px; top: ${c.y}px; width: ${c.width || 300}px;"
-          data-id="${c.id}"
-        >
-          <!-- Card Header & Drag Handle -->
-          <div class="flex items-center justify-between gap-2 pb-1.5 border-b border-border/60">
-            <div class="flex items-center gap-1.5 cursor-grab active:cursor-grabbing handle-drag" onmousedown="App.onCardMouseDown(event, '${c.id}')">
-              <i data-lucide="grip-vertical" class="w-3.5 h-3.5 text-neutral-400"></i>
-              <span class="text-[9px] font-mono px-1.5 py-0.5 rounded border ${badgeStyle} font-medium">${typeLabel}</span>
-            </div>
-            <div class="flex items-center gap-1">
-              <button onclick="App.startConnecting('${c.id}')" class="text-neutral-400 hover:text-ink p-1 rounded hover:bg-muted text-[10px]" title="Connect to another card with an arrow">
-                <i data-lucide="git-commit" class="w-3 h-3"></i>
-              </button>
-              <button onclick="App.deleteCanvasCard('${c.id}')" class="text-neutral-400 hover:text-rose-500 p-1 rounded hover:bg-muted transition" title="Delete Card">
-                <i data-lucide="x" class="w-3 h-3"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Card Title -->
-          <div class="text-xs font-semibold text-ink tracking-tight">${this.escapeHtml(c.title || 'Untitled Card')}</div>
-
-          <!-- Card Content Body -->
-          <div class="text-xs text-ink leading-relaxed prose-ledger max-h-60 overflow-y-auto pr-1">
-            ${parsedContent}
-          </div>
-        </div>
-      `;
-    }).join('');
-
-    // Render SVG connector arrows
-    this.renderCanvasConnections();
-
-    // Render KaTeX in cards
-    if (window.renderMathInElement) {
-      renderMathInElement(container, {
-        delimiters: [
-          {left: '$$', right: '$$', display: true},
-          {left: '$', right: '$', display: false}
-        ],
-        throwOnError: false
-      });
-    }
-
-    if (window.lucide) window.lucide.createIcons();
-  },
-
-  renderCanvasConnections() {
-    const svgLayer = document.getElementById('canvas-svg-layer');
-    if (!svgLayer) return;
-
-    const connections = this.currentTopicCanvas.connections || [];
-    let svgHtml = `
-      <defs>
-        <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M 0 0 L 10 5 L 0 10 z" fill="#a3a3a3"/>
-        </marker>
-      </defs>
-    `;
-
-    connections.forEach(conn => {
-      const fromEl = document.getElementById(`card-el-${conn.from}`);
-      const toEl = document.getElementById(`card-el-${conn.to}`);
-      if (!fromEl || !toEl) return;
-
-      const fromX = fromEl.offsetLeft + fromEl.offsetWidth / 2;
-      const fromY = fromEl.offsetTop + fromEl.offsetHeight / 2;
-      const toX = toEl.offsetLeft + toEl.offsetWidth / 2;
-      const toY = toEl.offsetTop + toEl.offsetHeight / 2;
-
-      const dx = (toX - fromX) * 0.4;
-      const pathData = `M ${fromX} ${fromY} C ${fromX + dx} ${fromY}, ${toX - dx} ${toY}, ${toX} ${toY}`;
-
-      svgHtml += `<path d="${pathData}" fill="none" stroke="#a3a3a3" stroke-width="1.75" stroke-dasharray="4,4" marker-end="url(#arrow)"/>`;
-    });
-
-    svgLayer.innerHTML = svgHtml;
-  },
-
-  onCardMouseDown(e, cardId) {
-    if (e.target.closest('button') || e.target.closest('input')) return;
-    this.draggingCardId = cardId;
-    const cardEl = document.getElementById(`card-el-${cardId}`);
-    if (cardEl) {
-      cardEl.classList.add('dragging');
-      this.dragOffset = {
-        x: e.clientX - cardEl.offsetLeft,
-        y: e.clientY - cardEl.offsetTop
-      };
-    }
-  },
-
-  onCanvasMouseMove(e) {
-    if (!this.draggingCardId) return;
-    const cardEl = document.getElementById(`card-el-${this.draggingCardId}`);
-    if (!cardEl) return;
-
-    const newX = Math.max(10, e.clientX - this.dragOffset.x);
-    const newY = Math.max(10, e.clientY - this.dragOffset.y);
-
-    cardEl.style.left = `${newX}px`;
-    cardEl.style.top = `${newY}px`;
-
-    const card = this.currentTopicCanvas.cards.find(c => c.id === this.draggingCardId);
-    if (card) {
-      card.x = newX;
-      card.y = newY;
-    }
-
-    this.renderCanvasConnections();
-  },
-
-  onCanvasMouseUp(e) {
-    if (this.draggingCardId) {
-      const cardEl = document.getElementById(`card-el-${this.draggingCardId}`);
-      if (cardEl) cardEl.classList.remove('dragging');
-      this.saveTopicCanvas(this.selectedTopicId);
-      this.draggingCardId = null;
-    }
-  },
-
-  startConnecting(fromCardId) {
-    const toCardId = prompt('Enter target card title or keyword to connect with an arrow:');
-    if (!toCardId) return;
-    const target = this.currentTopicCanvas.cards.find(c => c.id === toCardId || (c.title && c.title.toLowerCase().includes(toCardId.toLowerCase())));
-    if (target && target.id !== fromCardId) {
-      if (!this.currentTopicCanvas.connections) this.currentTopicCanvas.connections = [];
-      this.currentTopicCanvas.connections.push({ from: fromCardId, to: target.id });
-      this.saveTopicCanvas(this.selectedTopicId);
-      this.renderCanvas();
-    }
-  },
-
-  addCustomCanvasCard() {
-    this.addCustomCanvasCardAt(60 + (this.currentTopicCanvas.cards.length % 3) * 320, 60 + Math.floor(this.currentTopicCanvas.cards.length / 3) * 220);
-  },
-
-  addCustomCanvasCardAt(x, y) {
-    const title = prompt('Card Title (e.g. Core Formula, Exam Trap, Personal Note):');
-    if (!title) return;
-    const content = prompt('Card Content (Markdown & math $...$ supported):') || '';
-
-    const newCard = {
-      id: 'card-' + Date.now(),
-      title: title.trim(),
-      content: content.trim(),
-      type: title.toLowerCase().includes('formula') ? 'formula' : 'note',
-      x: Math.round(x),
-      y: Math.round(y),
-      width: 300
-    };
-
-    this.currentTopicCanvas.cards.push(newCard);
-    this.saveTopicCanvas(this.selectedTopicId);
-    this.renderCanvas();
-  },
-
-  pinHeadingToCanvas(btn) {
-    const parentHeading = btn.closest('h1, h2, h3, h4');
-    let title = 'Key Insight';
-    let content = '';
-
-    if (parentHeading) {
-      title = parentHeading.innerText.replace('Pin to Canvas', '').replace('✓ Pinned', '').trim();
-      let next = parentHeading.nextElementSibling;
-      while (next && !['H1', 'H2', 'H3', 'H4'].includes(next.tagName) && content.length < 350) {
-        content += next.innerText + '\n';
-        next = next.nextElementSibling;
+    // Persist to SQLite backend if not static
+    if (!this.isStaticHost()) {
+      try {
+        await fetch(`/api/topics/${topicId}/canvas`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(this.currentTopicCanvas)
+        });
+      } catch (err) {
+        console.warn('Failed to sync canvas to backend:', err);
       }
     }
 
-    const cardsCount = this.currentTopicCanvas.cards.length;
-    const card = {
-      id: 'card-' + Date.now(),
-      title: title,
-      content: content.trim() || title,
-      type: title.toLowerCase().includes('formula') ? 'formula' : 'note',
-      x: 50 + (cardsCount % 3) * 320,
-      y: 50 + Math.floor(cardsCount / 3) * 220,
-      width: 300
-    };
-
-    this.currentTopicCanvas.cards.push(card);
-    this.saveTopicCanvas(this.selectedTopicId);
-    
-    // Auto open canvas pane if closed
-    if (!this.paneState.canvas) {
-      this.paneState.canvas = true;
-      this.updateStudioLayout();
-    } else {
-      this.renderCanvas();
-    }
-
-    btn.innerText = '✓ Pinned';
-    setTimeout(() => { 
-      btn.innerHTML = '<i data-lucide="pin" class="w-3 h-3 inline mr-1"></i>Pin to Canvas'; 
-      if (window.lucide) window.lucide.createIcons(); 
-    }, 1500);
-  },
-
-  pinChatToCanvas(msgIndex) {
-    const msg = this.copilotMessages[msgIndex];
-    if (!msg) return;
-
-    const cardsCount = this.currentTopicCanvas.cards.length;
-    const card = {
-      id: 'card-' + Date.now(),
-      title: 'AI Copilot Explanation',
-      content: msg.content,
-      type: 'copilot',
-      x: 50 + (cardsCount % 3) * 320,
-      y: 50 + Math.floor(cardsCount / 3) * 220,
-      width: 310
-    };
-
-    this.currentTopicCanvas.cards.push(card);
-    this.saveTopicCanvas(this.selectedTopicId);
-
-    // Auto open canvas pane if closed
-    if (!this.paneState.canvas) {
-      this.paneState.canvas = true;
-      this.updateStudioLayout();
-    } else {
-      this.renderCanvas();
-    }
-
-    alert('📌 Copilot explanation clipped to your visual canvas!');
-  },
-
-  deleteCanvasCard(cardId) {
-    this.currentTopicCanvas.cards = this.currentTopicCanvas.cards.filter(c => c.id !== cardId);
-    if (this.currentTopicCanvas.connections) {
-      this.currentTopicCanvas.connections = this.currentTopicCanvas.connections.filter(c => c.from !== cardId && c.to !== cardId);
-    }
-    this.saveTopicCanvas(this.selectedTopicId);
-    this.renderCanvas();
-  },
-
-  clearCurrentCanvas() {
-    if (confirm('Clear all canvas cards for this lecture?')) {
-      this.currentTopicCanvas = { cards: [], connections: [] };
-      this.saveTopicCanvas(this.selectedTopicId);
-      this.renderCanvas();
+    const indicator = document.getElementById('notepad-status-indicator');
+    if (indicator) {
+      indicator.textContent = 'Auto-saved';
+      indicator.className = 'text-emerald-500';
     }
   },
-
   // -------------------------------------------------------------
   // Navigation / Views
   // -------------------------------------------------------------

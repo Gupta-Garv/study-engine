@@ -390,14 +390,19 @@ def save_settings(req: SettingsRequest):
 class CanvasDataRequest(BaseModel):
     cards: List[dict] = []
     connections: List[dict] = []
+    drawings: List[dict] = []
+    text_notes: List[dict] = []
+
+    model_config = {"extra": "allow"}
 
 @app.get("/api/topics/{topic_id}/canvas")
 def get_topic_canvas_endpoint(topic_id: str):
     return db.get_topic_canvas(topic_id)
 
 @app.post("/api/topics/{topic_id}/canvas")
+@app.put("/api/topics/{topic_id}/canvas")
 def save_topic_canvas_endpoint(topic_id: str, req: CanvasDataRequest):
-    data = {"cards": req.cards, "connections": req.connections}
+    data = req.model_dump()
     saved = db.save_topic_canvas(topic_id, data)
     db.export_static_data()
     return saved

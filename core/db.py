@@ -165,7 +165,7 @@ def get_topic_canvas(topic_id: str) -> Dict[str, Any]:
             return json.loads(row["canvas_json"])
         except Exception:
             pass
-    return {"cards": [], "connections": []}
+    return {"cards": [], "connections": [], "drawings": [], "text_notes": []}
 
 def save_topic_canvas(topic_id: str, canvas_data: Dict[str, Any]) -> Dict[str, Any]:
     conn = get_conn()

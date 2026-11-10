@@ -92517,6 +92517,94 @@ window.STUDY_DATA = {
     "75217be5": {
       "cards": [],
       "connections": []
+    },
+    "83f2fe10": {
+      "cards": [],
+      "connections": [],
+      "drawings": [
+        {
+          "tool": "pen",
+          "color": "ink",
+          "width": 2,
+          "opacity": 1,
+          "points": [
+            {
+              "x": 100,
+              "y": 100
+            },
+            {
+              "x": 120,
+              "y": 150
+            }
+          ]
+        },
+        {
+          "tool": "pen",
+          "color": "#ef4444",
+          "width": 4,
+          "opacity": 1,
+          "points": [
+            {
+              "x": 150,
+              "y": 150
+            },
+            {
+              "x": 250,
+              "y": 200
+            }
+          ]
+        },
+        {
+          "tool": "pen",
+          "color": "#ef4444",
+          "width": 4,
+          "opacity": 1,
+          "points": [
+            {
+              "x": 150,
+              "y": 150
+            },
+            {
+              "x": 250,
+              "y": 200
+            }
+          ]
+        }
+      ],
+      "text_notes": [
+        {
+          "id": "note_test_1",
+          "x": 200,
+          "y": 200,
+          "text": "CAPM Formula:\nE(Ri) = Rf + Beta * [E(Rm) - Rf]",
+          "width": 280,
+          "zIndex": 25
+        },
+        {
+          "id": "note_1794290027351_qe24",
+          "x": 66,
+          "y": 82,
+          "text": "",
+          "width": 280,
+          "zIndex": 32
+        },
+        {
+          "id": "note_1794290185577_udv0",
+          "x": 64,
+          "y": 76,
+          "text": "",
+          "width": 280,
+          "zIndex": 32
+        },
+        {
+          "id": "note_1794290258426_mw2j",
+          "x": 106,
+          "y": 70,
+          "text": "📌 1. Executive Mental Model & Core IntuitionPin to Canvas",
+          "width": 280,
+          "zIndex": 31
+        }
+      ]
     }
   }
 };
