@@ -105,6 +105,18 @@ const App = {
       const tag = (e.target && e.target.tagName) || '';
       const isInput = tag === 'INPUT' || tag === 'TEXTAREA' || e.target.isContentEditable;
       
+      if (!isInput) {
+        if ((e.shiftKey && e.key.toLowerCase() === 'n') || (e.altKey && e.key === 'ArrowRight')) {
+          e.preventDefault();
+          App.goToNextTopic();
+          return;
+        } else if ((e.shiftKey && e.key.toLowerCase() === 'p') || (e.altKey && e.key === 'ArrowLeft')) {
+          e.preventDefault();
+          App.goToPrevTopic();
+          return;
+        }
+      }
+
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
         const input = document.getElementById('global-search-input');
@@ -2925,6 +2937,7 @@ const App = {
     } catch (e) {
       contentEl.innerHTML = `<div class="text-rose-500 text-xs">Error loading notes: ${e}</div>`;
     }
+    this.updateLectureNavButtons();
   },
 
   // -------------------------------------------------------------
@@ -3139,6 +3152,120 @@ const App = {
     return null;
   },
 
+
+  getAllCurriculumTopics() {
+    const list = [];
+    if (!this.courses) return list;
+    for (const c of this.courses) {
+      for (const m of (c.modules || [])) {
+        for (const t of (m.topics || [])) {
+          list.push({
+            id: t.id,
+            title: t.title,
+            duration: t.duration,
+            video_id: t.video_id,
+            youtube_url: t.youtube_url,
+            courseId: c.id,
+            courseName: c.name,
+            moduleId: m.id,
+            moduleName: m.name
+          });
+        }
+      }
+    }
+    return list;
+  },
+
+  getAdjacentTopics(topicId = this.selectedTopicId) {
+    const all = this.getAllCurriculumTopics();
+    const idx = all.findIndex(t => t.id === topicId);
+    if (idx === -1) {
+      return { prev: null, next: null, current: null, index: -1, total: all.length };
+    }
+    return {
+      prev: idx > 0 ? all[idx - 1] : null,
+      next: idx < all.length - 1 ? all[idx + 1] : null,
+      current: all[idx],
+      index: idx,
+      total: all.length
+    };
+  },
+
+  goToNextTopic() {
+    const { next } = this.getAdjacentTopics();
+    if (next) {
+      this.loadTopicNotes(next.id);
+    }
+  },
+
+  goToPrevTopic() {
+    const { prev } = this.getAdjacentTopics();
+    if (prev) {
+      this.loadTopicNotes(prev.id);
+    }
+  },
+
+  updateLectureNavButtons() {
+    const { prev, next, current, index, total } = this.getAdjacentTopics();
+
+    // 1. Subheader navigation buttons
+    const btnPrev = document.getElementById('btn-prev-lecture');
+    const btnNext = document.getElementById('btn-next-lecture');
+    const counterBadge = document.getElementById('lecture-index-counter');
+
+    if (btnPrev) {
+      btnPrev.disabled = !prev;
+      btnPrev.title = prev ? `Previous: ${prev.title} (Shift+P)` : 'First lecture in curriculum';
+      btnPrev.classList.toggle('opacity-30', !prev);
+      btnPrev.classList.toggle('pointer-events-none', !prev);
+    }
+
+    if (btnNext) {
+      btnNext.disabled = !next;
+      btnNext.title = next ? `Next: ${next.title} (Shift+N)` : 'Final lecture in curriculum';
+      btnNext.classList.toggle('opacity-30', !next);
+      btnNext.classList.toggle('pointer-events-none', !next);
+    }
+
+    if (counterBadge && index >= 0) {
+      counterBadge.textContent = `${index + 1}/${total}`;
+      counterBadge.classList.remove('hidden');
+    }
+
+    // 2. Video player controls navigation buttons
+    const vidBtnPrev = document.getElementById('video-btn-prev-lecture');
+    const vidBtnNext = document.getElementById('video-btn-next-lecture');
+
+    if (vidBtnPrev) {
+      vidBtnPrev.disabled = !prev;
+      vidBtnPrev.title = prev ? `Previous Video: ${prev.title}` : 'First video in curriculum';
+      vidBtnPrev.classList.toggle('opacity-30', !prev);
+      vidBtnPrev.classList.toggle('pointer-events-none', !prev);
+    }
+
+    if (vidBtnNext) {
+      vidBtnNext.disabled = !next;
+      vidBtnNext.title = next ? `Next Video: ${next.title}` : 'Final video in curriculum';
+      vidBtnNext.classList.toggle('opacity-30', !next);
+      vidBtnNext.classList.toggle('pointer-events-none', !next);
+    }
+
+    // 3. Notes footer next lecture card
+    const notesFooter = document.getElementById('notes-next-lecture-footer');
+    if (notesFooter) {
+      if (next) {
+        notesFooter.classList.remove('hidden');
+        const nextTitleEl = document.getElementById('notes-next-lecture-title');
+        const nextModuleEl = document.getElementById('notes-next-lecture-module');
+        if (nextTitleEl) nextTitleEl.textContent = next.title;
+        if (nextModuleEl) nextModuleEl.textContent = `${next.courseName || ''} • ${next.moduleName || ''}`;
+      } else {
+        notesFooter.classList.add('hidden');
+      }
+    }
+
+    if (window.lucide) window.lucide.createIcons();
+  },
   // -------------------------------------------------------------
   // Exam Arena
   // -------------------------------------------------------------
