@@ -92677,6 +92677,26 @@ window.STUDY_DATA = {
               "y": 528
             }
           ]
+        },
+        {
+          "tool": "pen",
+          "color": "#ef4444",
+          "width": 4,
+          "opacity": 1,
+          "points": [
+            {
+              "x": 80,
+              "y": 80
+            },
+            {
+              "x": 180,
+              "y": 140
+            },
+            {
+              "x": 240,
+              "y": 140
+            }
+          ]
         }
       ],
       "text_notes": [
@@ -92719,6 +92739,25 @@ window.STUDY_DATA = {
           "text": "Executive Intuition: Cost of Debt is tax-shielded!",
           "width": 280,
           "zIndex": 33
+        },
+        {
+          "id": "test_note_1",
+          "x": 460,
+          "y": 60,
+          "text": "Formula for ROIC:\nROIC = NOPAT / Invested Capital\nKey Exam Trap: Do not include excess cash in denominator!",
+          "width": 280,
+          "zIndex": 25
+        }
+      ],
+      "images": [
+        {
+          "id": "test_screenshot_1",
+          "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAGQCAYAAAByNR6YAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEhSURBVHic7cExAQAAAMKg9U9tCy8gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgDcbXAACyK1dSQAAAABJRU5ErkJggg==",
+          "title": "Slide 4: Competitive Moats & ROI",
+          "x": 60,
+          "y": 60,
+          "width": 380,
+          "zIndex": 12
         }
       ]
     }

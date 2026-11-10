@@ -371,160 +371,188 @@
         </div>
 
         <!-- Studio Panes Container (Flex Row for Active Panes) -->
-        <div id="studio-workspace" class="flex-1 w-full h-full flex overflow-hidden min-h-0 divide-x divide-border">
+        <div id="studio-workspace" class="flex-1 w-full h-full flex overflow-hidden min-h-0 relative">
 
-          <!-- PANE 1: Embedded Video Player -->
-          <div id="pane-video" class="flex-1 h-full flex flex-col bg-canvas overflow-y-auto p-4 space-y-3 min-w-0">
-            <!-- 16:9 Video Box -->
-            <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-neutral-900 border border-border shadow-soft flex items-center justify-center">
-              <iframe 
-                id="lecture-video-iframe" 
-                class="w-full h-full hidden"
-                src="" 
-                title="Lecture Video" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-              ></iframe>
-              <div id="video-placeholder" class="text-center p-6 space-y-2 text-neutral-400">
-                <div class="w-12 h-12 rounded-full bg-white/10 mx-auto flex items-center justify-center text-white shadow-soft-sm">
-                  <i data-lucide="play" class="w-5 h-5 fill-white ml-0.5"></i>
+          <!-- LEFT COLUMN: Video (Top) + Interactive Notepad (Bottom Left) -->
+          <div id="left-studio-column" class="flex flex-col h-full min-w-0 overflow-hidden relative shrink-0 border-r border-border" style="width: 48%;">
+
+            <!-- PANE 1: Embedded Video Player (Top Left) -->
+            <div id="pane-video" class="flex flex-col bg-canvas p-3 sm:p-4 space-y-2.5 overflow-y-auto shrink-0 border-b border-border" style="height: 48%; min-height: 180px;">
+              <!-- 16:9 Video Box -->
+              <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-neutral-900 border border-border shadow-soft flex items-center justify-center">
+                <iframe 
+                  id="lecture-video-iframe" 
+                  class="w-full h-full hidden"
+                  src="" 
+                  title="Lecture Video" 
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                ></iframe>
+                <div id="video-placeholder" class="text-center p-6 space-y-2 text-neutral-400">
+                  <div class="w-12 h-12 rounded-full bg-white/10 mx-auto flex items-center justify-center text-white shadow-soft-sm">
+                    <i data-lucide="play" class="w-5 h-5 fill-white ml-0.5"></i>
+                  </div>
+                  <div class="text-xs font-medium text-neutral-200" id="video-placeholder-title">Select a lecture to play video</div>
+                  <div class="text-[11px] text-neutral-400">Official IIMBx unlisted lecture video stream</div>
                 </div>
-                <div class="text-xs font-medium text-neutral-200" id="video-placeholder-title">Select a lecture to play video</div>
-                <div class="text-[11px] text-neutral-400">Official IIMBx unlisted lecture video stream</div>
+              </div>
+
+              <!-- Video Controls Bar -->
+              <div class="flex items-center justify-between text-xs px-1">
+                <div class="flex items-center gap-1.5 text-neutral-400 font-mono text-[11px]">
+                  <span>Speed:</span>
+                  <button onclick="App.setVideoSpeed(1)" class="speed-btn px-1.5 py-0.5 rounded bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-semibold" data-speed="1">1x</button>
+                  <button onclick="App.setVideoSpeed(1.25)" class="speed-btn px-1.5 py-0.5 rounded bg-card-muted hover:bg-muted text-ink-secondary" data-speed="1.25">1.25x</button>
+                  <button onclick="App.setVideoSpeed(1.5)" class="speed-btn px-1.5 py-0.5 rounded bg-card-muted hover:bg-muted text-ink-secondary" data-speed="1.5">1.5x</button>
+                  <button onclick="App.setVideoSpeed(2)" class="speed-btn px-1.5 py-0.5 rounded bg-card-muted hover:bg-muted text-ink-secondary" data-speed="2">2x</button>
+                </div>
+                <div class="flex items-center gap-2">
+                  <a id="video-external-link" href="#" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono text-neutral-400 hover:text-ink flex items-center gap-1 transition" title="Open directly on YouTube">
+                    <span>YouTube</span>
+                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Captured Whiteboard Diagrams -->
+              <div id="notes-slide-gallery" class="hidden w-full pt-3 border-t border-border space-y-2">
+                <div class="text-[10px] font-mono uppercase tracking-wider text-neutral-400 flex items-center gap-1.5">
+                  <i data-lucide="image" class="w-3.5 h-3.5"></i> Captured Whiteboard Diagrams
+                </div>
+                <div id="slide-thumbs-container" class="grid grid-cols-2 gap-2">
+                  <!-- Populated by JS -->
+                </div>
               </div>
             </div>
 
-            <!-- Video Controls Bar -->
-            <div class="flex items-center justify-between text-xs px-1">
-              <div class="flex items-center gap-1.5 text-neutral-400 font-mono text-[11px]">
-                <span>Speed:</span>
-                <button onclick="App.setVideoSpeed(1)" class="speed-btn px-1.5 py-0.5 rounded bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-semibold" data-speed="1">1x</button>
-                <button onclick="App.setVideoSpeed(1.25)" class="speed-btn px-1.5 py-0.5 rounded bg-card-muted hover:bg-muted text-ink-secondary" data-speed="1.25">1.25x</button>
-                <button onclick="App.setVideoSpeed(1.5)" class="speed-btn px-1.5 py-0.5 rounded bg-card-muted hover:bg-muted text-ink-secondary" data-speed="1.5">1.5x</button>
-                <button onclick="App.setVideoSpeed(2)" class="speed-btn px-1.5 py-0.5 rounded bg-card-muted hover:bg-muted text-ink-secondary" data-speed="2">2x</button>
-              </div>
-              <div class="flex items-center gap-2">
-                <a id="video-external-link" href="#" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono text-neutral-400 hover:text-ink flex items-center gap-1 transition" title="Open directly on YouTube">
-                  <span>YouTube</span>
-                  <i data-lucide="external-link" class="w-3 h-3"></i>
-                </a>
-              </div>
+            <!-- VERTICAL RESIZER (Between Video and Notepad) -->
+            <div id="resizer-video-canvas" class="h-2 shrink-0 bg-border/40 hover:bg-neutral-400 dark:hover:bg-neutral-600 active:bg-neutral-600 dark:active:bg-neutral-400 cursor-row-resize transition-colors relative z-10 flex items-center justify-center select-none" title="Drag up/down to resize Video vs Notepad">
+              <div class="h-0.5 w-10 rounded-full bg-neutral-300 dark:bg-neutral-700 pointer-events-none"></div>
             </div>
 
-            <!-- Captured Whiteboard Diagrams -->
-            <div id="notes-slide-gallery" class="hidden w-full pt-4 border-t border-border space-y-2">
-              <div class="text-[10px] font-mono uppercase tracking-wider text-neutral-400 flex items-center gap-1.5">
-                <i data-lucide="image" class="w-3.5 h-3.5"></i> Captured Whiteboard Diagrams
+            <!-- PANE 3: Personal Visual Canvas & Freeform Notepad (Bottom Left) -->
+            <div id="pane-canvas" class="flex-1 flex flex-col bg-canvas min-w-0 min-h-0 relative overflow-hidden">
+              
+              <!-- Notepad Floating Toolbar -->
+              <div class="shrink-0 px-3 py-2 border-b border-border bg-card flex items-center justify-between gap-2 text-xs flex-wrap">
+                
+                <!-- Left: Tools (Draw Pen, Highlighter, Text Note, Eraser) -->
+                <div class="flex items-center gap-1 p-0.5 rounded-lg bg-card-muted border border-border">
+                  <button id="np-tool-pen" onclick="App.setNotepadTool('pen')" class="notepad-tool-btn active px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition shadow-soft-sm font-semibold text-ink bg-card" title="Pen (Draw equations, mindmaps & sketches)">
+                    <i data-lucide="pen-tool" class="w-3.5 h-3.5"></i>
+                    <span class="inline">Pen</span>
+                  </button>
+                  <button id="np-tool-highlighter" onclick="App.setNotepadTool('highlighter')" class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink" title="Highlighter (Highlight text & diagrams)">
+                    <i data-lucide="highlighter" class="w-3.5 h-3.5"></i>
+                    <span class="inline">Highlighter</span>
+                  </button>
+                  <button id="np-tool-text" onclick="App.setNotepadTool('text')" class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink" title="Text Note (Click anywhere to place a note)">
+                    <i data-lucide="type" class="w-3.5 h-3.5"></i>
+                    <span class="inline">Text Note</span>
+                  </button>
+                  <button id="np-tool-eraser" onclick="App.setNotepadTool('eraser')" class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink" title="Eraser (Erase drawing strokes)">
+                    <i data-lucide="eraser" class="w-3.5 h-3.5"></i>
+                    <span class="inline">Eraser</span>
+                  </button>
+                </div>
+
+                <!-- Center: Colors & Stroke Widths -->
+                <div id="np-draw-controls" class="flex items-center gap-2">
+                  <!-- Color dots -->
+                  <div class="flex items-center gap-1.5 p-1 rounded-lg bg-card-muted/60 border border-border">
+                    <button onclick="App.setNotepadColor('ink')" class="notepad-color-dot active bg-neutral-900 dark:bg-white" title="Ink (Black/White)" data-color="ink"></button>
+                    <button onclick="App.setNotepadColor('#ef4444')" class="notepad-color-dot bg-red-500" title="Red" data-color="#ef4444"></button>
+                    <button onclick="App.setNotepadColor('#f59e0b')" class="notepad-color-dot bg-amber-500" title="Amber Formula" data-color="#f59e0b"></button>
+                    <button onclick="App.setNotepadColor('#10b981')" class="notepad-color-dot bg-emerald-500" title="Emerald" data-color="#10b981"></button>
+                    <button onclick="App.setNotepadColor('#3b82f6')" class="notepad-color-dot bg-blue-500" title="Blue" data-color="#3b82f6"></button>
+                  </div>
+
+                  <!-- Stroke Size -->
+                  <div class="flex items-center gap-0.5 text-[11px] font-mono p-0.5 rounded-lg bg-card-muted border border-border">
+                    <button onclick="App.setNotepadWidth(2)" class="np-size-btn active px-1.5 py-0.5 rounded text-xs" data-width="2">S</button>
+                    <button onclick="App.setNotepadWidth(4)" class="np-size-btn px-1.5 py-0.5 rounded text-xs text-neutral-400" data-width="4">M</button>
+                    <button onclick="App.setNotepadWidth(8)" class="np-size-btn px-1.5 py-0.5 rounded text-xs text-neutral-400" data-width="8">L</button>
+                  </div>
+                </div>
+
+                <!-- Right: Actions (Undo, Screenshot, +Note, Clear, Status & Hint) -->
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <button onclick="App.undoNotepadStroke()" class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition" title="Undo last stroke (Cmd+Z)">
+                    <i data-lucide="undo-2" class="w-3.5 h-3.5"></i>
+                  </button>
+
+                  <!-- Screenshot / Image Upload Button -->
+                  <button onclick="App.triggerNotepadImageUpload()" class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition flex items-center gap-1" title="Add or Paste Screenshot / Diagram (or Drag & Drop directly onto the pad)">
+                    <i data-lucide="image-plus" class="w-3.5 h-3.5"></i>
+                    <span class="hidden sm:inline text-xs font-mono">Screenshot</span>
+                  </button>
+                  <input type="file" id="notepad-image-file-input" accept="image/*" class="hidden" onchange="App.onNotepadImageFileSelected(this)">
+
+                  <button onclick="App.addFloatingTextNote()" class="pill-ink text-[11px] px-2.5 py-1 flex items-center gap-1" title="Add a movable text note anywhere">
+                    <i data-lucide="plus" class="w-3 h-3"></i>
+                    <span>New Note</span>
+                  </button>
+                  <button onclick="App.clearCurrentCanvas()" class="p-1.5 text-neutral-400 hover:text-rose-500 rounded-lg hover:bg-muted transition" title="Clear notepad for this lecture">
+                    <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                  </button>
+                  <div class="hidden 2xl:flex items-center gap-1.5 text-[10px] font-mono pl-1 border-l border-border">
+                    <span id="notepad-tool-hint" class="text-neutral-400">Pen mode • Drag to draw • Paste screenshot</span>
+                  </div>
+                  <div class="hidden sm:flex items-center gap-1 text-[10px] font-mono text-emerald-500 pl-1 border-l border-border">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    <span id="notepad-status-indicator">Auto-saved</span>
+                  </div>
+                </div>
+
               </div>
-              <div id="slide-thumbs-container" class="grid grid-cols-2 gap-2">
-                <!-- Populated by JS -->
+
+              <!-- Notepad Canvas Viewport (Scrollable Infinite Stage with Drag & Drop) -->
+              <div id="notepad-viewport" class="flex-1 w-full h-full relative overflow-auto ledger-notepad-pattern" style="cursor: crosshair;">
+                
+                <!-- 2400x1800 Drawing & Note Stage -->
+                <div id="notepad-stage" class="relative" style="width: 2400px; height: 1800px;">
+                  
+                  <!-- Floating Movable Images & Screenshots Layer (z-index 12) -->
+                  <div id="notepad-images-layer" class="absolute inset-0 pointer-events-none" style="z-index: 12;">
+                    <!-- Dynamically rendered screenshot cards -->
+                  </div>
+
+                  <!-- Drawing Canvas (HTML5) with touch-action: none (z-index 18) -->
+                  <canvas 
+                    id="notepad-drawing-canvas" 
+                    width="2400" 
+                    height="1800" 
+                    class="absolute inset-0 w-full h-full pointer-events-auto"
+                    style="z-index: 18; touch-action: none;"
+                  ></canvas>
+
+                  <!-- Floating Movable Text Notes Layer (z-index 25) -->
+                  <div id="notepad-notes-layer" class="absolute inset-0 pointer-events-none" style="z-index: 25;">
+                    <!-- Dynamically rendered text notes -->
+                  </div>
+
+                </div>
+
               </div>
+
             </div>
+
           </div>
 
-          <!-- PANE 2: Synthesized Notes Reader -->
+          <!-- HORIZONTAL RESIZER (Between Left Column [Video+Notepad] and Right Column [Notes Reader]) -->
+          <div id="resizer-notes-column" class="w-2 shrink-0 bg-border/40 hover:bg-neutral-400 dark:hover:bg-neutral-600 active:bg-neutral-600 dark:active:bg-neutral-400 cursor-col-resize transition-colors relative z-10 flex items-center justify-center select-none" title="Drag left/right to resize Notes vs Media/Notepad">
+            <div class="w-0.5 h-10 rounded-full bg-neutral-300 dark:bg-neutral-700 pointer-events-none"></div>
+          </div>
+
+          <!-- PANE 2: Synthesized Notes Reader (Right Column) -->
           <div id="pane-notes" class="flex-1 h-full overflow-y-auto px-6 sm:px-10 py-6 bg-card min-w-0">
             <div class="max-w-3xl w-full mx-auto space-y-6">
               <div id="notes-content-body" class="prose-ledger w-full">
                 <div class="text-center py-20 text-xs text-neutral-400">Select a lecture to view synthesized notes.</div>
               </div>
             </div>
-          </div>
-
-          <!-- PANE 3: Personal Visual Canvas & Freeform Notepad -->
-          <div id="pane-canvas" class="hidden flex-1 h-full flex flex-col bg-canvas min-w-0 relative">
-            
-            <!-- Notepad Floating Toolbar -->
-            <div class="shrink-0 px-3 py-2 border-b border-border bg-card flex items-center justify-between gap-2 text-xs flex-wrap">
-              
-              <!-- Left: Tools (Draw Pen, Highlighter, Text Note, Eraser) -->
-              <div class="flex items-center gap-1 p-0.5 rounded-lg bg-card-muted border border-border">
-                <button id="np-tool-pen" onclick="App.setNotepadTool('pen')" class="notepad-tool-btn active px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition shadow-soft-sm font-semibold text-ink bg-card" title="Pen (Draw equations, mindmaps & sketches)">
-                  <i data-lucide="pen-tool" class="w-3.5 h-3.5"></i>
-                  <span class="inline">Pen</span>
-                </button>
-                <button id="np-tool-highlighter" onclick="App.setNotepadTool('highlighter')" class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink" title="Highlighter (Highlight text & diagrams)">
-                  <i data-lucide="highlighter" class="w-3.5 h-3.5"></i>
-                  <span class="inline">Highlighter</span>
-                </button>
-                <button id="np-tool-text" onclick="App.setNotepadTool('text')" class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink" title="Text Note (Click anywhere to place a note)">
-                  <i data-lucide="type" class="w-3.5 h-3.5"></i>
-                  <span class="inline">Text Note</span>
-                </button>
-                <button id="np-tool-eraser" onclick="App.setNotepadTool('eraser')" class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink" title="Eraser (Erase drawing strokes)">
-                  <i data-lucide="eraser" class="w-3.5 h-3.5"></i>
-                  <span class="inline">Eraser</span>
-                </button>
-              </div>
-
-              <!-- Center: Colors & Stroke Widths -->
-              <div id="np-draw-controls" class="flex items-center gap-2">
-                <!-- Color dots -->
-                <div class="flex items-center gap-1.5 p-1 rounded-lg bg-card-muted/60 border border-border">
-                  <button onclick="App.setNotepadColor('ink')" class="notepad-color-dot active bg-neutral-900 dark:bg-white" title="Ink (Black/White)" data-color="ink"></button>
-                  <button onclick="App.setNotepadColor('#ef4444')" class="notepad-color-dot bg-red-500" title="Red" data-color="#ef4444"></button>
-                  <button onclick="App.setNotepadColor('#f59e0b')" class="notepad-color-dot bg-amber-500" title="Amber Formula" data-color="#f59e0b"></button>
-                  <button onclick="App.setNotepadColor('#10b981')" class="notepad-color-dot bg-emerald-500" title="Emerald" data-color="#10b981"></button>
-                  <button onclick="App.setNotepadColor('#3b82f6')" class="notepad-color-dot bg-blue-500" title="Blue" data-color="#3b82f6"></button>
-                </div>
-
-                <!-- Stroke Size -->
-                <div class="flex items-center gap-0.5 text-[11px] font-mono p-0.5 rounded-lg bg-card-muted border border-border">
-                  <button onclick="App.setNotepadWidth(2)" class="np-size-btn active px-1.5 py-0.5 rounded text-xs" data-width="2">S</button>
-                  <button onclick="App.setNotepadWidth(4)" class="np-size-btn px-1.5 py-0.5 rounded text-xs text-neutral-400" data-width="4">M</button>
-                  <button onclick="App.setNotepadWidth(8)" class="np-size-btn px-1.5 py-0.5 rounded text-xs text-neutral-400" data-width="8">L</button>
-                </div>
-              </div>
-
-              <!-- Right: Actions (Undo, +Note, Clear, Status & Hint) -->
-              <div class="flex items-center gap-2 shrink-0">
-                <button onclick="App.undoNotepadStroke()" class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition" title="Undo last stroke (Cmd+Z)">
-                  <i data-lucide="undo-2" class="w-3.5 h-3.5"></i>
-                </button>
-                <button onclick="App.addFloatingTextNote()" class="pill-ink text-[11px] px-2.5 py-1 flex items-center gap-1" title="Add a movable text note anywhere">
-                  <i data-lucide="plus" class="w-3 h-3"></i>
-                  <span>New Note</span>
-                </button>
-                <button onclick="App.clearCurrentCanvas()" class="p-1.5 text-neutral-400 hover:text-rose-500 rounded-lg hover:bg-muted transition" title="Clear notepad for this lecture">
-                  <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-                </button>
-                <div class="hidden xl:flex items-center gap-1.5 text-[10px] font-mono pl-1 border-l border-border">
-                  <span id="notepad-tool-hint" class="text-neutral-400">Pen mode • Drag to draw • Double-click to type</span>
-                </div>
-                <div class="hidden sm:flex items-center gap-1 text-[10px] font-mono text-emerald-500 pl-1 border-l border-border">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                  <span id="notepad-status-indicator">Auto-saved</span>
-                </div>
-              </div>
-
-            </div>
-
-            <!-- Notepad Canvas Viewport (Scrollable Infinite Stage) -->
-            <div id="notepad-viewport" class="flex-1 w-full h-full relative overflow-auto ledger-notepad-pattern" style="cursor: crosshair;">
-              
-              <!-- 2400x1800 Drawing & Note Stage -->
-              <div id="notepad-stage" class="relative" style="width: 2400px; height: 1800px;">
-                
-                <!-- Drawing Canvas (HTML5) with touch-action: none -->
-                <canvas 
-                  id="notepad-drawing-canvas" 
-                  width="2400" 
-                  height="1800" 
-                  class="absolute inset-0 w-full h-full pointer-events-auto"
-                  style="z-index: 10; touch-action: none;"
-                ></canvas>
-
-                <!-- Floating Movable Text Notes Layer -->
-                <div id="notepad-notes-layer" class="absolute inset-0 pointer-events-none" style="z-index: 20;">
-                  <!-- Dynamically rendered text notes -->
-                </div>
-
-              </div>
-
-            </div>
-
           </div>
 
         </div>

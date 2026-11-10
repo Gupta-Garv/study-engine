@@ -102,22 +102,31 @@ body {
   display: block !important;
 }
 
-/* Studio Workspace Pane proportions - clean 50/50 split with zero clipping */
-#pane-video:not(.hidden) {
+/* Studio Workspace Pane proportions - left vertical column (video + canvas) + right notes */
+#left-studio-column:not(.hidden) {
   display: flex !important;
-  flex: 1 1 0% !important;
-  min-width: 0 !important;
-  max-width: 50% !important;
+  flex-direction: column !important;
+  flex: none !important;
 }
 
-#pane-notes:not(.hidden) {
-  display: block !important;
-  flex: 1 1 0% !important;
-  min-width: 0 !important;
+#pane-video:not(.hidden) {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: none !important;
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 #pane-canvas:not(.hidden) {
   display: flex !important;
+  flex-direction: column !important;
+  flex: 1 1 0% !important;
+  width: 100% !important;
+  min-height: 0 !important;
+}
+
+#pane-notes:not(.hidden) {
+  display: block !important;
   flex: 1 1 0% !important;
   min-width: 0 !important;
 }
@@ -487,6 +496,66 @@ mark.search-highlight {
 .timestamp-jump-btn:hover {
   background-color: var(--ink);
   color: var(--canvas);
+}
+
+/* =========================================================================
+   STUDIO MULTI-PANE RESIZERS & SCREENSHOT CARDS
+   ========================================================================= */
+
+#resizer-video-canvas,
+#resizer-notes-column {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#resizer-video-canvas.resizer-active,
+#resizer-video-canvas:hover,
+#resizer-notes-column.resizer-active,
+#resizer-notes-column:hover {
+  background-color: var(--ink-secondary) !important;
+}
+
+/* Floating Screenshot / Image Cards on Canvas */
+.notepad-image-card {
+  position: absolute;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: var(--elevation-soft);
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+  pointer-events: auto !important;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.notepad-image-card:hover,
+.notepad-image-card:focus-within {
+  box-shadow: var(--elevation-soft-md);
+  border-color: var(--ink-secondary);
+}
+
+.notepad-image-card.dragging {
+  cursor: grabbing !important;
+  z-index: 100 !important;
+  opacity: 0.95;
+  box-shadow: 0 16px 32px -4px rgba(0, 0, 0, 0.3);
+}
+
+.notepad-image-handle {
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.notepad-image-handle:active {
+  cursor: grabbing;
+}
+
+.notepad-drop-active {
+  outline: 2px dashed #3b82f6 !important;
+  outline-offset: -4px;
 }
 
 

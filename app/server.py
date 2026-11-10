@@ -403,6 +403,7 @@ class CanvasDataRequest(BaseModel):
     connections: List[dict] = []
     drawings: List[dict] = []
     text_notes: List[dict] = []
+    images: List[dict] = []
 
     model_config = {"extra": "allow"}
 

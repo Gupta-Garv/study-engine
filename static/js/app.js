@@ -28,7 +28,7 @@ const App = {
   checklistFilter: 'all',
   checklistItems: [],
   countdownInterval: null,
-  paneState: { video: true, notes: true, canvas: false, copilot: false },
+  paneState: { video: true, notes: true, canvas: true, copilot: false },
   activePreset: 'lecture',
   videoSpeed: 1,
   notepadTool: 'pen',
@@ -37,7 +37,14 @@ const App = {
   isDrawing: false,
   isErasing: false,
   currentStroke: null,
-  currentTopicCanvas: { drawings: [], text_notes: [], cards: [] },
+  currentTopicCanvas: { drawings: [], text_notes: [], cards: [], images: [] },
+  draggingNoteId: null,
+  dragNoteOffset: { x: 0, y: 0 },
+  draggingImageId: null,
+  dragImageOffset: { x: 0, y: 0 },
+  resizingImageId: null,
+  resizeStartX: 0,
+  resizeStartWidth: 0,
   draggingNoteId: null,
   dragNoteOffset: { x: 0, y: 0 },
   saveNotepadDebounceTimer: null,
@@ -978,7 +985,7 @@ const App = {
   applyLayoutPreset(preset) {
     this.activePreset = preset;
     if (preset === 'lecture') {
-      this.paneState = { video: true, notes: true, canvas: false, copilot: false };
+      this.paneState = { video: true, notes: true, canvas: true, copilot: false };
     } else if (preset === 'studio') {
       this.paneState = { video: false, notes: true, canvas: true, copilot: false };
     } else if (preset === 'tutor') {
@@ -1008,10 +1015,84 @@ const App = {
   },
 
   updateStudioLayout() {
-    ['video', 'notes', 'canvas'].forEach(p => {
-      const el = document.getElementById(`pane-${p}`);
+    const leftCol = document.getElementById('left-studio-column');
+    const paneVideo = document.getElementById('pane-video');
+    const resizerVideo = document.getElementById('resizer-video-canvas');
+    const paneCanvas = document.getElementById('pane-canvas');
+    const resizerNotes = document.getElementById('resizer-notes-column');
+    const paneNotes = document.getElementById('pane-notes');
+    const copilot = document.getElementById('copilot-panel');
+    const resizerCopilot = document.getElementById('resizer-copilot');
+
+    const showVideo = !!this.paneState.video;
+    const showCanvas = !!this.paneState.canvas;
+    const showNotes = !!this.paneState.notes;
+    const showCopilot = !!this.paneState.copilot;
+
+    // 1. Left Column (Video + Notepad) Visibility & Vertical Sizing
+    if (!showVideo && !showCanvas) {
+      if (leftCol) leftCol.classList.add('hidden');
+      if (resizerNotes) resizerNotes.classList.add('hidden');
+    } else {
+      if (leftCol) {
+        leftCol.classList.remove('hidden');
+        if (!showNotes) {
+          leftCol.style.width = '100%';
+        } else {
+          const savedW = localStorage.getItem('study_engine_left_col_width');
+          leftCol.style.width = savedW || '48%';
+        }
+      }
+      if (resizerNotes) resizerNotes.classList.toggle('hidden', !showNotes);
+
+      if (showVideo && showCanvas) {
+        if (paneVideo) {
+          paneVideo.classList.remove('hidden');
+          const savedH = localStorage.getItem('study_engine_video_pane_height');
+          paneVideo.style.height = savedH || '48%';
+        }
+        if (resizerVideo) resizerVideo.classList.remove('hidden');
+        if (paneCanvas) {
+          paneCanvas.classList.remove('hidden');
+          paneCanvas.style.height = '';
+          paneCanvas.classList.add('flex-1');
+        }
+      } else if (showVideo && !showCanvas) {
+        if (paneVideo) {
+          paneVideo.classList.remove('hidden');
+          paneVideo.style.height = '100%';
+        }
+        if (resizerVideo) resizerVideo.classList.add('hidden');
+        if (paneCanvas) paneCanvas.classList.add('hidden');
+      } else if (!showVideo && showCanvas) {
+        if (paneVideo) paneVideo.classList.add('hidden');
+        if (resizerVideo) resizerVideo.classList.add('hidden');
+        if (paneCanvas) {
+          paneCanvas.classList.remove('hidden');
+          paneCanvas.style.height = '100%';
+          paneCanvas.classList.remove('flex-1');
+        }
+      }
+    }
+
+    // 2. Right Column (Synthesized Notes)
+    if (paneNotes) {
+      paneNotes.classList.toggle('hidden', !showNotes);
+      if (!showVideo && !showCanvas) {
+        paneNotes.style.width = '100%';
+      } else {
+        paneNotes.style.width = '';
+      }
+    }
+
+    // 3. Lecture Copilot Drawer
+    if (copilot) copilot.classList.toggle('hidden', !showCopilot);
+    if (resizerCopilot) resizerCopilot.classList.toggle('hidden', !showCopilot);
+    this.isCopilotOpen = showCopilot;
+
+    // 4. Update Header Toggle Buttons
+    ['video', 'notes', 'canvas', 'copilot'].forEach(p => {
       const btn = document.getElementById(`toggle-${p}-btn`);
-      if (el) el.classList.toggle('hidden', !this.paneState[p]);
       if (btn) {
         if (this.paneState[p]) {
           btn.className = 'tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition active font-semibold border-neutral-900 dark:border-white bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-soft-sm';
@@ -1021,21 +1102,8 @@ const App = {
       }
     });
 
-    const copilotEl = document.getElementById('copilot-panel');
-    const copilotResizer = document.getElementById('resizer-copilot');
-    const copilotBtn = document.getElementById('toggle-copilot-btn');
-    if (copilotEl) copilotEl.classList.toggle('hidden', !this.paneState.copilot);
-    if (copilotResizer) copilotResizer.classList.toggle('hidden', !this.paneState.copilot);
-    if (copilotBtn) {
-      if (this.paneState.copilot) {
-        copilotBtn.className = 'tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition active font-semibold border-neutral-900 dark:border-white bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-soft-sm';
-      } else {
-        copilotBtn.className = 'tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition border-border bg-card text-neutral-400 hover:text-ink';
-      }
-    }
-    this.isCopilotOpen = !!this.paneState.copilot;
-
-    if (this.paneState.canvas) {
+    // 5. Redraw canvas after layout change
+    if (showCanvas) {
       this.renderCanvas();
     }
     if (window.lucide) window.lucide.createIcons();
@@ -1140,13 +1208,60 @@ const App = {
     const viewport = document.getElementById('notepad-viewport');
     if (viewport) {
       viewport.addEventListener('dblclick', (e) => {
-        if (e.target.closest && e.target.closest('.notepad-text-note')) return;
+        if (e.target.closest && (e.target.closest('.notepad-text-note') || e.target.closest('.notepad-image-card'))) return;
         const coords = this.getNotepadCanvasCoords(e);
         this.addFloatingTextNoteAt(coords.x, coords.y);
       });
+
+      // Drag and Drop Screenshot Images onto Notepad
+      viewport.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        viewport.classList.add('notepad-drop-active');
+      });
+
+      viewport.addEventListener('dragleave', (e) => {
+        e.preventDefault();
+        viewport.classList.remove('notepad-drop-active');
+      });
+
+      viewport.addEventListener('drop', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        viewport.classList.remove('notepad-drop-active');
+        if (e.dataTransfer && e.dataTransfer.files) {
+          for (let i = 0; i < e.dataTransfer.files.length; i++) {
+            const file = e.dataTransfer.files[i];
+            if (file.type && file.type.startsWith('image/')) {
+              this.handleImageUploadFile(file, e.clientX, e.clientY);
+            }
+          }
+        }
+      });
     }
 
-    // Global Pointer listeners for dragging notes smoothly
+    // Global Clipboard Paste listener (Cmd+V / Ctrl+V) for instant screenshot pasting!
+    window.addEventListener('paste', (e) => {
+      const tag = (e.target && e.target.tagName) || '';
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || (e.target && e.target.isContentEditable)) return;
+      if (!this.paneState || !this.paneState.canvas) return;
+
+      if (e.clipboardData && e.clipboardData.items) {
+        for (let i = 0; i < e.clipboardData.items.length; i++) {
+          const item = e.clipboardData.items[i];
+          if (item.type && item.type.indexOf('image') !== -1) {
+            const file = item.getAsFile();
+            if (file) {
+              e.preventDefault();
+              this.handleImageUploadFile(file);
+              break;
+            }
+          }
+        }
+      }
+    });
+
+    // Global Pointer listeners for dragging notes & images smoothly
     window.addEventListener('pointermove', (e) => this.onNotepadGlobalPointerMove(e));
     window.addEventListener('pointerup', (e) => this.onNotepadGlobalPointerUp(e));
     window.addEventListener('mousemove', (e) => {
@@ -1560,50 +1675,36 @@ const App = {
       const el = this.createNoteElement(note);
       container.appendChild(el);
       if (window.lucide) window.lucide.createIcons();
-
       const ta = el.querySelector('textarea');
-      if (ta) {
-        setTimeout(() => {
-          ta.focus();
-          if (initialText) {
-            ta.style.height = 'auto';
-            ta.style.height = Math.max(52, ta.scrollHeight) + 'px';
-          }
-        }, 50);
-      }
+      if (ta) ta.focus();
     }
 
     this.scheduleSaveCanvas();
   },
 
   onNoteTextInput(e, noteId) {
-    const ta = e.target;
-    ta.style.height = 'auto';
-    ta.style.height = Math.max(52, ta.scrollHeight) + 'px';
-
     const note = (this.currentTopicCanvas.text_notes || []).find(n => n.id === noteId);
-    if (note) {
-      note.text = ta.value;
-      this.scheduleSaveCanvas();
-    }
+    if (!note) return;
+    note.text = e.target.value;
+    e.target.style.height = 'auto';
+    e.target.style.height = Math.max(52, e.target.scrollHeight) + 'px';
+    this.scheduleSaveCanvas();
   },
 
   onNoteHandlePointerDown(e, noteId) {
-    if (e.button !== undefined && e.button !== 0 && e.button !== -1) return;
+    if (e.target.closest('button')) return;
     e.preventDefault();
-    e.stopPropagation();
-
     this.draggingNoteId = noteId;
+
     const note = (this.currentTopicCanvas.text_notes || []).find(n => n.id === noteId);
     if (!note) return;
 
     this.maxNoteZIndex = (this.maxNoteZIndex || 30) + 1;
     note.zIndex = this.maxNoteZIndex;
-
     const el = document.querySelector(`.notepad-text-note[data-note-id="${noteId}"]`);
     if (el) {
       el.style.zIndex = note.zIndex;
-      el.classList.add('dragging', 'shadow-soft-md');
+      el.classList.add('shadow-soft-md');
     }
 
     this.dragNoteOffset = {
@@ -1612,35 +1713,293 @@ const App = {
     };
   },
 
-  onNotepadGlobalPointerMove(e) {
-    if (!this.draggingNoteId) return;
+  // -------------------------------------------------------------
+  // Screenshot & Image Upload Engine
+  // -------------------------------------------------------------
+  triggerNotepadImageUpload() {
+    const fileInput = document.getElementById('notepad-image-file-input');
+    if (fileInput) fileInput.click();
+  },
 
-    const note = (this.currentTopicCanvas.text_notes || []).find(n => n.id === this.draggingNoteId);
-    if (!note) return;
+  onNotepadImageFileSelected(e) {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      this.handleImageUploadFile(file);
+    }
+    e.target.value = '';
+  },
 
-    const newX = Math.max(10, Math.min(2100, e.clientX - this.dragNoteOffset.x));
-    const newY = Math.max(10, Math.min(1600, e.clientY - this.dragNoteOffset.y));
+  handleImageUploadFile(file, clientX = null, clientY = null) {
+    if (!file || !file.type.startsWith('image/')) return;
 
-    note.x = Math.round(newX);
-    note.y = Math.round(newY);
+    const reader = new FileReader();
+    reader.onload = (loadEvt) => {
+      const rawDataUrl = loadEvt.target.result;
+      const img = new Image();
+      img.onload = () => {
+        // Optimize high-res screenshots to max 1200px to maintain crispness without SQLite bloat
+        let targetW = img.naturalWidth || img.width;
+        let targetH = img.naturalHeight || img.height;
+        const maxDim = 1200;
+        if (targetW > maxDim || targetH > maxDim) {
+          if (targetW > targetH) {
+            targetH = Math.round((targetH * maxDim) / targetW);
+            targetW = maxDim;
+          } else {
+            targetW = Math.round((targetW * maxDim) / targetH);
+            targetH = maxDim;
+          }
+        }
 
-    const el = document.querySelector(`.notepad-text-note[data-note-id="${this.draggingNoteId}"]`);
+        const offCanvas = document.createElement('canvas');
+        offCanvas.width = targetW;
+        offCanvas.height = targetH;
+        const ctx = offCanvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, targetW, targetH);
+        const optimizedSrc = offCanvas.toDataURL('image/jpeg', 0.88);
+
+        // Determine drop or viewport coordinates
+        let x = 80;
+        let y = 80;
+        if (clientX !== null && clientY !== null) {
+          const coords = this.getNotepadCanvasCoords({ clientX, clientY });
+          x = coords.x - 100;
+          y = coords.y - 40;
+        } else {
+          const vp = document.getElementById('notepad-viewport');
+          if (vp) {
+            x = vp.scrollLeft + 60 + Math.floor(Math.random() * 40);
+            y = vp.scrollTop + 60 + Math.floor(Math.random() * 40);
+          }
+        }
+
+        if (!this.currentTopicCanvas.images) {
+          this.currentTopicCanvas.images = [];
+        }
+
+        const imgWidth = Math.min(Math.max(260, targetW), 440);
+        const imageRecord = {
+          id: 'img_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
+          src: optimizedSrc,
+          title: file.name ? file.name.substring(0, 32) : 'Screenshot',
+          x: Math.max(10, Math.round(x)),
+          y: Math.max(10, Math.round(y)),
+          width: imgWidth,
+          zIndex: 12
+        };
+
+        this.currentTopicCanvas.images.push(imageRecord);
+        this.renderNotepadImages();
+        this.scheduleSaveCanvas();
+
+        const hintEl = document.getElementById('notepad-tool-hint');
+        if (hintEl) {
+          hintEl.textContent = 'Screenshot added • Drag header to move • Draw on it with Pen or annotate';
+        }
+      };
+      img.src = rawDataUrl;
+    };
+    reader.readAsDataURL(file);
+  },
+
+  renderNotepadImages() {
+    const container = document.getElementById('notepad-images-layer');
+    if (!container) return;
+    container.innerHTML = '';
+
+    const images = this.currentTopicCanvas.images || [];
+    images.forEach(img => {
+      const el = this.createImageCardElement(img);
+      container.appendChild(el);
+    });
+
+    if (window.lucide) window.lucide.createIcons();
+  },
+
+  createImageCardElement(img) {
+    const el = document.createElement('div');
+    el.className = 'notepad-image-card absolute bg-card border border-border rounded-xl shadow-soft flex flex-col pointer-events-auto select-none overflow-hidden transition-shadow';
+    el.style.left = `${img.x}px`;
+    el.style.top = `${img.y}px`;
+    el.style.width = `${img.width || 380}px`;
+    el.style.zIndex = img.zIndex || 12;
+    el.setAttribute('data-image-id', img.id);
+
+    // Header / Drag Grip
+    const header = document.createElement('div');
+    header.className = 'notepad-image-handle flex items-center justify-between px-2.5 py-1.5 border-b border-border/70 bg-card-muted/80 text-ink cursor-move select-none';
+    header.innerHTML = `
+      <div class="flex items-center gap-1.5 text-neutral-400 min-w-0">
+        <i data-lucide="image" class="w-3.5 h-3.5 text-neutral-400 shrink-0"></i>
+        <span class="text-[10px] font-mono uppercase tracking-wider text-neutral-400 truncate max-w-[140px]">${img.title || 'Screenshot'}</span>
+      </div>
+      <div class="flex items-center gap-1 shrink-0">
+        <button onclick="App.resizeNotepadImage('${img.id}', -50)" class="text-neutral-400 hover:text-ink p-0.5 rounded transition" title="Smaller (-50px)">
+          <i data-lucide="zoom-out" class="w-3 h-3"></i>
+        </button>
+        <button onclick="App.resizeNotepadImage('${img.id}', 50)" class="text-neutral-400 hover:text-ink p-0.5 rounded transition" title="Larger (+50px)">
+          <i data-lucide="zoom-in" class="w-3 h-3"></i>
+        </button>
+        <button onclick="App.deleteNotepadImage('${img.id}')" class="text-neutral-400 hover:text-rose-500 transition p-0.5 rounded ml-1" title="Delete screenshot">
+          <i data-lucide="trash-2" class="w-3 h-3"></i>
+        </button>
+      </div>
+    `;
+
+    header.addEventListener('pointerdown', (e) => this.onImageHandlePointerDown(e, img.id));
+    header.addEventListener('mousedown', (e) => {
+      if (!window.PointerEvent) this.onImageHandlePointerDown(e, img.id);
+    });
+
+    // Image Body
+    const body = document.createElement('div');
+    body.className = 'relative w-full bg-neutral-900/10 dark:bg-black/20 flex items-center justify-center p-1';
+    
+    const imgEl = document.createElement('img');
+    imgEl.src = img.src;
+    imgEl.alt = img.title || 'Lecture Screenshot';
+    imgEl.className = 'w-full h-auto object-contain rounded-lg pointer-events-none block';
+    imgEl.draggable = false;
+    body.appendChild(imgEl);
+
+    // Corner resize handle (bottom-right)
+    const cornerHandle = document.createElement('div');
+    cornerHandle.className = 'notepad-image-handle-corner absolute bottom-0 right-0 w-5 h-5 cursor-nwse-resize flex items-end justify-end p-0.5 text-neutral-400 hover:text-ink z-10';
+    cornerHandle.innerHTML = `<i data-lucide="maximize-2" class="w-2.5 h-2.5 opacity-60"></i>`;
+    cornerHandle.addEventListener('pointerdown', (e) => this.onImageCornerResizePointerDown(e, img.id));
+
+    el.appendChild(header);
+    el.appendChild(body);
+    el.appendChild(cornerHandle);
+
+    return el;
+  },
+
+  onImageHandlePointerDown(e, imgId) {
+    if (e.target.closest('button')) return;
+    e.preventDefault();
+    this.draggingImageId = imgId;
+    const img = (this.currentTopicCanvas.images || []).find(i => i.id === imgId);
+    if (!img) return;
+
+    this.dragImageOffset = {
+      x: e.clientX - img.x,
+      y: e.clientY - img.y
+    };
+
+    const el = document.querySelector(`.notepad-image-card[data-image-id="${imgId}"]`);
+    if (el) el.classList.add('shadow-soft-md');
+  },
+
+  onImageCornerResizePointerDown(e, imgId) {
+    e.preventDefault();
+    e.stopPropagation();
+    const img = (this.currentTopicCanvas.images || []).find(i => i.id === imgId);
+    if (!img) return;
+
+    this.resizingImageId = imgId;
+    this.resizeStartX = e.clientX;
+    this.resizeStartWidth = img.width || 380;
+  },
+
+  resizeNotepadImage(imgId, deltaWidth) {
+    const img = (this.currentTopicCanvas.images || []).find(i => i.id === imgId);
+    if (!img) return;
+
+    img.width = Math.max(180, Math.min(1100, (img.width || 380) + deltaWidth));
+    const el = document.querySelector(`.notepad-image-card[data-image-id="${imgId}"]`);
     if (el) {
-      el.style.left = `${note.x}px`;
-      el.style.top = `${note.y}px`;
+      el.style.width = `${img.width}px`;
+    }
+    this.scheduleSaveCanvas();
+  },
+
+  deleteNotepadImage(imgId) {
+    this.currentTopicCanvas.images = (this.currentTopicCanvas.images || []).filter(i => i.id !== imgId);
+    const el = document.querySelector(`.notepad-image-card[data-image-id="${imgId}"]`);
+    if (el) el.remove();
+    this.scheduleSaveCanvas();
+  },
+
+  // -------------------------------------------------------------
+  // Unified Pointer Drag for Notes and Images
+  // -------------------------------------------------------------
+  onNotepadGlobalPointerMove(e) {
+    // 1. Dragging Text Note
+    if (this.draggingNoteId) {
+      const note = (this.currentTopicCanvas.text_notes || []).find(n => n.id === this.draggingNoteId);
+      if (note) {
+        const newX = Math.max(10, Math.min(2100, e.clientX - this.dragNoteOffset.x));
+        const newY = Math.max(10, Math.min(1600, e.clientY - this.dragNoteOffset.y));
+        note.x = Math.round(newX);
+        note.y = Math.round(newY);
+
+        const el = document.querySelector(`.notepad-text-note[data-note-id="${this.draggingNoteId}"]`);
+        if (el) {
+          el.style.left = `${note.x}px`;
+          el.style.top = `${note.y}px`;
+        }
+      }
+    }
+
+    // 2. Dragging Screenshot Image Card
+    if (this.draggingImageId) {
+      const img = (this.currentTopicCanvas.images || []).find(i => i.id === this.draggingImageId);
+      if (img) {
+        const newX = Math.max(10, Math.min(2100, e.clientX - this.dragImageOffset.x));
+        const newY = Math.max(10, Math.min(1600, e.clientY - this.dragImageOffset.y));
+        img.x = Math.round(newX);
+        img.y = Math.round(newY);
+
+        const el = document.querySelector(`.notepad-image-card[data-image-id="${this.draggingImageId}"]`);
+        if (el) {
+          el.style.left = `${img.x}px`;
+          el.style.top = `${img.y}px`;
+        }
+      }
+    }
+
+    // 3. Resizing Screenshot Image Card via corner handle
+    if (this.resizingImageId) {
+      const img = (this.currentTopicCanvas.images || []).find(i => i.id === this.resizingImageId);
+      if (img) {
+        const delta = e.clientX - this.resizeStartX;
+        const newWidth = Math.max(180, Math.min(1100, this.resizeStartWidth + delta));
+        img.width = Math.round(newWidth);
+
+        const el = document.querySelector(`.notepad-image-card[data-image-id="${this.resizingImageId}"]`);
+        if (el) {
+          el.style.width = `${img.width}px`;
+        }
+      }
     }
   },
 
   onNotepadGlobalPointerUp(e) {
-    if (!this.draggingNoteId) return;
+    let shouldSave = false;
 
-    const el = document.querySelector(`.notepad-text-note[data-note-id="${this.draggingNoteId}"]`);
-    if (el) {
-      el.classList.remove('dragging', 'shadow-soft-md');
+    if (this.draggingNoteId) {
+      const el = document.querySelector(`.notepad-text-note[data-note-id="${this.draggingNoteId}"]`);
+      if (el) el.classList.remove('dragging', 'shadow-soft-md');
+      this.draggingNoteId = null;
+      shouldSave = true;
     }
 
-    this.draggingNoteId = null;
-    this.scheduleSaveCanvas();
+    if (this.draggingImageId) {
+      const el = document.querySelector(`.notepad-image-card[data-image-id="${this.draggingImageId}"]`);
+      if (el) el.classList.remove('shadow-soft-md');
+      this.draggingImageId = null;
+      shouldSave = true;
+    }
+
+    if (this.resizingImageId) {
+      this.resizingImageId = null;
+      shouldSave = true;
+    }
+
+    if (shouldSave) {
+      this.scheduleSaveCanvas();
+    }
   },
 
   deleteNotepadNote(noteId) {
@@ -1650,12 +2009,12 @@ const App = {
     this.scheduleSaveCanvas();
   },
 
-  // -------------------------------------------------------------
   // Bridge & Pin Integration
   // -------------------------------------------------------------
   renderCanvas() {
     this.redrawCanvas();
     this.renderNotepadNotes();
+    this.renderNotepadImages();
     if (window.lucide) window.lucide.createIcons();
   },
 
@@ -1709,8 +2068,8 @@ const App = {
   },
 
   clearCurrentCanvas() {
-    if (confirm('Clear all drawings and notes for this lecture notepad?')) {
-      this.currentTopicCanvas = { drawings: [], text_notes: [], cards: [] };
+    if (confirm('Clear all drawings, screenshots and notes for this lecture notepad?')) {
+      this.currentTopicCanvas = { drawings: [], text_notes: [], cards: [], images: [] };
       this.saveTopicCanvas(this.selectedTopicId);
       this.renderCanvas();
     }
@@ -1767,6 +2126,7 @@ const App = {
 
     if (!canvasData.drawings) canvasData.drawings = [];
     if (!canvasData.text_notes) canvasData.text_notes = [];
+    if (!canvasData.images) canvasData.images = [];
 
     // Backward compatibility: Convert legacy card format to floating text notes if present
     if (canvasData.text_notes.length === 0 && canvasData.cards && canvasData.cards.length > 0) {
@@ -2151,8 +2511,13 @@ const App = {
     const copilot = document.getElementById('copilot-panel');
     const resizerCopilot = document.getElementById('resizer-copilot');
     const viewNotes = document.getElementById('view-notes');
+    const workspace = document.getElementById('studio-workspace');
+    const leftCol = document.getElementById('left-studio-column');
+    const resizerNotesCol = document.getElementById('resizer-notes-column');
+    const paneVideo = document.getElementById('pane-video');
+    const resizerVideoCanvas = document.getElementById('resizer-video-canvas');
 
-    // 1. Restore saved pane widths
+    // 1. Restore saved pane sizes
     const savedSidebarWidth = localStorage.getItem('study_engine_sidebar_width');
     if (savedSidebarWidth && sidebar) {
       sidebar.style.width = savedSidebarWidth;
@@ -2160,6 +2525,14 @@ const App = {
     const savedCopilotWidth = localStorage.getItem('study_engine_copilot_width');
     if (savedCopilotWidth && copilot) {
       copilot.style.width = savedCopilotWidth;
+    }
+    const savedLeftColWidth = localStorage.getItem('study_engine_left_col_width');
+    if (savedLeftColWidth && leftCol) {
+      leftCol.style.width = savedLeftColWidth;
+    }
+    const savedVideoHeight = localStorage.getItem('study_engine_video_pane_height');
+    if (savedVideoHeight && paneVideo) {
+      paneVideo.style.height = savedVideoHeight;
     }
 
     // 2. Restore collapse states
@@ -2181,7 +2554,6 @@ const App = {
     // 3. Syllabus Sidebar Drag-to-Resize
     if (resizerSidebar && sidebar && viewNotes) {
       let isDragging = false;
-
       const onMouseDown = (e) => {
         isDragging = true;
         e.preventDefault();
@@ -2192,7 +2564,6 @@ const App = {
         window.addEventListener('mousemove', onMouseMove);
         window.addEventListener('mouseup', onMouseUp);
       };
-
       const onMouseMove = (e) => {
         if (!isDragging) return;
         const rect = viewNotes.getBoundingClientRect();
@@ -2201,7 +2572,6 @@ const App = {
         if (newWidth > 480) newWidth = 480;
         sidebar.style.width = `${newWidth}px`;
       };
-
       const onMouseUp = () => {
         if (!isDragging) return;
         isDragging = false;
@@ -2212,14 +2582,12 @@ const App = {
         window.removeEventListener('mouseup', onMouseUp);
         localStorage.setItem('study_engine_sidebar_width', sidebar.style.width);
       };
-
       resizerSidebar.addEventListener('mousedown', onMouseDown);
     }
 
     // 4. Lecture Copilot Drag-to-Resize
     if (resizerCopilot && copilot && viewNotes) {
       let isDragging = false;
-
       const onMouseDown = (e) => {
         isDragging = true;
         e.preventDefault();
@@ -2230,7 +2598,6 @@ const App = {
         window.addEventListener('mousemove', onMouseMove);
         window.addEventListener('mouseup', onMouseUp);
       };
-
       const onMouseMove = (e) => {
         if (!isDragging) return;
         const rect = viewNotes.getBoundingClientRect();
@@ -2239,7 +2606,6 @@ const App = {
         if (newWidth > 600) newWidth = 600;
         copilot.style.width = `${newWidth}px`;
       };
-
       const onMouseUp = () => {
         if (!isDragging) return;
         isDragging = false;
@@ -2250,8 +2616,89 @@ const App = {
         window.removeEventListener('mouseup', onMouseUp);
         localStorage.setItem('study_engine_copilot_width', copilot.style.width);
       };
-
       resizerCopilot.addEventListener('mousedown', onMouseDown);
+    }
+
+    // 5. Horizontal Resizer: Left Column (Video + Notepad) vs Right Column (Notes Reader)
+    if (resizerNotesCol && leftCol && workspace) {
+      let isDragging = false;
+      const onMouseDown = (e) => {
+        isDragging = true;
+        e.preventDefault();
+        document.body.style.cursor = 'col-resize';
+        document.body.style.userSelect = 'none';
+        resizerNotesCol.classList.add('resizer-active');
+        leftCol.style.transition = 'none';
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
+        window.addEventListener('pointermove', onMouseMove);
+        window.addEventListener('pointerup', onMouseUp);
+      };
+      const onMouseMove = (e) => {
+        if (!isDragging) return;
+        const rect = workspace.getBoundingClientRect();
+        let newWidth = e.clientX - rect.left;
+        if (newWidth < 280) newWidth = 280;
+        if (newWidth > rect.width - 280) newWidth = rect.width - 280;
+        leftCol.style.width = `${newWidth}px`;
+        if (this.redrawCanvas) this.redrawCanvas();
+      };
+      const onMouseUp = () => {
+        if (!isDragging) return;
+        isDragging = false;
+        document.body.style.cursor = '';
+        document.body.style.userSelect = '';
+        resizerNotesCol.classList.remove('resizer-active');
+        window.removeEventListener('mousemove', onMouseMove);
+        window.removeEventListener('mouseup', onMouseUp);
+        window.removeEventListener('pointermove', onMouseMove);
+        window.removeEventListener('pointerup', onMouseUp);
+        localStorage.setItem('study_engine_left_col_width', leftCol.style.width);
+        if (this.redrawCanvas) this.redrawCanvas();
+      };
+      resizerNotesCol.addEventListener('mousedown', onMouseDown);
+      resizerNotesCol.addEventListener('pointerdown', onMouseDown);
+    }
+
+    // 6. Vertical Resizer: Top Video Pane vs Bottom-Left Canvas / Notepad
+    if (resizerVideoCanvas && paneVideo && leftCol) {
+      let isDragging = false;
+      const onMouseDown = (e) => {
+        isDragging = true;
+        e.preventDefault();
+        document.body.style.cursor = 'row-resize';
+        document.body.style.userSelect = 'none';
+        resizerVideoCanvas.classList.add('resizer-active');
+        paneVideo.style.transition = 'none';
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
+        window.addEventListener('pointermove', onMouseMove);
+        window.addEventListener('pointerup', onMouseUp);
+      };
+      const onMouseMove = (e) => {
+        if (!isDragging) return;
+        const rect = leftCol.getBoundingClientRect();
+        let newHeight = e.clientY - rect.top;
+        if (newHeight < 160) newHeight = 160;
+        if (newHeight > rect.height - 160) newHeight = rect.height - 160;
+        paneVideo.style.height = `${newHeight}px`;
+        if (this.redrawCanvas) this.redrawCanvas();
+      };
+      const onMouseUp = () => {
+        if (!isDragging) return;
+        isDragging = false;
+        document.body.style.cursor = '';
+        document.body.style.userSelect = '';
+        resizerVideoCanvas.classList.remove('resizer-active');
+        window.removeEventListener('mousemove', onMouseMove);
+        window.removeEventListener('mouseup', onMouseUp);
+        window.removeEventListener('pointermove', onMouseMove);
+        window.removeEventListener('pointerup', onMouseUp);
+        localStorage.setItem('study_engine_video_pane_height', paneVideo.style.height);
+        if (this.redrawCanvas) this.redrawCanvas();
+      };
+      resizerVideoCanvas.addEventListener('mousedown', onMouseDown);
+      resizerVideoCanvas.addEventListener('pointerdown', onMouseDown);
     }
   },
 
