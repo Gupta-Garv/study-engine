@@ -31,7 +31,7 @@ const App = {
   paneState: { video: true, notes: true, canvas: true, copilot: false },
   activePreset: 'lecture',
   videoSpeed: 1,
-  notepadTool: 'pen',
+  notepadTool: 'select',
   notepadColor: 'ink',
   notepadWidth: 2,
   isDrawing: false,
@@ -42,9 +42,20 @@ const App = {
   dragNoteOffset: { x: 0, y: 0 },
   draggingImageId: null,
   dragImageOffset: { x: 0, y: 0 },
+  selectedImageId: null,
+  selectedNoteId: null,
   resizingImageId: null,
+  resizingCorner: null,
   resizeStartX: 0,
+  resizeStartY: 0,
   resizeStartWidth: 0,
+  resizeStartLeft: 0,
+  resizeStartTop: 0,
+  isPanningCanvas: false,
+  panStartX: 0,
+  panStartY: 0,
+  panScrollLeft: 0,
+  panScrollTop: 0,
   draggingNoteId: null,
   dragNoteOffset: { x: 0, y: 0 },
   saveNotepadDebounceTimer: null,
@@ -1198,13 +1209,11 @@ const App = {
   initCanvasListeners() {
     const canvas = document.getElementById('notepad-drawing-canvas');
     if (canvas) {
-      // Primary Pointer Events with pointer capture and preventDefault
       canvas.addEventListener('pointerdown', (e) => this.onNotepadPointerDown(e));
       canvas.addEventListener('pointermove', (e) => this.onNotepadPointerMove(e));
       canvas.addEventListener('pointerup', (e) => this.onNotepadPointerUp(e));
       canvas.addEventListener('pointercancel', (e) => this.onNotepadPointerUp(e));
 
-      // Fallback Mouse Events if pointer events are somehow intercepted
       canvas.addEventListener('mousedown', (e) => {
         if (!window.PointerEvent) this.onNotepadPointerDown(e);
       });
@@ -1216,13 +1225,27 @@ const App = {
       });
     }
 
-    // Viewport Double-click to create note anywhere on canvas or background
     const viewport = document.getElementById('notepad-viewport');
     if (viewport) {
+      // Double click to place note anywhere
       viewport.addEventListener('dblclick', (e) => {
         if (e.target.closest && (e.target.closest('.notepad-text-note') || e.target.closest('.notepad-image-card'))) return;
         const coords = this.getNotepadCanvasCoords(e);
         this.addFloatingTextNoteAt(coords.x, coords.y);
+      });
+
+      // Background panning in Pointer mode (Mac Notes style)
+      viewport.addEventListener('pointerdown', (e) => {
+        if (this.notepadTool === 'select') {
+          if (e.target.closest && (e.target.closest('.notepad-image-card') || e.target.closest('.notepad-text-note') || e.target.closest('button'))) return;
+          this.isPanningCanvas = true;
+          this.panStartX = e.clientX;
+          this.panStartY = e.clientY;
+          this.panScrollLeft = viewport.scrollLeft;
+          this.panScrollTop = viewport.scrollTop;
+          viewport.style.cursor = 'grabbing';
+          this.deselectAllCards();
+        }
       });
 
       // Drag and Drop Screenshot Images onto Notepad
@@ -1283,14 +1306,43 @@ const App = {
       if (!window.PointerEvent) this.onNotepadGlobalPointerUp(e);
     });
 
-    // Keyboard Shortcuts: Cmd+Z / Ctrl+Z for undoing strokes
+    // Keyboard Shortcuts: Tool switching (V, P, H, T, E), Delete selected, Cmd+Z for undo
     window.addEventListener('keydown', (e) => {
       const tag = (e.target && e.target.tagName) || '';
       const isInput = tag === 'INPUT' || tag === 'TEXTAREA' || (e.target && e.target.isContentEditable);
-      if (!isInput && (e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'z') {
+      
+      if (!isInput) {
+        // Delete selected image with Backspace / Delete
+        if (e.key === 'Backspace' || e.key === 'Delete') {
+          if (this.selectedImageId) {
+            e.preventDefault();
+            this.deleteNotepadImage(this.selectedImageId);
+            this.selectedImageId = null;
+            return;
+          }
+        }
+
+        // Tool hotkeys when in Studio
         if (this.paneState && this.paneState.canvas) {
-          e.preventDefault();
-          this.undoNotepadStroke();
+          const k = e.key.toLowerCase();
+          if (k === 'v' || e.key === 'Escape' || k === '1') {
+            this.setNotepadTool('select');
+          } else if (k === 'p' || k === '2') {
+            this.setNotepadTool('pen');
+          } else if (k === 'h' || k === '3') {
+            this.setNotepadTool('highlighter');
+          } else if (k === 't' || k === '4') {
+            this.setNotepadTool('text');
+          } else if (k === 'e' || k === '5') {
+            this.setNotepadTool('eraser');
+          }
+        }
+
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'z') {
+          if (this.paneState && this.paneState.canvas) {
+            e.preventDefault();
+            this.undoNotepadStroke();
+          }
         }
       }
     });
@@ -1298,9 +1350,9 @@ const App = {
 
   setNotepadTool(tool) {
     this.notepadTool = tool;
-    
+
     // Update toolbar tool buttons
-    const tools = ['pen', 'highlighter', 'text', 'eraser'];
+    const tools = ['select', 'pen', 'highlighter', 'text', 'eraser'];
     tools.forEach(t => {
       const btn = document.getElementById(`np-tool-${t}`);
       if (!btn) return;
@@ -1311,26 +1363,64 @@ const App = {
       }
     });
 
-    // Update viewport cursor
     const viewport = document.getElementById('notepad-viewport');
     const canvas = document.getElementById('notepad-drawing-canvas');
-    const cursor = (tool === 'pen' || tool === 'highlighter') ? 'crosshair' : (tool === 'text' ? 'text' : 'cell');
-    if (viewport) viewport.style.cursor = cursor;
-    if (canvas) canvas.style.cursor = cursor;
 
-    // Update helpful status hint
-    const hintEl = document.getElementById('notepad-tool-hint');
-    if (hintEl) {
-      if (tool === 'pen') {
-        hintEl.textContent = 'Pen mode • Drag to draw • Double-click anywhere to type';
-      } else if (tool === 'highlighter') {
-        hintEl.textContent = 'Highlighter mode • Drag to highlight diagrams & equations';
-      } else if (tool === 'text') {
-        hintEl.textContent = 'Text mode • Click anywhere on notepad to drop a note';
-      } else if (tool === 'eraser') {
-        hintEl.textContent = 'Eraser mode • Drag over any stroke to erase';
+    // In 'select' or 'text' mode, drawing canvas has pointer-events: none so you can directly click & drag images and notes!
+    // In 'pen', 'highlighter', or 'eraser' mode, drawing canvas has pointer-events: auto to draw/erase strokes.
+    if (canvas) {
+      if (tool === 'select' || tool === 'text') {
+        canvas.style.pointerEvents = 'none';
+        canvas.style.zIndex = '5';
+      } else {
+        canvas.style.pointerEvents = 'auto';
+        canvas.style.zIndex = '50';
       }
     }
+
+    // Update viewport cursor
+    const cursor = (tool === 'select') ? 'default' :
+                   (tool === 'pen' || tool === 'highlighter') ? 'crosshair' :
+                   (tool === 'text') ? 'text' : 'cell';
+    if (viewport) viewport.style.cursor = cursor;
+    if (canvas && tool !== 'select' && tool !== 'text') canvas.style.cursor = cursor;
+
+    // Update helpful status hint with keyboard shortcuts
+    const hintEl = document.getElementById('notepad-tool-hint');
+    if (hintEl) {
+      if (tool === 'select') {
+        hintEl.textContent = 'Pointer mode • Click & drag any screenshot or note to move • Drag background to pan board [V]';
+      } else if (tool === 'pen') {
+        hintEl.textContent = 'Pen mode • Drag to draw equations & arrows over notes and screenshots [P]';
+      } else if (tool === 'highlighter') {
+        hintEl.textContent = 'Highlighter mode • Drag to highlight diagrams & equations [H]';
+      } else if (tool === 'text') {
+        hintEl.textContent = 'Text mode • Click anywhere on notepad to drop a note [T]';
+      } else if (tool === 'eraser') {
+        hintEl.textContent = 'Eraser mode • Drag over strokes to erase [E]';
+      }
+    }
+  },
+
+  selectImageCard(imgId) {
+    this.selectedImageId = imgId;
+    document.querySelectorAll('.notepad-image-card').forEach(el => {
+      const match = el.getAttribute('data-image-id') === imgId;
+      el.classList.toggle('selected', match);
+    });
+
+    const img = (this.currentTopicCanvas.images || []).find(i => i.id === imgId);
+    if (img) {
+      this.maxNoteZIndex = (this.maxNoteZIndex || 30) + 1;
+      img.zIndex = this.maxNoteZIndex;
+      const el = document.querySelector(`.notepad-image-card[data-image-id="${imgId}"]`);
+      if (el) el.style.zIndex = img.zIndex;
+    }
+  },
+
+  deselectAllCards() {
+    this.selectedImageId = null;
+    document.querySelectorAll('.notepad-image-card').forEach(el => el.classList.remove('selected'));
   },
 
   setNotepadColor(color) {
@@ -1346,7 +1436,7 @@ const App = {
       }
     });
 
-    if (this.notepadTool === 'eraser' || this.notepadTool === 'text') {
+    if (this.notepadTool === 'select' || this.notepadTool === 'eraser' || this.notepadTool === 'text') {
       this.setNotepadTool('pen');
     }
   },
@@ -1363,7 +1453,7 @@ const App = {
       }
     });
 
-    if (this.notepadTool === 'eraser' || this.notepadTool === 'text') {
+    if (this.notepadTool === 'select' || this.notepadTool === 'eraser' || this.notepadTool === 'text') {
       this.setNotepadTool('pen');
     }
   },
@@ -1384,9 +1474,13 @@ const App = {
   onNotepadPointerDown(e) {
     if (e.button !== undefined && e.button !== 0 && e.button !== -1) return;
     
-    // Prevent default gesture scroll and image drag
-    e.preventDefault();
+    // In select mode, clicking on drawing canvas should not draw!
+    if (this.notepadTool === 'select') {
+      this.deselectAllCards();
+      return;
+    }
 
+    e.preventDefault();
     const canvas = document.getElementById('notepad-drawing-canvas');
     if (canvas && e.pointerId !== undefined) {
       try { canvas.setPointerCapture(e.pointerId); } catch (_) {}
@@ -1394,10 +1488,10 @@ const App = {
 
     const coords = this.getNotepadCanvasCoords(e);
 
-    // If text tool is active, place a note at click position
+    // If text tool is active, place a note at click position then return to select
     if (this.notepadTool === 'text') {
       this.addFloatingTextNoteAt(coords.x, coords.y);
-      this.setNotepadTool('pen');
+      this.setNotepadTool('select');
       return;
     }
 
@@ -1830,18 +1924,33 @@ const App = {
 
   createImageCardElement(img) {
     const el = document.createElement('div');
-    el.className = 'notepad-image-card absolute bg-card border border-border rounded-xl shadow-soft flex flex-col pointer-events-auto select-none overflow-hidden transition-shadow';
+    el.className = 'notepad-image-card absolute bg-card border border-border rounded-xl shadow-soft flex flex-col pointer-events-auto select-none overflow-visible transition-shadow';
+    if (this.selectedImageId === img.id) {
+      el.classList.add('selected');
+    }
     el.style.left = `${img.x}px`;
     el.style.top = `${img.y}px`;
     el.style.width = `${img.width || 380}px`;
     el.style.zIndex = img.zIndex || 12;
     el.setAttribute('data-image-id', img.id);
 
-    // Header / Drag Grip
+    // 4 Corner Resize Handles (Mac Notes style)
+    const corners = ['nw', 'ne', 'sw', 'se'];
+    corners.forEach(c => {
+      const h = document.createElement('div');
+      h.className = `notepad-resize-handle notepad-resize-handle-${c}`;
+      h.setAttribute('data-corner', c);
+      h.title = 'Drag to resize';
+      h.addEventListener('pointerdown', (e) => this.onImageCornerResizePointerDown(e, img.id, c));
+      h.addEventListener('mousedown', (e) => this.onImageCornerResizePointerDown(e, img.id, c));
+      el.appendChild(h);
+    });
+
+    // Header / Drag Handle
     const header = document.createElement('div');
-    header.className = 'notepad-image-handle flex items-center justify-between px-2.5 py-1.5 border-b border-border/70 bg-card-muted/80 text-ink cursor-move select-none';
+    header.className = 'notepad-image-handle flex items-center justify-between px-2.5 py-1.5 border-b border-border/70 bg-card-muted/80 text-ink cursor-grab select-none rounded-t-xl';
     header.innerHTML = `
-      <div class="flex items-center gap-1.5 text-neutral-400 min-w-0">
+      <div class="flex items-center gap-1.5 text-neutral-400 min-w-0 pointer-events-none">
         <i data-lucide="image" class="w-3.5 h-3.5 text-neutral-400 shrink-0"></i>
         <span class="text-[10px] font-mono uppercase tracking-wider text-neutral-400 truncate max-w-[140px]">${img.title || 'Screenshot'}</span>
       </div>
@@ -1852,20 +1961,15 @@ const App = {
         <button onclick="App.resizeNotepadImage('${img.id}', 50)" class="text-neutral-400 hover:text-ink p-0.5 rounded transition" title="Larger (+50px)">
           <i data-lucide="zoom-in" class="w-3 h-3"></i>
         </button>
-        <button onclick="App.deleteNotepadImage('${img.id}')" class="text-neutral-400 hover:text-rose-500 transition p-0.5 rounded ml-1" title="Delete screenshot">
+        <button onclick="App.deleteNotepadImage('${img.id}')" class="text-neutral-400 hover:text-rose-500 transition p-0.5 rounded ml-1" title="Delete screenshot (or press Backspace)">
           <i data-lucide="trash-2" class="w-3 h-3"></i>
         </button>
       </div>
     `;
 
-    header.addEventListener('pointerdown', (e) => this.onImageHandlePointerDown(e, img.id));
-    header.addEventListener('mousedown', (e) => {
-      if (!window.PointerEvent) this.onImageHandlePointerDown(e, img.id);
-    });
-
     // Image Body
     const body = document.createElement('div');
-    body.className = 'relative w-full bg-neutral-900/10 dark:bg-black/20 flex items-center justify-center p-1';
+    body.className = 'image-wrapper relative w-full bg-neutral-900/10 dark:bg-black/20 flex items-center justify-center p-1 cursor-grab rounded-b-xl overflow-hidden';
     
     const imgEl = document.createElement('img');
     imgEl.src = img.src;
@@ -1874,51 +1978,62 @@ const App = {
     imgEl.draggable = false;
     body.appendChild(imgEl);
 
-    // Corner resize handle (bottom-right)
-    const cornerHandle = document.createElement('div');
-    cornerHandle.className = 'notepad-image-handle-corner absolute bottom-0 right-0 w-5 h-5 cursor-nwse-resize flex items-end justify-end p-0.5 text-neutral-400 hover:text-ink z-10';
-    cornerHandle.innerHTML = `<i data-lucide="maximize-2" class="w-2.5 h-2.5 opacity-60"></i>`;
-    cornerHandle.addEventListener('pointerdown', (e) => this.onImageCornerResizePointerDown(e, img.id));
+    // Clicking / Dragging anywhere on the card starts moving it!
+    const onStartDrag = (e) => {
+      if (e.target.closest('button') || e.target.closest('.notepad-resize-handle')) return;
+      e.preventDefault();
+      e.stopPropagation();
+
+      // If user is currently in a drawing tool, clicking on an image switches smoothly to Pointer
+      if (this.notepadTool !== 'select') {
+        this.setNotepadTool('select');
+      }
+
+      this.selectImageCard(img.id);
+
+      this.draggingImageId = img.id;
+      this.dragImageOffset = {
+        x: e.clientX - img.x,
+        y: e.clientY - img.y
+      };
+
+      el.classList.add('dragging');
+    };
+
+    el.addEventListener('pointerdown', onStartDrag);
+    el.addEventListener('mousedown', onStartDrag);
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.selectImageCard(img.id);
+    });
 
     el.appendChild(header);
     el.appendChild(body);
-    el.appendChild(cornerHandle);
 
     return el;
   },
 
-  onImageHandlePointerDown(e, imgId) {
-    if (e.target.closest('button')) return;
-    e.preventDefault();
-    this.draggingImageId = imgId;
-    const img = (this.currentTopicCanvas.images || []).find(i => i.id === imgId);
-    if (!img) return;
-
-    this.dragImageOffset = {
-      x: e.clientX - img.x,
-      y: e.clientY - img.y
-    };
-
-    const el = document.querySelector(`.notepad-image-card[data-image-id="${imgId}"]`);
-    if (el) el.classList.add('shadow-soft-md');
-  },
-
-  onImageCornerResizePointerDown(e, imgId) {
+  onImageCornerResizePointerDown(e, imgId, corner) {
     e.preventDefault();
     e.stopPropagation();
     const img = (this.currentTopicCanvas.images || []).find(i => i.id === imgId);
     if (!img) return;
 
+    this.selectImageCard(imgId);
     this.resizingImageId = imgId;
+    this.resizingCorner = corner;
     this.resizeStartX = e.clientX;
+    this.resizeStartY = e.clientY;
     this.resizeStartWidth = img.width || 380;
+    this.resizeStartLeft = img.x;
+    this.resizeStartTop = img.y;
   },
 
   resizeNotepadImage(imgId, deltaWidth) {
     const img = (this.currentTopicCanvas.images || []).find(i => i.id === imgId);
     if (!img) return;
 
-    img.width = Math.max(180, Math.min(1100, (img.width || 380) + deltaWidth));
+    img.width = Math.max(160, Math.min(1200, (img.width || 380) + deltaWidth));
     const el = document.querySelector(`.notepad-image-card[data-image-id="${imgId}"]`);
     if (el) {
       el.style.width = `${img.width}px`;
@@ -1930,13 +2045,25 @@ const App = {
     this.currentTopicCanvas.images = (this.currentTopicCanvas.images || []).filter(i => i.id !== imgId);
     const el = document.querySelector(`.notepad-image-card[data-image-id="${imgId}"]`);
     if (el) el.remove();
+    if (this.selectedImageId === imgId) this.selectedImageId = null;
     this.scheduleSaveCanvas();
   },
 
-  // -------------------------------------------------------------
   // Unified Pointer Drag for Notes and Images
   // -------------------------------------------------------------
   onNotepadGlobalPointerMove(e) {
+    // 0. Board panning in Pointer mode
+    if (this.isPanningCanvas) {
+      const viewport = document.getElementById('notepad-viewport');
+      if (viewport) {
+        const dx = e.clientX - this.panStartX;
+        const dy = e.clientY - this.panStartY;
+        viewport.scrollLeft = this.panScrollLeft - dx;
+        viewport.scrollTop = this.panScrollTop - dy;
+      }
+      return;
+    }
+
     // 1. Dragging Text Note
     if (this.draggingNoteId) {
       const note = (this.currentTopicCanvas.text_notes || []).find(n => n.id === this.draggingNoteId);
@@ -1954,7 +2081,7 @@ const App = {
       }
     }
 
-    // 2. Dragging Screenshot Image Card
+    // 2. Dragging Screenshot Image Card anywhere on canvas
     if (this.draggingImageId) {
       const img = (this.currentTopicCanvas.images || []).find(i => i.id === this.draggingImageId);
       if (img) {
@@ -1971,17 +2098,24 @@ const App = {
       }
     }
 
-    // 3. Resizing Screenshot Image Card via corner handle
+    // 3. Resizing Screenshot Image Card via corner handles (aspect ratio preserved)
     if (this.resizingImageId) {
       const img = (this.currentTopicCanvas.images || []).find(i => i.id === this.resizingImageId);
       if (img) {
-        const delta = e.clientX - this.resizeStartX;
-        const newWidth = Math.max(180, Math.min(1100, this.resizeStartWidth + delta));
+        const dx = e.clientX - this.resizeStartX;
+        let newWidth = this.resizeStartWidth;
+        if (this.resizingCorner === 'se' || this.resizingCorner === 'ne') {
+          newWidth = Math.max(160, Math.min(1200, this.resizeStartWidth + dx));
+        } else {
+          newWidth = Math.max(160, Math.min(1200, this.resizeStartWidth - dx));
+          img.x = Math.max(10, Math.round(this.resizeStartLeft + (this.resizeStartWidth - newWidth)));
+        }
         img.width = Math.round(newWidth);
 
         const el = document.querySelector(`.notepad-image-card[data-image-id="${this.resizingImageId}"]`);
         if (el) {
           el.style.width = `${img.width}px`;
+          el.style.left = `${img.x}px`;
         }
       }
     }
@@ -1989,6 +2123,14 @@ const App = {
 
   onNotepadGlobalPointerUp(e) {
     let shouldSave = false;
+
+    if (this.isPanningCanvas) {
+      this.isPanningCanvas = false;
+      const viewport = document.getElementById('notepad-viewport');
+      if (viewport && this.notepadTool === 'select') {
+        viewport.style.cursor = 'default';
+      }
+    }
 
     if (this.draggingNoteId) {
       const el = document.querySelector(`.notepad-text-note[data-note-id="${this.draggingNoteId}"]`);
@@ -1999,13 +2141,14 @@ const App = {
 
     if (this.draggingImageId) {
       const el = document.querySelector(`.notepad-image-card[data-image-id="${this.draggingImageId}"]`);
-      if (el) el.classList.remove('shadow-soft-md');
+      if (el) el.classList.remove('dragging');
       this.draggingImageId = null;
       shouldSave = true;
     }
 
     if (this.resizingImageId) {
       this.resizingImageId = null;
+      this.resizingCorner = null;
       shouldSave = true;
     }
 

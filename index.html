@@ -462,9 +462,13 @@
               <!-- Notepad Floating Toolbar -->
               <div class="shrink-0 px-3 py-2 border-b border-border bg-card flex items-center justify-between gap-2 text-xs flex-wrap">
                 
-                <!-- Left: Tools (Draw Pen, Highlighter, Text Note, Eraser) -->
+                <!-- Left: Tools (Pointer/Select, Pen, Highlighter, Text Note, Eraser) -->
                 <div class="flex items-center gap-1 p-0.5 rounded-lg bg-card-muted border border-border">
-                  <button id="np-tool-pen" onclick="App.setNotepadTool('pen')" class="notepad-tool-btn active px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition shadow-soft-sm font-semibold text-ink bg-card" title="Pen (Draw equations, mindmaps & sketches)">
+                  <button id="np-tool-select" onclick="App.setNotepadTool('select')" class="notepad-tool-btn active px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition shadow-soft-sm font-semibold text-ink bg-card" title="Pointer / Select (Move images, arrange notes & pan board) [V]">
+                    <i data-lucide="mouse-pointer-2" class="w-3.5 h-3.5"></i>
+                    <span class="inline">Pointer</span>
+                  </button>
+                  <button id="np-tool-pen" onclick="App.setNotepadTool('pen')" class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink" title="Pen (Draw equations, mindmaps & sketches) [P]">
                     <i data-lucide="pen-tool" class="w-3.5 h-3.5"></i>
                     <span class="inline">Pen</span>
                   </button>
@@ -548,8 +552,8 @@
                     id="notepad-drawing-canvas" 
                     width="2400" 
                     height="1800" 
-                    class="absolute inset-0 w-full h-full pointer-events-auto"
-                    style="z-index: 18; touch-action: none;"
+                    class="absolute inset-0 w-full h-full"
+                    style="z-index: 18; touch-action: none; pointer-events: none;"
                   ></canvas>
 
                   <!-- Floating Movable Text Notes Layer (z-index 25) -->

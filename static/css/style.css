@@ -516,31 +516,36 @@ mark.search-highlight {
   background-color: var(--ink-secondary) !important;
 }
 
-/* Floating Screenshot / Image Cards on Canvas */
+/* Floating Screenshot / Image Cards on Canvas (Mac Notes / Apple Freeform style) */
 .notepad-image-card {
   position: absolute;
   background-color: var(--card);
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--border);
   border-radius: 1rem;
   box-shadow: var(--elevation-soft);
   transition: box-shadow 0.15s ease, border-color 0.15s ease;
   pointer-events: auto !important;
-  overflow: hidden;
+  overflow: visible;
   user-select: none;
   -webkit-user-select: none;
+  cursor: grab;
 }
 
-.notepad-image-card:hover,
-.notepad-image-card:focus-within {
+.notepad-image-card:hover {
   box-shadow: var(--elevation-soft-md);
   border-color: var(--ink-secondary);
 }
 
+.notepad-image-card.selected {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25), var(--elevation-soft-md);
+}
+
 .notepad-image-card.dragging {
   cursor: grabbing !important;
-  z-index: 100 !important;
+  z-index: 200 !important;
   opacity: 0.95;
-  box-shadow: 0 16px 32px -4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 35px -5px rgba(0, 0, 0, 0.35);
 }
 
 .notepad-image-handle {
@@ -552,6 +557,34 @@ mark.search-highlight {
 .notepad-image-handle:active {
   cursor: grabbing;
 }
+
+/* 4-Corner Resize Handles (Mac Notes style) */
+.notepad-resize-handle {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  background: #3b82f6;
+  border: 2px solid white;
+  border-radius: 50%;
+  z-index: 35;
+  opacity: 0;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  pointer-events: auto;
+}
+
+.notepad-image-card:hover .notepad-resize-handle,
+.notepad-image-card.selected .notepad-resize-handle {
+  opacity: 1;
+}
+
+.notepad-resize-handle:hover {
+  transform: scale(1.25);
+}
+
+.notepad-resize-handle-nw { top: -5px; left: -5px; cursor: nwse-resize; }
+.notepad-resize-handle-ne { top: -5px; right: -5px; cursor: nesw-resize; }
+.notepad-resize-handle-sw { bottom: -5px; left: -5px; cursor: nesw-resize; }
+.notepad-resize-handle-se { bottom: -5px; right: -5px; cursor: nwse-resize; }
 
 .notepad-drop-active {
   outline: 2px dashed #3b82f6 !important;
