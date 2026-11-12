@@ -30,6 +30,7 @@ from core.transcript import (
 from core.llm_client import generate_notes_and_questions, get_api_key
 from core.copilot import answer_lecture_doubt
 from core.slide_capture import capture_slides, capture_slides_and_ocr
+from core.key_moments import get_adjacent_topics_context, synthesize_key_moments
 
 BASE_DIR = Path(__file__).parent.parent
 STATIC_DIR = BASE_DIR / "static"
@@ -143,16 +144,28 @@ def process_topic_task(topic_id: str, extract_slides_flag: bool = False):
                 conn.execute("UPDATE topics SET title = ? WHERE id = ?", (real_title, topic_id))
                 conn.commit()
 
-        # Step 2: Multi-tier Transcript Extraction (or use cached transcript)
+        # Step 2: Multi-tier Transcript Extraction (or use cached transcript/snippets)
+        cached_snippets_raw = topic["transcript_snippets_json"] if "transcript_snippets_json" in topic.keys() else ""
+        snippets = []
+        if cached_snippets_raw and cached_snippets_raw != "[]":
+            try:
+                from core.transcript import Snippet
+                raw_list = json.loads(cached_snippets_raw)
+                snippets = [Snippet(text=r["text"], start=float(r["start"]), duration=float(r.get("duration", 0))) for r in raw_list]
+            except Exception:
+                snippets = []
+
         cached_transcript = topic["transcript_text"] if "transcript_text" in topic.keys() else ""
-        if cached_transcript and cached_transcript.strip():
-            logger.info(f"Using cached transcript for {topic_id} ({len(cached_transcript)} chars)...")
-            full_text = cached_transcript
-            duration = topic["duration_seconds"] or 0
-        else:
-            snippets = fetch_transcript(topic["youtube_url"], course_name=topic["course_name"])
-            full_text = " ".join([s.text for s in snippets])
-            duration = snippets[-1].end if snippets else 0
+        if not snippets:
+            try:
+                snippets = fetch_transcript(topic["youtube_url"], course_name=topic["course_name"])
+            except Exception as e:
+                logger.warning(f"Could not fetch fresh transcript snippets for {topic_id}: {e}")
+                snippets = []
+
+        full_text = cached_transcript if (cached_transcript and cached_transcript.strip()) else " ".join([s.text for s in snippets])
+        duration = snippets[-1].end if snippets else (topic["duration_seconds"] or 0)
+        snippets_json_str = json.dumps([{"text": s.text, "start": s.start, "duration": s.duration, "end": s.end} for s in snippets], ensure_ascii=False)
 
         # Step 3: Fast slides/whiteboard capture & local Tesseract OCR (skipped if false)
         slides_data = []
@@ -172,26 +185,42 @@ def process_topic_task(topic_id: str, extract_slides_flag: bool = False):
             slide_text=slide_ocr_text
         )
 
+        # Step 4.5: Cross-Lecture Context-Aware Key Moments & Speedrun Synthesis
+        prev_t, next_t = get_adjacent_topics_context(conn, topic_id)
+        key_moments_data = synthesize_key_moments(
+            course_name=topic["course_name"],
+            module_name=topic["module_name"],
+            topic_title=current_title,
+            snippets=snippets,
+            total_duration_seconds=duration,
+            prev_topic=prev_t,
+            next_topic=next_t
+        )
+
         import json
         conn.execute("""
             UPDATE topics 
             SET status = 'completed',
                 duration_seconds = ?,
                 transcript_text = ?,
+                transcript_snippets_json = ?,
                 notes_markdown = ?,
                 mcqs_json = ?,
                 subjectives_json = ?,
                 flashcards_json = ?,
-                slides_json = ?
+                slides_json = ?,
+                key_moments_json = ?
             WHERE id = ?
         """, (
             duration,
             full_text,
+            snippets_json_str,
             result.get("notes_markdown", ""),
             json.dumps(result.get("mcqs", []), ensure_ascii=False),
             json.dumps(result.get("subjective_questions", []), ensure_ascii=False),
             json.dumps(result.get("flashcards", []), ensure_ascii=False),
             json.dumps(slides_data, ensure_ascii=False),
+            json.dumps(key_moments_data, ensure_ascii=False),
             topic_id
         ))
         conn.commit()
@@ -430,4 +459,59 @@ def post_topic_chat_message(topic_id: str, req: ChatMessageRequest):
     reply = answer_lecture_doubt(topic_id, req.message.strip())
     db.export_static_data()
     return {"reply": reply}
+
+@app.post("/api/topics/{topic_id}/key-moments")
+def regenerate_key_moments_endpoint(topic_id: str):
+    conn = db.get_conn()
+    topic = conn.execute(
+        "SELECT t.*, m.name as module_name, c.name as course_name FROM topics t JOIN modules m ON t.module_id = m.id JOIN courses c ON m.course_id = c.id WHERE t.id = ?",
+        (topic_id,)
+    ).fetchone()
+    if not topic:
+        raise HTTPException(404, "Topic not found")
+        
+    snippets = []
+    cached_snippets_raw = topic["transcript_snippets_json"] if "transcript_snippets_json" in topic.keys() else ""
+    if cached_snippets_raw and cached_snippets_raw != "[]":
+        try:
+            from core.transcript import Snippet
+            raw_list = json.loads(cached_snippets_raw)
+            snippets = [Snippet(text=r["text"], start=float(r["start"]), duration=float(r.get("duration", 0))) for r in raw_list]
+        except Exception:
+            snippets = []
+
+    if not snippets:
+        try:
+            snippets = fetch_transcript(topic["youtube_url"], course_name=topic["course_name"])
+        except Exception as e:
+            logger.warning(f"Failed to fetch snippets: {e}")
+            snippets = []
+
+    duration = snippets[-1].end if snippets else (topic["duration_seconds"] or 0)
+    snippets_json_str = json.dumps([{"text": s.text, "start": s.start, "duration": s.duration, "end": s.end} for s in snippets], ensure_ascii=False)
+
+    prev_t, next_t = get_adjacent_topics_context(conn, topic_id)
+    key_moments_data = synthesize_key_moments(
+        course_name=topic["course_name"],
+        module_name=topic["module_name"],
+        topic_title=topic["title"],
+        snippets=snippets,
+        total_duration_seconds=duration,
+        prev_topic=prev_t,
+        next_topic=next_t
+    )
+
+    conn.execute("""
+        UPDATE topics
+        SET transcript_snippets_json = ?,
+            key_moments_json = ?
+        WHERE id = ?
+    """, (
+        snippets_json_str,
+        json.dumps(key_moments_data, ensure_ascii=False),
+        topic_id
+    ))
+    conn.commit()
+    db.export_static_data()
+    return key_moments_data
 

@@ -31,6 +31,13 @@ const App = {
   paneState: { video: true, notes: true, canvas: true, copilot: false },
   activePreset: 'lecture',
   videoSpeed: 1,
+  speedrunMode: false,
+  currentKeyMoments: [],
+  currentKeyMomentsMeta: null,
+  activeKeyMomentIndex: -1,
+  speedrunMonitoringInterval: null,
+  speedrunToastTimeout: null,
+  lastPlaybackSeconds: 0,
   notepadTool: 'select',
   notepadColor: 'ink',
   notepadWidth: 2,
@@ -83,6 +90,7 @@ const App = {
     this.initSearch();
     this.initDashboard();
     this.initCanvasListeners();
+    this.initSpeedrunListener();
     this.updateStudioLayout();
     await this.loadCourses();
     this.switchView('dashboard');
@@ -117,7 +125,11 @@ const App = {
       const isInput = tag === 'INPUT' || tag === 'TEXTAREA' || e.target.isContentEditable;
       
       if (!isInput) {
-        if ((e.shiftKey && e.key.toLowerCase() === 'n') || (e.altKey && e.key === 'ArrowRight')) {
+        if (e.shiftKey && e.key.toLowerCase() === 's') {
+          e.preventDefault();
+          App.toggleSpeedrunMode();
+          return;
+        } else if ((e.shiftKey && e.key.toLowerCase() === 'n') || (e.altKey && e.key === 'ArrowRight')) {
           e.preventDefault();
           App.goToNextTopic();
           return;
@@ -1201,6 +1213,261 @@ const App = {
         args: [seconds, true]
       }), '*');
     }
+  },
+
+  playVideo() {
+    const iframe = document.getElementById('lecture-video-iframe');
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage(JSON.stringify({
+        event: 'command',
+        func: 'playVideo',
+        args: []
+      }), '*');
+    }
+  },
+
+  pauseVideo() {
+    const iframe = document.getElementById('lecture-video-iframe');
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage(JSON.stringify({
+        event: 'command',
+        func: 'pauseVideo',
+        args: []
+      }), '*');
+    }
+  },
+
+  // -------------------------------------------------------------
+  // High-Yield Key Moments & Smart Speedrun Engine
+  // -------------------------------------------------------------
+  initSpeedrunListener() {
+    // Listen for YouTube IFrame postMessages
+    window.addEventListener('message', (event) => {
+      try {
+        let data = event.data;
+        if (typeof data === 'string') {
+          try { data = JSON.parse(data); } catch (e) { return; }
+        }
+        if (data && data.event === 'infoDelivery' && data.info) {
+          const ct = data.info.currentTime;
+          const ps = data.info.playerState;
+          if (typeof ct === 'number') {
+            this.onVideoTimeUpdate(ct, ps);
+          }
+        }
+      } catch (e) {}
+    });
+
+    // Also poll iframe every 800ms while video pane is open to ensure continuous time synchronization
+    if (!this.speedrunMonitoringInterval) {
+      this.speedrunMonitoringInterval = setInterval(() => {
+        const iframe = document.getElementById('lecture-video-iframe');
+        if (iframe && iframe.contentWindow && !iframe.classList.contains('hidden')) {
+          iframe.contentWindow.postMessage(JSON.stringify({ event: 'listening' }), '*');
+        }
+      }, 750);
+    }
+  },
+
+  renderKeyMoments(topicData) {
+    const panel = document.getElementById('video-key-moments-panel');
+    const pillsList = document.getElementById('key-moments-pills-list');
+    const statsEl = document.getElementById('speedrun-summary-stats');
+    if (!panel || !pillsList) return;
+
+    let kmData = topicData ? (topicData.key_moments || topicData.key_moments_json) : null;
+    if (typeof kmData === 'string') {
+      try { kmData = JSON.parse(kmData); } catch (e) { kmData = null; }
+    }
+
+    let moments = [];
+    let meta = null;
+    if (kmData) {
+      if (Array.isArray(kmData)) {
+        moments = kmData;
+      } else if (typeof kmData === 'object' && Array.isArray(kmData.key_moments)) {
+        moments = kmData.key_moments;
+        meta = kmData;
+      }
+    }
+
+    this.currentKeyMoments = moments;
+    this.currentKeyMomentsMeta = meta;
+    this.activeKeyMomentIndex = -1;
+
+    if (!moments || moments.length === 0) {
+      panel.classList.add('hidden');
+      pillsList.innerHTML = '';
+      return;
+    }
+
+    panel.classList.remove('hidden');
+
+    if (statsEl) {
+      if (meta && meta.fluff_saved_percentage) {
+        const hyMins = Math.floor((meta.high_yield_duration_seconds || 0) / 60);
+        const hySecs = Math.floor((meta.high_yield_duration_seconds || 0) % 60);
+        statsEl.textContent = `${moments.length} key moments • ${hyMins}m ${hySecs}s (${meta.fluff_saved_percentage}% fluff cut)`;
+      } else {
+        statsEl.textContent = `${moments.length} key concepts identified`;
+      }
+    }
+
+    pillsList.innerHTML = moments.map((m, idx) => {
+      const titleEscaped = (m.title || 'Key Concept').replace(/"/g, '&quot;');
+      const whyEscaped = (m.why_essential || '').replace(/"/g, '&quot;');
+      return `
+        <button 
+          id="km-pill-${idx}"
+          onclick="App.jumpToKeyMoment(${idx}, ${m.start_seconds})" 
+          class="key-moment-pill shrink-0 px-2.5 py-1 rounded-lg border border-border bg-card hover:bg-muted text-[11px] font-mono flex items-center gap-1.5 transition text-ink"
+          title="${whyEscaped ? whyEscaped + '\nTakeaway: ' + (m.key_takeaway || '') : titleEscaped}"
+          data-start="${m.start_seconds}"
+          data-end="${m.end_seconds}"
+        >
+          <i data-lucide="play" class="w-2.5 h-2.5 text-amber-500 fill-amber-500"></i>
+          <span class="text-neutral-400 font-semibold">${m.timestamp_display || App.formatSeconds(m.start_seconds)}</span>
+          <span class="font-medium text-ink max-w-[170px] sm:max-w-[210px] truncate">${m.title}</span>
+          ${m.yield_score ? `<span class="px-1 py-0.2 rounded bg-amber-500/15 text-amber-600 dark:text-amber-400 text-[9px] font-bold">★${m.yield_score}</span>` : ''}
+        </button>
+      `;
+    }).join('');
+
+    if (window.lucide) window.lucide.createIcons();
+    this.updateSpeedrunToggleButtonUI();
+  },
+
+  jumpToKeyMoment(idx, startSeconds) {
+    if (!this.currentKeyMoments || !this.currentKeyMoments[idx]) return;
+    const moment = this.currentKeyMoments[idx];
+    this.seekVideoToSeconds(startSeconds);
+    this.playVideo();
+    this.highlightActiveKeyMomentPill(idx);
+    this.showSpeedrunToast(`⚡ Concept: ${moment.title}`);
+  },
+
+  toggleSpeedrunMode() {
+    this.speedrunMode = !this.speedrunMode;
+    this.updateSpeedrunToggleButtonUI();
+
+    if (this.speedrunMode) {
+      this.showSpeedrunToast('⚡ Speedrun Mode ON • Auto-skipping recaps & filler', 2200);
+      if (this.currentKeyMoments && this.currentKeyMoments.length > 0) {
+        const firstM = this.currentKeyMoments[0];
+        if (this.lastPlaybackSeconds < firstM.start_seconds - 2) {
+          this.seekVideoToSeconds(firstM.start_seconds);
+          this.playVideo();
+          this.highlightActiveKeyMomentPill(0);
+        }
+      }
+    } else {
+      this.showSpeedrunToast('Speedrun Mode OFF • Full lecture playback active', 1800);
+    }
+  },
+
+  updateSpeedrunToggleButtonUI() {
+    const btn = document.getElementById('btn-toggle-speedrun');
+    const dot = document.getElementById('speedrun-status-dot');
+    const label = document.getElementById('speedrun-toggle-label');
+    if (!btn || !dot || !label) return;
+
+    if (this.speedrunMode) {
+      btn.className = 'px-2.5 py-0.5 rounded-full border border-amber-500/50 bg-amber-500/15 text-amber-600 dark:text-amber-400 text-[11px] font-mono flex items-center gap-1.5 transition font-semibold shadow-soft-sm';
+      dot.className = 'w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse';
+      label.textContent = 'Auto-Skip: ON';
+    } else {
+      btn.className = 'px-2.5 py-0.5 rounded-full border border-border text-[11px] font-mono flex items-center gap-1.5 transition text-neutral-400 hover:text-ink hover:bg-card-muted';
+      dot.className = 'w-1.5 h-1.5 rounded-full bg-neutral-400';
+      label.textContent = 'Auto-Skip: OFF';
+    }
+  },
+
+  onVideoTimeUpdate(currentTime, playerState) {
+    this.lastPlaybackSeconds = currentTime;
+    if (!this.currentKeyMoments || this.currentKeyMoments.length === 0) return;
+
+    // 1. Identify which moment we are currently in
+    let matchedIdx = -1;
+    for (let i = 0; i < this.currentKeyMoments.length; i++) {
+      const m = this.currentKeyMoments[i];
+      if (currentTime >= (m.start_seconds - 0.5) && currentTime <= (m.end_seconds + 0.5)) {
+        matchedIdx = i;
+        break;
+      }
+    }
+
+    if (matchedIdx !== this.activeKeyMomentIndex) {
+      this.highlightActiveKeyMomentPill(matchedIdx);
+    }
+
+    // 2. Automated Fluff-Skipping when Speedrun Mode is ON
+    if (this.speedrunMode && (playerState === 1 || playerState === undefined)) {
+      if (this.activeKeyMomentIndex >= 0) {
+        const curM = this.currentKeyMoments[this.activeKeyMomentIndex];
+        if (currentTime >= curM.end_seconds) {
+          const nextIdx = this.activeKeyMomentIndex + 1;
+          if (nextIdx < this.currentKeyMoments.length) {
+            const nextM = this.currentKeyMoments[nextIdx];
+            const skippedSecs = Math.max(0, Math.round(nextM.start_seconds - currentTime));
+            this.seekVideoToSeconds(nextM.start_seconds);
+            this.highlightActiveKeyMomentPill(nextIdx);
+            this.showSpeedrunToast(`⚡ Skipped ${skippedSecs}s fluff • Now: ${nextM.title}`, 2500);
+          } else {
+            this.showSpeedrunToast('⚡ Speedrun Complete! All key concepts mastered.', 3000);
+          }
+        }
+      } else {
+        for (let i = 0; i < this.currentKeyMoments.length; i++) {
+          const m = this.currentKeyMoments[i];
+          if (m.start_seconds > currentTime + 3.0) {
+            const prevMomentEnd = i > 0 ? this.currentKeyMoments[i-1].end_seconds : 0;
+            if (currentTime >= prevMomentEnd) {
+              const skippedSecs = Math.max(0, Math.round(m.start_seconds - currentTime));
+              this.seekVideoToSeconds(m.start_seconds);
+              this.highlightActiveKeyMomentPill(i);
+              this.showSpeedrunToast(`⚡ Skipped ${skippedSecs}s filler • Jumping to: ${m.title}`, 2500);
+              break;
+            }
+          }
+        }
+      }
+    }
+  },
+
+  highlightActiveKeyMomentPill(idx) {
+    this.activeKeyMomentIndex = idx;
+    const pills = document.querySelectorAll('.key-moment-pill');
+    pills.forEach((p, i) => {
+      if (i === idx) {
+        p.classList.add('active');
+        p.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+      } else {
+        p.classList.remove('active');
+      }
+    });
+  },
+
+  showSpeedrunToast(text, durationMs = 2000) {
+    const toast = document.getElementById('speedrun-skip-toast');
+    const label = document.getElementById('speedrun-skip-toast-text');
+    if (!toast || !label) return;
+
+    label.textContent = text;
+    toast.classList.remove('opacity-0', '-translate-y-2');
+    toast.classList.add('opacity-100', 'translate-y-0');
+
+    if (this.speedrunToastTimeout) clearTimeout(this.speedrunToastTimeout);
+    this.speedrunToastTimeout = setTimeout(() => {
+      toast.classList.remove('opacity-100', 'translate-y-0');
+      toast.classList.add('opacity-0', '-translate-y-2');
+    }, durationMs);
+  },
+
+  formatSeconds(secs) {
+    if (!secs || isNaN(secs)) return '00:00';
+    const m = Math.floor(secs / 60);
+    const s = Math.floor(secs % 60);
+    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
   },
 
   // -------------------------------------------------------------
@@ -3008,6 +3275,9 @@ const App = {
 
       // Load Video Player in Studio
       this.loadTopicVideo(data);
+
+      // Render Context-Aware Key Moments & Speedrun Controls
+      this.renderKeyMoments(data);
 
       if (data.status !== 'completed') {
         contentEl.innerHTML = `

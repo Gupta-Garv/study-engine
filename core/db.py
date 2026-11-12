@@ -52,6 +52,8 @@ def init_db():
                 subjectives_json TEXT DEFAULT '[]',
                 flashcards_json TEXT DEFAULT '[]',
                 slides_json TEXT DEFAULT '[]',
+                key_moments_json TEXT DEFAULT '[]',
+                transcript_snippets_json TEXT DEFAULT '[]',
                 error_message TEXT DEFAULT '',
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
@@ -110,6 +112,7 @@ def get_topic_detail(topic_id: str) -> Optional[Dict[str, Any]]:
     d["subjective_questions"] = json.loads(d.get("subjectives_json") or "[]")
     d["flashcards"] = json.loads(d.get("flashcards_json") or "[]")
     d["slides"] = json.loads(d.get("slides_json") or "[]")
+    d["key_moments"] = json.loads(d.get("key_moments_json") or "[]")
     return d
 
 def get_module_quiz(module_id: str) -> Dict[str, Any]:
@@ -189,6 +192,7 @@ def export_static_data():
             d["subjective_questions"] = json.loads(d.get("subjectives_json") or "[]")
             d["flashcards"] = json.loads(d.get("flashcards_json") or "[]")
             d["slides"] = json.loads(d.get("slides_json") or "[]")
+            d["key_moments"] = json.loads(d.get("key_moments_json") or "[]")
             topics[d["id"]] = d
             
         exams = {}

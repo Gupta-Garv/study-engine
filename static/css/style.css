@@ -591,5 +591,32 @@ mark.search-highlight {
   outline-offset: -4px;
 }
 
+/* High-Yield Smart Key Moments & Speedrun */
+.key-moment-pill {
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.key-moment-pill:hover {
+  transform: translateY(-1px);
+}
+
+.key-moment-pill.active {
+  border-color: #f59e0b !important;
+  background: rgba(245, 158, 11, 0.15) !important;
+  color: var(--text-foreground, #111) !important;
+  box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.35), var(--elevation-soft-sm);
+  font-weight: 600;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 
 
