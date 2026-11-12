@@ -194,7 +194,8 @@ def process_topic_task(topic_id: str, extract_slides_flag: bool = False):
             snippets=snippets,
             total_duration_seconds=duration,
             prev_topic=prev_t,
-            next_topic=next_t
+            next_topic=next_t,
+            transcript_text=full_text
         )
 
         import json
@@ -498,7 +499,8 @@ def regenerate_key_moments_endpoint(topic_id: str):
         snippets=snippets,
         total_duration_seconds=duration,
         prev_topic=prev_t,
-        next_topic=next_t
+        next_topic=next_t,
+        transcript_text=topic["transcript_text"] or ""
     )
 
     conn.execute("""

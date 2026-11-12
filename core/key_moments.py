@@ -114,19 +114,36 @@ def synthesize_key_moments(
     snippets: List[Snippet],
     total_duration_seconds: float = 0,
     prev_topic: Optional[Dict[str, str]] = None,
-    next_topic: Optional[Dict[str, str]] = None
+    next_topic: Optional[Dict[str, str]] = None,
+    transcript_text: str = ""
 ) -> Dict[str, Any]:
     """
     Synthesizes academic, high-yield smart chapters and fluff-free speedrun segments
     using cross-lecture syllabus context.
     """
-    if not snippets:
-        return _generate_fallback_key_moments(topic_title, total_duration_seconds)
+    timestamp_blocks = ""
+    if snippets:
+        if total_duration_seconds <= 0:
+            total_duration_seconds = snippets[-1].end
+        timestamp_blocks = format_snippets_into_timestamp_blocks(snippets)
 
-    if total_duration_seconds <= 0 and snippets:
-        total_duration_seconds = snippets[-1].end
+    if not timestamp_blocks.strip() and transcript_text.strip():
+        words = transcript_text.split()
+        total_words = len(words)
+        dur = total_duration_seconds if total_duration_seconds > 0 else max(total_words * 0.35, 120.0)
+        total_duration_seconds = dur
+        sec_per_word = dur / max(total_words, 1)
+        block_size = 40
+        blocks = []
+        for i in range(0, total_words, block_size):
+            chunk = words[i:i+block_size]
+            s_sec = i * sec_per_word
+            e_sec = min((i + len(chunk)) * sec_per_word, dur)
+            sm, ss = int(s_sec // 60), int(s_sec % 60)
+            em, es = int(e_sec // 60), int(e_sec % 60)
+            blocks.append(f"[{sm:02d}:{ss:02d} - {em:02d}:{es:02d}] " + " ".join(chunk))
+        timestamp_blocks = "\n".join(blocks)
 
-    timestamp_blocks = format_snippets_into_timestamp_blocks(snippets)
     if not timestamp_blocks.strip():
         return _generate_fallback_key_moments(topic_title, total_duration_seconds)
 
@@ -269,3 +286,4 @@ def _generate_fallback_key_moments(topic_title: str, total_duration: float) -> D
             }
         ]
     }
+

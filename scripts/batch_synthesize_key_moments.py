@@ -93,7 +93,8 @@ def process_course_key_moments(course_id: str = "a846c0e5"):
             snippets=snippets,
             total_duration_seconds=duration,
             prev_topic=prev_t,
-            next_topic=next_t
+            next_topic=next_t,
+            transcript_text=r["transcript_text"] or ""
         )
 
         km_json_str = json.dumps(km_result, ensure_ascii=False)
@@ -120,3 +121,4 @@ def process_course_key_moments(course_id: str = "a846c0e5"):
 if __name__ == "__main__":
     cid = sys.argv[1] if len(sys.argv) > 1 else "a846c0e5"
     process_course_key_moments(cid)
+
