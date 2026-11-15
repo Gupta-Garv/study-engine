@@ -38,6 +38,19 @@ const App = {
   speedrunMonitoringInterval: null,
   speedrunToastTimeout: null,
   lastPlaybackSeconds: 0,
+  voiceRate: 1,
+  selectedVoiceKey: 'christopher',
+  curatedVoices: [],
+  notesAudioElement: null,
+  currentAudioTopicId: null,
+  currentAudioVoiceKey: null,
+  voiceSentences: [],
+  voiceSegments: [],
+  voiceCurrentSentenceIdx: -1,
+  isVoicePlaying: false,
+  isVoicePaused: false,
+  isVoiceSynthesizing: false,
+  voiceTotalSeconds: 0,
   notepadTool: 'select',
   notepadColor: 'ink',
   notepadWidth: 2,
@@ -91,6 +104,7 @@ const App = {
     this.initDashboard();
     this.initCanvasListeners();
     this.initSpeedrunListener();
+    this.initNotesVoice();
     this.updateStudioLayout();
     await this.loadCourses();
     this.switchView('dashboard');
@@ -750,10 +764,44 @@ const App = {
   },
 
   renderDashboard() {
+    this.updateDynamicLectureCounts();
     this.renderRecentLectureBanner();
     this.renderSubjectMasteryCards();
     this.renderChecklist();
     if (window.lucide) window.lucide.createIcons();
+  },
+
+  updateDynamicLectureCounts() {
+    const all = this.getAllCurriculumTopics();
+    const total = all.length || 505;
+    const coursesCount = (this.courses && this.courses.length) || 5;
+
+    // 1. Search input placeholder
+    const searchInput = document.getElementById('global-search-input');
+    if (searchInput) {
+      searchInput.placeholder = `Search all ${total} lectures, concepts, equations...`;
+    }
+
+    // 2. Static viewer banner
+    const staticBanner = document.getElementById('static-viewer-banner');
+    if (staticBanner) {
+      const spans = staticBanner.querySelectorAll('span');
+      if (spans.length >= 5) {
+        spans[4].textContent = `IIMBx Degree Suite • ${coursesCount} Subjects • ${total} Curated Lectures`;
+      }
+    }
+
+    // 3. Hero summary description
+    const heroDesc = document.querySelector('#view-dashboard p.text-ink-secondary');
+    if (heroDesc) {
+      heroDesc.textContent = `All ${total} lectures, slides, and transcripts are indexed. Study notes with embedded video, pin key formulas to your visual canvas, solve doubts with AI Copilot, and track exam readiness.`;
+    }
+
+    // 4. Curriculum mastery header
+    const masteryHeader = document.querySelector('#view-dashboard .text-xs.font-mono.uppercase span');
+    if (masteryHeader && masteryHeader.textContent.includes('Curriculum Mastery')) {
+      masteryHeader.textContent = `Degree Curriculum Mastery (${coursesCount} Subjects • ${total} Lectures)`;
+    }
   },
 
   renderRecentLectureBanner() {
@@ -794,10 +842,11 @@ const App = {
         </div>
       `;
     } else {
+      const totalLectures = (this.getAllCurriculumTopics() || []).length || 505;
       banner.innerHTML = `
         <button onclick="App.switchView('notes')" class="pill-ink text-xs px-4 py-2 inline-flex items-center gap-2">
           <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-          <span>Launch Study Studio (463 Lectures Ready)</span>
+          <span>Launch Study Studio (${totalLectures} Lectures Ready)</span>
         </button>
       `;
     }
@@ -3305,6 +3354,7 @@ const App = {
   },
 
   async loadTopicNotes(topicId) {
+    this.stopNotesVoice(true);
     this.selectedTopicId = topicId;
     this.lastStudiedTopicId = topicId;
     localStorage.setItem('study_engine_last_studied_topic', topicId);
@@ -3421,6 +3471,7 @@ const App = {
       contentEl.innerHTML = `<div class="text-rose-500 text-xs">Error loading notes: ${e}</div>`;
     }
     this.updateLectureNavButtons();
+    this.prepareNotesVoiceSegments();
   },
 
   // -------------------------------------------------------------
@@ -3750,8 +3801,10 @@ const App = {
     if (window.lucide) window.lucide.createIcons();
   },
   // -------------------------------------------------------------
-  // Exam Arena
+  // Exam Arena (Conceptual 2-Set Simulator)
   // -------------------------------------------------------------
+  selectedExamSet: 1,
+
   setupExamView() {
     const select = document.getElementById('exam-module-select');
     if (!select) return;
@@ -3764,6 +3817,93 @@ const App = {
     });
 
     select.innerHTML = options.length ? options.join('') : '<option value="">No modules available</option>';
+    this.onExamModuleChange();
+  },
+
+  selectExamSet(setNum) {
+    this.selectedExamSet = setNum;
+    const card1 = document.getElementById('exam-set-card-1');
+    const card2 = document.getElementById('exam-set-card-2');
+    if (card1 && card2) {
+      if (setNum === 1) {
+        card1.className = 'cursor-pointer p-4 rounded-2xl border-2 border-neutral-900 dark:border-white bg-card-muted transition relative';
+        card2.className = 'cursor-pointer p-4 rounded-2xl border border-border hover:border-neutral-400 dark:hover:border-neutral-600 bg-card transition relative';
+      } else {
+        card2.className = 'cursor-pointer p-4 rounded-2xl border-2 border-neutral-900 dark:border-white bg-card-muted transition relative';
+        card1.className = 'cursor-pointer p-4 rounded-2xl border border-border hover:border-neutral-400 dark:hover:border-neutral-600 bg-card transition relative';
+      }
+    }
+  },
+
+  async onExamModuleChange() {
+    const select = document.getElementById('exam-module-select');
+    if (!select) return;
+    const moduleId = select.value;
+    if (!moduleId) return;
+
+    // Check for tests in static bundle or via API
+    let tests = null;
+    if (window.STUDY_DATA && window.STUDY_DATA.module_tests && window.STUDY_DATA.module_tests[moduleId]) {
+      tests = window.STUDY_DATA.module_tests[moduleId];
+    }
+
+    try {
+      const res = await fetch(`/api/modules/${moduleId}/tests`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.tests && data.tests.length) tests = data.tests;
+      }
+    } catch (e) {}
+
+    const count1El = document.getElementById('exam-set-1-count');
+    const count2El = document.getElementById('exam-set-2-count');
+    const title1El = document.getElementById('exam-set-1-title');
+    const title2El = document.getElementById('exam-set-2-title');
+
+    if (tests && tests.length >= 2) {
+      const s1 = tests.find(t => t.set_number === 1) || tests[0];
+      const s2 = tests.find(t => t.set_number === 2) || tests[1];
+      if (count1El) count1El.textContent = `${s1.total_questions || (s1.questions && s1.questions.length) || 12} Questions`;
+      if (count2El) count2El.textContent = `${s2.total_questions || (s2.questions && s2.questions.length) || 12} Questions`;
+      if (title1El && s1.title) title1El.textContent = s1.title;
+      if (title2El && s2.title) title2El.textContent = s2.title;
+    } else {
+      if (count1El) count1El.textContent = '~12 Questions';
+      if (count2El) count2El.textContent = '~12 Questions';
+    }
+  },
+
+  async generateModuleTestsForCurrent() {
+    const select = document.getElementById('exam-module-select');
+    if (!select || !select.value) return;
+    const moduleId = select.value;
+
+    const btn = document.getElementById('exam-generate-btn');
+    const origHtml = btn ? btn.innerHTML : '';
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = `<i data-lucide="loader-2" class="w-3 h-3 animate-spin text-amber-500"></i> AI Synthesizing Tests...`;
+    }
+
+    try {
+      const res = await fetch(`/api/modules/${moduleId}/generate-tests?force=true`, { method: 'POST' });
+      if (res.ok) {
+        const data = await res.json();
+        alert('Successfully synthesized 2 conceptual test sets for this module!');
+        await this.onExamModuleChange();
+      } else {
+        const err = await res.text();
+        alert('Generation failed: ' + err);
+      }
+    } catch (e) {
+      alert('Error connecting to backend: ' + e);
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = origHtml;
+        if (window.lucide) window.lucide.createIcons();
+      }
+    }
   },
 
   async startExam() {
@@ -3774,31 +3914,93 @@ const App = {
     }
 
     try {
-      let examData = null;
-      if (window.STUDY_DATA && window.STUDY_DATA.exams && window.STUDY_DATA.exams[moduleId]) {
-        examData = window.STUDY_DATA.exams[moduleId];
+      let questions = [];
+      let testMeta = null;
+
+      // 1. Try static bundle module_tests
+      if (window.STUDY_DATA && window.STUDY_DATA.module_tests && window.STUDY_DATA.module_tests[moduleId]) {
+        const setObj = window.STUDY_DATA.module_tests[moduleId].find(t => t.set_number === this.selectedExamSet);
+        if (setObj && setObj.questions && setObj.questions.length > 0) {
+          questions = setObj.questions;
+          testMeta = setObj;
+        }
       }
+
+      // 2. Try API endpoint for specific test set
       try {
-        const res = await fetch(`/api/modules/${moduleId}/exam`);
-        if (res.ok) examData = await res.json();
+        const res = await fetch(`/api/modules/${moduleId}/tests/${this.selectedExamSet}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.questions && data.questions.length > 0) {
+            questions = data.questions;
+            testMeta = data;
+          }
+        }
       } catch (err) {}
 
-      if (!examData || !examData.mcqs || examData.mcqs.length === 0) {
-        alert('No MCQs available in this module yet. Add videos and curate notes first!');
+      // 3. Fallback to /exam?set_number=
+      if (questions.length === 0) {
+        try {
+          const res = await fetch(`/api/modules/${moduleId}/exam?set_number=${this.selectedExamSet}`);
+          if (res.ok) {
+            const data = await res.json();
+            if (data && data.mcqs && data.mcqs.length > 0) {
+              questions = data.mcqs;
+              testMeta = data;
+            }
+          }
+        } catch (err) {}
+      }
+
+      // 4. Final fallback to static exams
+      if (questions.length === 0 && window.STUDY_DATA && window.STUDY_DATA.exams && window.STUDY_DATA.exams[moduleId]) {
+        questions = window.STUDY_DATA.exams[moduleId].mcqs || [];
+      }
+
+      if (!questions || questions.length === 0) {
+        if (confirm('No conceptual tests synthesized for this module yet. Would you like AI to synthesize Set 1 & Set 2 now?')) {
+          await this.generateModuleTestsForCurrent();
+          return;
+        }
         return;
       }
 
-      this.examQuestions = examData.mcqs;
-      this.subjectiveQuestions = examData.subjective_questions || [];
+      this.examQuestions = questions;
+      this.currentTestMeta = testMeta || { title: `Set ${this.selectedExamSet} Test` };
       this.currentQuestionIdx = 0;
       this.userAnswers = {};
 
       document.getElementById('exam-setup-box').classList.add('hidden');
+      document.getElementById('exam-results-box').classList.add('hidden');
       document.getElementById('exam-runner-box').classList.remove('hidden');
+
+      this.renderExamPalette();
       this.loadExamQuestion(0);
+      if (window.lucide) window.lucide.createIcons();
     } catch (e) {
       alert('Failed to load exam: ' + e);
     }
+  },
+
+  renderExamPalette() {
+    const palette = document.getElementById('exam-palette');
+    if (!palette) return;
+
+    palette.innerHTML = this.examQuestions.map((q, idx) => {
+      const isAnswered = this.userAnswers[idx] && this.userAnswers[idx].length > 0;
+      const isCurrent = this.currentQuestionIdx === idx;
+      let btnClasses = 'w-7 h-7 rounded-lg text-xs font-mono font-medium transition flex items-center justify-center ';
+
+      if (isCurrent) {
+        btnClasses += 'ring-2 ring-neutral-900 dark:ring-white bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-bold';
+      } else if (isAnswered) {
+        btnClasses += 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30';
+      } else {
+        btnClasses += 'bg-card border border-border text-ink-secondary hover:text-ink hover:bg-muted';
+      }
+
+      return `<button onclick="App.loadExamQuestion(${idx})" class="${btnClasses}">${idx + 1}</button>`;
+    }).join('');
   },
 
   loadExamQuestion(index) {
@@ -3806,22 +4008,72 @@ const App = {
     const q = this.examQuestions[index];
     if (!q) return;
 
+    const isMulti = q.type === 'multiple_choice' || (q.correct_indices && q.correct_indices.length > 1);
+
     document.getElementById('exam-q-counter').textContent = `Question ${index + 1} of ${this.examQuestions.length}`;
+    
+    const badgeEl = document.getElementById('exam-q-type-badge');
+    if (badgeEl) {
+      if (isMulti) {
+        badgeEl.textContent = 'Multiple Correct (Select all that apply)';
+        badgeEl.className = 'text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-semibold';
+      } else {
+        badgeEl.textContent = 'Single Choice';
+        badgeEl.className = 'text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-semibold';
+      }
+    }
+
+    const conceptEl = document.getElementById('exam-q-concept-badge');
+    if (conceptEl) {
+      conceptEl.textContent = q.key_concept ? `Concept: ${q.key_concept}` : '';
+    }
+
     document.getElementById('exam-q-text').textContent = q.question;
 
     const optContainer = document.getElementById('exam-q-options');
-    optContainer.innerHTML = q.options.map((opt, optIdx) => `
-      <button onclick="App.selectExamOption(${optIdx})" class="w-full text-left p-3.5 rounded-xl border text-xs sm:text-sm font-medium transition flex items-center justify-between gap-3 ${
-        this.userAnswers[index] === optIdx ? 'border-neutral-900 bg-neutral-100 dark:border-white dark:bg-neutral-800 font-semibold' : 'border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900'
-      }">
-        <span>${opt}</span>
-        <span class="w-4 h-4 rounded-full border ${this.userAnswers[index] === optIdx ? 'bg-neutral-900 dark:bg-white' : ''}"></span>
-      </button>
-    `).join('');
+    const selectedList = this.userAnswers[index] || [];
+
+    optContainer.innerHTML = q.options.map((opt, optIdx) => {
+      const isSelected = selectedList.includes(optIdx);
+      const indicatorShape = isMulti ? 'rounded-md' : 'rounded-full';
+
+      return `
+        <button onclick="App.selectExamOption(${optIdx}, ${isMulti})" class="w-full text-left p-3.5 rounded-xl border text-xs sm:text-sm font-medium transition flex items-center justify-between gap-3 ${
+          isSelected 
+            ? 'border-neutral-900 bg-neutral-100 dark:border-white dark:bg-neutral-800/80 font-semibold text-ink shadow-sm' 
+            : 'border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900/60 text-ink-secondary'
+        }">
+          <span class="leading-relaxed">${opt}</span>
+          <span class="w-4 h-4 shrink-0 ${indicatorShape} border flex items-center justify-center ${
+            isSelected 
+              ? 'bg-neutral-900 dark:bg-white border-neutral-900 dark:border-white text-white dark:text-neutral-900' 
+              : 'border-neutral-300 dark:border-neutral-700'
+          }">
+            ${isSelected ? (isMulti ? '<span class="text-[9px] font-bold">✓</span>' : '') : ''}
+          </span>
+        </button>
+      `;
+    }).join('');
+
+    this.renderExamPalette();
   },
 
-  selectExamOption(optIdx) {
-    this.userAnswers[this.currentQuestionIdx] = optIdx;
+  selectExamOption(optIdx, isMulti) {
+    if (!this.userAnswers[this.currentQuestionIdx]) {
+      this.userAnswers[this.currentQuestionIdx] = [];
+    }
+
+    if (isMulti) {
+      let current = this.userAnswers[this.currentQuestionIdx];
+      if (current.includes(optIdx)) {
+        this.userAnswers[this.currentQuestionIdx] = current.filter(x => x !== optIdx);
+      } else {
+        this.userAnswers[this.currentQuestionIdx].push(optIdx);
+      }
+    } else {
+      this.userAnswers[this.currentQuestionIdx] = [optIdx];
+    }
+
     this.loadExamQuestion(this.currentQuestionIdx);
   },
 
@@ -3838,20 +4090,635 @@ const App = {
   },
 
   finishExam() {
-    let correct = 0;
-    let wrong = 0;
+    let correctCount = 0;
+    let wrongCount = 0;
+    let unansweredCount = 0;
+    let rawScore = 0.0;
+
+    const totalQuestions = this.examQuestions.length;
+
     this.examQuestions.forEach((q, idx) => {
-      const u = this.userAnswers[idx];
-      if (u !== undefined) {
-        if (u === q.correct_index) correct++;
-        else wrong++;
+      const userSelected = this.userAnswers[idx] || [];
+      const isMulti = q.type === 'multiple_choice' || (q.correct_indices && q.correct_indices.length > 1);
+
+      let targetCorrect = [];
+      if (Array.isArray(q.correct_indices)) {
+        targetCorrect = q.correct_indices;
+      } else if (Array.isArray(q.correct_index)) {
+        targetCorrect = q.correct_index;
+      } else if (typeof q.correct_index === 'number') {
+        targetCorrect = [q.correct_index];
+      }
+
+      if (userSelected.length === 0) {
+        unansweredCount++;
+        return;
+      }
+
+      if (!isMulti) {
+        const u = userSelected[0];
+        if (targetCorrect.includes(u)) {
+          correctCount++;
+          rawScore += 1.0;
+        } else {
+          wrongCount++;
+          rawScore -= 0.25;
+        }
+      } else {
+        const uSet = new Set(userSelected);
+        const cSet = new Set(targetCorrect);
+        
+        let hasWrongSelection = false;
+        userSelected.forEach(opt => {
+          if (!cSet.has(opt)) hasWrongSelection = true;
+        });
+
+        if (uSet.size === cSet.size && !hasWrongSelection) {
+          correctCount++;
+          rawScore += 1.0;
+        } else if (!hasWrongSelection && uSet.size > 0) {
+          const partial = (uSet.size / cSet.size) * 0.75;
+          rawScore += partial;
+          correctCount++;
+        } else {
+          wrongCount++;
+          rawScore -= 0.25;
+        }
       }
     });
 
-    const score = Math.max(0, correct - (wrong * 0.25));
-    alert(`Exam Finished!\nScore: ${score.toFixed(2)} / ${this.examQuestions.length}\nCorrect: ${correct}\nWrong: ${wrong}`);
+    const finalScore = Math.max(0, rawScore);
+    const accuracy = totalQuestions > 0 ? Math.round((correctCount / totalQuestions) * 100) : 0;
+
+    document.getElementById('exam-score-display').textContent = finalScore.toFixed(2);
+    document.getElementById('exam-max-score-display').textContent = `/ ${totalQuestions}.00`;
+    document.getElementById('exam-stat-accuracy').textContent = `${accuracy}%`;
+    document.getElementById('exam-stat-correct').textContent = correctCount;
+    document.getElementById('exam-stat-wrong').textContent = wrongCount;
+    document.getElementById('exam-stat-unanswered').textContent = unansweredCount;
+
+    const titleEl = document.getElementById('exam-results-title');
+    if (titleEl) {
+      titleEl.textContent = this.currentTestMeta ? this.currentTestMeta.title : 'Diagnostic Results';
+    }
+
+    const switchBtn = document.getElementById('exam-switch-set-btn');
+    if (switchBtn) {
+      const nextSet = this.selectedExamSet === 1 ? 2 : 1;
+      switchBtn.textContent = `Take Set ${nextSet}`;
+    }
+
+    const reviewContainer = document.getElementById('exam-review-container');
+    if (reviewContainer) {
+      reviewContainer.innerHTML = this.examQuestions.map((q, idx) => {
+        const userSelected = this.userAnswers[idx] || [];
+        const isMulti = q.type === 'multiple_choice' || (q.correct_indices && q.correct_indices.length > 1);
+
+        let targetCorrect = [];
+        if (Array.isArray(q.correct_indices)) targetCorrect = q.correct_indices;
+        else if (Array.isArray(q.correct_index)) targetCorrect = q.correct_index;
+        else if (typeof q.correct_index === 'number') targetCorrect = [q.correct_index];
+
+        const uSet = new Set(userSelected);
+        const cSet = new Set(targetCorrect);
+
+        let statusText = 'Skipped';
+        let statusBadgeClass = 'bg-neutral-500/10 text-neutral-500 border-neutral-500/20';
+
+        if (userSelected.length > 0) {
+          let hasWrong = userSelected.some(o => !cSet.has(o));
+          if (uSet.size === cSet.size && !hasWrong) {
+            statusText = 'Correct (+1.00)';
+            statusBadgeClass = 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20';
+          } else if (!hasWrong) {
+            statusText = 'Partially Correct';
+            statusBadgeClass = 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20';
+          } else {
+            statusText = 'Incorrect (-0.25)';
+            statusBadgeClass = 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20';
+          }
+        }
+
+        const optionsHtml = q.options.map((opt, optIdx) => {
+          const isUserPicked = uSet.has(optIdx);
+          const isCorrect = cSet.has(optIdx);
+
+          let optBorder = 'border-border bg-card';
+          let markIcon = '';
+
+          if (isCorrect) {
+            optBorder = 'border-emerald-500 bg-emerald-500/10 text-emerald-800 dark:text-emerald-200 font-medium';
+            markIcon = '<span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">✓ Correct</span>';
+          } else if (isUserPicked && !isCorrect) {
+            optBorder = 'border-rose-500 bg-rose-500/10 text-rose-800 dark:text-rose-200 font-medium';
+            markIcon = '<span class="text-xs font-bold text-rose-600 dark:text-rose-400">✕ Your Choice</span>';
+          }
+
+          return `
+            <div class="p-3 rounded-xl border text-xs flex items-center justify-between gap-3 ${optBorder}">
+              <span>${opt}</span>
+              ${markIcon}
+            </div>
+          `;
+        }).join('');
+
+        return `
+          <div class="rounded-2xl border border-border bg-card p-5 space-y-4 shadow-soft">
+            <div class="flex items-center justify-between border-b border-border pb-3">
+              <span class="text-xs font-mono font-bold text-ink">Q${idx + 1}. ${q.key_concept || 'Conceptual Principle'}</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full border ${statusBadgeClass} font-semibold">${statusText}</span>
+            </div>
+
+            <p class="text-sm font-medium leading-relaxed text-ink">${q.question}</p>
+
+            <div class="space-y-2">
+              ${optionsHtml}
+            </div>
+
+            <div class="mt-3 p-4 rounded-xl bg-muted/60 border border-border/80 space-y-2">
+              <div class="text-[11px] font-mono uppercase tracking-wider text-ink font-semibold flex items-center gap-1.5">
+                <i data-lucide="book-open" class="w-3.5 h-3.5 text-accent"></i> Core Conceptual Explanation
+              </div>
+              <p class="text-xs text-ink-secondary leading-relaxed">${q.explanation || 'Refer to lecture notes for complete derivation.'}</p>
+
+              ${q.trap_warning ? `
+                <div class="mt-2 pt-2 border-t border-border/60">
+                  <div class="text-[11px] font-mono uppercase tracking-wider text-rose-600 dark:text-rose-400 font-semibold flex items-center gap-1.5">
+                    <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i> Examiner Gotcha Radar
+                  </div>
+                  <p class="text-xs text-rose-600/90 dark:text-rose-400/90 mt-0.5 leading-relaxed">${q.trap_warning}</p>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
     document.getElementById('exam-runner-box').classList.add('hidden');
+    document.getElementById('exam-results-box').classList.remove('hidden');
+    if (window.lucide) window.lucide.createIcons();
+  },
+
+  retakeExam() {
+    this.startExam();
+  },
+
+  switchExamSetFromResults() {
+    const nextSet = this.selectedExamSet === 1 ? 2 : 1;
+    this.selectExamSet(nextSet);
+    this.startExam();
+  },
+
+  returnToExamSetup() {
+    document.getElementById('exam-runner-box').classList.add('hidden');
+    document.getElementById('exam-results-box').classList.add('hidden');
     document.getElementById('exam-setup-box').classList.remove('hidden');
+    this.onExamModuleChange();
+  },
+
+  // -------------------------------------------------------------
+  // Studio Neural Audio Narrator (Edge-TTS Broadcast-Grade Voices)
+  // -------------------------------------------------------------
+  async initNotesVoice() {
+    if (!this.notesAudioElement) {
+      this.notesAudioElement = new Audio();
+      this.notesAudioElement.preload = 'auto';
+
+      this.notesAudioElement.addEventListener('timeupdate', () => this.onAudioTimeUpdate());
+      this.notesAudioElement.addEventListener('ended', () => this.onVoiceFinished());
+      this.notesAudioElement.addEventListener('play', () => {
+        this.isVoicePlaying = true;
+        this.isVoicePaused = false;
+        this.updateVoicePlayButtonUI(true);
+      });
+      this.notesAudioElement.addEventListener('pause', () => {
+        if (!this.notesAudioElement.ended && !this.isVoiceSynthesizing) {
+          this.isVoicePlaying = false;
+          this.isVoicePaused = true;
+          this.updateVoicePlayButtonUI(false);
+          const statusEl = document.getElementById('voice-status-text');
+          if (statusEl) statusEl.textContent = 'Paused';
+        }
+      });
+      this.notesAudioElement.addEventListener('error', (e) => {
+        console.warn('Audio playback error:', e);
+        this.isVoicePlaying = false;
+        this.isVoiceSynthesizing = false;
+        this.updateVoicePlayButtonUI(false);
+        const statusEl = document.getElementById('voice-status-text');
+        if (statusEl) statusEl.textContent = 'Audio error';
+      });
+    }
+
+    const savedVoice = localStorage.getItem('study_engine_neural_voice');
+    if (savedVoice) this.selectedVoiceKey = savedVoice;
+
+    await this.loadCuratedVoices();
+  },
+
+  async loadCuratedVoices() {
+    try {
+      const res = await fetch('/api/voices');
+      if (res.ok) {
+        const data = await res.json();
+        this.curatedVoices = data.voices || [];
+        if (!this.selectedVoiceKey && data.default) {
+          this.selectedVoiceKey = data.default;
+        }
+      }
+    } catch (e) {
+      this.curatedVoices = [
+        { key: 'christopher', label: 'Christopher (Warm Narrator)' },
+        { key: 'jenny', label: 'Jenny (Soothing Studio)' },
+        { key: 'ryan', label: 'Ryan (BBC British Male)' },
+        { key: 'sonia', label: 'Sonia (Soft British Female)' },
+        { key: 'neerja', label: 'Neerja (Natural Indian English)' },
+        { key: 'guy', label: 'Guy (Conversational US)' }
+      ];
+    }
+
+    const dropdown = document.getElementById('voice-select-dropdown');
+    if (dropdown && this.curatedVoices.length > 0) {
+      dropdown.innerHTML = this.curatedVoices.map(v => 
+        `<option value="${v.key}" ${v.key === this.selectedVoiceKey ? 'selected' : ''}>${v.label || v.name}</option>`
+      ).join('');
+      dropdown.value = this.selectedVoiceKey;
+    }
+  },
+
+  prepareNotesVoiceSegments() {
+    this.stopNotesVoice(true);
+
+    const contentEl = document.getElementById('notes-content-body');
+    if (!contentEl) return;
+
+    const nodes = contentEl.querySelectorAll('p, h1, h2, h3, h4, li, blockquote');
+    const segments = [];
+    let segIdx = 0;
+    let totalWordCount = 0;
+
+    nodes.forEach(node => {
+      const clone = node.cloneNode(true);
+      clone.querySelectorAll('.pin-note-btn, .timestamp-jump-btn, button, script, style').forEach(el => el.remove());
+
+      const rawText = clone.textContent.trim();
+      if (!rawText || rawText.length < 3) return;
+
+      const words = rawText.split(/\s+/).filter(Boolean);
+      totalWordCount += words.length;
+
+      node.classList.add('voice-readable-segment');
+      node.setAttribute('data-voice-idx', segIdx);
+      node.onclick = (e) => {
+        if (e.target.closest('.pin-note-btn') || e.target.closest('.timestamp-jump-btn')) return;
+        App.jumpToVoiceSegment(segIdx, true);
+      };
+
+      segments.push({
+        idx: segIdx,
+        element: node,
+        text: rawText.toLowerCase(),
+        wordCount: words.length
+      });
+
+      segIdx++;
+    });
+
+    this.voiceSegments = segments;
+    this.voiceCurrentSentenceIdx = -1;
+    this.currentAudioTopicId = null;
+    this.voiceSentences = [];
+
+    this.voiceTotalSeconds = Math.max(10, Math.round((totalWordCount / 140) * 60));
+
+    const totalTimeEl = document.getElementById('voice-time-total');
+    if (totalTimeEl) {
+      totalTimeEl.textContent = `~${this.formatVoiceSeconds(this.voiceTotalSeconds)}`;
+    }
+    const elapsedEl = document.getElementById('voice-time-elapsed');
+    if (elapsedEl) elapsedEl.textContent = '0:00';
+    const pctEl = document.getElementById('voice-progress-pct');
+    if (pctEl) pctEl.textContent = '0%';
+    const slider = document.getElementById('voice-progress-slider');
+    if (slider) slider.value = 0;
+
+    const statusEl = document.getElementById('voice-status-text');
+    if (statusEl) {
+      statusEl.textContent = 'Ready (Studio Neural Voice)';
+    }
+  },
+
+  formatVoiceSeconds(sec) {
+    if (!sec || isNaN(sec)) return '0:00';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+  },
+
+  async toggleNotesVoice() {
+    if (this.isVoicePlaying) {
+      this.pauseNotesVoice();
+    } else {
+      await this.playNotesVoice();
+    }
+  },
+
+  async playNotesVoice() {
+    if (!this.selectedTopicId) return;
+
+    const needFetch = !this.notesAudioElement.src || 
+                      this.currentAudioTopicId !== this.selectedTopicId || 
+                      this.currentAudioVoiceKey !== this.selectedVoiceKey;
+
+    if (needFetch) {
+      await this.loadTopicNeuralAudio(this.selectedTopicId, this.selectedVoiceKey);
+    }
+
+    if (this.notesAudioElement && this.notesAudioElement.src) {
+      try {
+        this.notesAudioElement.playbackRate = this.voiceRate || 1.0;
+        await this.notesAudioElement.play();
+        this.isVoicePlaying = true;
+        this.isVoicePaused = false;
+        this.updateVoicePlayButtonUI(true);
+      } catch (err) {
+        console.warn('Playback play failed:', err);
+      }
+    }
+  },
+
+  async loadTopicNeuralAudio(topicId, voiceKey) {
+    const statusEl = document.getElementById('voice-status-text');
+    const playBtn = document.getElementById('voice-play-btn');
+
+    this.isVoiceSynthesizing = true;
+    if (statusEl) statusEl.textContent = 'Synthesizing Studio Audio...';
+    if (playBtn) playBtn.disabled = true;
+
+    try {
+      const res = await fetch(`/api/topics/${topicId}/audio?voice=${encodeURIComponent(voiceKey)}`);
+      if (!res.ok) throw new Error('Failed to load audio from server');
+
+      const data = await res.json();
+      this.notesAudioElement.src = data.audio_url;
+      this.currentAudioTopicId = topicId;
+      this.currentAudioVoiceKey = voiceKey;
+      this.voiceSentences = data.sentences || [];
+      this.voiceTotalSeconds = Math.round(data.total_duration || 0);
+
+      const totalTimeEl = document.getElementById('voice-time-total');
+      if (totalTimeEl && this.voiceTotalSeconds > 0) {
+        totalTimeEl.textContent = this.formatVoiceSeconds(this.voiceTotalSeconds);
+      }
+    } catch (e) {
+      console.error('Error loading neural audio:', e);
+      if (statusEl) statusEl.textContent = 'Failed to load audio';
+    } finally {
+      this.isVoiceSynthesizing = false;
+      if (playBtn) playBtn.disabled = false;
+    }
+  },
+
+  pauseNotesVoice() {
+    if (this.notesAudioElement) {
+      this.notesAudioElement.pause();
+    }
+    this.isVoicePlaying = false;
+    this.isVoicePaused = true;
+    this.updateVoicePlayButtonUI(false);
+    this.markCurrentPausedSegment();
+
+    const statusEl = document.getElementById('voice-status-text');
+    if (statusEl) statusEl.textContent = 'Paused';
+  },
+
+  stopNotesVoice(silent = false) {
+    if (this.notesAudioElement) {
+      this.notesAudioElement.pause();
+      this.notesAudioElement.currentTime = 0;
+    }
+    this.isVoicePlaying = false;
+    this.isVoicePaused = false;
+    this.voiceCurrentSentenceIdx = -1;
+    this.clearVoiceHighlights();
+    this.updateVoicePlayButtonUI(false);
+
+    const elapsedEl = document.getElementById('voice-time-elapsed');
+    if (elapsedEl) elapsedEl.textContent = '0:00';
+    const pctEl = document.getElementById('voice-progress-pct');
+    if (pctEl) pctEl.textContent = '0%';
+    const slider = document.getElementById('voice-progress-slider');
+    if (slider) slider.value = 0;
+
+    const statusEl = document.getElementById('voice-status-text');
+    if (statusEl && !silent) {
+      statusEl.textContent = 'Ready (Studio Neural Voice)';
+    }
+  },
+
+  skipNotesVoice(direction) {
+    if (!this.notesAudioElement) return;
+    const skipAmount = direction * 15;
+    const dur = this.notesAudioElement.duration || this.voiceTotalSeconds || 1;
+    const target = Math.max(0, Math.min(dur - 0.5, this.notesAudioElement.currentTime + skipAmount));
+    this.notesAudioElement.currentTime = target;
+    if (!this.isVoicePlaying) {
+      this.playNotesVoice();
+    }
+  },
+
+  onVoiceScrub(pctVal) {
+    if (!this.notesAudioElement) return;
+    const dur = this.notesAudioElement.duration || this.voiceTotalSeconds;
+    if (!dur) return;
+    const targetTime = (parseFloat(pctVal) / 100) * dur;
+    this.notesAudioElement.currentTime = targetTime;
+  },
+
+  async jumpToVoiceSegment(segIdx, autoPlay = true) {
+    if (!this.voiceSegments || !this.voiceSegments[segIdx]) return;
+    const seg = this.voiceSegments[segIdx];
+
+    if (!this.notesAudioElement.src || this.currentAudioTopicId !== this.selectedTopicId || this.currentAudioVoiceKey !== this.selectedVoiceKey) {
+      await this.loadTopicNeuralAudio(this.selectedTopicId, this.selectedVoiceKey);
+    }
+
+    let targetTime = 0;
+    if (this.voiceSentences && this.voiceSentences.length > 0) {
+      const segTextClean = seg.text.replace(/[^a-z0-9]/g, '');
+      const match = this.voiceSentences.find(s => {
+        const sClean = s.text.toLowerCase().replace(/[^a-z0-9]/g, '');
+        return segTextClean.includes(sClean) || sClean.includes(segTextClean);
+      });
+      if (match) {
+        targetTime = match.start;
+      } else {
+        const ratio = segIdx / Math.max(1, this.voiceSegments.length - 1);
+        targetTime = ratio * (this.notesAudioElement.duration || this.voiceTotalSeconds);
+      }
+    } else {
+      const ratio = segIdx / Math.max(1, this.voiceSegments.length - 1);
+      targetTime = ratio * (this.notesAudioElement.duration || this.voiceTotalSeconds);
+    }
+
+    this.notesAudioElement.currentTime = Math.max(0, targetTime);
+
+    if (autoPlay) {
+      await this.playNotesVoice();
+    } else {
+      this.highlightSegmentByIndex(segIdx, 'paused');
+    }
+  },
+
+  async setNotesVoice(voiceKey) {
+    if (this.selectedVoiceKey === voiceKey) return;
+    this.selectedVoiceKey = voiceKey;
+    localStorage.setItem('study_engine_neural_voice', voiceKey);
+
+    const wasPlaying = this.isVoicePlaying;
+    const savedTime = this.notesAudioElement ? this.notesAudioElement.currentTime : 0;
+
+    if (this.notesAudioElement) {
+      this.notesAudioElement.pause();
+    }
+
+    if (this.selectedTopicId) {
+      await this.loadTopicNeuralAudio(this.selectedTopicId, this.selectedVoiceKey);
+      if (this.notesAudioElement) {
+        this.notesAudioElement.currentTime = savedTime;
+        if (wasPlaying) {
+          await this.playNotesVoice();
+        }
+      }
+    }
+  },
+
+  setVoiceRate(rate) {
+    this.voiceRate = parseFloat(rate);
+    if (this.notesAudioElement) {
+      this.notesAudioElement.playbackRate = this.voiceRate;
+    }
+
+    document.querySelectorAll('.voice-rate-btn').forEach(btn => {
+      const bRate = parseFloat(btn.getAttribute('data-rate'));
+      if (bRate === this.voiceRate) {
+        btn.className = 'voice-rate-btn px-1.5 py-0.5 rounded font-semibold bg-neutral-900 text-white dark:bg-white dark:text-neutral-900';
+      } else {
+        btn.className = 'voice-rate-btn px-1.5 py-0.5 rounded text-neutral-400 hover:text-ink';
+      }
+    });
+  },
+
+  onAudioTimeUpdate() {
+    if (!this.notesAudioElement) return;
+
+    const cur = this.notesAudioElement.currentTime;
+    const dur = this.notesAudioElement.duration || this.voiceTotalSeconds || 1;
+
+    const pct = Math.min(100, Math.round((cur / dur) * 100));
+    const slider = document.getElementById('voice-progress-slider');
+    if (slider && !slider.matches(':active')) slider.value = pct;
+
+    const pctEl = document.getElementById('voice-progress-pct');
+    if (pctEl) pctEl.textContent = `${pct}%`;
+
+    const elapsedEl = document.getElementById('voice-time-elapsed');
+    if (elapsedEl) elapsedEl.textContent = this.formatVoiceSeconds(cur);
+
+    if (this.voiceSentences && this.voiceSentences.length > 0 && this.voiceSegments && this.voiceSegments.length > 0) {
+      const activeSent = this.voiceSentences.find(s => cur >= s.start && cur <= s.end);
+      if (activeSent) {
+        const sClean = activeSent.text.toLowerCase().replace(/[^a-z0-9]/g, '');
+        const matchingSeg = this.voiceSegments.find(seg => {
+          const segClean = seg.text.replace(/[^a-z0-9]/g, '');
+          return segClean.includes(sClean) || sClean.includes(segClean);
+        });
+
+        if (matchingSeg && matchingSeg.idx !== this.voiceCurrentSentenceIdx) {
+          this.voiceCurrentSentenceIdx = matchingSeg.idx;
+          this.highlightSegmentByIndex(matchingSeg.idx, 'active');
+        }
+      }
+    }
+  },
+
+  markCurrentPausedSegment() {
+    if (this.voiceCurrentSentenceIdx >= 0) {
+      this.highlightSegmentByIndex(this.voiceCurrentSentenceIdx, 'paused');
+    }
+  },
+
+  highlightSegmentByIndex(idx, mode = 'active') {
+    this.clearVoiceHighlights();
+    if (!this.voiceSegments || idx < 0 || idx >= this.voiceSegments.length) return;
+
+    const seg = this.voiceSegments[idx];
+    if (seg && seg.element) {
+      const cls = mode === 'active' ? 'voice-reading-active' : 'voice-reading-paused';
+      seg.element.classList.add(cls);
+
+      const pane = document.getElementById('pane-notes');
+      if (pane) {
+        const segRect = seg.element.getBoundingClientRect();
+        const paneRect = pane.getBoundingClientRect();
+        if (segRect.top < paneRect.top + 80 || segRect.bottom > paneRect.bottom - 80) {
+          seg.element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    }
+  },
+
+  clearVoiceHighlights() {
+    if (this.voiceSegments) {
+      this.voiceSegments.forEach(s => {
+        if (s.element) {
+          s.element.classList.remove('voice-reading-active', 'voice-reading-paused');
+        }
+      });
+    }
+  },
+
+  updateVoicePlayButtonUI(isPlaying) {
+    const playBtn = document.getElementById('voice-play-btn');
+    const playIcon = document.getElementById('voice-play-icon');
+    const waveEl = document.getElementById('voice-audio-wave');
+    const statusEl = document.getElementById('voice-status-text');
+
+    if (playIcon) {
+      playIcon.setAttribute('data-lucide', isPlaying ? 'pause' : 'play');
+      if (isPlaying) {
+        playIcon.classList.remove('ml-0.5');
+      } else {
+        playIcon.classList.add('ml-0.5');
+      }
+    }
+    if (waveEl) {
+      if (isPlaying) {
+        waveEl.classList.remove('hidden');
+        waveEl.classList.add('flex');
+      } else {
+        waveEl.classList.add('hidden');
+        waveEl.classList.remove('flex');
+      }
+    }
+    if (statusEl) {
+      if (isPlaying) {
+        const voiceObj = this.curatedVoices.find(v => v.key === this.selectedVoiceKey);
+        const name = voiceObj ? (voiceObj.label || voiceObj.name) : 'Studio Neural Voice';
+        statusEl.textContent = `Playing: ${name}`;
+      } else if (this.isVoicePaused) {
+        statusEl.textContent = 'Paused';
+      }
+    }
+
+    if (window.lucide) window.lucide.createIcons();
+  },
+
+  onVoiceFinished() {
+    this.stopNotesVoice(true);
+    const statusEl = document.getElementById('voice-status-text');
+    if (statusEl) statusEl.textContent = 'Finished Reading Notes';
   },
 
   // -------------------------------------------------------------

@@ -76,6 +76,18 @@ def init_db():
                 canvas_json TEXT NOT NULL DEFAULT '{"cards":[],"connections":[]}',
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
+
+            CREATE TABLE IF NOT EXISTS module_tests (
+                id TEXT PRIMARY KEY,
+                module_id TEXT NOT NULL REFERENCES modules(id) ON DELETE CASCADE,
+                set_number INTEGER NOT NULL,
+                title TEXT NOT NULL,
+                test_type TEXT DEFAULT 'mixed',
+                total_questions INTEGER NOT NULL,
+                questions_json TEXT NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                UNIQUE(module_id, set_number)
+            );
         """)
         # Pre-seed integrated NVIDIA NIM Keys
         conn.execute(
@@ -180,6 +192,43 @@ def save_topic_canvas(topic_id: str, canvas_data: Dict[str, Any]) -> Dict[str, A
         )
     return canvas_data
 
+def save_module_test(module_id: str, set_number: int, title: str, test_type: str, questions: List[Dict[str, Any]]) -> str:
+    test_id = f"{module_id}-set{set_number}"
+    conn = get_conn()
+    questions_str = json.dumps(questions, ensure_ascii=False)
+    with conn:
+        conn.execute("""
+            INSERT OR REPLACE INTO module_tests 
+            (id, module_id, set_number, title, test_type, total_questions, questions_json, created_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+        """, (test_id, module_id, set_number, title, test_type, len(questions), questions_str))
+    return test_id
+
+def get_module_tests(module_id: str) -> List[Dict[str, Any]]:
+    conn = get_conn()
+    rows = conn.execute(
+        "SELECT id, module_id, set_number, title, test_type, total_questions, questions_json, created_at FROM module_tests WHERE module_id = ? ORDER BY set_number ASC",
+        (module_id,)
+    ).fetchall()
+    tests = []
+    for r in rows:
+        d = dict(r)
+        d["questions"] = json.loads(d.get("questions_json") or "[]")
+        tests.append(d)
+    return tests
+
+def get_module_test_by_set(module_id: str, set_number: int) -> Optional[Dict[str, Any]]:
+    conn = get_conn()
+    row = conn.execute(
+        "SELECT id, module_id, set_number, title, test_type, total_questions, questions_json, created_at FROM module_tests WHERE module_id = ? AND set_number = ?",
+        (module_id, set_number)
+    ).fetchone()
+    if not row:
+        return None
+    d = dict(row)
+    d["questions"] = json.loads(d.get("questions_json") or "[]")
+    return d
+
 def export_static_data():
     """Exports SQLite vault to static study_data.js for 24/7 GitHub Pages hosting."""
     try:
@@ -200,6 +249,15 @@ def export_static_data():
             for m in c["modules"]:
                 exams[m["id"]] = get_module_quiz(m["id"])
 
+        module_tests_map = {}
+        for row in conn.execute("SELECT id, module_id, set_number, title, test_type, total_questions, questions_json, created_at FROM module_tests ORDER BY module_id, set_number").fetchall():
+            mid = row["module_id"]
+            if mid not in module_tests_map:
+                module_tests_map[mid] = []
+            item = dict(row)
+            item["questions"] = json.loads(item.get("questions_json") or "[]")
+            module_tests_map[mid].append(item)
+
         chats = {}
         for row in conn.execute("SELECT id, topic_id, role, content, created_at FROM topic_chats ORDER BY created_at ASC").fetchall():
             tid = row["topic_id"]
@@ -219,6 +277,7 @@ def export_static_data():
             "courses": courses, 
             "topics": topics, 
             "exams": exams, 
+            "module_tests": module_tests_map,
             "chats": chats,
             "canvases": canvases
         }

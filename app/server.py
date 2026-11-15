@@ -31,6 +31,14 @@ from core.llm_client import generate_notes_and_questions, get_api_key
 from core.copilot import answer_lecture_doubt
 from core.slide_capture import capture_slides, capture_slides_and_ocr
 from core.key_moments import get_adjacent_topics_context, synthesize_key_moments
+from core.test_generator import generate_both_module_tests
+from core.audio_narrator import (
+    list_curated_voices,
+    synthesize_topic_audio,
+    get_cached_topic_audio,
+    AUDIO_CACHE_DIR,
+    DEFAULT_VOICE
+)
 
 BASE_DIR = Path(__file__).parent.parent
 STATIC_DIR = BASE_DIR / "static"
@@ -411,8 +419,55 @@ def get_topic(topic_id: str):
         raise HTTPException(404, "Topic not found")
     return t
 
+@app.get("/api/modules/{module_id}/tests")
+def get_module_tests_endpoint(module_id: str):
+    """Returns available conceptual test sets (Set 1 and Set 2) for a module."""
+    tests = db.get_module_tests(module_id)
+    return {"module_id": module_id, "tests": tests}
+
+@app.get("/api/modules/{module_id}/tests/{set_number}")
+def get_module_test_by_set_endpoint(module_id: str, set_number: int):
+    """Returns a specific conceptual test set (1 or 2) for a module."""
+    test = db.get_module_test_by_set(module_id, set_number)
+    if not test:
+        raise HTTPException(404, f"Test Set {set_number} not found for module {module_id}")
+    return test
+
+@app.post("/api/modules/{module_id}/generate-tests")
+def generate_module_tests_endpoint(module_id: str, force: bool = False):
+    """Triggers generation of both Set 1 & Set 2 conceptual tests for this module."""
+    res = generate_both_module_tests(module_id, force_regenerate=force)
+    db.export_static_data()
+    return res
+
 @app.get("/api/modules/{module_id}/exam")
-def get_module_exam(module_id: str):
+def get_module_exam(module_id: str, set_number: Optional[int] = Query(None)):
+    """Returns exam for a module. If set_number is given or tests exist in module_tests, returns the structured test."""
+    if set_number is not None:
+        test = db.get_module_test_by_set(module_id, set_number)
+        if test:
+            return {
+                "mcqs": test["questions"],
+                "subjective_questions": [],
+                "flashcards": [],
+                "title": test["title"],
+                "test_type": test["test_type"],
+                "set_number": test["set_number"]
+            }
+
+    # Check if curated module tests exist
+    tests = db.get_module_tests(module_id)
+    if tests:
+        set1 = tests[0]
+        return {
+            "mcqs": set1["questions"],
+            "subjective_questions": [],
+            "flashcards": [],
+            "title": set1["title"],
+            "test_type": set1["test_type"],
+            "set_number": set1["set_number"],
+            "available_sets": [{"set_number": t["set_number"], "title": t["title"], "total_questions": t["total_questions"]} for t in tests]
+        }
     return db.get_module_quiz(module_id)
 
 @app.get("/api/settings")
@@ -516,4 +571,37 @@ def regenerate_key_moments_endpoint(topic_id: str):
     conn.commit()
     db.export_static_data()
     return key_moments_data
+
+# -------------------------------------------------------------
+# Studio Neural Audio Narrator Endpoints
+# -------------------------------------------------------------
+@app.get("/api/voices")
+def get_curated_voices_endpoint():
+    return {"voices": list_curated_voices(), "default": DEFAULT_VOICE}
+
+@app.get("/api/topics/{topic_id}/audio")
+async def get_topic_audio_endpoint(topic_id: str, voice: str = Query("christopher")):
+    cached = get_cached_topic_audio(topic_id, voice)
+    if cached:
+        return cached
+
+    conn = db.get_conn()
+    row = conn.execute("SELECT id, title, notes_markdown FROM topics WHERE id = ?", (topic_id,)).fetchone()
+    if not row or not row["notes_markdown"]:
+        raise HTTPException(404, "Lecture notes not found or empty.")
+
+    try:
+        data = await synthesize_topic_audio(row["id"], row["title"], row["notes_markdown"], voice)
+        return data
+    except Exception as e:
+        logger.error(f"Error synthesizing neural audio: {e}", exc_info=True)
+        raise HTTPException(500, f"Speech synthesis failed: {e}")
+
+@app.get("/api/audio/{filename}")
+def serve_cached_audio(filename: str):
+    file_path = AUDIO_CACHE_DIR / filename
+    if not file_path.exists():
+        raise HTTPException(404, "Audio file not found")
+    return FileResponse(file_path, media_type="audio/mpeg")
+
 

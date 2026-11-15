@@ -44,7 +44,7 @@
   </script>
 
   <!-- Custom Ledger CSS -->
-  <link rel="stylesheet" href="./static/css/style.css?v=2.5.0">
+  <link rel="stylesheet" href="./static/css/style.css?v=2.7.0">
 </head>
 <body class="h-screen flex flex-col bg-canvas text-ink transition-colors duration-200 overflow-hidden">
 
@@ -71,7 +71,7 @@
           <input 
             type="text" 
             id="global-search-input" 
-            placeholder="Search all 463 lectures, concepts, equations..." 
+            placeholder="Search all 505 lectures, concepts, equations..." 
             autocomplete="off" 
             spellcheck="false"
             oninput="App.onSearchInput(this.value)"
@@ -142,7 +142,7 @@
     <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
     <span>24/7 Study Vault</span>
     <span>&bull;</span>
-    <span>IIMBx Degree Suite &bull; 5 Subjects &bull; 463 Curated Lectures</span>
+    <span>IIMBx Degree Suite &bull; 5 Subjects &bull; 505 Curated Lectures</span>
   </div>
 
   <!-- Main View Container (Full Edge-to-Edge Container) -->
@@ -167,7 +167,7 @@
               Master your 5 subjects with <span class="font-pixel text-2xl sm:text-3xl text-ink">connected study</span> and active recall.
             </h1>
             <p class="text-sm text-ink-secondary leading-relaxed max-w-xl">
-              All 463 lectures, slides, and transcripts are indexed. Study notes with embedded video, pin key formulas to your visual canvas, solve doubts with AI Copilot, and track exam readiness.
+              All 505 lectures, slides, and transcripts are indexed. Study notes with embedded video, pin key formulas to your visual canvas, solve doubts with AI Copilot, and track exam readiness.
             </p>
 
             <!-- Quick Action & Resume Banner -->
@@ -219,7 +219,7 @@
           <div class="flex items-center justify-between">
             <div class="text-xs font-mono uppercase tracking-wider text-ink-secondary font-semibold flex items-center gap-2">
               <i data-lucide="layers" class="w-4 h-4"></i>
-              <span>Degree Curriculum Mastery (5 Subjects • 463 Lectures)</span>
+              <span>Degree Curriculum Mastery (5 Subjects • 505 Lectures)</span>
             </div>
             <span id="overall-degree-progress" class="text-xs font-mono text-ink-secondary">Overall: 0% Studied</span>
           </div>
@@ -606,8 +606,68 @@
           </div>
 
           <!-- PANE 2: Synthesized Notes Reader (Right Column) -->
-          <div id="pane-notes" class="flex-1 h-full overflow-y-auto px-6 sm:px-10 py-6 bg-card min-w-0">
-            <div class="max-w-3xl w-full mx-auto space-y-6">
+          <div id="pane-notes" class="flex-1 h-full overflow-y-auto px-6 sm:px-10 py-6 bg-card min-w-0 relative">
+            <div class="max-w-3xl w-full mx-auto space-y-5">
+
+              <!-- Sticky Notes Audio Voice Reader Bar -->
+              <div id="notes-audio-bar" class="sticky top-0 z-20 w-full p-2.5 sm:p-3 rounded-2xl bg-card/95 dark:bg-card/95 border border-border shadow-soft flex flex-col gap-2">
+                <div class="flex items-center justify-between gap-3 flex-wrap">
+                  
+                  <!-- Left: Play/Pause, -15s, +15s, Stop -->
+                  <div class="flex items-center gap-1.5">
+                    <button id="voice-play-btn" onclick="App.toggleNotesVoice()" class="w-8 h-8 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 flex items-center justify-center hover:scale-105 active:scale-95 transition shadow-soft-sm shrink-0" title="Play / Pause Audio Reader">
+                      <i id="voice-play-icon" data-lucide="play" class="w-4 h-4 ml-0.5 fill-current"></i>
+                    </button>
+                    <button onclick="App.skipNotesVoice(-1)" class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition shrink-0" title="Rewind to Previous Section / 15s Back">
+                      <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                    </button>
+                    <button onclick="App.skipNotesVoice(1)" class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition shrink-0" title="Skip to Next Section / 15s Forward">
+                      <i data-lucide="rotate-cw" class="w-3.5 h-3.5"></i>
+                    </button>
+                    <button onclick="App.stopNotesVoice()" class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-rose-500 transition shrink-0" title="Stop & Reset Audio Reader">
+                      <i data-lucide="square" class="w-3.5 h-3.5"></i>
+                    </button>
+
+                    <!-- Status Text & Audio Wave Indicator -->
+                    <div class="flex items-center gap-1.5 pl-1.5 min-w-0">
+                      <span id="voice-audio-wave" class="hidden items-end gap-0.5 h-3.5 shrink-0">
+                        <span class="w-0.5 h-2 bg-amber-500 rounded animate-pulse"></span>
+                        <span class="w-0.5 h-3.5 bg-amber-500 rounded animate-pulse" style="animation-delay: 0.15s"></span>
+                        <span class="w-0.5 h-1.5 bg-amber-500 rounded animate-pulse" style="animation-delay: 0.3s"></span>
+                      </span>
+                      <span id="voice-status-text" class="text-xs font-mono text-neutral-400 truncate max-w-[140px] sm:max-w-[200px]">Listen to Notes</span>
+                    </div>
+                  </div>
+
+                  <!-- Right: Natural Voice Selector & Speed Pills -->
+                  <div class="flex items-center gap-2 shrink-0">
+                    <!-- Natural Voice Dropdown -->
+                    <div class="flex items-center gap-1 text-[11px] font-mono text-neutral-400">
+                      <i data-lucide="mic" class="w-3.5 h-3.5 text-neutral-400"></i>
+                      <select id="voice-select-dropdown" onchange="App.setNotesVoice(this.value)" class="bg-card-muted border border-border text-ink rounded-lg px-2 py-1 text-[11px] font-mono focus:outline-none cursor-pointer max-w-[125px] sm:max-w-[160px] truncate" title="Select Natural Pleasant Voice">
+                        <option value="">Auto Pleasant Voice</option>
+                      </select>
+                    </div>
+
+                    <!-- Speed Multipliers -->
+                    <div class="flex items-center p-0.5 rounded-lg bg-card-muted border border-border text-[11px] font-mono">
+                      <button onclick="App.setVoiceRate(1)" class="voice-rate-btn px-1.5 py-0.5 rounded font-semibold bg-neutral-900 text-white dark:bg-white dark:text-neutral-900" data-rate="1">1x</button>
+                      <button onclick="App.setVoiceRate(1.25)" class="voice-rate-btn px-1.5 py-0.5 rounded text-neutral-400 hover:text-ink" data-rate="1.25">1.25x</button>
+                      <button onclick="App.setVoiceRate(1.5)" class="voice-rate-btn px-1.5 py-0.5 rounded text-neutral-400 hover:text-ink" data-rate="1.5">1.5x</button>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Bottom: Interactive Progress Scrubber -->
+                <div class="flex items-center gap-2 pt-1 border-t border-border/50">
+                  <span id="voice-time-elapsed" class="text-[10px] font-mono text-neutral-400 shrink-0">0:00</span>
+                  <input type="range" id="voice-progress-slider" min="0" max="100" value="0" oninput="App.onVoiceScrub(this.value)" class="voice-scrubber flex-1" title="Drag to jump to any part of notes">
+                  <span id="voice-time-total" class="text-[10px] font-mono text-neutral-400 shrink-0">~0:00</span>
+                  <span id="voice-progress-pct" class="text-[10px] font-mono font-medium text-amber-600 dark:text-amber-400 shrink-0 w-8 text-right">0%</span>
+                </div>
+              </div>
+
               <div id="notes-content-body" class="prose-ledger w-full">
                 <div class="text-center py-20 text-xs text-neutral-400">Select a lecture to view synthesized notes.</div>
               </div>
@@ -717,36 +777,97 @@
     <div id="view-exam" class="hidden flex-1 w-full overflow-y-auto px-4 py-8">
       <div class="max-w-3xl mx-auto space-y-6">
         
-        <div id="exam-setup-box" class="rounded-[1.5rem] bg-card border border-border shadow-soft p-8 space-y-5">
-          <div>
-            <h2 class="text-xl font-medium tracking-tight">Timed MCQ Examination Arena</h2>
-            <p class="text-xs text-ink-secondary mt-1">Select any module to start a timed mock with negative marking (-0.25).</p>
+        <!-- Setup Box -->
+        <div id="exam-setup-box" class="rounded-[1.5rem] bg-card border border-border shadow-soft p-6 sm:p-8 space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-border pb-4">
+            <div>
+              <h2 class="text-xl font-medium tracking-tight">Conceptual Examination Arena</h2>
+              <p class="text-xs text-ink-secondary mt-1">First-principles diagnostic tests with Single Choice and Multiple-Correct MSQs.</p>
+            </div>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-medium bg-muted text-ink border border-border self-start sm:self-auto">
+              <i data-lucide="brain" class="w-3.5 h-3.5 text-accent"></i> Conceptual Rigor
+            </span>
           </div>
 
-          <div class="space-y-3">
+          <div class="space-y-4">
             <div>
-              <label class="block text-xs font-mono uppercase text-ink-secondary mb-1">Select Module Scope</label>
-              <select id="exam-module-select" class="w-full text-xs rounded-xl border border-border bg-canvas p-2.5 font-medium">
+              <label class="block text-xs font-mono uppercase text-ink-secondary mb-1.5">1. Select Course & Module</label>
+              <select id="exam-module-select" onchange="App.onExamModuleChange()" class="w-full text-xs rounded-xl border border-border bg-canvas p-3 font-medium focus:outline-none focus:ring-1 focus:ring-ink">
                 <!-- Populated by JS -->
               </select>
             </div>
+
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="block text-xs font-mono uppercase text-ink-secondary">2. Select Conceptual Test Set</label>
+                <button id="exam-generate-btn" onclick="App.generateModuleTestsForCurrent()" class="text-[11px] font-mono text-ink-secondary hover:text-ink inline-flex items-center gap-1 transition" title="Trigger AI to synthesize fresh tests for this module">
+                  <i data-lucide="sparkles" class="w-3 h-3 text-amber-500"></i> Synthesize / Refresh Tests
+                </button>
+              </div>
+
+              <div id="exam-sets-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <!-- Set 1 Option Card -->
+                <div id="exam-set-card-1" onclick="App.selectExamSet(1)" class="cursor-pointer p-4 rounded-2xl border-2 border-neutral-900 dark:border-white bg-card-muted transition relative">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-ink">Set 1</span>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">Diagnostics</span>
+                  </div>
+                  <h4 class="text-sm font-semibold text-ink" id="exam-set-1-title">Conceptual Mechanics & Core Diagnostics</h4>
+                  <p class="text-[11px] text-ink-secondary mt-1">Cause & effect mechanics, parameter sensitivities, and boundary traps.</p>
+                  <div class="mt-3 flex items-center justify-between text-[11px] font-mono text-ink-secondary">
+                    <span id="exam-set-1-count">~12 Questions</span>
+                    <span class="text-accent font-semibold">Single + MSQ</span>
+                  </div>
+                </div>
+
+                <!-- Set 2 Option Card -->
+                <div id="exam-set-card-2" onclick="App.selectExamSet(2)" class="cursor-pointer p-4 rounded-2xl border border-border hover:border-neutral-400 dark:hover:border-neutral-600 bg-card transition relative">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-ink">Set 2</span>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">Scenarios</span>
+                  </div>
+                  <h4 class="text-sm font-semibold text-ink" id="exam-set-2-title">Applied Scenarios & Multi-Concept Case Test</h4>
+                  <p class="text-[11px] text-ink-secondary mt-1">Real-world business dilemmas, case situations, and multi-statement validity evaluations.</p>
+                  <div class="mt-3 flex items-center justify-between text-[11px] font-mono text-ink-secondary">
+                    <span id="exam-set-2-count">~12 Questions</span>
+                    <span class="text-accent font-semibold">Single + MSQ</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <button onclick="App.startExam()" class="pill-ink text-xs inline-flex items-center gap-2">
-            <i data-lucide="play" class="w-3.5 h-3.5"></i> Launch Timed Mock
-          </button>
+          <div class="pt-2 flex items-center justify-between border-t border-border">
+            <div class="text-[11px] font-mono text-ink-secondary flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Timed (-0.25 negative marking on single choice)
+            </div>
+            <button onclick="App.startExam()" class="pill-ink text-xs inline-flex items-center gap-2">
+              <i data-lucide="play" class="w-3.5 h-3.5"></i> Launch Selected Test
+            </button>
+          </div>
         </div>
 
         <!-- Exam Runner Box -->
-        <div id="exam-runner-box" class="hidden rounded-[1.5rem] bg-card border border-border shadow-soft p-8 space-y-6">
-          <div class="flex items-center justify-between border-b border-border pb-3">
-            <span id="exam-q-counter" class="text-xs font-mono font-medium text-ink-secondary">Question 1</span>
-            <span class="text-xs font-mono px-2 py-0.5 rounded-full bg-card-muted border border-border">-0.25 Negative Marking</span>
+        <div id="exam-runner-box" class="hidden rounded-[1.5rem] bg-card border border-border shadow-soft p-6 sm:p-8 space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border pb-3">
+            <div class="flex items-center gap-2">
+              <span id="exam-q-counter" class="text-xs font-mono font-medium text-ink">Question 1 of 12</span>
+              <span id="exam-q-type-badge" class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-semibold">Single Choice</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span id="exam-q-concept-badge" class="text-[11px] font-mono text-ink-secondary truncate max-w-[200px]"></span>
+              <span class="text-xs font-mono px-2 py-0.5 rounded-full bg-card-muted border border-border text-ink-secondary">Timed Simulation</span>
+            </div>
           </div>
 
-          <h3 id="exam-q-text" class="text-base font-medium leading-relaxed">Question text...</h3>
+          <!-- Question Palette / Quick Navigator -->
+          <div id="exam-palette" class="flex flex-wrap gap-1.5 pt-1">
+            <!-- Buttons 1..N inserted dynamically -->
+          </div>
 
-          <div id="exam-q-options" class="space-y-2">
+          <h3 id="exam-q-text" class="text-base font-medium leading-relaxed text-ink">Question text...</h3>
+
+          <div id="exam-q-options" class="space-y-2.5">
             <!-- Dynamic options -->
           </div>
 
@@ -754,7 +875,68 @@
             <button onclick="App.prevExamQuestion()" class="pill-muted text-xs">Previous</button>
             <div class="flex gap-2">
               <button onclick="App.nextExamQuestion()" class="pill-muted text-xs">Next</button>
-              <button onclick="App.finishExam()" class="pill-ink text-xs">Finish Exam</button>
+              <button onclick="App.finishExam()" class="pill-ink text-xs">Finish & Score Exam</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Exam Results & Conceptual Review Box -->
+        <div id="exam-results-box" class="hidden rounded-[1.5rem] bg-card border border-border shadow-soft p-6 sm:p-8 space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-border pb-6">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-wider text-ink-secondary">Exam Completed</span>
+              <h2 class="text-2xl font-bold tracking-tight text-ink mt-0.5" id="exam-results-title">Diagnostic Results</h2>
+              <p class="text-xs text-ink-secondary mt-1" id="exam-results-subtitle">Review every question with in-depth conceptual explanations and trap analysis.</p>
+            </div>
+            <div class="flex items-baseline gap-2 bg-card-muted p-4 rounded-2xl border border-border">
+              <span class="text-3xl font-bold font-mono text-ink" id="exam-score-display">0.00</span>
+              <span class="text-xs font-mono text-ink-secondary" id="exam-max-score-display">/ 12.00</span>
+            </div>
+          </div>
+
+          <!-- Score Metrics Row -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="p-3.5 rounded-xl bg-card-muted border border-border text-center">
+              <span class="text-[10px] font-mono uppercase text-ink-secondary block">Accuracy</span>
+              <span class="text-lg font-bold font-mono text-ink mt-0.5 block" id="exam-stat-accuracy">0%</span>
+            </div>
+            <div class="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-center">
+              <span class="text-[10px] font-mono uppercase text-emerald-600 dark:text-emerald-400 block">Correct</span>
+              <span class="text-lg font-bold font-mono text-emerald-600 dark:text-emerald-400 mt-0.5 block" id="exam-stat-correct">0</span>
+            </div>
+            <div class="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-center">
+              <span class="text-[10px] font-mono uppercase text-rose-600 dark:text-rose-400 block">Incorrect</span>
+              <span class="text-lg font-bold font-mono text-rose-600 dark:text-rose-400 mt-0.5 block" id="exam-stat-wrong">0</span>
+            </div>
+            <div class="p-3.5 rounded-xl bg-card-muted border border-border text-center">
+              <span class="text-[10px] font-mono uppercase text-ink-secondary block">Unattempted</span>
+              <span class="text-lg font-bold font-mono text-ink mt-0.5 block" id="exam-stat-unanswered">0</span>
+            </div>
+          </div>
+
+          <!-- Review List -->
+          <div class="space-y-4 pt-2">
+            <h3 class="text-sm font-semibold tracking-tight text-ink flex items-center justify-between">
+              <span>Conceptual Breakdown & Trap Analysis</span>
+              <span class="text-xs font-mono text-ink-secondary font-normal">Click questions below to inspect</span>
+            </h3>
+            <div id="exam-review-container" class="space-y-3">
+              <!-- Rendered review items -->
+            </div>
+          </div>
+
+          <!-- Action Footer -->
+          <div class="pt-4 border-t border-border flex flex-wrap items-center justify-between gap-3">
+            <button onclick="App.retakeExam()" class="pill-muted text-xs inline-flex items-center gap-1.5">
+              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Retake This Set
+            </button>
+            <div class="flex gap-2">
+              <button onclick="App.switchExamSetFromResults()" id="exam-switch-set-btn" class="pill-muted text-xs inline-flex items-center gap-1.5">
+                Switch to Set 2
+              </button>
+              <button onclick="App.returnToExamSetup()" class="pill-ink text-xs">
+                Choose Another Module
+              </button>
             </div>
           </div>
         </div>
@@ -892,7 +1074,7 @@
   </div>
 
   <!-- App Script (Loaded with cache-buster so window.App is immediately ready) -->
-  <script src="./static/js/app.js?v=2.5.0"></script>
+  <script src="./static/js/app.js?v=2.7.0"></script>
   <!-- Bundled Study Data for 24/7 GitHub Pages Access -->
   <script src="./study_data.js?v=2.5.0" defer></script>
 </body>
