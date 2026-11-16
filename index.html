@@ -48,91 +48,261 @@
 </head>
 <body class="h-screen flex flex-col bg-canvas text-ink transition-colors duration-200 overflow-hidden">
 
-  <!-- Top Hover Trigger Zone for Peekable Auto-Hide Header -->
-  <div id="header-hover-trigger" title="Hover to reveal header"></div>
+  <!-- Universal Navigation Drawer Backdrop -->
+  <div id="nav-drawer-backdrop" onclick="App.closeNavDrawer()" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm transition-opacity duration-200"></div>
 
-  <!-- Header (Clean Modern Ledger Style) -->
-  <header id="app-global-header" class="sticky top-0 z-40 shrink-0 backdrop-blur border-b border-border bg-canvas/80">
-    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+  <!-- Universal Navigation Drawer -->
+  <aside id="nav-drawer" class="fixed top-0 bottom-0 left-0 z-50 w-80 max-w-[85vw] bg-card border-r border-border shadow-soft-xl flex flex-col select-none">
+    
+    <!-- Drawer Header -->
+    <div class="p-4 border-b border-border flex items-center justify-between shrink-0 bg-card-muted/30">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-xl bg-ink text-canvas flex items-center justify-center font-pixel text-xs font-bold shadow-soft-sm">
+          SE
+        </div>
+        <div>
+          <div class="text-sm font-semibold tracking-tight text-ink flex items-center gap-1.5">
+            <span>StudyEngine</span>
+            <span class="text-[9px] font-mono px-1.5 py-0.2 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-bold">MBA</span>
+          </div>
+          <div class="text-[10px] font-mono text-neutral-400">IIMBx Degree Suite</div>
+        </div>
+      </div>
+      <button onclick="App.closeNavDrawer()" class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition" title="Close Drawer (Esc)">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+    <!-- User Account Card (Multi-User Profile Ready) -->
+    <div class="p-3.5 border-b border-border/70 bg-card">
+      <div class="p-3 rounded-2xl bg-card-muted/60 border border-border/60 flex items-center justify-between gap-3 group hover:border-border transition">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div class="user-avatar-initials w-9 h-9 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 flex items-center justify-center text-xs shrink-0 shadow-soft-sm">
+            GG
+          </div>
+          <div class="min-w-0">
+            <div class="flex items-center gap-1.5">
+              <span class="user-profile-name text-xs font-semibold text-ink truncate">Garv Gupta</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" title="Active"></span>
+            </div>
+            <div class="user-profile-email text-[10px] font-mono text-neutral-400 truncate">garv@iimbx.ac.in</div>
+          </div>
+        </div>
+        <button onclick="App.openUserProfileModal()" class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-neutral-400 hover:text-ink transition shrink-0" title="Manage Account Profile">
+          <i data-lucide="settings" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Drawer Body (Scrollable) -->
+    <div class="flex-1 overflow-y-auto p-3.5 space-y-4">
       
-      <!-- Logo / Title -->
+      <!-- Primary Navigation Links -->
+      <div class="space-y-1">
+        <div class="px-2 pb-1 text-[10px] font-mono uppercase tracking-wider text-neutral-400 font-semibold">Navigate</div>
+        
+        <button id="drawer-nav-dashboard" onclick="App.switchViewAndCloseDrawer('dashboard')" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition text-ink hover:bg-muted">
+          <div class="flex items-center gap-2.5">
+            <i data-lucide="layout-dashboard" class="w-4 h-4 text-neutral-400"></i>
+            <span>Dashboard</span>
+          </div>
+          <span class="text-[10px] font-mono text-neutral-400">Overview</span>
+        </button>
+
+        <button id="drawer-nav-notes" onclick="App.switchViewAndCloseDrawer('notes')" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition text-ink hover:bg-muted">
+          <div class="flex items-center gap-2.5">
+            <i data-lucide="book-open" class="w-4 h-4 text-neutral-400"></i>
+            <span>Study Studio</span>
+          </div>
+          <span class="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">Live Notes</span>
+        </button>
+
+        <button id="drawer-nav-exam" onclick="App.switchViewAndCloseDrawer('exam')" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition text-ink hover:bg-muted">
+          <div class="flex items-center gap-2.5">
+            <i data-lucide="award" class="w-4 h-4 text-neutral-400"></i>
+            <span>Exam Arena</span>
+          </div>
+          <span class="text-[10px] font-mono text-neutral-400">Diagnostics</span>
+        </button>
+      </div>
+
+      <!-- Quick Search Button in Drawer -->
+      <div class="pt-1">
+        <button onclick="App.closeNavDrawer(); App.openSearchModal();" class="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-card-muted/70 border border-border/80 text-xs text-neutral-400 hover:text-ink hover:border-border transition shadow-soft-sm">
+          <div class="flex items-center gap-2">
+            <i data-lucide="search" class="w-3.5 h-3.5"></i>
+            <span>Search 505 Lectures...</span>
+          </div>
+          <kbd class="px-1.5 py-0.5 text-[9px] font-mono bg-card border border-border rounded">⌘K</kbd>
+        </button>
+      </div>
+
+      <!-- Quick Subject Jump Shortcuts -->
+      <div class="space-y-1 pt-1">
+        <div class="px-2 pb-1 text-[10px] font-mono uppercase tracking-wider text-neutral-400 font-semibold flex items-center justify-between">
+          <span>Subjects (505 Lectures)</span>
+        </div>
+        <div id="drawer-subjects-list" class="space-y-0.5">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Drawer Footer -->
+    <div class="p-3.5 border-t border-border bg-card-muted/30 shrink-0 flex items-center justify-between gap-2">
+      <button onclick="App.toggleTheme()" class="flex items-center gap-2 px-2.5 py-1.5 rounded-xl border border-border bg-card hover:bg-muted text-xs font-mono text-ink-secondary hover:text-ink transition">
+        <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+        <span>Toggle Theme</span>
+      </button>
+
+      <span class="text-[10px] font-mono text-neutral-400">StudyEngine v2.8</span>
+    </div>
+
+  </aside>
+
+  <!-- Global Command Palette Search Modal -->
+  <div id="global-search-modal" class="hidden fixed inset-0 z-50 flex items-start justify-center pt-14 sm:pt-20 px-4 bg-black/50 backdrop-blur-sm transition-opacity">
+    <div class="w-full max-w-2xl bg-card border border-border rounded-2xl shadow-soft-xl overflow-hidden flex flex-col max-h-[80vh] animate-in fade-in zoom-in-95 duration-150">
+      <!-- Input bar -->
+      <div class="relative flex items-center px-4 py-3 border-b border-border bg-card">
+        <i data-lucide="search" class="w-5 h-5 text-neutral-400 mr-3 shrink-0"></i>
+        <input 
+          type="text" 
+          id="global-search-input" 
+          placeholder="Search all 505 lectures, concepts, equations..." 
+          autocomplete="off" 
+          spellcheck="false"
+          oninput="App.onSearchInput(this.value)"
+          onkeydown="App.onSearchKeydown(event)"
+          class="w-full bg-transparent text-sm text-ink placeholder:text-neutral-400 focus:outline-none"
+        />
+        <button onclick="App.closeSearchModal()" class="cursor-pointer px-2 py-0.5 text-[10px] font-mono text-neutral-400 bg-card-muted border border-border rounded hover:text-ink ml-2">ESC</button>
+      </div>
+
+      <!-- Results Header & Counter -->
+      <div id="search-results-header" class="px-4 py-2 border-b border-border/60 bg-card-muted/40 flex items-center justify-between text-[11px] text-neutral-500">
+        <span id="search-results-count" class="font-mono">Type to search...</span>
+        <div class="hidden sm:flex items-center gap-2 text-[10px] text-neutral-400">
+          <span><kbd class="px-1 py-0.5 rounded bg-card border border-border font-mono">↑↓</kbd> navigate</span>
+          <span><kbd class="px-1 py-0.5 rounded bg-card border border-border font-mono">↵</kbd> jump</span>
+          <span><kbd class="px-1 py-0.5 rounded bg-card border border-border font-mono">esc</kbd> close</span>
+        </div>
+      </div>
+
+      <!-- Results List Scrollable -->
+      <div id="search-results-list" class="flex-1 overflow-y-auto divide-y divide-border/40 p-2 space-y-1">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- User Profile & Account Settings Modal (Multi-Student Login Foundation) -->
+  <div id="modal-user-profile" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+    <div class="w-full max-w-md bg-card border border-border rounded-2xl shadow-soft-xl overflow-hidden p-6 space-y-5 animate-in fade-in zoom-in-95 duration-150">
+      
+      <div class="flex items-center justify-between pb-3 border-b border-border">
+        <div class="flex items-center gap-2.5">
+          <div class="user-avatar-initials w-8 h-8 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 flex items-center justify-center text-xs shadow-soft-sm">
+            GG
+          </div>
+          <div>
+            <h3 class="text-sm font-semibold text-ink">Student Profile & Account</h3>
+            <p class="text-[11px] font-mono text-neutral-400">StudyEngine Cloud Vault</p>
+          </div>
+        </div>
+        <button onclick="App.closeUserProfileModal()" class="p-1 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3.5 text-xs">
+        <div>
+          <label class="block text-[11px] font-mono uppercase text-ink-secondary mb-1">Student Full Name</label>
+          <input type="text" id="profile-input-name" class="w-full p-2.5 rounded-xl border border-border bg-card-muted text-xs text-ink focus:outline-none focus:ring-1 focus:ring-ink" placeholder="Your Full Name">
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-mono uppercase text-ink-secondary mb-1">University Email (Account ID)</label>
+          <input type="email" id="profile-input-email" class="w-full p-2.5 rounded-xl border border-border bg-card-muted text-xs text-ink focus:outline-none focus:ring-1 focus:ring-ink" placeholder="student@iimbx.ac.in">
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-mono uppercase text-ink-secondary mb-1">Degree Program & Term</label>
+          <input type="text" id="profile-input-term" class="w-full p-2.5 rounded-xl border border-border bg-card-muted text-xs text-ink focus:outline-none focus:ring-1 focus:ring-ink" placeholder="IIMBx MBA 2026 • Term 1">
+        </div>
+
+        <div class="p-3 rounded-xl bg-muted/50 border border-border/60 text-[11px] text-ink-secondary space-y-1">
+          <div class="flex items-center gap-1.5 font-medium text-ink">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-500"></i>
+            <span>Multi-Student Isolation Architecture</span>
+          </div>
+          <p class="text-neutral-400 leading-relaxed">
+            Your study canvas drawings, personal scratchpads, and module quiz attempts are isolated to this account profile. When published publicly, students can sign in with their email.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-2 border-t border-border">
+        <button onclick="App.closeUserProfileModal()" class="px-3.5 py-1.5 rounded-xl border border-border hover:bg-muted text-xs font-mono text-ink-secondary">
+          Cancel
+        </button>
+        <button onclick="App.saveUserProfile()" class="pill-ink text-xs px-4 py-1.5 flex items-center gap-1.5 shadow-soft-sm">
+          <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          <span>Save Profile</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Universal Slim App Header (Shown on Dashboard & Exam Arena) -->
+  <header id="app-global-header" class="sticky top-0 z-40 shrink-0 backdrop-blur border-b border-border bg-canvas/80">
+    <div class="max-w-6xl mx-auto px-4 h-12 flex items-center justify-between gap-3">
+
+      <!-- Left: Hamburger Menu + Logo -->
       <div class="flex items-center gap-3 shrink-0">
+        <button onclick="App.openNavDrawer()" class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink transition flex items-center gap-1.5" title="Open Navigation Menu (⌘M)">
+          <i data-lucide="menu" class="w-4 h-4"></i>
+        </button>
         <a href="#" onclick="App.switchView('dashboard')" class="flex items-center gap-2 text-ink font-medium tracking-tight">
-          <div class="w-8 h-8 rounded-xl bg-ink text-canvas flex items-center justify-center font-pixel text-xs font-bold">
+          <div class="w-7 h-7 rounded-lg bg-ink text-canvas flex items-center justify-center font-pixel text-xs font-bold shadow-soft-sm">
             SE
           </div>
-          <span class="text-base font-semibold hidden md:inline">StudyEngine</span>
+          <span class="text-sm font-semibold hidden md:inline">StudyEngine</span>
         </a>
       </div>
 
-      <!-- Global Search Bar Container -->
-      <div class="relative flex-1 max-w-lg mx-1 sm:mx-3" id="global-search-container">
-        <div class="relative flex items-center">
-          <div class="absolute left-3 text-neutral-400 pointer-events-none flex items-center">
-            <i data-lucide="search" class="w-4 h-4"></i>
-          </div>
-          <input 
-            type="text" 
-            id="global-search-input" 
-            placeholder="Search all 505 lectures, concepts, equations..." 
-            autocomplete="off" 
-            spellcheck="false"
-            oninput="App.onSearchInput(this.value)"
-            onfocus="App.onSearchFocus()"
-            onkeydown="App.onSearchKeydown(event)"
-            class="w-full pl-9 pr-14 py-1.5 rounded-full bg-card border border-border text-xs text-ink placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-ink focus:border-ink transition shadow-soft-sm"
-          />
-          <div class="absolute right-2.5 flex items-center gap-1.5">
-            <button 
-              id="global-search-clear" 
-              onclick="App.clearSearch()" 
-              class="hidden p-0.5 text-neutral-400 hover:text-ink rounded-full transition"
-              title="Clear search"
-            >
-              <i data-lucide="x" class="w-3.5 h-3.5"></i>
-            </button>
-            <kbd class="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono text-neutral-400 bg-card-muted border border-border rounded pointer-events-none select-none">⌘K</kbd>
-          </div>
+      <!-- Center: Quick Search Trigger Button (Command Palette) -->
+      <button onclick="App.openSearchModal()" class="flex-1 max-w-md mx-2 sm:mx-4 flex items-center justify-between px-3.5 py-1.5 rounded-full bg-card border border-border text-xs text-neutral-400 hover:text-ink hover:border-ink transition shadow-soft-sm group">
+        <div class="flex items-center gap-2">
+          <i data-lucide="search" class="w-3.5 h-3.5 text-neutral-400 group-hover:text-ink transition"></i>
+          <span class="truncate">Search all 505 lectures, concepts, equations...</span>
         </div>
+        <kbd class="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[9px] font-mono text-neutral-400 bg-card-muted border border-border rounded pointer-events-none select-none">⌘K</kbd>
+      </button>
 
-        <!-- Search Results Dropdown -->
-        <div 
-          id="search-results-dropdown" 
-          class="hidden absolute left-0 right-0 top-full mt-2 bg-card border border-border rounded-2xl shadow-soft-md overflow-hidden z-50 max-h-[75vh] flex flex-col"
-        >
-          <!-- Results Header & Counter -->
-          <div id="search-results-header" class="px-4 py-2 border-b border-border/60 bg-card-muted/40 flex items-center justify-between text-[11px] text-neutral-500">
-            <span id="search-results-count" class="font-mono">Type to search...</span>
-            <div class="hidden sm:flex items-center gap-2 text-[10px] text-neutral-400">
-              <span><kbd class="px-1 py-0.5 rounded bg-card border border-border font-mono">↑↓</kbd> navigate</span>
-              <span><kbd class="px-1 py-0.5 rounded bg-card border border-border font-mono">↵</kbd> jump</span>
-              <span><kbd class="px-1 py-0.5 rounded bg-card border border-border font-mono">esc</kbd> close</span>
-            </div>
-          </div>
-
-          <!-- Results List Scrollable -->
-          <div id="search-results-list" class="flex-1 overflow-y-auto divide-y divide-border/40 p-1.5 space-y-1">
-            <!-- Rendered by JS -->
-          </div>
-        </div>
-      </div>
-
-      <!-- Navigation Pills -->
-      <nav class="flex items-center gap-1 p-1 rounded-full bg-card-muted border border-border text-xs shrink-0">
-        <button id="tab-dashboard" onclick="App.switchView('dashboard')" class="px-3.5 py-1.5 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-medium">
-          Dashboard
-        </button>
-        <button id="tab-notes" onclick="App.switchView('notes')" class="px-3.5 py-1.5 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium">
-          Study Studio
-        </button>
-        <button id="tab-exam" onclick="App.switchView('exam')" class="px-3.5 py-1.5 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium">
-          Exam Arena
-        </button>
-      </nav>
-
-      <!-- Right Controls -->
+      <!-- Right: Navigation Pills + User Profile + Theme -->
       <div class="flex items-center gap-2 shrink-0">
-        <button onclick="App.toggleTheme()" class="p-2 rounded-xl border border-border hover:bg-card-muted transition" title="Toggle Theme">
+        <nav class="hidden sm:flex items-center gap-1 p-0.5 rounded-full bg-card-muted border border-border text-xs">
+          <button id="tab-dashboard" onclick="App.switchView('dashboard')" class="px-3 py-1 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-medium">
+            Dashboard
+          </button>
+          <button id="tab-notes" onclick="App.switchView('notes')" class="px-3 py-1 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium">
+            Study Studio
+          </button>
+          <button id="tab-exam" onclick="App.switchView('exam')" class="px-3 py-1 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium">
+            Exam Arena
+          </button>
+        </nav>
+
+        <!-- User Profile Pill -->
+        <button onclick="App.openUserProfileModal()" class="flex items-center gap-1.5 p-1 px-2 rounded-full border border-border bg-card hover:bg-muted text-xs transition" title="Student Profile & Account">
+          <div class="user-avatar-initials w-5 h-5 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 flex items-center justify-center text-[10px]">GG</div>
+          <span class="user-profile-name hidden md:inline text-[11px] font-medium text-ink">Garv</span>
+        </button>
+
+        <button onclick="App.toggleTheme()" class="p-1.5 rounded-lg border border-border hover:bg-card-muted transition" title="Toggle Theme">
           <i data-lucide="moon" class="w-4 h-4"></i>
         </button>
       </div>
@@ -323,14 +493,13 @@
       <!-- Main Reader / Studio Section -->
       <section id="notes-content-section" class="flex-1 h-full overflow-hidden bg-card flex flex-col min-w-0">
         
-        <!-- Studio Sticky Top Bar (Layout Presets & Tool Toggles) -->
+        <!-- Studio Sticky Top Bar (Unified Single 42px Toolbar) -->
         <div class="shrink-0 flex items-center justify-between px-3 sm:px-5 py-2 border-b border-border bg-card-muted/40 backdrop-blur gap-2 flex-wrap">
           
-          <!-- Left: Dashboard Return, Sidebar Toggle & Topic Navigation -->
+          <!-- Left: Hamburger Menu, Syllabus Sidebar & Topic Navigation -->
           <div class="flex items-center gap-1.5 min-w-0">
-            <button onclick="App.switchView('dashboard')" class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink-secondary hover:text-ink transition flex items-center gap-1 text-xs shrink-0" title="Return to Dashboard">
-              <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i>
-              <span class="hidden xl:inline text-[11px] font-mono">Dashboard</span>
+            <button onclick="App.openNavDrawer()" class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink transition flex items-center gap-1 text-xs shrink-0" title="Open Navigation Menu (⌘M)">
+              <i data-lucide="menu" class="w-4 h-4"></i>
             </button>
 
             <button id="sidebar-toggle-btn" onclick="App.toggleSidebar()" class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink-secondary hover:text-ink transition flex items-center gap-1.5 text-xs shrink-0" title="Toggle Syllabus Sidebar">
@@ -353,7 +522,7 @@
             </div>
           </div>
 
-          <!-- Right: Individual Tool Toggles, Search, Header Collapse, Theme -->
+          <!-- Right: Individual Tool Toggles, Search, User Avatar, Theme -->
           <div class="flex items-center gap-1.5 shrink-0">
             <button id="toggle-video-btn" onclick="App.togglePane('video')" class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition active border-border bg-card text-ink" title="Toggle Embedded Video">
               <i data-lucide="video" class="w-3.5 h-3.5"></i>
@@ -376,15 +545,14 @@
             <div class="w-px h-4 bg-border/60 mx-0.5"></div>
 
             <!-- Quick Search (Cmd+K) button in subheader -->
-            <button onclick="App.focusSearchModal()" class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink-secondary hover:text-ink transition flex items-center gap-1 text-xs shrink-0" title="Quick Search (⌘K)">
+            <button onclick="App.openSearchModal()" class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink-secondary hover:text-ink transition flex items-center gap-1 text-xs shrink-0" title="Quick Search (⌘K)">
               <i data-lucide="search" class="w-3.5 h-3.5"></i>
               <span class="hidden md:inline text-[10px] font-mono text-neutral-400">⌘K</span>
             </button>
 
-            <!-- Header Auto-Hide / Collapse Toggle Button -->
-            <button id="btn-toggle-header" onclick="App.toggleGlobalHeader()" class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink-secondary hover:text-ink transition flex items-center gap-1 text-xs shrink-0" title="Auto-hide Top Header">
-              <i id="icon-toggle-header" data-lucide="chevron-up" class="w-3.5 h-3.5"></i>
-              <span id="text-toggle-header" class="hidden md:inline text-[11px] font-mono">Hide Bar</span>
+            <!-- User Account Profile Button -->
+            <button onclick="App.openUserProfileModal()" class="flex items-center gap-1.5 p-1 px-1.5 rounded-lg border border-border bg-card hover:bg-muted text-xs transition" title="Student Profile & Account">
+              <div class="user-avatar-initials w-5 h-5 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 flex items-center justify-center text-[10px]">GG</div>
             </button>
 
             <!-- Theme Toggle in Subheader -->

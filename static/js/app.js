@@ -105,7 +105,7 @@ const App = {
     this.initCanvasListeners();
     this.initSpeedrunListener();
     this.initNotesVoice();
-    this.initHeaderAutoHide();
+    this.initNavDrawer();
     this.updateStudioLayout();
     await this.loadCourses();
     this.switchView('dashboard');
@@ -131,100 +131,181 @@ const App = {
   },
 
   // -------------------------------------------------------------
-  // Collapsible / Auto-Hide Global Header Controller
+  // Universal Navigation Drawer & User Profile Controller
   // -------------------------------------------------------------
-  isHeaderCollapsed: false,
-  headerPeekTimeout: null,
+  userProfile: {
+    name: 'Garv Gupta',
+    email: 'garv@iimbx.ac.in',
+    initials: 'GG',
+    term: 'IIMBx MBA 2026 • Term 1'
+  },
 
-  initHeaderAutoHide() {
-    const saved = localStorage.getItem('study_engine_header_collapsed');
-    // Default to true (collapsed) in Study Studio for maximum focus & vertical space
-    this.isHeaderCollapsed = saved === null ? true : (saved === 'true');
+  initNavDrawer() {
+    this.initUserProfile();
 
-    const trigger = document.getElementById('header-hover-trigger');
-    const header = document.getElementById('app-global-header');
-
-    if (trigger && header) {
-      trigger.addEventListener('mouseenter', () => {
-        if (document.body.classList.contains('header-collapsed')) {
-          clearTimeout(this.headerPeekTimeout);
-          header.classList.add('header-peeked');
-        }
-      });
-
-      header.addEventListener('mouseleave', () => {
-        if (document.body.classList.contains('header-collapsed')) {
-          this.headerPeekTimeout = setTimeout(() => {
-            header.classList.remove('header-peeked');
-          }, 350);
-        }
-      });
-
-      header.addEventListener('mouseenter', () => {
-        clearTimeout(this.headerPeekTimeout);
-      });
-    }
-
-    // Hotkey: Option+H or Ctrl+H to toggle header
+    // Hotkey: Cmd+M or Option+M or Ctrl+M to toggle Drawer
     window.addEventListener('keydown', (e) => {
       const tag = (e.target && e.target.tagName) || '';
       const isInput = tag === 'INPUT' || tag === 'TEXTAREA' || e.target.isContentEditable;
-      if (!isInput && (e.altKey || e.ctrlKey) && e.key.toLowerCase() === 'h') {
+      if (!isInput && (e.metaKey || e.ctrlKey || e.altKey) && e.key.toLowerCase() === 'm') {
         e.preventDefault();
-        this.toggleGlobalHeader();
+        this.toggleNavDrawer();
+      }
+      if (e.key === 'Escape') {
+        this.closeNavDrawer();
+        this.closeSearchModal();
+        this.closeUserProfileModal();
       }
     });
   },
 
-  toggleGlobalHeader(forceState) {
-    if (typeof forceState === 'boolean') {
-      this.isHeaderCollapsed = forceState;
-    } else {
-      this.isHeaderCollapsed = !this.isHeaderCollapsed;
+  openNavDrawer() {
+    const drawer = document.getElementById('nav-drawer');
+    const backdrop = document.getElementById('nav-drawer-backdrop');
+    if (drawer && backdrop) {
+      backdrop.classList.remove('hidden');
+      drawer.classList.add('drawer-open');
     }
-    localStorage.setItem('study_engine_header_collapsed', this.isHeaderCollapsed ? 'true' : 'false');
-    this.updateHeaderCollapseUI();
-  },
-
-  updateHeaderCollapseUI() {
-    const header = document.getElementById('app-global-header');
-    if (!header) return;
-
-    const isNotesView = (this.currentView === 'notes');
-    const shouldCollapse = this.isHeaderCollapsed && isNotesView;
-
-    document.body.classList.toggle('header-collapsed', shouldCollapse);
-    header.classList.remove('header-peeked');
-
-    const icon = document.getElementById('icon-toggle-header');
-    const text = document.getElementById('text-toggle-header');
-    const btn = document.getElementById('btn-toggle-header');
-
-    if (icon) {
-      icon.setAttribute('data-lucide', shouldCollapse ? 'chevron-down' : 'chevron-up');
-    }
-    if (text) {
-      text.textContent = shouldCollapse ? 'Show Bar' : 'Hide Bar';
-    }
-    if (btn) {
-      btn.title = shouldCollapse 
-        ? 'Show Top Header (or hover top edge to peek)' 
-        : 'Auto-hide Top Header (maximize study space)';
-    }
-
+    this.updateDrawerSubjectList();
+    this.updateUserProfileUI();
     if (window.lucide) window.lucide.createIcons();
   },
 
-  focusSearchModal() {
-    const header = document.getElementById('app-global-header');
-    if (document.body.classList.contains('header-collapsed') && header) {
-      header.classList.add('header-peeked');
+  closeNavDrawer() {
+    const drawer = document.getElementById('nav-drawer');
+    const backdrop = document.getElementById('nav-drawer-backdrop');
+    if (drawer && backdrop) {
+      drawer.classList.remove('drawer-open');
+      setTimeout(() => {
+        backdrop.classList.add('hidden');
+      }, 200);
     }
-    const inp = document.getElementById('global-search-input');
-    if (inp) {
-      inp.focus();
+  },
+
+  toggleNavDrawer() {
+    const drawer = document.getElementById('nav-drawer');
+    if (drawer && drawer.classList.contains('drawer-open')) {
+      this.closeNavDrawer();
+    } else {
+      this.openNavDrawer();
+    }
+  },
+
+  switchViewAndCloseDrawer(viewName) {
+    this.closeNavDrawer();
+    this.switchView(viewName);
+  },
+
+  updateDrawerSubjectList() {
+    const container = document.getElementById('drawer-subjects-list');
+    if (!container || !this.courses) return;
+
+    container.innerHTML = this.courses.map(c => {
+      const totalLectures = (c.modules || []).reduce((acc, m) => acc + (m.topics ? m.topics.length : 0), 0);
+      const firstTopicId = (c.modules && c.modules[0] && c.modules[0].topics && c.modules[0].topics[0]) ? c.modules[0].topics[0].id : null;
+
+      return `
+        <button onclick="App.jumpToSubjectFromDrawer('${c.id}', '${firstTopicId || ''}')" class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs text-neutral-500 hover:text-ink hover:bg-muted transition text-left group">
+          <span class="truncate pr-2 font-medium">${this.escapeHtml(c.name)}</span>
+          <span class="text-[10px] font-mono text-neutral-400 tabular-nums px-1.5 py-0.2 rounded bg-card-muted border border-border/60">${totalLectures}</span>
+        </button>
+      `;
+    }).join('');
+  },
+
+  jumpToSubjectFromDrawer(courseId, topicId) {
+    this.closeNavDrawer();
+    this.switchView('notes');
+    if (topicId) {
+      this.loadTopicNotes(topicId);
+    }
+  },
+
+  // -------------------------------------------------------------
+  // Command Palette Global Search Modal Controller
+  // -------------------------------------------------------------
+  openSearchModal() {
+    const modal = document.getElementById('global-search-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.classList.add('modal-active');
+      const input = document.getElementById('global-search-input');
+      if (input) {
+        input.focus();
+        input.select();
+      }
       this.onSearchFocus();
     }
+  },
+
+  closeSearchModal() {
+    const modal = document.getElementById('global-search-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('modal-active');
+    }
+  },
+
+  // -------------------------------------------------------------
+  // User Profile & Account Settings (Multi-Student Isolation)
+  // -------------------------------------------------------------
+  initUserProfile() {
+    try {
+      const saved = localStorage.getItem('study_engine_user_profile');
+      if (saved) {
+        this.userProfile = { ...this.userProfile, ...JSON.parse(saved) };
+      }
+    } catch (e) {}
+    this.updateUserProfileUI();
+  },
+
+  updateUserProfileUI() {
+    const nameEls = document.querySelectorAll('.user-profile-name');
+    nameEls.forEach(el => el.textContent = this.userProfile.name);
+
+    const emailEls = document.querySelectorAll('.user-profile-email');
+    emailEls.forEach(el => el.textContent = this.userProfile.email);
+
+    const avatarEls = document.querySelectorAll('.user-avatar-initials');
+    avatarEls.forEach(el => el.textContent = this.userProfile.initials || 'GG');
+
+    const termEls = document.querySelectorAll('.user-profile-term');
+    termEls.forEach(el => el.textContent = this.userProfile.term);
+  },
+
+  openUserProfileModal() {
+    this.closeNavDrawer();
+    const modal = document.getElementById('modal-user-profile');
+    if (modal) {
+      document.getElementById('profile-input-name').value = this.userProfile.name;
+      document.getElementById('profile-input-email').value = this.userProfile.email;
+      document.getElementById('profile-input-term').value = this.userProfile.term;
+      modal.classList.remove('hidden');
+    }
+  },
+
+  closeUserProfileModal() {
+    const modal = document.getElementById('modal-user-profile');
+    if (modal) modal.classList.add('hidden');
+  },
+
+  saveUserProfile() {
+    const name = document.getElementById('profile-input-name').value.trim() || 'Garv Gupta';
+    const email = document.getElementById('profile-input-email').value.trim() || 'garv@iimbx.ac.in';
+    const term = document.getElementById('profile-input-term').value.trim() || 'IIMBx MBA 2026 • Term 1';
+
+    const parts = name.split(/\s+/).filter(Boolean);
+    let initials = 'GG';
+    if (parts.length >= 2) {
+      initials = (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    } else if (parts.length === 1 && parts[0].length >= 2) {
+      initials = parts[0].substring(0, 2).toUpperCase();
+    }
+
+    this.userProfile = { name, email, initials, term };
+    localStorage.setItem('study_engine_user_profile', JSON.stringify(this.userProfile));
+    this.updateUserProfileUI();
+    this.closeUserProfileModal();
   },
 
   // -------------------------------------------------------------
@@ -254,18 +335,10 @@ const App = {
 
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
-        const input = document.getElementById('global-search-input');
-        if (input) {
-          input.focus();
-          input.select();
-        }
+        App.openSearchModal();
       } else if (e.key === '/' && !isInput) {
         e.preventDefault();
-        const input = document.getElementById('global-search-input');
-        if (input) {
-          input.focus();
-          input.select();
-        }
+        App.openSearchModal();
       }
     });
 
@@ -624,6 +697,7 @@ const App = {
 
   async jumpToSearchResult(topicId, searchText, headingText) {
     this.closeSearchDropdown();
+    this.closeSearchModal();
     const input = document.getElementById('global-search-input');
     if (input) input.blur();
 
@@ -2861,12 +2935,30 @@ const App = {
       }
     });
 
+    // 1. In Study Studio, hide the global header so studio toolbar is the ONLY top bar!
+    const globalHeader = document.getElementById('app-global-header');
+    if (target === 'notes') {
+      if (globalHeader) globalHeader.classList.add('hidden');
+    } else {
+      if (globalHeader) globalHeader.classList.remove('hidden');
+    }
+
+    // 2. Update Drawer navigation active pills
+    ['dashboard', 'notes', 'exam'].forEach(k => {
+      const drawerItem = document.getElementById(`drawer-nav-${k}`);
+      if (drawerItem) {
+        if (k === target) {
+          drawerItem.className = 'w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-soft-sm';
+        } else {
+          drawerItem.className = 'w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition text-ink hover:bg-muted';
+        }
+      }
+    });
+
     if (target === 'dashboard') {
-      this.updateHeaderCollapseUI();
       this.renderDashboard();
     } else if (target === 'notes') {
       this.updateStudioLayout();
-      this.updateHeaderCollapseUI();
       if (!this.selectedTopicId) {
         if (this.lastStudiedTopicId) {
           this.loadTopicNotes(this.lastStudiedTopicId);
@@ -2875,7 +2967,6 @@ const App = {
         }
       }
     } else if (target === 'exam') {
-      this.updateHeaderCollapseUI();
       this.setupExamView();
     }
 

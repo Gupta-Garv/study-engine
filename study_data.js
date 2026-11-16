@@ -107385,6 +107385,22 @@ window.STUDY_DATA = {
           "zIndex": 12
         }
       ]
+    },
+    "36dcb9bf": {
+      "cards": [],
+      "connections": [],
+      "drawings": [],
+      "text_notes": [
+        {
+          "id": "note_1794814542109_yxea",
+          "x": 201,
+          "y": 49,
+          "text": "Hundi: A negotiable, transferable bill of exchange that functioned as an early letter-of-credit system",
+          "width": 280,
+          "zIndex": 33
+        }
+      ],
+      "images": []
     }
   }
 };
