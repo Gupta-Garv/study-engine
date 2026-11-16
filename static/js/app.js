@@ -105,6 +105,7 @@ const App = {
     this.initCanvasListeners();
     this.initSpeedrunListener();
     this.initNotesVoice();
+    this.initHeaderAutoHide();
     this.updateStudioLayout();
     await this.loadCourses();
     this.switchView('dashboard');
@@ -127,6 +128,103 @@ const App = {
     localStorage.setItem('study_engine_theme', isDark ? 'dark' : 'light');
     if (this.redrawCanvas) this.redrawCanvas();
     if (window.lucide) window.lucide.createIcons();
+  },
+
+  // -------------------------------------------------------------
+  // Collapsible / Auto-Hide Global Header Controller
+  // -------------------------------------------------------------
+  isHeaderCollapsed: false,
+  headerPeekTimeout: null,
+
+  initHeaderAutoHide() {
+    const saved = localStorage.getItem('study_engine_header_collapsed');
+    // Default to true (collapsed) in Study Studio for maximum focus & vertical space
+    this.isHeaderCollapsed = saved === null ? true : (saved === 'true');
+
+    const trigger = document.getElementById('header-hover-trigger');
+    const header = document.getElementById('app-global-header');
+
+    if (trigger && header) {
+      trigger.addEventListener('mouseenter', () => {
+        if (document.body.classList.contains('header-collapsed')) {
+          clearTimeout(this.headerPeekTimeout);
+          header.classList.add('header-peeked');
+        }
+      });
+
+      header.addEventListener('mouseleave', () => {
+        if (document.body.classList.contains('header-collapsed')) {
+          this.headerPeekTimeout = setTimeout(() => {
+            header.classList.remove('header-peeked');
+          }, 350);
+        }
+      });
+
+      header.addEventListener('mouseenter', () => {
+        clearTimeout(this.headerPeekTimeout);
+      });
+    }
+
+    // Hotkey: Option+H or Ctrl+H to toggle header
+    window.addEventListener('keydown', (e) => {
+      const tag = (e.target && e.target.tagName) || '';
+      const isInput = tag === 'INPUT' || tag === 'TEXTAREA' || e.target.isContentEditable;
+      if (!isInput && (e.altKey || e.ctrlKey) && e.key.toLowerCase() === 'h') {
+        e.preventDefault();
+        this.toggleGlobalHeader();
+      }
+    });
+  },
+
+  toggleGlobalHeader(forceState) {
+    if (typeof forceState === 'boolean') {
+      this.isHeaderCollapsed = forceState;
+    } else {
+      this.isHeaderCollapsed = !this.isHeaderCollapsed;
+    }
+    localStorage.setItem('study_engine_header_collapsed', this.isHeaderCollapsed ? 'true' : 'false');
+    this.updateHeaderCollapseUI();
+  },
+
+  updateHeaderCollapseUI() {
+    const header = document.getElementById('app-global-header');
+    if (!header) return;
+
+    const isNotesView = (this.currentView === 'notes');
+    const shouldCollapse = this.isHeaderCollapsed && isNotesView;
+
+    document.body.classList.toggle('header-collapsed', shouldCollapse);
+    header.classList.remove('header-peeked');
+
+    const icon = document.getElementById('icon-toggle-header');
+    const text = document.getElementById('text-toggle-header');
+    const btn = document.getElementById('btn-toggle-header');
+
+    if (icon) {
+      icon.setAttribute('data-lucide', shouldCollapse ? 'chevron-down' : 'chevron-up');
+    }
+    if (text) {
+      text.textContent = shouldCollapse ? 'Show Bar' : 'Hide Bar';
+    }
+    if (btn) {
+      btn.title = shouldCollapse 
+        ? 'Show Top Header (or hover top edge to peek)' 
+        : 'Auto-hide Top Header (maximize study space)';
+    }
+
+    if (window.lucide) window.lucide.createIcons();
+  },
+
+  focusSearchModal() {
+    const header = document.getElementById('app-global-header');
+    if (document.body.classList.contains('header-collapsed') && header) {
+      header.classList.add('header-peeked');
+    }
+    const inp = document.getElementById('global-search-input');
+    if (inp) {
+      inp.focus();
+      this.onSearchFocus();
+    }
   },
 
   // -------------------------------------------------------------
@@ -2764,9 +2862,11 @@ const App = {
     });
 
     if (target === 'dashboard') {
+      this.updateHeaderCollapseUI();
       this.renderDashboard();
     } else if (target === 'notes') {
       this.updateStudioLayout();
+      this.updateHeaderCollapseUI();
       if (!this.selectedTopicId) {
         if (this.lastStudiedTopicId) {
           this.loadTopicNotes(this.lastStudiedTopicId);
@@ -2775,6 +2875,7 @@ const App = {
         }
       }
     } else if (target === 'exam') {
+      this.updateHeaderCollapseUI();
       this.setupExamView();
     }
 
@@ -3766,25 +3867,7 @@ const App = {
       counterBadge.classList.remove('hidden');
     }
 
-    // 2. Video player controls navigation buttons
-    const vidBtnPrev = document.getElementById('video-btn-prev-lecture');
-    const vidBtnNext = document.getElementById('video-btn-next-lecture');
-
-    if (vidBtnPrev) {
-      vidBtnPrev.disabled = !prev;
-      vidBtnPrev.title = prev ? `Previous Video: ${prev.title}` : 'First video in curriculum';
-      vidBtnPrev.classList.toggle('opacity-30', !prev);
-      vidBtnPrev.classList.toggle('pointer-events-none', !prev);
-    }
-
-    if (vidBtnNext) {
-      vidBtnNext.disabled = !next;
-      vidBtnNext.title = next ? `Next Video: ${next.title}` : 'Final video in curriculum';
-      vidBtnNext.classList.toggle('opacity-30', !next);
-      vidBtnNext.classList.toggle('pointer-events-none', !next);
-    }
-
-    // 3. Notes footer next lecture card
+    // 2. Notes footer next lecture card
     const notesFooter = document.getElementById('notes-next-lecture-footer');
     if (notesFooter) {
       if (next) {
