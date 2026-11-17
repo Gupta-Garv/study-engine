@@ -3735,15 +3735,17 @@ const App = {
       // Render slide frames
       const slideGallery = document.getElementById('notes-slide-gallery');
       const slideThumbs = document.getElementById('slide-thumbs-container');
-      if (data.slides && data.slides.length > 0) {
-        slideGallery.classList.remove('hidden');
-        slideThumbs.innerHTML = data.slides.map(s => `
-          <div class="rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-900 aspect-video">
-            <img src="${s.url}" alt="${s.filename}" class="w-full h-full object-cover">
-          </div>
-        `).join('');
-      } else {
-        slideGallery.classList.add('hidden');
+      if (slideGallery) {
+        if (data.slides && data.slides.length > 0 && slideThumbs) {
+          slideGallery.classList.remove('hidden');
+          slideThumbs.innerHTML = data.slides.map(s => `
+            <div class="rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-900 aspect-video">
+              <img src="${s.url}" alt="${s.filename}" class="w-full h-full object-cover">
+            </div>
+          `).join('');
+        } else {
+          slideGallery.classList.add('hidden');
+        }
       }
 
     } catch (e) {

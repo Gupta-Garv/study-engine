@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,38 +47,47 @@
   <!-- Custom Ledger CSS -->
   <link rel="stylesheet" href="./static/css/style.css?v=2.7.0">
 </head>
+
 <body class="h-screen flex flex-col bg-canvas text-ink transition-colors duration-200 overflow-hidden">
 
   <!-- Universal Navigation Drawer Backdrop -->
-  <div id="nav-drawer-backdrop" onclick="App.closeNavDrawer()" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm transition-opacity duration-200"></div>
+  <div id="nav-drawer-backdrop" onclick="App.closeNavDrawer()"
+    class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm transition-opacity duration-200"></div>
 
   <!-- Universal Navigation Drawer -->
-  <aside id="nav-drawer" class="fixed top-0 bottom-0 left-0 z-50 w-80 max-w-[85vw] bg-card border-r border-border shadow-soft-xl flex flex-col select-none">
-    
+  <aside id="nav-drawer"
+    class="fixed top-0 bottom-0 left-0 z-50 w-80 max-w-[85vw] bg-card border-r border-border shadow-soft-xl flex flex-col select-none">
+
     <!-- Drawer Header -->
     <div class="p-4 border-b border-border flex items-center justify-between shrink-0 bg-card-muted/30">
       <div class="flex items-center gap-2.5">
-        <div class="w-8 h-8 rounded-xl bg-ink text-canvas flex items-center justify-center font-pixel text-xs font-bold shadow-soft-sm">
+        <div
+          class="w-8 h-8 rounded-xl bg-ink text-canvas flex items-center justify-center font-pixel text-xs font-bold shadow-soft-sm">
           SE
         </div>
         <div>
           <div class="text-sm font-semibold tracking-tight text-ink flex items-center gap-1.5">
             <span>StudyEngine</span>
-            <span class="text-[9px] font-mono px-1.5 py-0.2 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-bold">MBA</span>
+            <span
+              class="text-[9px] font-mono px-1.5 py-0.2 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-bold">MBA</span>
           </div>
           <div class="text-[10px] font-mono text-neutral-400">IIMBx Degree Suite</div>
         </div>
       </div>
-      <button onclick="App.closeNavDrawer()" class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition" title="Close Drawer (Esc)">
+      <button onclick="App.closeNavDrawer()"
+        class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition"
+        title="Close Drawer (Esc)">
         <i data-lucide="x" class="w-4 h-4"></i>
       </button>
     </div>
 
     <!-- User Account Card (Multi-User Profile Ready) -->
     <div class="p-3.5 border-b border-border/70 bg-card">
-      <div class="p-3 rounded-2xl bg-card-muted/60 border border-border/60 flex items-center justify-between gap-3 group hover:border-border transition">
+      <div
+        class="p-3 rounded-2xl bg-card-muted/60 border border-border/60 flex items-center justify-between gap-3 group hover:border-border transition">
         <div class="flex items-center gap-2.5 min-w-0">
-          <div class="user-avatar-initials w-9 h-9 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 flex items-center justify-center text-xs shrink-0 shadow-soft-sm">
+          <div
+            class="user-avatar-initials w-9 h-9 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 flex items-center justify-center text-xs shrink-0 shadow-soft-sm">
             GG
           </div>
           <div class="min-w-0">
@@ -88,7 +98,9 @@
             <div class="user-profile-email text-[10px] font-mono text-neutral-400 truncate">garv@iimbx.ac.in</div>
           </div>
         </div>
-        <button onclick="App.openUserProfileModal()" class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-neutral-400 hover:text-ink transition shrink-0" title="Manage Account Profile">
+        <button onclick="App.openUserProfileModal()"
+          class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-neutral-400 hover:text-ink transition shrink-0"
+          title="Manage Account Profile">
           <i data-lucide="settings" class="w-3.5 h-3.5"></i>
         </button>
       </div>
@@ -96,12 +108,14 @@
 
     <!-- Drawer Body (Scrollable) -->
     <div class="flex-1 overflow-y-auto p-3.5 space-y-4">
-      
+
       <!-- Primary Navigation Links -->
       <div class="space-y-1">
-        <div class="px-2 pb-1 text-[10px] font-mono uppercase tracking-wider text-neutral-400 font-semibold">Navigate</div>
-        
-        <button id="drawer-nav-dashboard" onclick="App.switchViewAndCloseDrawer('dashboard')" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition text-ink hover:bg-muted">
+        <div class="px-2 pb-1 text-[10px] font-mono uppercase tracking-wider text-neutral-400 font-semibold">Navigate
+        </div>
+
+        <button id="drawer-nav-dashboard" onclick="App.switchViewAndCloseDrawer('dashboard')"
+          class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition text-ink hover:bg-muted">
           <div class="flex items-center gap-2.5">
             <i data-lucide="layout-dashboard" class="w-4 h-4 text-neutral-400"></i>
             <span>Dashboard</span>
@@ -109,7 +123,8 @@
           <span class="text-[10px] font-mono text-neutral-400">Overview</span>
         </button>
 
-        <button id="drawer-nav-notes" onclick="App.switchViewAndCloseDrawer('notes')" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition text-ink hover:bg-muted">
+        <button id="drawer-nav-notes" onclick="App.switchViewAndCloseDrawer('notes')"
+          class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition text-ink hover:bg-muted">
           <div class="flex items-center gap-2.5">
             <i data-lucide="book-open" class="w-4 h-4 text-neutral-400"></i>
             <span>Study Studio</span>
@@ -117,7 +132,8 @@
           <span class="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">Live Notes</span>
         </button>
 
-        <button id="drawer-nav-exam" onclick="App.switchViewAndCloseDrawer('exam')" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition text-ink hover:bg-muted">
+        <button id="drawer-nav-exam" onclick="App.switchViewAndCloseDrawer('exam')"
+          class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition text-ink hover:bg-muted">
           <div class="flex items-center gap-2.5">
             <i data-lucide="award" class="w-4 h-4 text-neutral-400"></i>
             <span>Exam Arena</span>
@@ -128,7 +144,8 @@
 
       <!-- Quick Search Button in Drawer -->
       <div class="pt-1">
-        <button onclick="App.closeNavDrawer(); App.openSearchModal();" class="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-card-muted/70 border border-border/80 text-xs text-neutral-400 hover:text-ink hover:border-border transition shadow-soft-sm">
+        <button onclick="App.closeNavDrawer(); App.openSearchModal();"
+          class="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-card-muted/70 border border-border/80 text-xs text-neutral-400 hover:text-ink hover:border-border transition shadow-soft-sm">
           <div class="flex items-center gap-2">
             <i data-lucide="search" class="w-3.5 h-3.5"></i>
             <span>Search 505 Lectures...</span>
@@ -139,7 +156,8 @@
 
       <!-- Quick Subject Jump Shortcuts -->
       <div class="space-y-1 pt-1">
-        <div class="px-2 pb-1 text-[10px] font-mono uppercase tracking-wider text-neutral-400 font-semibold flex items-center justify-between">
+        <div
+          class="px-2 pb-1 text-[10px] font-mono uppercase tracking-wider text-neutral-400 font-semibold flex items-center justify-between">
           <span>Subjects (505 Lectures)</span>
         </div>
         <div id="drawer-subjects-list" class="space-y-0.5">
@@ -151,7 +169,8 @@
 
     <!-- Drawer Footer -->
     <div class="p-3.5 border-t border-border bg-card-muted/30 shrink-0 flex items-center justify-between gap-2">
-      <button onclick="App.toggleTheme()" class="flex items-center gap-2 px-2.5 py-1.5 rounded-xl border border-border bg-card hover:bg-muted text-xs font-mono text-ink-secondary hover:text-ink transition">
+      <button onclick="App.toggleTheme()"
+        class="flex items-center gap-2 px-2.5 py-1.5 rounded-xl border border-border bg-card hover:bg-muted text-xs font-mono text-ink-secondary hover:text-ink transition">
         <i data-lucide="moon" class="w-3.5 h-3.5"></i>
         <span>Toggle Theme</span>
       </button>
@@ -162,26 +181,24 @@
   </aside>
 
   <!-- Global Command Palette Search Modal -->
-  <div id="global-search-modal" class="hidden fixed inset-0 z-50 flex items-start justify-center pt-14 sm:pt-20 px-4 bg-black/50 backdrop-blur-sm transition-opacity">
-    <div class="w-full max-w-2xl bg-card border border-border rounded-2xl shadow-soft-xl overflow-hidden flex flex-col max-h-[80vh] animate-in fade-in zoom-in-95 duration-150">
+  <div id="global-search-modal"
+    class="hidden fixed inset-0 z-50 flex items-start justify-center pt-14 sm:pt-20 px-4 bg-black/50 backdrop-blur-sm transition-opacity">
+    <div
+      class="w-full max-w-2xl bg-card border border-border rounded-2xl shadow-soft-xl overflow-hidden flex flex-col max-h-[80vh] animate-in fade-in zoom-in-95 duration-150">
       <!-- Input bar -->
       <div class="relative flex items-center px-4 py-3 border-b border-border bg-card">
         <i data-lucide="search" class="w-5 h-5 text-neutral-400 mr-3 shrink-0"></i>
-        <input 
-          type="text" 
-          id="global-search-input" 
-          placeholder="Search all 505 lectures, concepts, equations..." 
-          autocomplete="off" 
-          spellcheck="false"
-          oninput="App.onSearchInput(this.value)"
+        <input type="text" id="global-search-input" placeholder="Search all 505 lectures, concepts, equations..."
+          autocomplete="off" spellcheck="false" oninput="App.onSearchInput(this.value)"
           onkeydown="App.onSearchKeydown(event)"
-          class="w-full bg-transparent text-sm text-ink placeholder:text-neutral-400 focus:outline-none"
-        />
-        <button onclick="App.closeSearchModal()" class="cursor-pointer px-2 py-0.5 text-[10px] font-mono text-neutral-400 bg-card-muted border border-border rounded hover:text-ink ml-2">ESC</button>
+          class="w-full bg-transparent text-sm text-ink placeholder:text-neutral-400 focus:outline-none" />
+        <button onclick="App.closeSearchModal()"
+          class="cursor-pointer px-2 py-0.5 text-[10px] font-mono text-neutral-400 bg-card-muted border border-border rounded hover:text-ink ml-2">ESC</button>
       </div>
 
       <!-- Results Header & Counter -->
-      <div id="search-results-header" class="px-4 py-2 border-b border-border/60 bg-card-muted/40 flex items-center justify-between text-[11px] text-neutral-500">
+      <div id="search-results-header"
+        class="px-4 py-2 border-b border-border/60 bg-card-muted/40 flex items-center justify-between text-[11px] text-neutral-500">
         <span id="search-results-count" class="font-mono">Type to search...</span>
         <div class="hidden sm:flex items-center gap-2 text-[10px] text-neutral-400">
           <span><kbd class="px-1 py-0.5 rounded bg-card border border-border font-mono">↑↓</kbd> navigate</span>
@@ -198,12 +215,15 @@
   </div>
 
   <!-- User Profile & Account Settings Modal (Multi-Student Login Foundation) -->
-  <div id="modal-user-profile" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-    <div class="w-full max-w-md bg-card border border-border rounded-2xl shadow-soft-xl overflow-hidden p-6 space-y-5 animate-in fade-in zoom-in-95 duration-150">
-      
+  <div id="modal-user-profile"
+    class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+    <div
+      class="w-full max-w-md bg-card border border-border rounded-2xl shadow-soft-xl overflow-hidden p-6 space-y-5 animate-in fade-in zoom-in-95 duration-150">
+
       <div class="flex items-center justify-between pb-3 border-b border-border">
         <div class="flex items-center gap-2.5">
-          <div class="user-avatar-initials w-8 h-8 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 flex items-center justify-center text-xs shadow-soft-sm">
+          <div
+            class="user-avatar-initials w-8 h-8 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 flex items-center justify-center text-xs shadow-soft-sm">
             GG
           </div>
           <div>
@@ -211,7 +231,8 @@
             <p class="text-[11px] font-mono text-neutral-400">StudyEngine Cloud Vault</p>
           </div>
         </div>
-        <button onclick="App.closeUserProfileModal()" class="p-1 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition">
+        <button onclick="App.closeUserProfileModal()"
+          class="p-1 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
@@ -219,17 +240,24 @@
       <div class="space-y-3.5 text-xs">
         <div>
           <label class="block text-[11px] font-mono uppercase text-ink-secondary mb-1">Student Full Name</label>
-          <input type="text" id="profile-input-name" class="w-full p-2.5 rounded-xl border border-border bg-card-muted text-xs text-ink focus:outline-none focus:ring-1 focus:ring-ink" placeholder="Your Full Name">
+          <input type="text" id="profile-input-name"
+            class="w-full p-2.5 rounded-xl border border-border bg-card-muted text-xs text-ink focus:outline-none focus:ring-1 focus:ring-ink"
+            placeholder="Your Full Name">
         </div>
 
         <div>
-          <label class="block text-[11px] font-mono uppercase text-ink-secondary mb-1">University Email (Account ID)</label>
-          <input type="email" id="profile-input-email" class="w-full p-2.5 rounded-xl border border-border bg-card-muted text-xs text-ink focus:outline-none focus:ring-1 focus:ring-ink" placeholder="student@iimbx.ac.in">
+          <label class="block text-[11px] font-mono uppercase text-ink-secondary mb-1">University Email (Account
+            ID)</label>
+          <input type="email" id="profile-input-email"
+            class="w-full p-2.5 rounded-xl border border-border bg-card-muted text-xs text-ink focus:outline-none focus:ring-1 focus:ring-ink"
+            placeholder="student@iimbx.ac.in">
         </div>
 
         <div>
           <label class="block text-[11px] font-mono uppercase text-ink-secondary mb-1">Degree Program & Term</label>
-          <input type="text" id="profile-input-term" class="w-full p-2.5 rounded-xl border border-border bg-card-muted text-xs text-ink focus:outline-none focus:ring-1 focus:ring-ink" placeholder="IIMBx MBA 2026 • Term 1">
+          <input type="text" id="profile-input-term"
+            class="w-full p-2.5 rounded-xl border border-border bg-card-muted text-xs text-ink focus:outline-none focus:ring-1 focus:ring-ink"
+            placeholder="IIMBx MBA 2026 • Term 1">
         </div>
 
         <div class="p-3 rounded-xl bg-muted/50 border border-border/60 text-[11px] text-ink-secondary space-y-1">
@@ -238,16 +266,19 @@
             <span>Multi-Student Isolation Architecture</span>
           </div>
           <p class="text-neutral-400 leading-relaxed">
-            Your study canvas drawings, personal scratchpads, and module quiz attempts are isolated to this account profile. When published publicly, students can sign in with their email.
+            Your study canvas drawings, personal scratchpads, and module quiz attempts are isolated to this account
+            profile. When published publicly, students can sign in with their email.
           </p>
         </div>
       </div>
 
       <div class="flex items-center justify-end gap-2 pt-2 border-t border-border">
-        <button onclick="App.closeUserProfileModal()" class="px-3.5 py-1.5 rounded-xl border border-border hover:bg-muted text-xs font-mono text-ink-secondary">
+        <button onclick="App.closeUserProfileModal()"
+          class="px-3.5 py-1.5 rounded-xl border border-border hover:bg-muted text-xs font-mono text-ink-secondary">
           Cancel
         </button>
-        <button onclick="App.saveUserProfile()" class="pill-ink text-xs px-4 py-1.5 flex items-center gap-1.5 shadow-soft-sm">
+        <button onclick="App.saveUserProfile()"
+          class="pill-ink text-xs px-4 py-1.5 flex items-center gap-1.5 shadow-soft-sm">
           <i data-lucide="check" class="w-3.5 h-3.5"></i>
           <span>Save Profile</span>
         </button>
@@ -262,11 +293,15 @@
 
       <!-- Left: Hamburger Menu + Logo -->
       <div class="flex items-center gap-3 shrink-0">
-        <button onclick="App.openNavDrawer()" class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink transition flex items-center gap-1.5" title="Open Navigation Menu (⌘M)">
+        <button onclick="App.openNavDrawer()"
+          class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink transition flex items-center gap-1.5"
+          title="Open Navigation Menu (⌘M)">
           <i data-lucide="menu" class="w-4 h-4"></i>
         </button>
-        <a href="#" onclick="App.switchView('dashboard')" class="flex items-center gap-2 text-ink font-medium tracking-tight">
-          <div class="w-7 h-7 rounded-lg bg-ink text-canvas flex items-center justify-center font-pixel text-xs font-bold shadow-soft-sm">
+        <a href="#" onclick="App.switchView('dashboard')"
+          class="flex items-center gap-2 text-ink font-medium tracking-tight">
+          <div
+            class="w-7 h-7 rounded-lg bg-ink text-canvas flex items-center justify-center font-pixel text-xs font-bold shadow-soft-sm">
             SE
           </div>
           <span class="text-sm font-semibold hidden md:inline">StudyEngine</span>
@@ -274,35 +309,45 @@
       </div>
 
       <!-- Center: Quick Search Trigger Button (Command Palette) -->
-      <button onclick="App.openSearchModal()" class="flex-1 max-w-md mx-2 sm:mx-4 flex items-center justify-between px-3.5 py-1.5 rounded-full bg-card border border-border text-xs text-neutral-400 hover:text-ink hover:border-ink transition shadow-soft-sm group">
+      <button onclick="App.openSearchModal()"
+        class="flex-1 max-w-md mx-2 sm:mx-4 flex items-center justify-between px-3.5 py-1.5 rounded-full bg-card border border-border text-xs text-neutral-400 hover:text-ink hover:border-ink transition shadow-soft-sm group">
         <div class="flex items-center gap-2">
           <i data-lucide="search" class="w-3.5 h-3.5 text-neutral-400 group-hover:text-ink transition"></i>
           <span class="truncate">Search all 505 lectures, concepts, equations...</span>
         </div>
-        <kbd class="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[9px] font-mono text-neutral-400 bg-card-muted border border-border rounded pointer-events-none select-none">⌘K</kbd>
+        <kbd
+          class="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[9px] font-mono text-neutral-400 bg-card-muted border border-border rounded pointer-events-none select-none">⌘K</kbd>
       </button>
 
       <!-- Right: Navigation Pills + User Profile + Theme -->
       <div class="flex items-center gap-2 shrink-0">
         <nav class="hidden sm:flex items-center gap-1 p-0.5 rounded-full bg-card-muted border border-border text-xs">
-          <button id="tab-dashboard" onclick="App.switchView('dashboard')" class="px-3 py-1 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-medium">
+          <button id="tab-dashboard" onclick="App.switchView('dashboard')"
+            class="px-3 py-1 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-medium">
             Dashboard
           </button>
-          <button id="tab-notes" onclick="App.switchView('notes')" class="px-3 py-1 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium">
+          <button id="tab-notes" onclick="App.switchView('notes')"
+            class="px-3 py-1 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium">
             Study Studio
           </button>
-          <button id="tab-exam" onclick="App.switchView('exam')" class="px-3 py-1 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium">
+          <button id="tab-exam" onclick="App.switchView('exam')"
+            class="px-3 py-1 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium">
             Exam Arena
           </button>
         </nav>
 
         <!-- User Profile Pill -->
-        <button onclick="App.openUserProfileModal()" class="flex items-center gap-1.5 p-1 px-2 rounded-full border border-border bg-card hover:bg-muted text-xs transition" title="Student Profile & Account">
-          <div class="user-avatar-initials w-5 h-5 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 flex items-center justify-center text-[10px]">GG</div>
+        <button onclick="App.openUserProfileModal()"
+          class="flex items-center gap-1.5 p-1 px-2 rounded-full border border-border bg-card hover:bg-muted text-xs transition"
+          title="Student Profile & Account">
+          <div
+            class="user-avatar-initials w-5 h-5 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 flex items-center justify-center text-[10px]">
+            GG</div>
           <span class="user-profile-name hidden md:inline text-[11px] font-medium text-ink">Garv</span>
         </button>
 
-        <button onclick="App.toggleTheme()" class="p-1.5 rounded-lg border border-border hover:bg-card-muted transition" title="Toggle Theme">
+        <button onclick="App.toggleTheme()" class="p-1.5 rounded-lg border border-border hover:bg-card-muted transition"
+          title="Toggle Theme">
           <i data-lucide="moon" class="w-4 h-4"></i>
         </button>
       </div>
@@ -311,7 +356,8 @@
   </header>
 
   <!-- Static Viewer Mode Banner (Shown only on GitHub Pages) -->
-  <div id="static-viewer-banner" class="hidden shrink-0 bg-neutral-900 text-neutral-300 dark:bg-neutral-800 text-[11px] py-1.5 px-4 text-center border-b border-border font-mono flex items-center justify-center gap-2">
+  <div id="static-viewer-banner"
+    class="hidden shrink-0 bg-neutral-900 text-neutral-300 dark:bg-neutral-800 text-[11px] py-1.5 px-4 text-center border-b border-border font-mono flex items-center justify-center gap-2">
     <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
     <span>24/7 Study Vault</span>
     <span>&bull;</span>
@@ -326,21 +372,24 @@
     <!-- ============================================================= -->
     <div id="view-dashboard" class="flex-1 w-full overflow-y-auto px-4 py-8">
       <div class="max-w-6xl mx-auto space-y-8">
-        
+
         <!-- Hero: Degree Header & Live Exam Countdown Radar -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          
+
           <!-- Welcome & Degree Brief -->
           <div class="lg:col-span-2 space-y-3">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card-muted border border-border text-xs font-mono text-ink-secondary">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card-muted border border-border text-xs font-mono text-ink-secondary">
               <span class="font-pixel text-[10px] text-emerald-500">IIMBx DEGREE</span>
               <span>Semester Study Studio & Exam Command Center</span>
             </div>
             <h1 class="text-3xl sm:text-4xl font-[450] tracking-[-0.04em] leading-tight text-balance">
-              Master your 5 subjects with <span class="font-pixel text-2xl sm:text-3xl text-ink">connected study</span> and active recall.
+              Master your 5 subjects with <span class="font-pixel text-2xl sm:text-3xl text-ink">connected study</span>
+              and active recall.
             </h1>
             <p class="text-sm text-ink-secondary leading-relaxed max-w-xl">
-              All 505 lectures, slides, and transcripts are indexed. Study notes with embedded video, pin key formulas to your visual canvas, solve doubts with AI Copilot, and track exam readiness.
+              All 505 lectures, slides, and transcripts are indexed. Study notes with embedded video, pin key formulas
+              to your visual canvas, solve doubts with AI Copilot, and track exam readiness.
             </p>
 
             <!-- Quick Action & Resume Banner -->
@@ -350,13 +399,16 @@
           </div>
 
           <!-- Exam Countdown Card -->
-          <div class="rounded-[1.5rem] bg-card border border-border shadow-soft p-5 flex flex-col justify-between space-y-4">
+          <div
+            class="rounded-[1.5rem] bg-card border border-border shadow-soft p-5 flex flex-col justify-between space-y-4">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-                <span class="text-xs font-mono font-semibold uppercase tracking-wider text-ink" id="exam-countdown-title">Term Exams</span>
+                <span class="text-xs font-mono font-semibold uppercase tracking-wider text-ink"
+                  id="exam-countdown-title">Term Exams</span>
               </div>
-              <button onclick="App.openExamDateModal()" class="text-[11px] font-mono text-ink-secondary hover:text-ink flex items-center gap-1 transition px-2 py-0.5 rounded bg-muted hover:bg-border">
+              <button onclick="App.openExamDateModal()"
+                class="text-[11px] font-mono text-ink-secondary hover:text-ink flex items-center gap-1 transition px-2 py-0.5 rounded bg-muted hover:bg-border">
                 <i data-lucide="calendar" class="w-3 h-3"></i>
                 <span>Edit Dates</span>
               </button>
@@ -379,7 +431,8 @@
             </div>
 
             <!-- Exam Info Footer -->
-            <div class="text-[11px] text-ink-secondary font-mono flex items-center justify-between pt-2 border-t border-border/60">
+            <div
+              class="text-[11px] text-ink-secondary font-mono flex items-center justify-between pt-2 border-t border-border/60">
               <span id="countdown-target-display">Target: Nov 5–6</span>
               <span class="text-emerald-500 font-medium">5 Subjects</span>
             </div>
@@ -390,7 +443,8 @@
         <!-- Section 2: Subject Mastery Matrix (5 Cards) -->
         <div class="space-y-3">
           <div class="flex items-center justify-between">
-            <div class="text-xs font-mono uppercase tracking-wider text-ink-secondary font-semibold flex items-center gap-2">
+            <div
+              class="text-xs font-mono uppercase tracking-wider text-ink-secondary font-semibold flex items-center gap-2">
               <i data-lucide="layers" class="w-4 h-4"></i>
               <span>Degree Curriculum Mastery (5 Subjects • 505 Lectures)</span>
             </div>
@@ -407,15 +461,19 @@
         <div class="rounded-[1.5rem] bg-card border border-border shadow-soft p-6 space-y-4">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-border/60">
             <div>
-              <div class="text-xs font-mono uppercase tracking-wider text-ink-secondary font-semibold flex items-center gap-2">
+              <div
+                class="text-xs font-mono uppercase tracking-wider text-ink-secondary font-semibold flex items-center gap-2">
                 <i data-lucide="check-square" class="w-4 h-4"></i>
                 <span>Exam Sprint Checklist & High-Yield Revision To-Do</span>
               </div>
-              <p class="text-xs text-neutral-400 mt-0.5">Track critical concepts, formula derivations, and case studies before exam day.</p>
+              <p class="text-xs text-neutral-400 mt-0.5">Track critical concepts, formula derivations, and case studies
+                before exam day.</p>
             </div>
             <div class="flex items-center gap-2">
               <span id="checklist-progress-text" class="text-xs font-mono text-neutral-400">0 of 7 completed</span>
-              <button onclick="App.resetDefaultChecklist()" class="text-[11px] font-mono text-neutral-400 hover:text-ink px-2 py-1 rounded hover:bg-muted transition" title="Restore default high-yield exam tasks">
+              <button onclick="App.resetDefaultChecklist()"
+                class="text-[11px] font-mono text-neutral-400 hover:text-ink px-2 py-1 rounded hover:bg-muted transition"
+                title="Restore default high-yield exam tasks">
                 Reset Defaults
               </button>
             </div>
@@ -423,24 +481,34 @@
 
           <!-- Subject Filter Pills -->
           <div id="checklist-filter-pills" class="flex flex-wrap gap-1.5 text-xs">
-            <button onclick="App.filterChecklist('all')" class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium bg-neutral-900 text-white dark:bg-white dark:text-neutral-900" data-filter="all">All</button>
-            <button onclick="App.filterChecklist('corporate-finance')" class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted" data-filter="corporate-finance">Corporate Finance</button>
-            <button onclick="App.filterChecklist('family-business')" class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted" data-filter="family-business">Family Business</button>
-            <button onclick="App.filterChecklist('critical-thinking')" class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted" data-filter="critical-thinking">Critical Thinking</button>
-            <button onclick="App.filterChecklist('startup-dilemmas')" class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted" data-filter="startup-dilemmas">Startup Dilemmas</button>
-            <button onclick="App.filterChecklist('data-visualisation')" class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted" data-filter="data-visualisation">Data Visualisation</button>
+            <button onclick="App.filterChecklist('all')"
+              class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium bg-neutral-900 text-white dark:bg-white dark:text-neutral-900"
+              data-filter="all">All</button>
+            <button onclick="App.filterChecklist('corporate-finance')"
+              class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted"
+              data-filter="corporate-finance">Corporate Finance</button>
+            <button onclick="App.filterChecklist('family-business')"
+              class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted"
+              data-filter="family-business">Family Business</button>
+            <button onclick="App.filterChecklist('critical-thinking')"
+              class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted"
+              data-filter="critical-thinking">Critical Thinking</button>
+            <button onclick="App.filterChecklist('startup-dilemmas')"
+              class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted"
+              data-filter="startup-dilemmas">Startup Dilemmas</button>
+            <button onclick="App.filterChecklist('data-visualisation')"
+              class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted"
+              data-filter="data-visualisation">Data Visualisation</button>
           </div>
 
           <!-- Add Task Input Form -->
           <div class="flex flex-col sm:flex-row gap-2">
-            <input 
-              type="text" 
-              id="new-checklist-input" 
-              placeholder="Add personal exam study goal (e.g. Solve 20 Beta practice questions)..." 
+            <input type="text" id="new-checklist-input"
+              placeholder="Add personal exam study goal (e.g. Solve 20 Beta practice questions)..."
               class="flex-1 px-4 py-2 rounded-xl bg-card-muted border border-border text-xs text-ink placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-ink"
-              onkeydown="if(event.key==='Enter') App.addChecklistItem()"
-            />
-            <select id="new-checklist-subject" class="px-3 py-2 rounded-xl bg-card-muted border border-border text-xs text-ink focus:outline-none font-mono">
+              onkeydown="if(event.key==='Enter') App.addChecklistItem()" />
+            <select id="new-checklist-subject"
+              class="px-3 py-2 rounded-xl bg-card-muted border border-border text-xs text-ink focus:outline-none font-mono">
               <option value="corporate-finance">Corporate Finance</option>
               <option value="family-business">Family Business</option>
               <option value="critical-thinking">Critical Thinking</option>
@@ -465,17 +533,24 @@
     <!-- VIEW 2: STUDY HALL (Edge-to-Edge Resizable Workspace) -->
     <!-- ============================================================= -->
     <div id="view-notes" class="hidden w-full flex-1 overflow-hidden border-t border-border bg-canvas">
-      
+
       <!-- Sidebar Tree (Collapsible & Resizable Accordion) -->
-      <aside id="notes-sidebar" class="shrink-0 bg-card border-r border-border p-3 overflow-y-auto space-y-3 flex flex-col select-none" style="width: 250px;">
+      <aside id="notes-sidebar"
+        class="shrink-0 bg-card border-r border-border p-3 overflow-y-auto space-y-3 flex flex-col select-none"
+        style="width: 250px;">
         <div class="flex items-center justify-between pb-2 border-b border-border/60 shrink-0">
-          <div class="text-[11px] font-mono uppercase tracking-wider text-ink-secondary font-semibold flex items-center gap-1.5">
+          <div
+            class="text-[11px] font-mono uppercase tracking-wider text-ink-secondary font-semibold flex items-center gap-1.5">
             <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
             <span>Syllabus</span>
           </div>
           <div class="flex items-center gap-1">
-            <button onclick="App.toggleAllModules()" class="text-[10px] text-ink-muted hover:text-ink transition font-mono px-1.5 py-0.5 rounded hover:bg-muted" title="Expand / Collapse All">Toggle All</button>
-            <button onclick="App.toggleSidebar()" class="p-1 text-ink-muted hover:text-ink rounded hover:bg-muted transition" title="Collapse Syllabus Sidebar">
+            <button onclick="App.toggleAllModules()"
+              class="text-[10px] text-ink-muted hover:text-ink transition font-mono px-1.5 py-0.5 rounded hover:bg-muted"
+              title="Expand / Collapse All">Toggle All</button>
+            <button onclick="App.toggleSidebar()"
+              class="p-1 text-ink-muted hover:text-ink rounded hover:bg-muted transition"
+              title="Collapse Syllabus Sidebar">
               <i data-lucide="chevrons-left" class="w-3.5 h-3.5"></i>
             </button>
           </div>
@@ -486,36 +561,51 @@
       </aside>
 
       <!-- Left Resizer Handle (Between Sidebar and Reader) -->
-      <div id="resizer-sidebar" class="w-1.5 shrink-0 bg-border/40 hover:bg-neutral-400 dark:hover:bg-neutral-600 active:bg-neutral-600 dark:active:bg-neutral-400 cursor-col-resize transition-colors relative z-10 flex items-center justify-center group select-none" title="Drag to resize syllabus">
-        <div class="w-0.5 h-6 rounded-full bg-neutral-300 dark:bg-neutral-700 group-hover:bg-neutral-500 dark:group-hover:bg-neutral-400 transition-colors pointer-events-none"></div>
+      <div id="resizer-sidebar"
+        class="w-1.5 shrink-0 bg-border/40 hover:bg-neutral-400 dark:hover:bg-neutral-600 active:bg-neutral-600 dark:active:bg-neutral-400 cursor-col-resize transition-colors relative z-10 flex items-center justify-center group select-none"
+        title="Drag to resize syllabus">
+        <div
+          class="w-0.5 h-6 rounded-full bg-neutral-300 dark:bg-neutral-700 group-hover:bg-neutral-500 dark:group-hover:bg-neutral-400 transition-colors pointer-events-none">
+        </div>
       </div>
 
       <!-- Main Reader / Studio Section -->
       <section id="notes-content-section" class="flex-1 h-full overflow-hidden bg-card flex flex-col min-w-0">
-        
+
         <!-- Studio Sticky Top Bar (Unified Single 42px Toolbar) -->
-        <div class="shrink-0 flex items-center justify-between px-3 sm:px-5 py-2 border-b border-border bg-card-muted/40 backdrop-blur gap-2 flex-wrap">
-          
+        <div
+          class="shrink-0 flex items-center justify-between px-3 sm:px-5 py-2 border-b border-border bg-card-muted/40 backdrop-blur gap-2 flex-wrap">
+
           <!-- Left: Hamburger Menu, Syllabus Sidebar & Topic Navigation -->
           <div class="flex items-center gap-1.5 min-w-0">
-            <button onclick="App.openNavDrawer()" class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink transition flex items-center gap-1 text-xs shrink-0" title="Open Navigation Menu (⌘M)">
+            <button onclick="App.openNavDrawer()"
+              class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink transition flex items-center gap-1 text-xs shrink-0"
+              title="Open Navigation Menu (⌘M)">
               <i data-lucide="menu" class="w-4 h-4"></i>
             </button>
 
-            <button id="sidebar-toggle-btn" onclick="App.toggleSidebar()" class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink-secondary hover:text-ink transition flex items-center gap-1.5 text-xs shrink-0" title="Toggle Syllabus Sidebar">
+            <button id="sidebar-toggle-btn" onclick="App.toggleSidebar()"
+              class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink-secondary hover:text-ink transition flex items-center gap-1.5 text-xs shrink-0"
+              title="Toggle Syllabus Sidebar">
               <i data-lucide="panel-left" class="w-3.5 h-3.5"></i>
               <span id="sidebar-toggle-text" class="hidden sm:inline text-[11px] font-mono">Syllabus</span>
             </button>
-            <span id="reader-topic-badge" class="text-[11px] font-mono px-2.5 py-1 rounded-full bg-muted text-ink-secondary font-medium truncate max-w-xs sm:max-w-md">Ready</span>
+            <span id="reader-topic-badge"
+              class="text-[11px] font-mono px-2.5 py-1 rounded-full bg-muted text-ink-secondary font-medium truncate max-w-xs sm:max-w-md">Ready</span>
 
             <!-- Quick Prev / Next Lecture Nav in Subheader -->
             <div class="flex items-center gap-1 shrink-0 ml-1">
-              <span id="lecture-index-counter" class="hidden sm:inline text-[10px] font-mono text-neutral-400 tabular-nums px-1"></span>
-              <button id="btn-prev-lecture" onclick="App.goToPrevTopic()" class="px-2 py-1 rounded-lg border border-border bg-card text-ink-secondary hover:text-ink hover:bg-muted transition flex items-center gap-1 text-[11px] font-mono disabled:opacity-30 disabled:pointer-events-none" title="Previous Lecture (Shift+P)">
+              <span id="lecture-index-counter"
+                class="hidden sm:inline text-[10px] font-mono text-neutral-400 tabular-nums px-1"></span>
+              <button id="btn-prev-lecture" onclick="App.goToPrevTopic()"
+                class="px-2 py-1 rounded-lg border border-border bg-card text-ink-secondary hover:text-ink hover:bg-muted transition flex items-center gap-1 text-[11px] font-mono disabled:opacity-30 disabled:pointer-events-none"
+                title="Previous Lecture (Shift+P)">
                 <i data-lucide="chevron-left" class="w-3.5 h-3.5"></i>
                 <span class="hidden xl:inline">Prev</span>
               </button>
-              <button id="btn-next-lecture" onclick="App.goToNextTopic()" class="px-2.5 py-1 rounded-lg bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-100 transition flex items-center gap-1 text-[11px] font-mono font-medium shadow-soft-sm disabled:opacity-30 disabled:pointer-events-none" title="Next Lecture (Shift+N)">
+              <button id="btn-next-lecture" onclick="App.goToNextTopic()"
+                class="px-2.5 py-1 rounded-lg bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-100 transition flex items-center gap-1 text-[11px] font-mono font-medium shadow-soft-sm disabled:opacity-30 disabled:pointer-events-none"
+                title="Next Lecture (Shift+N)">
                 <span>Next</span>
                 <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
               </button>
@@ -524,19 +614,27 @@
 
           <!-- Right: Individual Tool Toggles, Search, User Avatar, Theme -->
           <div class="flex items-center gap-1.5 shrink-0">
-            <button id="toggle-video-btn" onclick="App.togglePane('video')" class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition active border-border bg-card text-ink" title="Toggle Embedded Video">
+            <button id="toggle-video-btn" onclick="App.togglePane('video')"
+              class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition active border-border bg-card text-ink"
+              title="Toggle Embedded Video">
               <i data-lucide="video" class="w-3.5 h-3.5"></i>
               <span class="hidden sm:inline">Video</span>
             </button>
-            <button id="toggle-notes-btn" onclick="App.togglePane('notes')" class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition active font-semibold border-border bg-card text-ink" title="Toggle Synthesized Notes">
+            <button id="toggle-notes-btn" onclick="App.togglePane('notes')"
+              class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition active font-semibold border-border bg-card text-ink"
+              title="Toggle Synthesized Notes">
               <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
               <span class="hidden sm:inline">Notes</span>
             </button>
-            <button id="toggle-canvas-btn" onclick="App.togglePane('canvas')" class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition border-border bg-card text-neutral-400 hover:text-ink" title="Toggle Personal Canvas">
+            <button id="toggle-canvas-btn" onclick="App.togglePane('canvas')"
+              class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition border-border bg-card text-neutral-400 hover:text-ink"
+              title="Toggle Personal Canvas">
               <i data-lucide="layout" class="w-3.5 h-3.5"></i>
               <span class="hidden sm:inline">Canvas</span>
             </button>
-            <button id="toggle-copilot-btn" onclick="App.togglePane('copilot')" class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition border-border bg-card text-neutral-400 hover:text-ink" title="Toggle AI Copilot">
+            <button id="toggle-copilot-btn" onclick="App.togglePane('copilot')"
+              class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition border-border bg-card text-neutral-400 hover:text-ink"
+              title="Toggle AI Copilot">
               <i data-lucide="bot" class="w-3.5 h-3.5"></i>
               <span class="hidden sm:inline">Copilot</span>
             </button>
@@ -545,14 +643,20 @@
             <div class="w-px h-4 bg-border/60 mx-0.5"></div>
 
             <!-- Quick Search (Cmd+K) button in subheader -->
-            <button onclick="App.openSearchModal()" class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink-secondary hover:text-ink transition flex items-center gap-1 text-xs shrink-0" title="Quick Search (⌘K)">
+            <button onclick="App.openSearchModal()"
+              class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink-secondary hover:text-ink transition flex items-center gap-1 text-xs shrink-0"
+              title="Quick Search (⌘K)">
               <i data-lucide="search" class="w-3.5 h-3.5"></i>
               <span class="hidden md:inline text-[10px] font-mono text-neutral-400">⌘K</span>
             </button>
 
             <!-- User Account Profile Button -->
-            <button onclick="App.openUserProfileModal()" class="flex items-center gap-1.5 p-1 px-1.5 rounded-lg border border-border bg-card hover:bg-muted text-xs transition" title="Student Profile & Account">
-              <div class="user-avatar-initials w-5 h-5 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 flex items-center justify-center text-[10px]">GG</div>
+            <button onclick="App.openUserProfileModal()"
+              class="flex items-center gap-1.5 p-1 px-1.5 rounded-lg border border-border bg-card hover:bg-muted text-xs transition"
+              title="Student Profile & Account">
+              <div
+                class="user-avatar-initials w-5 h-5 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 flex items-center justify-center text-[10px]">
+                GG</div>
             </button>
 
             <!-- Theme Toggle in Subheader -->
@@ -569,31 +673,33 @@
         <div id="studio-workspace" class="flex-1 w-full h-full flex overflow-hidden min-h-0 relative">
 
           <!-- LEFT COLUMN: Video (Top) + Interactive Notepad (Bottom Left) -->
-          <div id="left-studio-column" class="flex flex-col h-full min-w-0 overflow-hidden relative shrink-0 border-r border-border" style="width: 48%;">
+          <div id="left-studio-column"
+            class="flex flex-col h-full min-w-0 overflow-hidden relative shrink-0 border-r border-border"
+            style="width: 48%;">
 
             <!-- PANE 1: Embedded Video Player (Top Left) -->
-            <div id="pane-video" class="flex flex-col bg-canvas p-3 sm:p-4 space-y-2.5 overflow-y-auto shrink-0 border-b border-border" style="height: 48%; min-height: 180px;">
+            <div id="pane-video"
+              class="flex flex-col bg-canvas p-3 sm:p-4 space-y-2.5 overflow-y-auto shrink-0 border-b border-border"
+              style="height: 48%; min-height: 180px;">
               <!-- 16:9 Video Box -->
-              <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-neutral-900 border border-border shadow-soft flex items-center justify-center">
-                <iframe 
-                  id="lecture-video-iframe" 
-                  class="w-full h-full hidden"
-                  src="" 
-                  title="Lecture Video" 
-                  frameborder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen
-                ></iframe>
+              <div
+                class="relative w-full aspect-video rounded-2xl overflow-hidden bg-neutral-900 border border-border shadow-soft flex items-center justify-center">
+                <iframe id="lecture-video-iframe" class="w-full h-full hidden" src="" title="Lecture Video"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 <div id="video-placeholder" class="text-center p-6 space-y-2 text-neutral-400">
-                  <div class="w-12 h-12 rounded-full bg-white/10 mx-auto flex items-center justify-center text-white shadow-soft-sm">
+                  <div
+                    class="w-12 h-12 rounded-full bg-white/10 mx-auto flex items-center justify-center text-white shadow-soft-sm">
                     <i data-lucide="play" class="w-5 h-5 fill-white ml-0.5"></i>
                   </div>
-                  <div class="text-xs font-medium text-neutral-200" id="video-placeholder-title">Select a lecture to play video</div>
+                  <div class="text-xs font-medium text-neutral-200" id="video-placeholder-title">Select a lecture to
+                    play video</div>
                   <div class="text-[11px] text-neutral-400">Official IIMBx unlisted lecture video stream</div>
                 </div>
                 <!-- Speedrun Active Overlay Toast -->
-                <div id="speedrun-skip-toast" class="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 px-3.5 py-1.5 rounded-full bg-neutral-900/95 text-white dark:bg-white/95 dark:text-neutral-900 text-xs font-mono shadow-soft-md backdrop-blur border border-white/10 opacity-0 -translate-y-2 transition-all duration-300 z-20 flex items-center gap-2">
+                <div id="speedrun-skip-toast"
+                  class="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 px-3.5 py-1.5 rounded-full bg-neutral-900/95 text-white dark:bg-white/95 dark:text-neutral-900 text-xs font-mono shadow-soft-md backdrop-blur border border-white/10 opacity-0 -translate-y-2 transition-all duration-300 z-20 flex items-center gap-2">
                   <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-400 fill-amber-400 animate-pulse"></i>
                   <span id="speedrun-skip-toast-text" class="font-medium">⚡ Speedrun: Skipping Fluff</span>
                 </div>
@@ -609,7 +715,9 @@
                   <button onclick="App.setVideoSpeed(2)" class="speed-btn px-1.5 py-0.5 rounded bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-semibold" data-speed="2">2x</button>
                 </div>
                 <div class="flex items-center gap-2">
-                  <a id="video-external-link" href="#" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono text-neutral-400 hover:text-ink flex items-center gap-1 transition" title="Open directly on YouTube">
+                  <a id="video-external-link" href="#" target="_blank" rel="noopener noreferrer"
+                    class="text-[11px] font-mono text-neutral-400 hover:text-ink flex items-center gap-1 transition"
+                    title="Open directly on YouTube">
                     <span>YouTube</span>
                     <i data-lucide="external-link" class="w-3 h-3"></i>
                   </a>
@@ -620,7 +728,8 @@
               <div id="video-key-moments-panel" class="hidden w-full pt-2 pb-1 border-t border-border/70 space-y-1.5">
                 <div class="flex items-center justify-between text-xs gap-2 flex-wrap">
                   <div class="flex items-center gap-1.5">
-                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono text-[10px] uppercase font-bold tracking-wider border border-amber-500/20">
+                    <span
+                      class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono text-[10px] uppercase font-bold tracking-wider border border-amber-500/20">
                       <i data-lucide="zap" class="w-3 h-3 fill-amber-500"></i> Speedrun
                     </span>
                     <span id="speedrun-summary-stats" class="text-[11px] font-mono text-neutral-400">
@@ -629,7 +738,9 @@
                   </div>
                   <div class="flex items-center gap-2">
                     <!-- Speedrun Auto-Skip Toggle -->
-                    <button id="btn-toggle-speedrun" onclick="App.toggleSpeedrunMode()" class="px-2.5 py-0.5 rounded-full border border-border text-[11px] font-mono flex items-center gap-1.5 transition text-neutral-400 hover:text-ink hover:bg-card-muted" title="Auto-skips filler, recaps and fluff seamlessly [Shift+S]">
+                    <button id="btn-toggle-speedrun" onclick="App.toggleSpeedrunMode()"
+                      class="px-2.5 py-0.5 rounded-full border border-border text-[11px] font-mono flex items-center gap-1.5 transition text-neutral-400 hover:text-ink hover:bg-card-muted"
+                      title="Auto-skips filler, recaps and fluff seamlessly [Shift+S]">
                       <span class="w-1.5 h-1.5 rounded-full bg-neutral-400" id="speedrun-status-dot"></span>
                       <span id="speedrun-toggle-label">Auto-Skip: OFF</span>
                     </button>
@@ -637,42 +748,66 @@
                 </div>
 
                 <!-- Horizontal Scrollable Pills of Key Moments -->
-                <div id="key-moments-pills-list" class="flex items-center gap-1.5 overflow-x-auto pb-1 pt-0.5 no-scrollbar">
+                <div id="key-moments-pills-list"
+                  class="flex items-center gap-1.5 overflow-x-auto pb-1 pt-0.5 no-scrollbar">
+                  <!-- Populated by JS -->
+                </div>
+              </div>
+
+              <!-- Captured Whiteboard Diagrams -->
+              <div id="notes-slide-gallery" class="hidden w-full pt-3 border-t border-border space-y-2">
+                <div class="text-[10px] font-mono uppercase tracking-wider text-neutral-400 flex items-center gap-1.5">
+                  <i data-lucide="image" class="w-3.5 h-3.5"></i> Captured Whiteboard Diagrams
+                </div>
+                <div id="slide-thumbs-container" class="grid grid-cols-2 gap-2">
                   <!-- Populated by JS -->
                 </div>
               </div>
             </div>
 
             <!-- VERTICAL RESIZER (Between Video and Notepad) -->
-            <div id="resizer-video-canvas" class="h-2 shrink-0 bg-border/40 hover:bg-neutral-400 dark:hover:bg-neutral-600 active:bg-neutral-600 dark:active:bg-neutral-400 cursor-row-resize transition-colors relative z-10 flex items-center justify-center select-none" title="Drag up/down to resize Video vs Notepad">
+            <div id="resizer-video-canvas"
+              class="h-2 shrink-0 bg-border/40 hover:bg-neutral-400 dark:hover:bg-neutral-600 active:bg-neutral-600 dark:active:bg-neutral-400 cursor-row-resize transition-colors relative z-10 flex items-center justify-center select-none"
+              title="Drag up/down to resize Video vs Notepad">
               <div class="h-0.5 w-10 rounded-full bg-neutral-300 dark:bg-neutral-700 pointer-events-none"></div>
             </div>
 
             <!-- PANE 3: Personal Visual Canvas & Freeform Notepad (Bottom Left) -->
             <div id="pane-canvas" class="flex-1 flex flex-col bg-canvas min-w-0 min-h-0 relative overflow-hidden">
-              
+
               <!-- Notepad Floating Toolbar -->
-              <div class="shrink-0 px-3 py-2 border-b border-border bg-card flex items-center justify-between gap-2 text-xs flex-wrap">
-                
+              <div
+                class="shrink-0 px-3 py-2 border-b border-border bg-card flex items-center justify-between gap-2 text-xs flex-wrap">
+
                 <!-- Left: Tools (Pointer/Select, Pen, Highlighter, Text Note, Eraser) -->
                 <div class="flex items-center gap-1 p-0.5 rounded-lg bg-card-muted border border-border">
-                  <button id="np-tool-select" onclick="App.setNotepadTool('select')" class="notepad-tool-btn active px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition shadow-soft-sm font-semibold text-ink bg-card" title="Pointer / Select (Move images, arrange notes & pan board) [V]">
+                  <button id="np-tool-select" onclick="App.setNotepadTool('select')"
+                    class="notepad-tool-btn active px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition shadow-soft-sm font-semibold text-ink bg-card"
+                    title="Pointer / Select (Move images, arrange notes & pan board) [V]">
                     <i data-lucide="mouse-pointer-2" class="w-3.5 h-3.5"></i>
                     <span class="inline">Pointer</span>
                   </button>
-                  <button id="np-tool-pen" onclick="App.setNotepadTool('pen')" class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink" title="Pen (Draw equations, mindmaps & sketches) [P]">
+                  <button id="np-tool-pen" onclick="App.setNotepadTool('pen')"
+                    class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink"
+                    title="Pen (Draw equations, mindmaps & sketches) [P]">
                     <i data-lucide="pen-tool" class="w-3.5 h-3.5"></i>
                     <span class="inline">Pen</span>
                   </button>
-                  <button id="np-tool-highlighter" onclick="App.setNotepadTool('highlighter')" class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink" title="Highlighter (Highlight text & diagrams)">
+                  <button id="np-tool-highlighter" onclick="App.setNotepadTool('highlighter')"
+                    class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink"
+                    title="Highlighter (Highlight text & diagrams)">
                     <i data-lucide="highlighter" class="w-3.5 h-3.5"></i>
                     <span class="inline">Highlighter</span>
                   </button>
-                  <button id="np-tool-text" onclick="App.setNotepadTool('text')" class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink" title="Text Note (Click anywhere to place a note)">
+                  <button id="np-tool-text" onclick="App.setNotepadTool('text')"
+                    class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink"
+                    title="Text Note (Click anywhere to place a note)">
                     <i data-lucide="type" class="w-3.5 h-3.5"></i>
                     <span class="inline">Text Note</span>
                   </button>
-                  <button id="np-tool-eraser" onclick="App.setNotepadTool('eraser')" class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink" title="Eraser (Erase drawing strokes)">
+                  <button id="np-tool-eraser" onclick="App.setNotepadTool('eraser')"
+                    class="notepad-tool-btn px-2.5 py-1 rounded-md text-xs font-mono flex items-center gap-1 transition text-neutral-400 hover:text-ink"
+                    title="Eraser (Erase drawing strokes)">
                     <i data-lucide="eraser" class="w-3.5 h-3.5"></i>
                     <span class="inline">Eraser</span>
                   </button>
@@ -682,45 +817,66 @@
                 <div id="np-draw-controls" class="flex items-center gap-2">
                   <!-- Color dots -->
                   <div class="flex items-center gap-1.5 p-1 rounded-lg bg-card-muted/60 border border-border">
-                    <button onclick="App.setNotepadColor('ink')" class="notepad-color-dot active bg-neutral-900 dark:bg-white" title="Ink (Black/White)" data-color="ink"></button>
-                    <button onclick="App.setNotepadColor('#ef4444')" class="notepad-color-dot bg-red-500" title="Red" data-color="#ef4444"></button>
-                    <button onclick="App.setNotepadColor('#f59e0b')" class="notepad-color-dot bg-amber-500" title="Amber Formula" data-color="#f59e0b"></button>
-                    <button onclick="App.setNotepadColor('#10b981')" class="notepad-color-dot bg-emerald-500" title="Emerald" data-color="#10b981"></button>
-                    <button onclick="App.setNotepadColor('#3b82f6')" class="notepad-color-dot bg-blue-500" title="Blue" data-color="#3b82f6"></button>
+                    <button onclick="App.setNotepadColor('ink')"
+                      class="notepad-color-dot active bg-neutral-900 dark:bg-white" title="Ink (Black/White)"
+                      data-color="ink"></button>
+                    <button onclick="App.setNotepadColor('#ef4444')" class="notepad-color-dot bg-red-500" title="Red"
+                      data-color="#ef4444"></button>
+                    <button onclick="App.setNotepadColor('#f59e0b')" class="notepad-color-dot bg-amber-500"
+                      title="Amber Formula" data-color="#f59e0b"></button>
+                    <button onclick="App.setNotepadColor('#10b981')" class="notepad-color-dot bg-emerald-500"
+                      title="Emerald" data-color="#10b981"></button>
+                    <button onclick="App.setNotepadColor('#3b82f6')" class="notepad-color-dot bg-blue-500" title="Blue"
+                      data-color="#3b82f6"></button>
                   </div>
 
                   <!-- Stroke Size -->
-                  <div class="flex items-center gap-0.5 text-[11px] font-mono p-0.5 rounded-lg bg-card-muted border border-border">
-                    <button onclick="App.setNotepadWidth(2)" class="np-size-btn active px-1.5 py-0.5 rounded text-xs" data-width="2">S</button>
-                    <button onclick="App.setNotepadWidth(4)" class="np-size-btn px-1.5 py-0.5 rounded text-xs text-neutral-400" data-width="4">M</button>
-                    <button onclick="App.setNotepadWidth(8)" class="np-size-btn px-1.5 py-0.5 rounded text-xs text-neutral-400" data-width="8">L</button>
+                  <div
+                    class="flex items-center gap-0.5 text-[11px] font-mono p-0.5 rounded-lg bg-card-muted border border-border">
+                    <button onclick="App.setNotepadWidth(2)" class="np-size-btn active px-1.5 py-0.5 rounded text-xs"
+                      data-width="2">S</button>
+                    <button onclick="App.setNotepadWidth(4)"
+                      class="np-size-btn px-1.5 py-0.5 rounded text-xs text-neutral-400" data-width="4">M</button>
+                    <button onclick="App.setNotepadWidth(8)"
+                      class="np-size-btn px-1.5 py-0.5 rounded text-xs text-neutral-400" data-width="8">L</button>
                   </div>
                 </div>
 
                 <!-- Right: Actions (Undo, Screenshot, +Note, Clear, Status & Hint) -->
                 <div class="flex items-center gap-1.5 shrink-0">
-                  <button onclick="App.undoNotepadStroke()" class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition" title="Undo last stroke (Cmd+Z)">
+                  <button onclick="App.undoNotepadStroke()"
+                    class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition"
+                    title="Undo last stroke (Cmd+Z)">
                     <i data-lucide="undo-2" class="w-3.5 h-3.5"></i>
                   </button>
 
                   <!-- Screenshot / Image Upload Button -->
-                  <button onclick="App.triggerNotepadImageUpload()" class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition flex items-center gap-1" title="Add or Paste Screenshot / Diagram (or Drag & Drop directly onto the pad)">
+                  <button onclick="App.triggerNotepadImageUpload()"
+                    class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition flex items-center gap-1"
+                    title="Add or Paste Screenshot / Diagram (or Drag & Drop directly onto the pad)">
                     <i data-lucide="image-plus" class="w-3.5 h-3.5"></i>
                     <span class="hidden sm:inline text-xs font-mono">Screenshot</span>
                   </button>
-                  <input type="file" id="notepad-image-file-input" accept="image/*" class="hidden" onchange="App.onNotepadImageFileSelected(this)">
+                  <input type="file" id="notepad-image-file-input" accept="image/*" class="hidden"
+                    onchange="App.onNotepadImageFileSelected(this)">
 
-                  <button onclick="App.addFloatingTextNote()" class="pill-ink text-[11px] px-2.5 py-1 flex items-center gap-1" title="Add a movable text note anywhere">
+                  <button onclick="App.addFloatingTextNote()"
+                    class="pill-ink text-[11px] px-2.5 py-1 flex items-center gap-1"
+                    title="Add a movable text note anywhere">
                     <i data-lucide="plus" class="w-3 h-3"></i>
                     <span>New Note</span>
                   </button>
-                  <button onclick="App.clearCurrentCanvas()" class="p-1.5 text-neutral-400 hover:text-rose-500 rounded-lg hover:bg-muted transition" title="Clear notepad for this lecture">
+                  <button onclick="App.clearCurrentCanvas()"
+                    class="p-1.5 text-neutral-400 hover:text-rose-500 rounded-lg hover:bg-muted transition"
+                    title="Clear notepad for this lecture">
                     <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                   </button>
                   <div class="hidden 2xl:flex items-center gap-1.5 text-[10px] font-mono pl-1 border-l border-border">
-                    <span id="notepad-tool-hint" class="text-neutral-400">Pen mode • Drag to draw • Paste screenshot</span>
+                    <span id="notepad-tool-hint" class="text-neutral-400">Pen mode • Drag to draw • Paste
+                      screenshot</span>
                   </div>
-                  <div class="hidden sm:flex items-center gap-1 text-[10px] font-mono text-emerald-500 pl-1 border-l border-border">
+                  <div
+                    class="hidden sm:flex items-center gap-1 text-[10px] font-mono text-emerald-500 pl-1 border-l border-border">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                     <span id="notepad-status-indicator">Auto-saved</span>
                   </div>
@@ -729,24 +885,20 @@
               </div>
 
               <!-- Notepad Canvas Viewport (Scrollable Infinite Stage with Drag & Drop) -->
-              <div id="notepad-viewport" class="flex-1 w-full h-full relative overflow-auto ledger-notepad-pattern" style="cursor: crosshair;">
-                
+              <div id="notepad-viewport" class="flex-1 w-full h-full relative overflow-auto ledger-notepad-pattern"
+                style="cursor: crosshair;">
+
                 <!-- 2400x1800 Drawing & Note Stage -->
                 <div id="notepad-stage" class="relative" style="width: 2400px; height: 1800px;">
-                  
+
                   <!-- Floating Movable Images & Screenshots Layer (z-index 12) -->
                   <div id="notepad-images-layer" class="absolute inset-0 pointer-events-none" style="z-index: 12;">
                     <!-- Dynamically rendered screenshot cards -->
                   </div>
 
                   <!-- Drawing Canvas (HTML5) with touch-action: none (z-index 18) -->
-                  <canvas 
-                    id="notepad-drawing-canvas" 
-                    width="2400" 
-                    height="1800" 
-                    class="absolute inset-0 w-full h-full"
-                    style="z-index: 18; touch-action: none; pointer-events: none;"
-                  ></canvas>
+                  <canvas id="notepad-drawing-canvas" width="2400" height="1800" class="absolute inset-0 w-full h-full"
+                    style="z-index: 18; touch-action: none; pointer-events: none;"></canvas>
 
                   <!-- Floating Movable Text Notes Layer (z-index 25) -->
                   <div id="notepad-notes-layer" class="absolute inset-0 pointer-events-none" style="z-index: 25;">
@@ -762,7 +914,9 @@
           </div>
 
           <!-- HORIZONTAL RESIZER (Between Left Column [Video+Notepad] and Right Column [Notes Reader]) -->
-          <div id="resizer-notes-column" class="w-2 shrink-0 bg-border/40 hover:bg-neutral-400 dark:hover:bg-neutral-600 active:bg-neutral-600 dark:active:bg-neutral-400 cursor-col-resize transition-colors relative z-10 flex items-center justify-center select-none" title="Drag left/right to resize Notes vs Media/Notepad">
+          <div id="resizer-notes-column"
+            class="w-2 shrink-0 bg-border/40 hover:bg-neutral-400 dark:hover:bg-neutral-600 active:bg-neutral-600 dark:active:bg-neutral-400 cursor-col-resize transition-colors relative z-10 flex items-center justify-center select-none"
+            title="Drag left/right to resize Notes vs Media/Notepad">
             <div class="w-0.5 h-10 rounded-full bg-neutral-300 dark:bg-neutral-700 pointer-events-none"></div>
           </div>
 
@@ -771,21 +925,30 @@
             <div class="max-w-3xl w-full mx-auto space-y-5">
 
               <!-- Sticky Notes Audio Voice Reader Bar -->
-              <div id="notes-audio-bar" class="sticky top-0 z-20 w-full p-2.5 sm:p-3 rounded-2xl bg-card/95 dark:bg-card/95 border border-border shadow-soft flex flex-col gap-2">
+              <div id="notes-audio-bar"
+                class="sticky top-0 z-20 w-full p-2.5 sm:p-3 rounded-2xl bg-card/95 dark:bg-card/95 border border-border shadow-soft flex flex-col gap-2">
                 <div class="flex items-center justify-between gap-3 flex-wrap">
-                  
+
                   <!-- Left: Play/Pause, -15s, +15s, Stop -->
                   <div class="flex items-center gap-1.5">
-                    <button id="voice-play-btn" onclick="App.toggleNotesVoice()" class="w-8 h-8 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 flex items-center justify-center hover:scale-105 active:scale-95 transition shadow-soft-sm shrink-0" title="Play / Pause Audio Reader">
+                    <button id="voice-play-btn" onclick="App.toggleNotesVoice()"
+                      class="w-8 h-8 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 flex items-center justify-center hover:scale-105 active:scale-95 transition shadow-soft-sm shrink-0"
+                      title="Play / Pause Audio Reader">
                       <i id="voice-play-icon" data-lucide="play" class="w-4 h-4 ml-0.5 fill-current"></i>
                     </button>
-                    <button onclick="App.skipNotesVoice(-1)" class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition shrink-0" title="Rewind to Previous Section / 15s Back">
+                    <button onclick="App.skipNotesVoice(-1)"
+                      class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition shrink-0"
+                      title="Rewind to Previous Section / 15s Back">
                       <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
                     </button>
-                    <button onclick="App.skipNotesVoice(1)" class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition shrink-0" title="Skip to Next Section / 15s Forward">
+                    <button onclick="App.skipNotesVoice(1)"
+                      class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-ink transition shrink-0"
+                      title="Skip to Next Section / 15s Forward">
                       <i data-lucide="rotate-cw" class="w-3.5 h-3.5"></i>
                     </button>
-                    <button onclick="App.stopNotesVoice()" class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-rose-500 transition shrink-0" title="Stop & Reset Audio Reader">
+                    <button onclick="App.stopNotesVoice()"
+                      class="p-1.5 rounded-lg border border-border hover:bg-muted text-neutral-400 hover:text-rose-500 transition shrink-0"
+                      title="Stop & Reset Audio Reader">
                       <i data-lucide="square" class="w-3.5 h-3.5"></i>
                     </button>
 
@@ -793,10 +956,14 @@
                     <div class="flex items-center gap-1.5 pl-1.5 min-w-0">
                       <span id="voice-audio-wave" class="hidden items-end gap-0.5 h-3.5 shrink-0">
                         <span class="w-0.5 h-2 bg-amber-500 rounded animate-pulse"></span>
-                        <span class="w-0.5 h-3.5 bg-amber-500 rounded animate-pulse" style="animation-delay: 0.15s"></span>
-                        <span class="w-0.5 h-1.5 bg-amber-500 rounded animate-pulse" style="animation-delay: 0.3s"></span>
+                        <span class="w-0.5 h-3.5 bg-amber-500 rounded animate-pulse"
+                          style="animation-delay: 0.15s"></span>
+                        <span class="w-0.5 h-1.5 bg-amber-500 rounded animate-pulse"
+                          style="animation-delay: 0.3s"></span>
                       </span>
-                      <span id="voice-status-text" class="text-xs font-mono text-neutral-400 truncate max-w-[140px] sm:max-w-[200px]">Listen to Notes</span>
+                      <span id="voice-status-text"
+                        class="text-xs font-mono text-neutral-400 truncate max-w-[140px] sm:max-w-[200px]">Listen to
+                        Notes</span>
                     </div>
                   </div>
 
@@ -805,16 +972,25 @@
                     <!-- Natural Voice Dropdown -->
                     <div class="flex items-center gap-1 text-[11px] font-mono text-neutral-400">
                       <i data-lucide="mic" class="w-3.5 h-3.5 text-neutral-400"></i>
-                      <select id="voice-select-dropdown" onchange="App.setNotesVoice(this.value)" class="bg-card-muted border border-border text-ink rounded-lg px-2 py-1 text-[11px] font-mono focus:outline-none cursor-pointer max-w-[125px] sm:max-w-[160px] truncate" title="Select Natural Pleasant Voice">
+                      <select id="voice-select-dropdown" onchange="App.setNotesVoice(this.value)"
+                        class="bg-card-muted border border-border text-ink rounded-lg px-2 py-1 text-[11px] font-mono focus:outline-none cursor-pointer max-w-[125px] sm:max-w-[160px] truncate"
+                        title="Select Natural Pleasant Voice">
                         <option value="">Auto Pleasant Voice</option>
                       </select>
                     </div>
 
                     <!-- Speed Multipliers -->
-                    <div class="flex items-center p-0.5 rounded-lg bg-card-muted border border-border text-[11px] font-mono">
-                      <button onclick="App.setVoiceRate(1)" class="voice-rate-btn px-1.5 py-0.5 rounded font-semibold bg-neutral-900 text-white dark:bg-white dark:text-neutral-900" data-rate="1">1x</button>
-                      <button onclick="App.setVoiceRate(1.25)" class="voice-rate-btn px-1.5 py-0.5 rounded text-neutral-400 hover:text-ink" data-rate="1.25">1.25x</button>
-                      <button onclick="App.setVoiceRate(1.5)" class="voice-rate-btn px-1.5 py-0.5 rounded text-neutral-400 hover:text-ink" data-rate="1.5">1.5x</button>
+                    <div
+                      class="flex items-center p-0.5 rounded-lg bg-card-muted border border-border text-[11px] font-mono">
+                      <button onclick="App.setVoiceRate(1)"
+                        class="voice-rate-btn px-1.5 py-0.5 rounded font-semibold bg-neutral-900 text-white dark:bg-white dark:text-neutral-900"
+                        data-rate="1">1x</button>
+                      <button onclick="App.setVoiceRate(1.25)"
+                        class="voice-rate-btn px-1.5 py-0.5 rounded text-neutral-400 hover:text-ink"
+                        data-rate="1.25">1.25x</button>
+                      <button onclick="App.setVoiceRate(1.5)"
+                        class="voice-rate-btn px-1.5 py-0.5 rounded text-neutral-400 hover:text-ink"
+                        data-rate="1.5">1.5x</button>
                     </div>
                   </div>
 
@@ -823,27 +999,35 @@
                 <!-- Bottom: Interactive Progress Scrubber -->
                 <div class="flex items-center gap-2 pt-1 border-t border-border/50">
                   <span id="voice-time-elapsed" class="text-[10px] font-mono text-neutral-400 shrink-0">0:00</span>
-                  <input type="range" id="voice-progress-slider" min="0" max="100" value="0" oninput="App.onVoiceScrub(this.value)" class="voice-scrubber flex-1" title="Drag to jump to any part of notes">
+                  <input type="range" id="voice-progress-slider" min="0" max="100" value="0"
+                    oninput="App.onVoiceScrub(this.value)" class="voice-scrubber flex-1"
+                    title="Drag to jump to any part of notes">
                   <span id="voice-time-total" class="text-[10px] font-mono text-neutral-400 shrink-0">~0:00</span>
-                  <span id="voice-progress-pct" class="text-[10px] font-mono font-medium text-amber-600 dark:text-amber-400 shrink-0 w-8 text-right">0%</span>
+                  <span id="voice-progress-pct"
+                    class="text-[10px] font-mono font-medium text-amber-600 dark:text-amber-400 shrink-0 w-8 text-right">0%</span>
                 </div>
               </div>
 
               <div id="notes-content-body" class="prose-ledger w-full">
-                <div class="text-center py-20 text-xs text-neutral-400">Select a lecture to view synthesized notes.</div>
+                <div class="text-center py-20 text-xs text-neutral-400">Select a lecture to view synthesized notes.
+                </div>
               </div>
 
               <!-- Bottom Next Lecture Card inside #pane-notes -->
-              <div id="notes-next-lecture-footer" class="hidden mt-10 pt-6 border-t border-border flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-card-muted/40 p-4 rounded-2xl border border-border">
+              <div id="notes-next-lecture-footer"
+                class="hidden mt-10 pt-6 border-t border-border flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-card-muted/40 p-4 rounded-2xl border border-border">
                 <div class="space-y-1">
-                  <div class="text-[10px] font-mono uppercase tracking-wider text-neutral-400 flex items-center gap-1.5">
+                  <div
+                    class="text-[10px] font-mono uppercase tracking-wider text-neutral-400 flex items-center gap-1.5">
                     <i data-lucide="graduation-cap" class="w-3 h-3"></i>
                     <span>Up Next in Curriculum</span>
                   </div>
-                  <div id="notes-next-lecture-title" class="font-medium text-sm text-ink truncate max-w-md">Next Lecture</div>
+                  <div id="notes-next-lecture-title" class="font-medium text-sm text-ink truncate max-w-md">Next Lecture
+                  </div>
                   <div id="notes-next-lecture-module" class="text-xs text-neutral-400 truncate max-w-md">Module</div>
                 </div>
-                <button onclick="App.goToNextTopic()" class="px-4 py-2 rounded-xl bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-medium text-xs font-mono flex items-center gap-2 hover:bg-neutral-800 dark:hover:bg-neutral-100 transition shadow-soft shrink-0 self-start sm:self-auto">
+                <button onclick="App.goToNextTopic()"
+                  class="px-4 py-2 rounded-xl bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-medium text-xs font-mono flex items-center gap-2 hover:bg-neutral-800 dark:hover:bg-neutral-100 transition shadow-soft shrink-0 self-start sm:self-auto">
                   <span>Continue to Next Video</span>
                   <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                 </button>
@@ -855,31 +1039,41 @@
       </section>
 
       <!-- Right Resizer Handle (Between Reader and Copilot) -->
-      <div id="resizer-copilot" class="hidden w-1.5 shrink-0 bg-border/40 hover:bg-neutral-400 dark:hover:bg-neutral-600 active:bg-neutral-600 dark:active:bg-neutral-400 cursor-col-resize transition-colors relative z-10 flex items-center justify-center group select-none" title="Drag to resize copilot">
-        <div class="w-0.5 h-6 rounded-full bg-neutral-300 dark:bg-neutral-700 group-hover:bg-neutral-500 dark:group-hover:bg-neutral-400 transition-colors pointer-events-none"></div>
+      <div id="resizer-copilot"
+        class="hidden w-1.5 shrink-0 bg-border/40 hover:bg-neutral-400 dark:hover:bg-neutral-600 active:bg-neutral-600 dark:active:bg-neutral-400 cursor-col-resize transition-colors relative z-10 flex items-center justify-center group select-none"
+        title="Drag to resize copilot">
+        <div
+          class="w-0.5 h-6 rounded-full bg-neutral-300 dark:bg-neutral-700 group-hover:bg-neutral-500 dark:group-hover:bg-neutral-400 transition-colors pointer-events-none">
+        </div>
       </div>
 
       <!-- Dedicated AI Lecture Copilot Panel (In-Context Doubt Solver) -->
-      <aside id="copilot-panel" class="hidden shrink-0 bg-card border-l border-border flex flex-col h-full overflow-hidden select-text" style="width: 350px;">
+      <aside id="copilot-panel"
+        class="hidden shrink-0 bg-card border-l border-border flex flex-col h-full overflow-hidden select-text"
+        style="width: 350px;">
         <!-- Copilot Header -->
         <div class="p-4 border-b border-border flex items-center justify-between bg-card-muted/30 shrink-0">
           <div class="flex items-center gap-2.5 min-w-0">
-            <div class="w-7 h-7 rounded-lg bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 flex items-center justify-center shrink-0">
+            <div
+              class="w-7 h-7 rounded-lg bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 flex items-center justify-center shrink-0">
               <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
             </div>
             <div class="min-w-0">
               <div class="text-xs font-semibold text-ink flex items-center gap-1.5">
                 <span>Lecture Copilot</span>
-                <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">GLM-5.3</span>
+                <span
+                  class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">GLM-5.3</span>
               </div>
               <div id="copilot-active-topic" class="text-[10px] text-ink-secondary truncate">No lecture selected</div>
             </div>
           </div>
           <div class="flex items-center gap-1">
-            <button onclick="App.clearTopicChat()" title="Reset chat for this video" class="p-1.5 text-ink-muted hover:text-ink rounded-lg hover:bg-muted transition text-xs">
+            <button onclick="App.clearTopicChat()" title="Reset chat for this video"
+              class="p-1.5 text-ink-muted hover:text-ink rounded-lg hover:bg-muted transition text-xs">
               <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
             </button>
-            <button onclick="App.toggleCopilot()" title="Close Copilot" class="p-1.5 text-ink-muted hover:text-ink rounded-lg hover:bg-muted transition text-xs">
+            <button onclick="App.toggleCopilot()" title="Close Copilot"
+              class="p-1.5 text-ink-muted hover:text-ink rounded-lg hover:bg-muted transition text-xs">
               <i data-lucide="x" class="w-3.5 h-3.5"></i>
             </button>
           </div>
@@ -892,38 +1086,37 @@
               <i data-lucide="message-square" class="w-4 h-4"></i>
             </div>
             <p class="font-medium text-ink">In-Context Study Tutor</p>
-            <p class="text-[11px] text-ink-secondary max-w-[200px] mx-auto">Select any video to ask doubts. Every video remembers its own chat history forever.</p>
+            <p class="text-[11px] text-ink-secondary max-w-[200px] mx-auto">Select any video to ask doubts. Every video
+              remembers its own chat history forever.</p>
           </div>
         </div>
 
         <!-- Suggestion Chips -->
-        <div id="copilot-chips" class="px-4 py-2 border-t border-border/50 bg-card-muted/10 flex flex-wrap gap-1.5 shrink-0">
-          <button onclick="App.askSuggestedQuestion('Summarize this lecture in 3 crisp bullet points.')" class="text-[10px] px-2.5 py-1 rounded-full border border-border bg-background hover:bg-muted text-ink-secondary transition">
+        <div id="copilot-chips"
+          class="px-4 py-2 border-t border-border/50 bg-card-muted/10 flex flex-wrap gap-1.5 shrink-0">
+          <button onclick="App.askSuggestedQuestion('Summarize this lecture in 3 crisp bullet points.')"
+            class="text-[10px] px-2.5 py-1 rounded-full border border-border bg-background hover:bg-muted text-ink-secondary transition">
             💡 3-Point Summary
           </button>
-          <button onclick="App.askSuggestedQuestion('Explain the core formula from this video with an intuitive example.')" class="text-[10px] px-2.5 py-1 rounded-full border border-border bg-background hover:bg-muted text-ink-secondary transition">
+          <button
+            onclick="App.askSuggestedQuestion('Explain the core formula from this video with an intuitive example.')"
+            class="text-[10px] px-2.5 py-1 rounded-full border border-border bg-background hover:bg-muted text-ink-secondary transition">
             📐 Explain Formula
           </button>
-          <button onclick="App.askSuggestedQuestion('What tricky questions or traps can come from this on exams?')" class="text-[10px] px-2.5 py-1 rounded-full border border-border bg-background hover:bg-muted text-ink-secondary transition">
+          <button onclick="App.askSuggestedQuestion('What tricky questions or traps can come from this on exams?')"
+            class="text-[10px] px-2.5 py-1 rounded-full border border-border bg-background hover:bg-muted text-ink-secondary transition">
             🎯 Exam Traps
           </button>
         </div>
 
         <!-- Chat Input Form -->
-        <form id="copilot-form" onsubmit="App.handleCopilotSubmit(event)" class="p-3 border-t border-border bg-card shrink-0">
+        <form id="copilot-form" onsubmit="App.handleCopilotSubmit(event)"
+          class="p-3 border-t border-border bg-card shrink-0">
           <div class="relative flex items-center">
-            <input 
-              id="copilot-input" 
-              type="text" 
-              placeholder="Ask a doubt about this video..." 
-              autocomplete="off"
-              class="w-full text-xs pl-3 pr-10 py-2.5 rounded-xl border border-border bg-background text-ink placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-neutral-900 dark:focus:ring-white transition"
-            />
-            <button 
-              id="copilot-send-btn"
-              type="submit" 
-              class="absolute right-1.5 p-1.5 rounded-lg bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 hover:opacity-90 disabled:opacity-40 transition"
-            >
+            <input id="copilot-input" type="text" placeholder="Ask a doubt about this video..." autocomplete="off"
+              class="w-full text-xs pl-3 pr-10 py-2.5 rounded-xl border border-border bg-background text-ink placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-neutral-900 dark:focus:ring-white transition" />
+            <button id="copilot-send-btn" type="submit"
+              class="absolute right-1.5 p-1.5 rounded-lg bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 hover:opacity-90 disabled:opacity-40 transition">
               <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
             </button>
           </div>
@@ -937,44 +1130,55 @@
     <!-- ============================================================= -->
     <div id="view-exam" class="hidden flex-1 w-full overflow-y-auto px-4 py-8">
       <div class="max-w-3xl mx-auto space-y-6">
-        
+
         <!-- Setup Box -->
         <div id="exam-setup-box" class="rounded-[1.5rem] bg-card border border-border shadow-soft p-6 sm:p-8 space-y-6">
           <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-border pb-4">
             <div>
               <h2 class="text-xl font-medium tracking-tight">Conceptual Examination Arena</h2>
-              <p class="text-xs text-ink-secondary mt-1">First-principles diagnostic tests with Single Choice and Multiple-Correct MSQs.</p>
+              <p class="text-xs text-ink-secondary mt-1">First-principles diagnostic tests with Single Choice and
+                Multiple-Correct MSQs.</p>
             </div>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-medium bg-muted text-ink border border-border self-start sm:self-auto">
+            <span
+              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-medium bg-muted text-ink border border-border self-start sm:self-auto">
               <i data-lucide="brain" class="w-3.5 h-3.5 text-accent"></i> Conceptual Rigor
             </span>
           </div>
 
           <div class="space-y-4">
             <div>
-              <label class="block text-xs font-mono uppercase text-ink-secondary mb-1.5">1. Select Course & Module</label>
-              <select id="exam-module-select" onchange="App.onExamModuleChange()" class="w-full text-xs rounded-xl border border-border bg-canvas p-3 font-medium focus:outline-none focus:ring-1 focus:ring-ink">
+              <label class="block text-xs font-mono uppercase text-ink-secondary mb-1.5">1. Select Course &
+                Module</label>
+              <select id="exam-module-select" onchange="App.onExamModuleChange()"
+                class="w-full text-xs rounded-xl border border-border bg-canvas p-3 font-medium focus:outline-none focus:ring-1 focus:ring-ink">
                 <!-- Populated by JS -->
               </select>
             </div>
 
             <div>
               <div class="flex items-center justify-between mb-1.5">
-                <label class="block text-xs font-mono uppercase text-ink-secondary">2. Select Conceptual Test Set</label>
-                <button id="exam-generate-btn" onclick="App.generateModuleTestsForCurrent()" class="text-[11px] font-mono text-ink-secondary hover:text-ink inline-flex items-center gap-1 transition" title="Trigger AI to synthesize fresh tests for this module">
+                <label class="block text-xs font-mono uppercase text-ink-secondary">2. Select Conceptual Test
+                  Set</label>
+                <button id="exam-generate-btn" onclick="App.generateModuleTestsForCurrent()"
+                  class="text-[11px] font-mono text-ink-secondary hover:text-ink inline-flex items-center gap-1 transition"
+                  title="Trigger AI to synthesize fresh tests for this module">
                   <i data-lucide="sparkles" class="w-3 h-3 text-amber-500"></i> Synthesize / Refresh Tests
                 </button>
               </div>
 
               <div id="exam-sets-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <!-- Set 1 Option Card -->
-                <div id="exam-set-card-1" onclick="App.selectExamSet(1)" class="cursor-pointer p-4 rounded-2xl border-2 border-neutral-900 dark:border-white bg-card-muted transition relative">
+                <div id="exam-set-card-1" onclick="App.selectExamSet(1)"
+                  class="cursor-pointer p-4 rounded-2xl border-2 border-neutral-900 dark:border-white bg-card-muted transition relative">
                   <div class="flex items-center justify-between mb-1.5">
                     <span class="text-xs font-mono font-semibold uppercase tracking-wider text-ink">Set 1</span>
-                    <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">Diagnostics</span>
+                    <span
+                      class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">Diagnostics</span>
                   </div>
-                  <h4 class="text-sm font-semibold text-ink" id="exam-set-1-title">Conceptual Mechanics & Core Diagnostics</h4>
-                  <p class="text-[11px] text-ink-secondary mt-1">Cause & effect mechanics, parameter sensitivities, and boundary traps.</p>
+                  <h4 class="text-sm font-semibold text-ink" id="exam-set-1-title">Conceptual Mechanics & Core
+                    Diagnostics</h4>
+                  <p class="text-[11px] text-ink-secondary mt-1">Cause & effect mechanics, parameter sensitivities, and
+                    boundary traps.</p>
                   <div class="mt-3 flex items-center justify-between text-[11px] font-mono text-ink-secondary">
                     <span id="exam-set-1-count">~12 Questions</span>
                     <span class="text-accent font-semibold">Single + MSQ</span>
@@ -982,13 +1186,17 @@
                 </div>
 
                 <!-- Set 2 Option Card -->
-                <div id="exam-set-card-2" onclick="App.selectExamSet(2)" class="cursor-pointer p-4 rounded-2xl border border-border hover:border-neutral-400 dark:hover:border-neutral-600 bg-card transition relative">
+                <div id="exam-set-card-2" onclick="App.selectExamSet(2)"
+                  class="cursor-pointer p-4 rounded-2xl border border-border hover:border-neutral-400 dark:hover:border-neutral-600 bg-card transition relative">
                   <div class="flex items-center justify-between mb-1.5">
                     <span class="text-xs font-mono font-semibold uppercase tracking-wider text-ink">Set 2</span>
-                    <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">Scenarios</span>
+                    <span
+                      class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">Scenarios</span>
                   </div>
-                  <h4 class="text-sm font-semibold text-ink" id="exam-set-2-title">Applied Scenarios & Multi-Concept Case Test</h4>
-                  <p class="text-[11px] text-ink-secondary mt-1">Real-world business dilemmas, case situations, and multi-statement validity evaluations.</p>
+                  <h4 class="text-sm font-semibold text-ink" id="exam-set-2-title">Applied Scenarios & Multi-Concept
+                    Case Test</h4>
+                  <p class="text-[11px] text-ink-secondary mt-1">Real-world business dilemmas, case situations, and
+                    multi-statement validity evaluations.</p>
                   <div class="mt-3 flex items-center justify-between text-[11px] font-mono text-ink-secondary">
                     <span id="exam-set-2-count">~12 Questions</span>
                     <span class="text-accent font-semibold">Single + MSQ</span>
@@ -1009,15 +1217,21 @@
         </div>
 
         <!-- Exam Runner Box -->
-        <div id="exam-runner-box" class="hidden rounded-[1.5rem] bg-card border border-border shadow-soft p-6 sm:p-8 space-y-6">
+        <div id="exam-runner-box"
+          class="hidden rounded-[1.5rem] bg-card border border-border shadow-soft p-6 sm:p-8 space-y-6">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-border pb-3">
             <div class="flex items-center gap-2">
               <span id="exam-q-counter" class="text-xs font-mono font-medium text-ink">Question 1 of 12</span>
-              <span id="exam-q-type-badge" class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-semibold">Single Choice</span>
+              <span id="exam-q-type-badge"
+                class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-semibold">Single
+                Choice</span>
             </div>
             <div class="flex items-center gap-3">
-              <span id="exam-q-concept-badge" class="text-[11px] font-mono text-ink-secondary truncate max-w-[200px]"></span>
-              <span class="text-xs font-mono px-2 py-0.5 rounded-full bg-card-muted border border-border text-ink-secondary">Timed Simulation</span>
+              <span id="exam-q-concept-badge"
+                class="text-[11px] font-mono text-ink-secondary truncate max-w-[200px]"></span>
+              <span
+                class="text-xs font-mono px-2 py-0.5 rounded-full bg-card-muted border border-border text-ink-secondary">Timed
+                Simulation</span>
             </div>
           </div>
 
@@ -1042,12 +1256,15 @@
         </div>
 
         <!-- Exam Results & Conceptual Review Box -->
-        <div id="exam-results-box" class="hidden rounded-[1.5rem] bg-card border border-border shadow-soft p-6 sm:p-8 space-y-6">
+        <div id="exam-results-box"
+          class="hidden rounded-[1.5rem] bg-card border border-border shadow-soft p-6 sm:p-8 space-y-6">
           <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-border pb-6">
             <div>
               <span class="text-xs font-mono uppercase tracking-wider text-ink-secondary">Exam Completed</span>
-              <h2 class="text-2xl font-bold tracking-tight text-ink mt-0.5" id="exam-results-title">Diagnostic Results</h2>
-              <p class="text-xs text-ink-secondary mt-1" id="exam-results-subtitle">Review every question with in-depth conceptual explanations and trap analysis.</p>
+              <h2 class="text-2xl font-bold tracking-tight text-ink mt-0.5" id="exam-results-title">Diagnostic Results
+              </h2>
+              <p class="text-xs text-ink-secondary mt-1" id="exam-results-subtitle">Review every question with in-depth
+                conceptual explanations and trap analysis.</p>
             </div>
             <div class="flex items-baseline gap-2 bg-card-muted p-4 rounded-2xl border border-border">
               <span class="text-3xl font-bold font-mono text-ink" id="exam-score-display">0.00</span>
@@ -1063,11 +1280,13 @@
             </div>
             <div class="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-center">
               <span class="text-[10px] font-mono uppercase text-emerald-600 dark:text-emerald-400 block">Correct</span>
-              <span class="text-lg font-bold font-mono text-emerald-600 dark:text-emerald-400 mt-0.5 block" id="exam-stat-correct">0</span>
+              <span class="text-lg font-bold font-mono text-emerald-600 dark:text-emerald-400 mt-0.5 block"
+                id="exam-stat-correct">0</span>
             </div>
             <div class="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-center">
               <span class="text-[10px] font-mono uppercase text-rose-600 dark:text-rose-400 block">Incorrect</span>
-              <span class="text-lg font-bold font-mono text-rose-600 dark:text-rose-400 mt-0.5 block" id="exam-stat-wrong">0</span>
+              <span class="text-lg font-bold font-mono text-rose-600 dark:text-rose-400 mt-0.5 block"
+                id="exam-stat-wrong">0</span>
             </div>
             <div class="p-3.5 rounded-xl bg-card-muted border border-border text-center">
               <span class="text-[10px] font-mono uppercase text-ink-secondary block">Unattempted</span>
@@ -1092,7 +1311,8 @@
               <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Retake This Set
             </button>
             <div class="flex gap-2">
-              <button onclick="App.switchExamSetFromResults()" id="exam-switch-set-btn" class="pill-muted text-xs inline-flex items-center gap-1.5">
+              <button onclick="App.switchExamSetFromResults()" id="exam-switch-set-btn"
+                class="pill-muted text-xs inline-flex items-center gap-1.5">
                 Switch to Set 2
               </button>
               <button onclick="App.returnToExamSetup()" class="pill-ink text-xs">
@@ -1110,21 +1330,25 @@
   <!-- ============================================================= -->
   <!-- MODAL: CREATE COURSE -->
   <!-- ============================================================= -->
-  <div id="modal-create-course" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+  <div id="modal-create-course"
+    class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="w-full max-w-md rounded-[1.5rem] bg-card border border-border shadow-soft-md p-6 space-y-5">
       <div class="flex items-center justify-between">
         <h3 class="text-base font-semibold tracking-tight">Add New Subject</h3>
-        <button onclick="App.closeCreateCourseModal()" class="text-neutral-400 hover:text-ink"><i data-lucide="x" class="w-4 h-4"></i></button>
+        <button onclick="App.closeCreateCourseModal()" class="text-neutral-400 hover:text-ink"><i data-lucide="x"
+            class="w-4 h-4"></i></button>
       </div>
 
       <div class="space-y-3 text-xs">
         <div>
           <label class="block font-mono uppercase text-ink-secondary mb-1">Subject Name</label>
-          <input type="text" id="new-course-name" placeholder="e.g. Corporate Finance" class="w-full p-2.5 rounded-xl border border-border bg-canvas focus:outline-none text-sm font-medium">
+          <input type="text" id="new-course-name" placeholder="e.g. Corporate Finance"
+            class="w-full p-2.5 rounded-xl border border-border bg-canvas focus:outline-none text-sm font-medium">
         </div>
         <div>
           <label class="block font-mono uppercase text-ink-secondary mb-1">Description (Optional)</label>
-          <input type="text" id="new-course-desc" placeholder="Brief outline of syllabus or course overview" class="w-full p-2.5 rounded-xl border border-border bg-canvas focus:outline-none">
+          <input type="text" id="new-course-desc" placeholder="Brief outline of syllabus or course overview"
+            class="w-full p-2.5 rounded-xl border border-border bg-canvas focus:outline-none">
         </div>
         <div>
           <label class="block font-mono uppercase text-ink-secondary mb-1.5">Number of Modules in Syllabus</label>
@@ -1151,20 +1375,27 @@
   <!-- ============================================================= -->
   <!-- MODAL: BATCH INGEST VIDEOS -->
   <!-- ============================================================= -->
-  <div id="modal-ingest" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="w-full max-w-xl rounded-[1.5rem] bg-card border border-border shadow-soft-md p-6 space-y-5 max-h-[90vh] flex flex-col">
+  <div id="modal-ingest"
+    class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div
+      class="w-full max-w-xl rounded-[1.5rem] bg-card border border-border shadow-soft-md p-6 space-y-5 max-h-[90vh] flex flex-col">
       <div class="flex items-center justify-between">
         <div>
-          <h3 class="text-base font-semibold tracking-tight">Add Lectures: <span id="ingest-module-title" class="font-normal text-ink-secondary">Module</span></h3>
-          <p class="text-xs text-ink-secondary mt-0.5">Paste 20–30 YouTube video links (one per line) or a playlist URL.</p>
+          <h3 class="text-base font-semibold tracking-tight">Add Lectures: <span id="ingest-module-title"
+              class="font-normal text-ink-secondary">Module</span></h3>
+          <p class="text-xs text-ink-secondary mt-0.5">Paste 20–30 YouTube video links (one per line) or a playlist URL.
+          </p>
         </div>
-        <button onclick="App.closeIngestModal()" class="text-neutral-400 hover:text-ink"><i data-lucide="x" class="w-4 h-4"></i></button>
+        <button onclick="App.closeIngestModal()" class="text-neutral-400 hover:text-ink"><i data-lucide="x"
+            class="w-4 h-4"></i></button>
       </div>
 
       <div class="space-y-4 text-xs overflow-y-auto flex-1 pr-1">
         <div>
           <label class="block font-mono uppercase text-ink-secondary mb-1">YouTube Video Links or Playlist</label>
-          <textarea id="ingest-urls-textarea" rows="6" placeholder="https://www.youtube.com/watch?v=...&#10;https://www.youtube.com/watch?v=...&#10;or https://www.youtube.com/playlist?list=..." class="w-full p-3 rounded-xl border border-border bg-canvas font-mono text-[11px] focus:outline-none"></textarea>
+          <textarea id="ingest-urls-textarea" rows="6"
+            placeholder="https://www.youtube.com/watch?v=...&#10;https://www.youtube.com/watch?v=...&#10;or https://www.youtube.com/playlist?list=..."
+            class="w-full p-3 rounded-xl border border-border bg-canvas font-mono text-[11px] focus:outline-none"></textarea>
         </div>
 
         <div class="flex items-center gap-2">
@@ -1181,7 +1412,8 @@
         <div class="pt-3 border-t border-border space-y-2">
           <div class="flex items-center justify-between">
             <div class="font-mono uppercase text-[11px] text-ink-secondary">Current Videos in this Module</div>
-            <button type="button" onclick="App.recurateModule()" class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-ink font-semibold transition-colors">
+            <button type="button" onclick="App.recurateModule()"
+              class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-ink font-semibold transition-colors">
               Re-curate All with Rigorous Notes
             </button>
           </div>
@@ -1196,14 +1428,16 @@
   <!-- ============================================================= -->
   <!-- MODAL: CONFIGURE EXAM DATES & SCHEDULE                       -->
   <!-- ============================================================= -->
-  <div id="modal-exam-dates" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+  <div id="modal-exam-dates"
+    class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="w-full max-w-md rounded-[1.5rem] bg-card border border-border shadow-soft-md p-6 space-y-4">
       <div class="flex items-center justify-between pb-2 border-b border-border">
         <h3 class="text-sm font-semibold text-ink flex items-center gap-2">
           <i data-lucide="calendar" class="w-4 h-4"></i>
           <span>Configure Exam Schedule</span>
         </h3>
-        <button onclick="App.closeExamDateModal()" class="p-1 rounded-lg hover:bg-muted text-neutral-400 hover:text-ink">
+        <button onclick="App.closeExamDateModal()"
+          class="p-1 rounded-lg hover:bg-muted text-neutral-400 hover:text-ink">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
@@ -1211,20 +1445,25 @@
       <div class="space-y-3 text-xs">
         <div>
           <label class="block font-medium text-ink-secondary mb-1">Exam Event Title</label>
-          <input type="text" id="exam-modal-title" value="Term Examinations" class="w-full px-3 py-2 rounded-xl bg-card-muted border border-border text-ink focus:outline-none focus:ring-1 focus:ring-ink" />
+          <input type="text" id="exam-modal-title" value="Term Examinations"
+            class="w-full px-3 py-2 rounded-xl bg-card-muted border border-border text-ink focus:outline-none focus:ring-1 focus:ring-ink" />
         </div>
         <div>
           <label class="block font-medium text-ink-secondary mb-1">Target Exam Date & Time</label>
-          <input type="datetime-local" id="exam-modal-datetime" class="w-full px-3 py-2 rounded-xl bg-card-muted border border-border text-ink focus:outline-none focus:ring-1 focus:ring-ink font-mono" />
+          <input type="datetime-local" id="exam-modal-datetime"
+            class="w-full px-3 py-2 rounded-xl bg-card-muted border border-border text-ink focus:outline-none focus:ring-1 focus:ring-ink font-mono" />
         </div>
         <div>
           <label class="block font-medium text-ink-secondary mb-1">Notes / Schedule Details</label>
-          <input type="text" id="exam-modal-notes" placeholder="e.g. Nov 5 (CF & Strategy), Nov 6 (Critical Thinking & Visualisation)" class="w-full px-3 py-2 rounded-xl bg-card-muted border border-border text-ink focus:outline-none focus:ring-1 focus:ring-ink" />
+          <input type="text" id="exam-modal-notes"
+            placeholder="e.g. Nov 5 (CF & Strategy), Nov 6 (Critical Thinking & Visualisation)"
+            class="w-full px-3 py-2 rounded-xl bg-card-muted border border-border text-ink focus:outline-none focus:ring-1 focus:ring-ink" />
         </div>
       </div>
 
       <div class="flex items-center justify-end gap-2 pt-2 border-t border-border">
-        <button onclick="App.closeExamDateModal()" class="px-4 py-2 rounded-full text-xs font-medium text-ink-secondary hover:text-ink hover:bg-muted transition">
+        <button onclick="App.closeExamDateModal()"
+          class="px-4 py-2 rounded-full text-xs font-medium text-ink-secondary hover:text-ink hover:bg-muted transition">
           Cancel
         </button>
         <button onclick="App.saveExamDates()" class="pill-ink text-xs px-5 py-2">
@@ -1239,5 +1478,5 @@
   <!-- Bundled Study Data for 24/7 GitHub Pages Access -->
   <script src="./study_data.js?v=2.5.0" defer></script>
 </body>
-</html>
 
+</html>
