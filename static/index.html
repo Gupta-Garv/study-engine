@@ -556,7 +556,9 @@
             </button>
 
             <!-- Theme Toggle in Subheader -->
-            <button onclick="App.toggleTheme()" class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink-secondary hover:text-ink transition shrink-0" title="Toggle Theme">
+            <button onclick="App.toggleTheme()"
+              class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink-secondary hover:text-ink transition shrink-0"
+              title="Toggle Theme">
               <i data-lucide="moon" class="w-3.5 h-3.5"></i>
             </button>
           </div>
@@ -601,10 +603,10 @@
               <div class="flex items-center justify-between text-xs px-1 gap-2 flex-wrap">
                 <div class="flex items-center gap-1.5 text-neutral-400 font-mono text-[11px]">
                   <span>Speed:</span>
-                  <button onclick="App.setVideoSpeed(1)" class="speed-btn px-1.5 py-0.5 rounded bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-semibold" data-speed="1">1x</button>
+                  <button onclick="App.setVideoSpeed(1)" class="speed-btn px-1.5 py-0.5 rounded bg-card-muted hover:bg-muted text-ink-secondary" data-speed="1">1x</button>
                   <button onclick="App.setVideoSpeed(1.25)" class="speed-btn px-1.5 py-0.5 rounded bg-card-muted hover:bg-muted text-ink-secondary" data-speed="1.25">1.25x</button>
                   <button onclick="App.setVideoSpeed(1.5)" class="speed-btn px-1.5 py-0.5 rounded bg-card-muted hover:bg-muted text-ink-secondary" data-speed="1.5">1.5x</button>
-                  <button onclick="App.setVideoSpeed(2)" class="speed-btn px-1.5 py-0.5 rounded bg-card-muted hover:bg-muted text-ink-secondary" data-speed="2">2x</button>
+                  <button onclick="App.setVideoSpeed(2)" class="speed-btn px-1.5 py-0.5 rounded bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-semibold" data-speed="2">2x</button>
                 </div>
                 <div class="flex items-center gap-2">
                   <a id="video-external-link" href="#" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono text-neutral-400 hover:text-ink flex items-center gap-1 transition" title="Open directly on YouTube">
@@ -636,16 +638,6 @@
 
                 <!-- Horizontal Scrollable Pills of Key Moments -->
                 <div id="key-moments-pills-list" class="flex items-center gap-1.5 overflow-x-auto pb-1 pt-0.5 no-scrollbar">
-                  <!-- Populated by JS -->
-                </div>
-              </div>
-
-              <!-- Captured Whiteboard Diagrams -->
-              <div id="notes-slide-gallery" class="hidden w-full pt-3 border-t border-border space-y-2">
-                <div class="text-[10px] font-mono uppercase tracking-wider text-neutral-400 flex items-center gap-1.5">
-                  <i data-lucide="image" class="w-3.5 h-3.5"></i> Captured Whiteboard Diagrams
-                </div>
-                <div id="slide-thumbs-container" class="grid grid-cols-2 gap-2">
                   <!-- Populated by JS -->
                 </div>
               </div>

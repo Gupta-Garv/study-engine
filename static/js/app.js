@@ -30,7 +30,9 @@ const App = {
   countdownInterval: null,
   paneState: { video: true, notes: true, canvas: true, copilot: false },
   activePreset: 'lecture',
-  videoSpeed: 1,
+  videoSpeed: 2,
+  _lastPlayRateVerified: false,
+  _lastSpeedEnforcedTime: 0,
   speedrunMode: false,
   currentKeyMoments: [],
   currentKeyMomentsMeta: null,
@@ -95,6 +97,7 @@ const App = {
 
   async init() {
     this.initTheme();
+    this.initVideoSpeed();
     if (this.isStaticHost()) {
       const banner = document.getElementById('static-viewer-banner');
       if (banner) banner.classList.remove('hidden');
@@ -128,6 +131,24 @@ const App = {
     localStorage.setItem('study_engine_theme', isDark ? 'dark' : 'light');
     if (this.redrawCanvas) this.redrawCanvas();
     if (window.lucide) window.lucide.createIcons();
+  },
+
+  // -------------------------------------------------------------
+  // Persistent Video Speed Management (2x by default, auto-enforced)
+  // -------------------------------------------------------------
+  initVideoSpeed() {
+    let savedSpeed = 2; // Default to 2x (user preferred speed)
+    try {
+      const stored = localStorage.getItem('study_engine_video_speed');
+      if (stored) {
+        const val = parseFloat(stored);
+        if (!isNaN(val) && val > 0) savedSpeed = val;
+      } else {
+        localStorage.setItem('study_engine_video_speed', '2');
+      }
+    } catch (e) {}
+    this.videoSpeed = savedSpeed;
+    this.updateSpeedButtonsUI(this.videoSpeed);
   },
 
   // -------------------------------------------------------------
@@ -1358,6 +1379,9 @@ const App = {
       }
     });
 
+    // Keep speed buttons in sync
+    this.updateSpeedButtonsUI(this.videoSpeed);
+
     // 5. Redraw canvas after layout change
     if (showCanvas) {
       this.renderCanvas();
@@ -1374,7 +1398,15 @@ const App = {
 
     if (topic && topic.video_id) {
       const embedUrl = `https://www.youtube.com/embed/${topic.video_id}?enablejsapi=1&rel=0`;
-      if (iframe.src !== embedUrl) {
+      const isNewSrc = (iframe.src !== embedUrl);
+      if (isNewSrc) {
+        this._lastPlayRateVerified = false;
+        iframe.onload = () => {
+          this.applyCurrentVideoSpeed();
+          [200, 500, 900, 1600, 2800].forEach(delay => {
+            setTimeout(() => this.applyCurrentVideoSpeed(), delay);
+          });
+        };
         iframe.src = embedUrl;
       }
       iframe.classList.remove('hidden');
@@ -1383,6 +1415,15 @@ const App = {
         extLink.href = topic.youtube_url || `https://www.youtube.com/watch?v=${topic.video_id}`;
         extLink.classList.remove('pointer-events-none', 'opacity-50');
       }
+
+      // Keep UI speed buttons visually in sync with persistent speed
+      this.updateSpeedButtonsUI(this.videoSpeed);
+
+      // Staggered speed auto-enforcements
+      this.applyCurrentVideoSpeed();
+      [250, 600, 1200, 2000, 3200].forEach(delay => {
+        setTimeout(() => this.applyCurrentVideoSpeed(), delay);
+      });
     } else {
       iframe.src = '';
       iframe.classList.add('hidden');
@@ -1402,23 +1443,40 @@ const App = {
 
   setVideoSpeed(speed) {
     this.videoSpeed = speed;
-    const iframe = document.getElementById('lecture-video-iframe');
-    if (iframe && iframe.contentWindow) {
-      iframe.contentWindow.postMessage(JSON.stringify({
-        event: 'command',
-        func: 'setPlaybackRate',
-        args: [speed]
-      }), '*');
-    }
+    this._lastPlayRateVerified = false;
+    try {
+      localStorage.setItem('study_engine_video_speed', String(speed));
+    } catch (e) {}
+    this.updateSpeedButtonsUI(speed);
+    this.applyCurrentVideoSpeed();
+  },
+
+  updateSpeedButtonsUI(speed) {
+    const targetSpeed = (typeof speed === 'number' && speed > 0) ? speed : (this.videoSpeed || 2);
     const speedBtns = document.querySelectorAll('.speed-btn');
     speedBtns.forEach(btn => {
       const s = parseFloat(btn.getAttribute('data-speed'));
-      if (s === speed) {
+      if (Math.abs(s - targetSpeed) < 0.01) {
         btn.className = 'speed-btn px-1.5 py-0.5 rounded bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-semibold';
       } else {
         btn.className = 'speed-btn px-1.5 py-0.5 rounded bg-card-muted hover:bg-muted text-ink-secondary';
       }
     });
+  },
+
+  applyCurrentVideoSpeed() {
+    const speed = this.videoSpeed || 2;
+    const iframe = document.getElementById('lecture-video-iframe');
+    if (iframe && iframe.contentWindow && !iframe.classList.contains('hidden')) {
+      try {
+        iframe.contentWindow.postMessage(JSON.stringify({ event: 'listening' }), '*');
+        iframe.contentWindow.postMessage(JSON.stringify({
+          event: 'command',
+          func: 'setPlaybackRate',
+          args: [speed]
+        }), '*');
+      } catch (e) {}
+    }
   },
 
   seekVideoToSeconds(seconds) {
@@ -1428,6 +1486,7 @@ const App = {
     }
     const iframe = document.getElementById('lecture-video-iframe');
     if (iframe && iframe.contentWindow) {
+      this.applyCurrentVideoSpeed();
       iframe.contentWindow.postMessage(JSON.stringify({
         event: 'command',
         func: 'seekTo',
@@ -1439,11 +1498,13 @@ const App = {
   playVideo() {
     const iframe = document.getElementById('lecture-video-iframe');
     if (iframe && iframe.contentWindow) {
+      this.applyCurrentVideoSpeed();
       iframe.contentWindow.postMessage(JSON.stringify({
         event: 'command',
         func: 'playVideo',
         args: []
       }), '*');
+      setTimeout(() => this.applyCurrentVideoSpeed(), 200);
     }
   },
 
@@ -1469,9 +1530,35 @@ const App = {
         if (typeof data === 'string') {
           try { data = JSON.parse(data); } catch (e) { return; }
         }
-        if (data && data.event === 'infoDelivery' && data.info) {
+        if (!data) return;
+
+        // When YouTube player signals it is ready or initial delivery
+        if (data.event === 'onReady' || data.event === 'initialDelivery') {
+          this.applyCurrentVideoSpeed();
+        }
+
+        if (data.event === 'infoDelivery' && data.info) {
           const ct = data.info.currentTime;
           const ps = data.info.playerState;
+          const rate = data.info.playbackRate;
+
+          // Reactive auto-enforcement: if YouTube rate does not match user's persistent speed, re-apply!
+          if (typeof rate === 'number' && Math.abs(rate - this.videoSpeed) > 0.01) {
+            const now = Date.now();
+            if (!this._lastSpeedEnforcedTime || (now - this._lastSpeedEnforcedTime > 250)) {
+              this._lastSpeedEnforcedTime = now;
+              this.applyCurrentVideoSpeed();
+            }
+          }
+
+          // When video begins playing (1) or buffering (3), ensure speed matches
+          if ((ps === 1 || ps === 3) && typeof rate === 'number' && Math.abs(rate - this.videoSpeed) > 0.01) {
+            this.applyCurrentVideoSpeed();
+          } else if (ps === 1 && !this._lastPlayRateVerified) {
+            this._lastPlayRateVerified = true;
+            this.applyCurrentVideoSpeed();
+          }
+
           if (typeof ct === 'number') {
             this.onVideoTimeUpdate(ct, ps);
           }
