@@ -243,6 +243,105 @@ def sanitize_result(result: Dict[str, Any], fallback_title: str) -> Dict[str, An
         "flashcards": flashcards
     }
 
+def compute_adaptive_word_budget(source_words: int) -> tuple[int, int, str]:
+    """Computes a proportional word budget so reading notes is always faster than watching at 2x."""
+    if source_words < 350:
+        return 130, 210, "45-second scan"
+    elif source_words < 900:
+        return 200, 320, "75-second scan"
+    elif source_words < 1800:
+        return 280, 420, "1.5-minute scan"
+    else:
+        return 380, 540, "2-minute scan"
+
+
+def _clean_markdown_output(raw: str) -> str:
+    text = clean_text_formatting((raw or "").strip())
+    if text.startswith("```markdown"):
+        text = text[len("```markdown"):].strip()
+    elif text.startswith("```md"):
+        text = text[len("```md"):].strip()
+    elif text.startswith("```"):
+        text = text[3:].strip()
+    if text.endswith("```"):
+        text = text[:-3].strip()
+    return text
+
+
+def synthesize_adaptive_notes_only(
+    course_name: str,
+    module_name: str,
+    topic_title: str,
+    transcript_text: str,
+    slide_text: str = "",
+    existing_notes_fallback: str = "",
+    prefer_high_precision: bool = False,
+) -> str:
+    """
+    Synthesizes ONLY `notes_markdown` using the Adaptive Note Architecture (v2).
+    Lets the lecture content dictate the structure (2x2 matrix, table, workflow,
+    worked LaTeX formulas, or case bullets) with strict proportional compression.
+    """
+    rules_content = load_note_synthesis_rules()
+    has_transcript = bool(transcript_text and len(transcript_text.strip()) > 50)
+    source_text = transcript_text.strip() if has_transcript else (existing_notes_fallback or "").strip()
+    source_label = "Spoken Lecture Transcript" if has_transcript else "Existing Detailed Lecture Notes (distill & reformat strictly without adding outside facts)"
+    source_words = len(source_text.split())
+    min_w, max_w, target_read = compute_adaptive_word_budget(source_words)
+
+    system_prompt = (
+        "You are an elite MBA/undergraduate study-note architect.\n"
+        "Your #1 goal: A student who reads ONLY your notes must master 100% of what the professor taught "
+        "(every mechanism, formula, number, framework, and named example) in HALF the time it takes to watch the video at 2x speed.\n\n"
+        f"OPERATIONAL GUIDELINES (FROM note_synthesis_rules.md):\n"
+        f"\"\"\"\n{rules_content}\n\"\"\"\n\n"
+        "STRICT EXECUTION RULES:\n"
+        "1. ADAPTIVE LAYOUT ONLY: Never force irrelevant sections. Let the lecture content dictate the layout:\n"
+        "   - ALWAYS start with `# <Topic Title>` followed immediately by `> **Core Takeaway:** <1-2 punchy sentences>`.\n"
+        "   - If the lecture teaches a 2x2 matrix (e.g. Economic vs Non-Economic x Family vs Non-Family) or explicit comparison, render a clean Markdown Table as the centerpiece and DO NOT repeat those same rows as bullets.\n"
+        "   - If the lecture teaches NO comparisons, DO NOT fabricate a comparison table.\n"
+        "   - If the lecture teaches formulas or numerical calculations, include a concise **Formulas & Worked Numerical** section using clean KaTeX (`$$...$$`) and DOUBLE-CHECK EVERY INTERMEDIATE ARITHMETIC STEP before outputting.\n"
+        "   - If there is NO math in the lecture, OMIT the formula section completely (NEVER write 'Conceptual session: no formulas').\n"
+        "   - ALWAYS include a `### Core Mechanics` heading with tight cause-and-effect bullets (using →, ↑, ↓) and ZERO overlap with any table above.\n"
+        "   - ALWAYS end with a `### MCQ Trap Radar` heading containing 2 to 3 crisp items formatted strictly as:\n"
+        "     `1. **Trap:** <Misconception> → **Reality:** <Sharp correction>`\n"
+        "   - Use clean `### ` Markdown section headings (never bare bold labels or unheaded trap lists).\n"
+        "2. ZERO REPETITION & NO WALLS OF TEXT: Max 1-2 lines per bullet with **bold lead-in phrases**.\n"
+        "3. STRICT GROUND TRUTH: Include ONLY facts, examples, names, years, and figures actually present in the provided source text. NEVER import outside examples.\n"
+        "4. CLEAN PROSE: Simple active voice. ZERO em dashes (—). Output raw Markdown directly (no JSON wrapper, no outer ```markdown fences)."
+    )
+
+    slide_block = f"\n\nVisual Slides & Whiteboard Text (OCR):\n\"\"\"\n{slide_text[:2500]}\n\"\"\"" if slide_text and slide_text.strip() else ""
+
+    user_prompt = f"""Course: {course_name}
+Module: {module_name}
+Lecture: {topic_title}
+Source Length: ~{source_words} words
+Target Note Length: STRICTLY {min_w} to {max_w} words ({target_read}). Stay concise and do NOT exceed {max_w} words!
+
+{source_label}:
+\"\"\"
+{source_text[:16000]}
+\"\"\"{slide_block}
+
+Write the adaptive Markdown notes directly, starting with `# {topic_title}` and `> **Core Takeaway:** ...`."""
+
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_prompt},
+    ]
+
+    if prefer_high_precision:
+        try:
+            raw = _invoke_model(SECONDARY_MODEL, messages, temperature=0.1, max_tokens=1600, timeout=85.0)
+            return _clean_markdown_output(raw)
+        except Exception as e:
+            logger.warning(f"High-precision model failed for '{topic_title}' ({e}); falling back to primary.")
+
+    raw = call_llm(messages, temperature=0.15, max_tokens=1600)
+    return _clean_markdown_output(raw)
+
+
 def generate_notes_and_questions(
     course_name: str, 
     module_name: str, 
@@ -251,23 +350,24 @@ def generate_notes_and_questions(
     slide_text: str = ""
 ) -> Dict[str, Any]:
     """
-    Synthesizes academic, conceptual lecture notes and application-oriented MCQs
+    Synthesizes adaptive, high-signal lecture notes and application-oriented MCQs
     anchored strictly to the lecture's spoken transcript, governed by core/prompts/note_synthesis_rules.md.
     """
     rules_content = load_note_synthesis_rules()
+    t_words = len((transcript_text or "").split())
+    min_w, max_w, target_read = compute_adaptive_word_budget(t_words)
     
     system_prompt = (
-        "You are an expert academic note synthesizer for university undergraduate students.\n"
-        "Your students are 3rd-year undergraduates preparing for conceptual, MCQ-heavy exams that test deep understanding, parameter sensitivity, and mental models rather than rote textbook memorization.\n\n"
+        "You are an expert academic note architect for university undergraduate/MBA students.\n"
+        "Your notes must allow a student to master 100% of the lecture in HALF the time it takes to watch the video at 2x speed.\n\n"
         f"OPERATIONAL GUIDELINES & SYNTHESIS RULES (FROM note_synthesis_rules.md):\n"
         f"\"\"\"\n{rules_content}\n\"\"\"\n\n"
         "CRITICAL WRITING & STYLE RULES:\n"
-        "1. SENTENCE STRUCTURE: Write in clear, direct, active-voice sentences. Keep sentences simple and straightforward to comprehend. Avoid stacking multiple clauses.\n"
-        "2. ZERO EM DASHES (—): Never use em dashes (—) anywhere in the notes or questions. Use standard periods and clean sentences.\n"
-        "3. NO PRETENTIOUS FILLER: Do NOT use SAT words like 'dichotomy', 'held in abeyance', 'probabilistic outcome', 'manifests as'. Use clear, accurate finance terms.\n"
-        "4. STRICT GROUND TRUTH: Base notes STRICTLY AND ONLY on what the professor actually explains in this specific video transcript. If the video is a 1-minute overview (like Lecture 1), keep it as a clean roadmap. Do NOT guess or hallucinate outside theories like Separation Principle or Hedging Principle.\n"
-        "5. REAL EXAMPLES: Always include the professor's exact named examples (e.g. Infosys, Gautam Adani, Mukesh Ambani, Tyco International, corporate jets, external auditors) with their real numbers.\n"
-        "6. CLEAN ARROWS: Use Unicode arrows →, ↑, ↓ for cause-and-effect mechanics (e.g., Interest Rate (r) ↑  →  Present Value (PV) ↓)."
+        "1. ADAPTIVE STRUCTURE: Never force irrelevant sections. Always start with `# <Topic>` + `> **Core Takeaway:** ...`, include ONLY earned conditional blocks (2x2 matrix/table ONLY if comparing concepts, KaTeX formulas + verified worked math ONLY if equations are taught — NEVER write 'No mathematical formulas'), plus concise **Core Mechanics** and **MCQ Trap Radar** (`**Trap:** ... → **Reality:** ...`).\n"
+        "2. ZERO REPETITION & ZERO BLOAT: Keep notes strictly within the target word budget. Bold lead-in phrases on every bullet (1-2 lines max).\n"
+        "3. ZERO EM DASHES (—): Never use em dashes anywhere. Use clean active voice and simple direct sentences.\n"
+        "4. STRICT GROUND TRUTH: Base notes STRICTLY AND ONLY on what the professor actually explains in this specific transcript. Preserve the professor's exact named examples and numbers. Never invent outside examples or theories.\n"
+        "5. CLEAN ARROWS: Use Unicode arrows →, ↑, ↓ for cause-and-effect mechanics."
     )
 
     slide_block = f"\n\nVisual Slides & Whiteboard Text (OCR):\n\"\"\"\n{slide_text[:3000]}\n\"\"\"" if slide_text.strip() else ""
@@ -275,6 +375,8 @@ def generate_notes_and_questions(
     user_prompt = f"""Course: {course_name}
 Module: {module_name}
 Lecture Topic: {topic_title}
+Transcript Length: ~{t_words} words
+Target `notes_markdown` Length: STRICTLY {min_w} to {max_w} words ({target_read}).
 
 Spoken Lecture Transcript:
 \"\"\"
@@ -282,24 +384,15 @@ Spoken Lecture Transcript:
 \"\"\"{slide_block}
 
 TASK INSTRUCTIONS:
-Synthesize undergraduate-level conceptual notes and MCQs strictly grounded in this transcript:
-1. Ground truth fidelity: Only summarize what is actually spoken in this video. If it is an introductory roadmap, do NOT invent outside theories.
-2. Writing style: Simple, direct sentences. Absolutely NO em dashes (—). Zero pretentious filler.
-3. Include the professor's exact real-world examples (companies, people, numbers).
-4. Use Unicode arrows (→, ↑, ↓) for parameter shifts and sensitivity.
-5. Structure:
-   ## 1. Executive Mental Model & Core Intuition
-   ## 2. Concise Point-Wise Conceptual Mechanics (Cause & Effect)
-   ## 3. Conceptual Distinctions & Versus Matrix (Markdown comparison table)
-   ## 4. Key Formulas & Numerical Application (or state that it is a conceptual session)
-   ## 5. MCQ Trap Radar & Examiner Gotchas
-6. Provide 4 to 6 conceptual, application-oriented MCQs (scenario-based or sensitivity-based).
-7. Provide 1 university subjective question with model answer and marking rubric.
-8. Provide 3-4 conceptual flashcards.
+1. Synthesize concise, adaptive `notes_markdown` strictly grounded in this transcript following the word budget and adaptive layout rules (NO forced empty formula sections, NO forced comparison tables unless genuinely contrasting concepts).
+2. Always include `> **Core Takeaway:** ...`, concise **Core Mechanics**, and **MCQ Trap Radar** (`**Trap:** ... → **Reality:** ...`).
+3. Provide 4 to 6 conceptual, application-oriented MCQs (scenario-based or sensitivity-based).
+4. Provide 1 university subjective question with model answer and marking rubric.
+5. Provide 3-4 conceptual flashcards.
 
 Output a single valid JSON object with the following exact keys:
 {{
-  "notes_markdown": "# {topic_title}\\n\\n## 1. Executive Mental Model & Core Intuition\\n...\\n\\n## 2. Concise Point-Wise Conceptual Mechanics (Cause & Effect)\\n* **Parameter Sensitivity**: If Interest Rate (r) ↑  →  Present Value (PV) ↓ because...\\n\\n## 3. Conceptual Distinctions & Versus Matrix\\n| Dimension | Concept A | Concept B | MCQ Diagnostic |\\n|---|---|---|---|\\n\\n## 4. Key Formulas & Numerical Application\\n(Formulas with variable definition tables, or state that this is a conceptual session)\\n\\n## 5. MCQ Trap Radar & Examiner Gotchas\\n* **Trap 1**: ...",
+  "notes_markdown": "# {topic_title}\\n\\n> **Core Takeaway:** ...\\n\\n(Adaptive sections matching this specific lecture only)\\n\\n### Core Mechanics\\n* **Key Driver:** ...\\n\\n### MCQ Trap Radar\\n1. **Trap:** ... → **Reality:** ...",
   "mcqs": [
     {{
       "id": 1,

@@ -1,80 +1,45 @@
-# Academic Note Synthesis Standard & Rules (Conceptual & MCQ Focused)
+# Adaptive Academic Note Synthesis Standard (v2 — High-Signal, Zero-Bloat)
 
-## 1. Target Audience & Writing Style
-The reader is a **3rd-year undergraduate university student** preparing for high-stakes, conceptual, MCQ-based semester exams. 
-The notes must deliver full academic depth and rigor, but the writing must be **direct, crisp, and effortless to comprehend**.
+## 1. Core Objective: Beat Watching the Video at 2x
+A student reading ONLY these notes must understand **100% of what the professor taught** (every mechanism, formula, number, framework, and named example) in **half the time it takes to watch the video at 2x speed**.
 
-### Strict Sentence & Vocabulary Constraints:
-- **Zero Em Dashes (`—`):** Never use em dashes or hyphens to connect clauses or insert parenthetical thoughts. Use standard periods. Break complex thoughts into separate, clear sentences.
-- **Simple, Direct Sentences:** Write in active voice (Subject-Verb-Object). Avoid stacking dependent clauses. Keep each sentence focused on one clear idea. If a sentence takes more than one breath to read, split it.
-- **No Pretentious Academic Fluff:** Ban unnecessary SAT-level words like "dichotomy", "held in abeyance", "probabilistic outcome", "inevitable principal-agent friction", "manifests as", and "perpetual succession paradigm". Use clear, professional finance terminology (e.g., "opportunity cost", "net present value", "discount rate", "risk tolerance", "cash flow", "agency conflict").
-- **Clean Unicode Arrows for Mechanics:** Always use clean Unicode symbols (`→`, `↑`, `↓`) for cause-and-effect relationships. Do NOT use LaTeX `\rightarrow` inside explanatory text (e.g., write `Interest Rate (r) ↑  →  Present Value (PV) ↓`).
+### Strict Word Budget (Scaled to Transcript Length)
+- **Short video (< 350 transcript words / 1–3 min):** 130–210 words (~45-second read).
+- **Standard lecture (350–900 transcript words / 3–7 min):** 200–320 words (~75-second read).
+- **Medium lecture (900–1,800 transcript words / 7–15 min):** 280–420 words (~1.5-minute read).
+- **Long deep-dive (> 1,800 transcript words / 15+ min):** 380–540 words (~2-minute read).
 
----
-
-## 2. Strict Ground-Truth Fidelity (No Outside Padding)
-- **Anchor 100% to the Lecture Transcript:** Only summarize concepts, principles, and mechanisms that the professor actually explains in this specific video. Do NOT pad the notes with random outside encyclopedia paragraphs or textbook history.
-- **Short Overview / Roadmap Videos:** If a video is a 1-minute intro outlining the syllabus (like Lecture 1), summarize it cleanly as a module roadmap. Do NOT guess or hallucinate outside theories (like "Separation Principle", "Hedging Principle", or "Double Taxation").
-- **Preserve the Professor's Real-World Examples:** Whenever the professor mentions specific companies, people, or stories, ALWAYS include them in the notes. University examiners frequently build MCQ scenarios around the professor's exact lecture examples:
-  - *Infosys:* Over 2 million shareholders holding over 4 billion shares (illustrates why owners cannot run daily operations and must delegate authority to professional managers).
-  - *Gautam Adani & Mukesh Ambani:* Net worth as a stock variable (measured at a specific point in time) versus income/profit as a flow variable (measured over a time period).
-  - *Tyco International CEO:* Spending $2M on his wife's birthday party and billing $1M to the company (direct agency cost), purchasing unneeded corporate jets, and paying external auditors to inspect financial statements (monitoring costs).
-- **No Irrelevant Foreign Assumptions:** Stick to the legal and financial framework presented in the lecture (e.g., Indian Partnership Act 1932, Companies Act). Do not import US-specific textbook assumptions like US C-Corp double taxation unless explicitly taught.
+### Style & Clarity Laws
+- **Zero Repetition:** Never explain the same idea twice across different sections. Every line must carry new information.
+- **No Walls of Text:** Keep bullets to 1–2 crisp lines, each starting with a **bold lead-in phrase**.
+- **Simple, Direct Active Voice:** Zero em dashes (`—`). Zero pretentious SAT filler words.
+- **Clean Unicode Arrows:** Use `→`, `↑`, `↓` for cause-and-effect and parameter shifts (e.g., `Discount rate (r) ↑ → Present Value (PV) ↓`).
+- **Strict Ground Truth:** Include ONLY concepts, companies, researchers, years, and figures actually spoken in this specific transcript. Never invent outside examples or theories.
 
 ---
 
-## 3. Required Output Note Structure
-Every generated lecture note MUST follow this exact 5-part architecture in `notes_markdown`:
+## 2. Adaptive Structure (Let the Lecture Dictate the Format)
+Do NOT force a fixed 5-part template on every video. Select ONLY the blocks that genuinely fit the transcript:
 
-### Part 1: Executive Mental Model & Core Intuition
-- Explain the central concept or dilemma discussed in this lecture in 1–2 direct, clear paragraphs.
-- State the core thesis: *Why does this concept exist? What business problem, financial friction, or decision dilemma does it resolve?*
-- Do not use em dashes. Keep sentences punchy and informative.
+1. **Top Line (Always):** Start with `# {Topic Title}` followed immediately by a 1–2 sentence blockquote:
+   `> **Core Takeaway:** <The single sharpest thesis of this lecture.>`
 
-### Part 2: Concise Point-Wise Conceptual Mechanics (Cause & Effect)
-- Bullet points explaining the working rules and mechanics.
-- Highlight **parameter shifts and sensitivity**:
-  - `Parameter Shift: If Interest Rate (r) ↑  →  Present Value (PV) ↓ because future cash flows are discounted more heavily.`
-- Highlight **boundary conditions**: State clearly when the rule holds and when it breaks down.
+2. **Conditional Content Blocks (Include ONLY When Earned by the Transcript):**
+   - **2×2 Matrix or Comparison Table:** Include ONLY when the professor explicitly contrasts 2+ categories, a 2×2 quadrant framework, or side-by-side concepts. If you render a table, do NOT repeat those same rows again as bullet points.
+   - **Formulas & Worked Numerical:** Include ONLY when the lecture teaches equations or quantitative calculations. Format formulas in clean KaTeX (`$$...$$`), define symbols concisely, and walk through the professor's exact numerical example with **verified intermediate arithmetic** (double-check every intermediate value, e.g., `$800,000 / 1.07 = $747,664`, `$747,664 - $700,000 = $47,664`). If there is no math, **OMIT this section completely** (NEVER write "Conceptual session: no mathematical formulas").
+   - **Step-by-Step Workflow / Framework / Timeline:** Include ONLY when the lecture teaches sequential stages, eras, or a multi-step analytical workflow.
+   - **Named Examples & Empirical Evidence:** Preserve the professor's exact company names, researchers, years, and figures inline or in compact 1-line bullets.
 
-### Part 3: Conceptual Distinctions & Versus Matrix
-- University exams constantly test subtle differences between easily confusable concepts.
-- Provide a clean Markdown comparison table comparing concepts discussed in this lecture (e.g., *Profit Maximization vs. Wealth Maximization*; *Real Assets vs. Financial Assets*; *Sole Proprietorship vs. Partnership*; *Private Limited vs. Public Limited*).
-- Include an explicit **MCQ Diagnostic** column explaining what the examiner tests.
-  `| Dimension | Concept A | Concept B | MCQ Diagnostic / Examiner Test |`
+3. **Core Mechanics (Always — concise, zero overlap with any table above):**
+   - Tight cause-and-effect bullets showing how variables, incentives, or trade-offs interact (`→`, `↑`, `↓`).
 
-### Part 4: Key Formulas & Numerical Application
-- **IF formulas are discussed in this lecture:**
-  - Display exact KaTeX LaTeX equations (`$$...$$`).
-  - Provide a Variable Definition Table:
-    `| Symbol | Parameter Name | Units / Meaning | Effect when Parameter Increases |`
-  - Step-by-step worked numerical example from the lecture showing how numbers are plugged in.
-- **IF the lecture is purely qualitative/conceptual:**
-  - Explicitly write: `*Conceptual Session: No mathematical formulas introduced in this lecture.*`
-  - Summarize the qualitative decision criteria or decision rule table.
-
-### Part 5: MCQ Trap Radar & Examiner Gotchas
-- 3–4 specific cognitive traps and distractor tricks examiners set on this topic:
-  - **Trap 1: The Distractor Trap** (e.g., Confusing accounting profit with economic value).
-  - **Trap 2: The "Zero Risk" Fallacy** (e.g., Assuming zero risk means zero time value of money).
-  - **Trap 3: The Boundary Assumption Trap** (e.g., Assuming a rule holds when market conditions change).
+4. **MCQ Trap Radar (Always — sharp & standardized):**
+   - Exactly **2 to 3** crisp traps targeting exact misconceptions examiners test on this lecture, formatted consistently as:
+     `1. **Trap:** <Common misconception> → **Reality:** <Sharp correction>`
 
 ---
 
-## 4. Assessment Specifications
-
-### Conceptual MCQs (4 to 6 Questions per Lecture)
-- Must test **conceptual understanding, scenarios, cause-and-effect, and edge cases**.
-- Prohibit trivial trivia questions (e.g., "What year was X published?").
-- Include 4 plausible options (A, B, C, D).
-- Provide a thorough `explanation` detailing:
-  1. Why the correct option is conceptually right.
-  2. Why each distractor option is a trap and conceptually flawed.
-
-### Subjective Question (1 Question)
-- 1 university-style exam question (5 to 10 marks).
-- Complete model answer broken into structured points with an explicit marking rubric.
-
-### Revision Flashcards (3 to 4 Flashcards)
-- Front: A conceptual diagnostic prompt (e.g., *"Why does maximizing current EPS fail as a corporate financial objective?"*).
-- Back: Crisp, punchy conceptual takeaway.
+## 3. Assessment Specifications (When Generating Full Package)
+- **Conceptual MCQs (4 to 6):** Scenario-based or cause-and-effect questions testing deep understanding with thorough explanations of correct answers and distractors.
+- **Subjective Question (1):** University-style 5–10 mark question with structured model answer and marking rubric.
+- **Flashcards (3 to 4):** Crisp diagnostic prompt on front, punchy takeaway on back.
