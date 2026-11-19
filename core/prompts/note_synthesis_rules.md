@@ -30,8 +30,10 @@ Do NOT force a fixed 5-part template on every video. Select ONLY the blocks that
    - **Step-by-Step Workflow / Framework / Timeline:** Include ONLY when the lecture teaches sequential stages, eras, or a multi-step analytical workflow.
    - **Named Examples & Empirical Evidence:** Preserve the professor's exact company names, researchers, years, and figures inline or in compact 1-line bullets.
 
-3. **Core Mechanics (Always — concise, zero overlap with any table above):**
-   - Tight cause-and-effect bullets showing how variables, incentives, or trade-offs interact (`→`, `↑`, `↓`).
+3. **Core Breakdown Section (Natural, Topic-Specific Heading):**
+   - NEVER use generic placeholder titles like "Core Mechanics", "Overview", or "Key Points".
+   - Name the heading organically based on what the bullets actually list (e.g. `### The 5 Core Ownership Rights`, `### Conflict Categories & Dynamics`, `### Structural Differences & Liability`, `### Valuation Rules & Criteria`).
+   - Tight cause-and-effect bullets showing how variables, incentives, or trade-offs interact (`→`, `↑`, `↓`), with zero overlap with any table above.
 
 4. **MCQ Trap Radar (Always — sharp & standardized):**
    - Exactly **2 to 3** crisp traps targeting exact misconceptions examiners test on this lecture, formatted consistently as:

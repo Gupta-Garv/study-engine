@@ -302,7 +302,7 @@ def synthesize_adaptive_notes_only(
         "   - If the lecture teaches NO comparisons, DO NOT fabricate a comparison table.\n"
         "   - If the lecture teaches formulas or numerical calculations, include a concise **Formulas & Worked Numerical** section using clean KaTeX (`$$...$$`) and DOUBLE-CHECK EVERY INTERMEDIATE ARITHMETIC STEP before outputting.\n"
         "   - If there is NO math in the lecture, OMIT the formula section completely (NEVER write 'Conceptual session: no formulas').\n"
-        "   - ALWAYS include a `### Core Mechanics` heading with tight cause-and-effect bullets (using →, ↑, ↓) and ZERO overlap with any table above.\n"
+        "   - ALWAYS include a natural, descriptive `### ` section heading describing what the bullets actually list (e.g. '### The 5 Core Ownership Rights', '### Conflict Categories & Dynamics', '### Structural Differences & Liability', '### Valuation Rules & Criteria'). NEVER use generic placeholder titles like 'Core Mechanics' or 'Overview'.\n"
         "   - ALWAYS end with a `### MCQ Trap Radar` heading containing 2 to 3 crisp items formatted strictly as:\n"
         "     `1. **Trap:** <Misconception> → **Reality:** <Sharp correction>`\n"
         "   - Use clean `### ` Markdown section headings (never bare bold labels or unheaded trap lists).\n"
@@ -363,7 +363,7 @@ def generate_notes_and_questions(
         f"OPERATIONAL GUIDELINES & SYNTHESIS RULES (FROM note_synthesis_rules.md):\n"
         f"\"\"\"\n{rules_content}\n\"\"\"\n\n"
         "CRITICAL WRITING & STYLE RULES:\n"
-        "1. ADAPTIVE STRUCTURE: Never force irrelevant sections. Always start with `# <Topic>` + `> **Core Takeaway:** ...`, include ONLY earned conditional blocks (2x2 matrix/table ONLY if comparing concepts, KaTeX formulas + verified worked math ONLY if equations are taught — NEVER write 'No mathematical formulas'), plus concise **Core Mechanics** and **MCQ Trap Radar** (`**Trap:** ... → **Reality:** ...`).\n"
+        "1. ADAPTIVE STRUCTURE: Never force irrelevant sections. Always start with `# <Topic>` + `> **Core Takeaway:** ...`, include ONLY earned conditional blocks (2x2 matrix/table ONLY if comparing concepts, KaTeX formulas + verified worked math ONLY if equations are taught — NEVER write 'No mathematical formulas'), plus a natural, topic-specific breakdown heading (e.g. '### The 5 Core Ownership Rights', '### Conflict Categories & Dynamics') and **MCQ Trap Radar** (`**Trap:** ... → **Reality:** ...`).\n"
         "2. ZERO REPETITION & ZERO BLOAT: Keep notes strictly within the target word budget. Bold lead-in phrases on every bullet (1-2 lines max).\n"
         "3. ZERO EM DASHES (—): Never use em dashes anywhere. Use clean active voice and simple direct sentences.\n"
         "4. STRICT GROUND TRUTH: Base notes STRICTLY AND ONLY on what the professor actually explains in this specific transcript. Preserve the professor's exact named examples and numbers. Never invent outside examples or theories.\n"
@@ -385,14 +385,14 @@ Spoken Lecture Transcript:
 
 TASK INSTRUCTIONS:
 1. Synthesize concise, adaptive `notes_markdown` strictly grounded in this transcript following the word budget and adaptive layout rules (NO forced empty formula sections, NO forced comparison tables unless genuinely contrasting concepts).
-2. Always include `> **Core Takeaway:** ...`, concise **Core Mechanics**, and **MCQ Trap Radar** (`**Trap:** ... → **Reality:** ...`).
+2. Always include `> **Core Takeaway:** ...`, a descriptive topic-specific breakdown heading (NEVER use 'Core Mechanics'), and **MCQ Trap Radar** (`**Trap:** ... → **Reality:** ...`).
 3. Provide 4 to 6 conceptual, application-oriented MCQs (scenario-based or sensitivity-based).
 4. Provide 1 university subjective question with model answer and marking rubric.
 5. Provide 3-4 conceptual flashcards.
 
 Output a single valid JSON object with the following exact keys:
 {{
-  "notes_markdown": "# {topic_title}\\n\\n> **Core Takeaway:** ...\\n\\n(Adaptive sections matching this specific lecture only)\\n\\n### Core Mechanics\\n* **Key Driver:** ...\\n\\n### MCQ Trap Radar\\n1. **Trap:** ... → **Reality:** ...",
+  "notes_markdown": "# {topic_title}\\n\\n> **Core Takeaway:** ...\\n\\n(Adaptive sections matching this specific lecture only)\\n\\n### (Natural Descriptive Heading for Bullets)\\n* **Key Feature:** ...\\n\\n### MCQ Trap Radar\\n1. **Trap:** ... → **Reality:** ...",
   "mcqs": [
     {{
       "id": 1,
