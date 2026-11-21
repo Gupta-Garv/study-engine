@@ -3021,9 +3021,9 @@ const App = {
 
       if (tab) {
         if (isActive) {
-          tab.className = 'px-3.5 py-1.5 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-medium text-xs transition shadow-soft-sm';
+          tab.className = 'px-3 py-1 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-medium text-xs transition shadow-soft-sm whitespace-nowrap';
         } else {
-          tab.className = 'px-3.5 py-1.5 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium text-xs transition';
+          tab.className = 'px-3 py-1 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium text-xs transition whitespace-nowrap';
         }
       }
     });
