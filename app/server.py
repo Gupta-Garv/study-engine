@@ -80,6 +80,10 @@ class SettingsRequest(BaseModel):
 class ChatMessageRequest(BaseModel):
     message: str
 
+class SaveOneShotRequest(BaseModel):
+    one_shot_markdown: str
+    formula_sheet_markdown: Optional[str] = ""
+
 # -------------------------------------------------------------
 # Background Curation Task & Queue Worker (2 Concurrent Workers)
 # -------------------------------------------------------------
@@ -360,6 +364,19 @@ def delete_course(course_id: str):
     with conn:
         conn.execute("DELETE FROM courses WHERE id = ?", (course_id,))
     return {"message": "Course deleted"}
+
+@app.get("/api/courses/{course_id}/one-shot")
+def get_course_one_shot_endpoint(course_id: str):
+    res = db.get_course_one_shot(course_id)
+    if not res:
+        return {"course_id": course_id, "one_shot_markdown": "", "formula_sheet_markdown": ""}
+    return res
+
+@app.post("/api/courses/{course_id}/one-shot")
+def save_course_one_shot_endpoint(course_id: str, req: SaveOneShotRequest):
+    saved = db.save_course_one_shot(course_id, req.one_shot_markdown, req.formula_sheet_markdown or "")
+    db.export_static_data()
+    return saved
 
 @app.post("/api/modules/{module_id}/ingest")
 def ingest_videos(module_id: str, req: IngestVideosRequest):

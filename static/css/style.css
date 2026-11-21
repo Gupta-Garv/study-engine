@@ -712,6 +712,123 @@ mark.search-highlight {
   letter-spacing: -0.05em;
 }
 
+/* ============================================================= */
+/* One-Shot Revision & Master Formula View                       */
+/* ============================================================= */
+#view-oneshot .markdown-body {
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+}
+
+#view-oneshot .markdown-body h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+#view-oneshot .markdown-body h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink);
+}
+
+#view-oneshot .markdown-body h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--ink);
+}
+
+#view-oneshot .markdown-body h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--ink-secondary);
+}
+
+#view-oneshot .markdown-body p,
+#view-oneshot .markdown-body li {
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+#view-oneshot .markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font-size: 0.8rem;
+}
+
+#view-oneshot .markdown-body th {
+  background: var(--card-muted);
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  font-weight: 600;
+  text-align: left;
+}
+
+#view-oneshot .markdown-body td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  vertical-align: top;
+}
+
+#view-oneshot .markdown-body blockquote {
+  border-left: 3px solid #f59e0b;
+  background: rgba(245, 158, 11, 0.08);
+  padding: 10px 16px;
+  border-radius: 0 12px 12px 0;
+  margin: 1rem 0;
+  font-size: 0.875rem;
+}
+
+#oneshot-toc-list a.active-toc-item {
+  background: var(--card-muted);
+  font-weight: 600;
+  color: var(--ink);
+  border-left: 2px solid #f59e0b;
+  padding-left: 8px;
+}
+
+@media print {
+  #app-global-header,
+  #nav-drawer,
+  #nav-drawer-backdrop,
+  #oneshot-toc-sidebar,
+  #oneshot-course-pills,
+  #oneshot-cf-mode-container,
+  button,
+  .print-hide {
+    display: none !important;
+  }
+
+  body, html, main, #view-oneshot, #oneshot-content-container {
+    overflow: visible !important;
+    height: auto !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  #oneshot-content-body {
+    max-width: 100% !important;
+    font-size: 10pt !important;
+    line-height: 1.4 !important;
+  }
+
+  h1, h2 {
+    page-break-before: always;
+  }
+}
+
 
 
 

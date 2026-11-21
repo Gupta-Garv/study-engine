@@ -1099,14 +1099,18 @@ const App = {
           </div>
 
           <!-- Action Buttons -->
-          <div class="grid grid-cols-2 gap-2 pt-2 border-t border-border/60">
-            <button onclick="App.launchCourseStudy('${firstTopicId}')" class="pill-muted text-xs py-1.5 px-3 flex items-center justify-center gap-1.5 font-medium">
-              <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
-              <span>Study Studio</span>
+          <div class="grid grid-cols-3 gap-1.5 pt-2 border-t border-border/60">
+            <button onclick="App.launchCourseStudy('${firstTopicId}')" class="pill-muted text-[11px] py-1.5 px-2 flex items-center justify-center gap-1 font-medium truncate">
+              <i data-lucide="book-open" class="w-3 h-3"></i>
+              <span>Studio</span>
             </button>
-            <button onclick="App.launchCourseExam('${firstModuleId}')" class="px-3 py-1.5 rounded-full border border-border hover:bg-card-muted text-xs text-ink flex items-center justify-center gap-1.5 font-medium transition">
-              <i data-lucide="award" class="w-3.5 h-3.5"></i>
-              <span>Mock Quiz</span>
+            <button onclick="App.launchOneShot('${c.id}')" class="px-2 py-1.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 hover:bg-amber-500/20 text-[11px] flex items-center justify-center gap-1 font-medium transition truncate">
+              <i data-lucide="zap" class="w-3 h-3"></i>
+              <span>One-Shot</span>
+            </button>
+            <button onclick="App.launchCourseExam('${firstModuleId}')" class="px-2 py-1.5 rounded-full border border-border hover:bg-card-muted text-[11px] text-ink flex items-center justify-center gap-1 font-medium transition truncate">
+              <i data-lucide="award" class="w-3 h-3"></i>
+              <span>Quiz</span>
             </button>
           </div>
         </div>
@@ -2989,13 +2993,15 @@ const App = {
     const views = {
       dashboard: document.getElementById('view-dashboard'),
       notes: document.getElementById('view-notes'),
-      exam: document.getElementById('view-exam')
+      exam: document.getElementById('view-exam'),
+      oneshot: document.getElementById('view-oneshot')
     };
 
     const tabs = {
       dashboard: document.getElementById('tab-dashboard'),
       notes: document.getElementById('tab-notes'),
-      exam: document.getElementById('tab-exam')
+      exam: document.getElementById('tab-exam'),
+      oneshot: document.getElementById('tab-oneshot')
     };
 
     Object.keys(views).forEach(k => {
@@ -3031,7 +3037,7 @@ const App = {
     }
 
     // 2. Update Drawer navigation active pills
-    ['dashboard', 'notes', 'exam'].forEach(k => {
+    ['dashboard', 'notes', 'exam', 'oneshot'].forEach(k => {
       const drawerItem = document.getElementById(`drawer-nav-${k}`);
       if (drawerItem) {
         if (k === target) {
@@ -3055,6 +3061,8 @@ const App = {
       }
     } else if (target === 'exam') {
       this.setupExamView();
+    } else if (target === 'oneshot') {
+      this.initOneShotView();
     }
 
     if (window.lucide) window.lucide.createIcons();
@@ -4996,6 +5004,194 @@ const App = {
         });
       });
     });
+  },
+
+  // -------------------------------------------------------------
+  // One-Shot Revision & Master Formula View Controller
+  // -------------------------------------------------------------
+  currentOneShotCourseId: '2989cdfe',
+  currentOneShotCFMode: 'formulas',
+
+  launchOneShot(courseId) {
+    if (courseId) this.currentOneShotCourseId = courseId;
+    this.switchView('oneshot');
+  },
+
+  async initOneShotView() {
+    this.renderOneShotCoursePills();
+    await this.renderOneShotContent();
+  },
+
+  renderOneShotCoursePills() {
+    const container = document.getElementById('oneshot-course-pills');
+    if (!container || !this.courses) return;
+
+    container.innerHTML = this.courses.map(c => {
+      const isSelected = c.id === this.currentOneShotCourseId;
+      const activeCls = isSelected 
+        ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-semibold shadow-soft-sm'
+        : 'bg-card border border-border text-neutral-500 hover:text-ink hover:bg-muted font-medium';
+      
+      const badgeIcon = c.id === '2989cdfe' ? '📐 ' : '📖 ';
+      return `
+        <button onclick="App.selectOneShotCourse('${c.id}')" 
+          class="px-3 py-1 rounded-full text-xs transition shrink-0 flex items-center gap-1.5 ${activeCls}">
+          <span>${badgeIcon}${this.escapeHtml(c.name)}</span>
+        </button>
+      `;
+    }).join('');
+
+    const cfModeContainer = document.getElementById('oneshot-cf-mode-container');
+    if (cfModeContainer) {
+      if (this.currentOneShotCourseId === '2989cdfe') {
+        cfModeContainer.classList.remove('hidden');
+        this.updateOneShotCFModeButtons();
+      } else {
+        cfModeContainer.classList.add('hidden');
+      }
+    }
+  },
+
+  updateOneShotCFModeButtons() {
+    const btnFormulas = document.getElementById('btn-oneshot-cf-formulas');
+    const btnNotes = document.getElementById('btn-oneshot-cf-notes');
+    if (!btnFormulas || !btnNotes) return;
+
+    if (this.currentOneShotCFMode === 'formulas') {
+      btnFormulas.className = 'px-3 py-1 rounded-full font-medium transition text-xs flex items-center gap-1.5 bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-soft-sm';
+      btnNotes.className = 'px-3 py-1 rounded-full font-medium transition text-xs flex items-center gap-1.5 text-neutral-500 hover:text-ink';
+    } else {
+      btnNotes.className = 'px-3 py-1 rounded-full font-medium transition text-xs flex items-center gap-1.5 bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-soft-sm';
+      btnFormulas.className = 'px-3 py-1 rounded-full font-medium transition text-xs flex items-center gap-1.5 text-neutral-500 hover:text-ink';
+    }
+  },
+
+  selectOneShotCourse(courseId) {
+    this.currentOneShotCourseId = courseId;
+    this.renderOneShotCoursePills();
+    this.renderOneShotContent();
+  },
+
+  setOneShotCFMode(mode) {
+    this.currentOneShotCFMode = mode;
+    this.updateOneShotCFModeButtons();
+    this.renderOneShotContent();
+  },
+
+  async renderOneShotContent() {
+    const bodyEl = document.getElementById('oneshot-content-body');
+    const tocListEl = document.getElementById('oneshot-toc-list');
+    const tocCounterEl = document.getElementById('oneshot-toc-counter');
+    const readTimeEl = document.getElementById('oneshot-read-time');
+    if (!bodyEl) return;
+
+    bodyEl.innerHTML = '<div class="p-8 text-center text-xs text-neutral-400 font-mono">Loading revision notes...</div>';
+
+    let data = null;
+    if (window.STUDY_DATA && window.STUDY_DATA.one_shots && window.STUDY_DATA.one_shots[this.currentOneShotCourseId]) {
+      data = window.STUDY_DATA.one_shots[this.currentOneShotCourseId];
+    }
+
+    if (!data) {
+      try {
+        const res = await fetch(`/api/courses/${this.currentOneShotCourseId}/one-shot`);
+        if (res.ok) {
+          data = await res.json();
+        }
+      } catch (e) {
+        console.warn('Failed to fetch one-shot from backend:', e);
+      }
+    }
+
+    if (!data) {
+      bodyEl.innerHTML = '<div class="p-8 text-center text-xs text-neutral-400">No one-shot revision notes available for this subject.</div>';
+      return;
+    }
+
+    let markdown = '';
+    const isCF = this.currentOneShotCourseId === '2989cdfe';
+    if (isCF && this.currentOneShotCFMode === 'formulas') {
+      markdown = data.formula_sheet_markdown || data.one_shot_markdown || '';
+    } else {
+      markdown = data.one_shot_markdown || '';
+    }
+
+    if (!markdown.trim()) {
+      bodyEl.innerHTML = '<div class="p-8 text-center text-xs text-neutral-400">Notes are being compiled.</div>';
+      return;
+    }
+
+    // Render markdown
+    bodyEl.innerHTML = window.marked ? window.marked.parse(markdown) : markdown;
+
+    // Render KaTeX Math
+    if (window.renderMathInElement) {
+      window.renderMathInElement(bodyEl, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false
+      });
+    }
+
+    // Update reading time estimate
+    const words = markdown.trim().split(/\s+/).length;
+    const minutes = Math.max(5, Math.ceil(words / 200));
+    if (readTimeEl) {
+      readTimeEl.textContent = `⚡ ~${minutes} min cram`;
+    }
+
+    // Generate Floating Table of Contents
+    if (tocListEl) {
+      const headings = bodyEl.querySelectorAll('h2');
+      let tocHtml = '';
+      headings.forEach((h, idx) => {
+        const text = h.textContent.replace(/^[#\s]+/, '').trim();
+        const anchorId = h.id || `oneshot-sec-${idx}`;
+        h.id = anchorId;
+        tocHtml += `
+          <a href="#${anchorId}" onclick="App.scrollToOneShotHeading(event, '${anchorId}')"
+            class="block px-2.5 py-1.5 rounded-lg text-neutral-500 hover:text-ink hover:bg-muted transition truncate text-[11px]">
+            ${this.escapeHtml(text)}
+          </a>
+        `;
+      });
+      tocListEl.innerHTML = tocHtml || '<div class="text-[11px] text-neutral-400 p-2">Index populated</div>';
+      if (tocCounterEl) {
+        tocCounterEl.textContent = `${headings.length} Sections`;
+      }
+    }
+
+    if (window.lucide) window.lucide.createIcons();
+
+    // Scroll to top of content container
+    const container = document.getElementById('oneshot-content-container');
+    if (container) container.scrollTop = 0;
+  },
+
+  scrollToOneShotHeading(e, anchorId) {
+    if (e) e.preventDefault();
+    const target = document.getElementById(anchorId);
+    const container = document.getElementById('oneshot-content-container');
+    if (target && container) {
+      const targetTop = target.offsetTop - 20;
+      container.scrollTo({ top: targetTop, behavior: 'smooth' });
+
+      // Highlight active link in TOC
+      const links = document.querySelectorAll('#oneshot-toc-list a');
+      links.forEach(a => {
+        if (a.getAttribute('href') === `#${anchorId}`) {
+          a.classList.add('active-toc-item');
+        } else {
+          a.classList.remove('active-toc-item');
+        }
+      });
+    }
+  },
+
+  printOneShot() {
+    window.print();
   },
 
   // -------------------------------------------------------------

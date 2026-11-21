@@ -88,6 +88,13 @@ def init_db():
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 UNIQUE(module_id, set_number)
             );
+
+            CREATE TABLE IF NOT EXISTS course_one_shots (
+                course_id TEXT PRIMARY KEY REFERENCES courses(id) ON DELETE CASCADE,
+                one_shot_markdown TEXT NOT NULL DEFAULT '',
+                formula_sheet_markdown TEXT NOT NULL DEFAULT '',
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
         """)
         # Pre-seed integrated NVIDIA NIM Keys
         conn.execute(
@@ -229,6 +236,31 @@ def get_module_test_by_set(module_id: str, set_number: int) -> Optional[Dict[str
     d["questions"] = json.loads(d.get("questions_json") or "[]")
     return d
 
+def get_course_one_shot(course_id: str) -> Optional[Dict[str, Any]]:
+    conn = get_conn()
+    row = conn.execute("SELECT * FROM course_one_shots WHERE course_id = ?", (course_id,)).fetchone()
+    if not row:
+        return None
+    return dict(row)
+
+def save_course_one_shot(course_id: str, one_shot_markdown: str, formula_sheet_markdown: str = "") -> Dict[str, Any]:
+    conn = get_conn()
+    with conn:
+        conn.execute("""
+            INSERT OR REPLACE INTO course_one_shots (course_id, one_shot_markdown, formula_sheet_markdown, updated_at)
+            VALUES (?, ?, ?, CURRENT_TIMESTAMP)
+        """, (course_id, one_shot_markdown, formula_sheet_markdown))
+    return {
+        "course_id": course_id,
+        "one_shot_markdown": one_shot_markdown,
+        "formula_sheet_markdown": formula_sheet_markdown
+    }
+
+def get_all_course_one_shots() -> Dict[str, Dict[str, Any]]:
+    conn = get_conn()
+    rows = conn.execute("SELECT * FROM course_one_shots").fetchall()
+    return {r["course_id"]: dict(r) for r in rows}
+
 def export_static_data():
     """Exports SQLite vault to static study_data.js for 24/7 GitHub Pages hosting."""
     try:
@@ -271,6 +303,10 @@ def export_static_data():
                 canvases[row["topic_id"]] = json.loads(row["canvas_json"])
             except Exception:
                 pass
+
+        one_shots = {}
+        for row in conn.execute("SELECT * FROM course_one_shots").fetchall():
+            one_shots[row["course_id"]] = dict(row)
                 
         out_path = Path(__file__).parent.parent / "study_data.js"
         bundle = {
@@ -279,7 +315,8 @@ def export_static_data():
             "exams": exams, 
             "module_tests": module_tests_map,
             "chats": chats,
-            "canvases": canvases
+            "canvases": canvases,
+            "one_shots": one_shots
         }
         with open(out_path, "w", encoding="utf-8") as f:
             f.write("window.STUDY_DATA = " + json.dumps(bundle, ensure_ascii=False, indent=2) + ";\n")
