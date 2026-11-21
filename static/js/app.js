@@ -5144,7 +5144,11 @@ const App = {
 
     // Generate Floating Table of Contents
     if (tocListEl) {
-      const headings = bodyEl.querySelectorAll('h2');
+      const allH2 = Array.from(bodyEl.querySelectorAll('h2'));
+      const headings = allH2.filter(h => {
+        const t = h.textContent.trim().toLowerCase();
+        return t.startsWith('module ') || t.includes('formula') || t.includes('variable') || t.includes('legend') || t.includes('navigation');
+      });
       let tocHtml = '';
       headings.forEach((h, idx) => {
         const text = h.textContent.replace(/^[#\s]+/, '').trim();
@@ -5159,7 +5163,7 @@ const App = {
       });
       tocListEl.innerHTML = tocHtml || '<div class="text-[11px] text-neutral-400 p-2">Index populated</div>';
       if (tocCounterEl) {
-        tocCounterEl.textContent = `${headings.length} Sections`;
+        tocCounterEl.textContent = `${headings.length} Modules`;
       }
     }
 
@@ -5175,16 +5179,20 @@ const App = {
     const target = document.getElementById(anchorId);
     const container = document.getElementById('oneshot-content-container');
     if (target && container) {
-      const targetTop = target.offsetTop - 20;
-      container.scrollTo({ top: targetTop, behavior: 'smooth' });
+      const cRect = container.getBoundingClientRect();
+      const tRect = target.getBoundingClientRect();
+      const targetTop = container.scrollTop + (tRect.top - cRect.top) - 24;
+      container.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
 
       // Highlight active link in TOC
       const links = document.querySelectorAll('#oneshot-toc-list a');
       links.forEach(a => {
         if (a.getAttribute('href') === `#${anchorId}`) {
-          a.classList.add('active-toc-item');
+          a.classList.add('bg-muted', 'font-medium', 'text-ink');
+          a.classList.remove('text-neutral-500');
         } else {
-          a.classList.remove('active-toc-item');
+          a.classList.remove('bg-muted', 'font-medium', 'text-ink');
+          a.classList.add('text-neutral-500');
         }
       });
     }

@@ -200,11 +200,15 @@ def format_topic_for_oneshot(topic_title: str, mod_display_num: int, video_idx: 
     """
     Formats a single substantive lecture into a clean, beautifully formatted revision unit.
     Preserves all takeaways, definitions, empirical evidence, formulas, tables, and traps.
+    Demotes inner '## ' headings to '### ' so they do not pollute the module-level TOC.
     """
     clean_title = clean_topic_title(topic_title, raw_notes)
     
     # Strip top raw '# Title'
     content = re.sub(r"^#\s+[^\n]+\n+", "", raw_notes.strip()).strip()
+
+    # Demote any stray '## ' in the topic content to '### '
+    content = re.sub(r"^##\s+", "### ", content, flags=re.MULTILINE)
 
     # Build clean unit
     lines = [
