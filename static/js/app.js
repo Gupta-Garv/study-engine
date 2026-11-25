@@ -5135,9 +5135,6 @@ const App = {
 
   async renderOneShotContent() {
     const bodyEl = document.getElementById('oneshot-content-body');
-    if (window.VisualCram) {
-      await window.VisualCram.loadForCourse(this.currentOneShotCourseId);
-    }
     const tocListEl = document.getElementById('oneshot-toc-list');
     const tocCounterEl = document.getElementById('oneshot-toc-counter');
     const readTimeEl = document.getElementById('oneshot-read-time');
@@ -5191,6 +5188,18 @@ const App = {
         ],
         throwOnError: false
       });
+    }
+
+    // Render Mermaid diagrams inside One-Shot notes (e.g., Corporate Finance Formula Dependency Web)
+    const osMermaid = bodyEl.querySelectorAll('.language-mermaid');
+    if (osMermaid.length > 0 && window.mermaid) {
+      osMermaid.forEach(block => {
+        const div = document.createElement('div');
+        div.className = 'mermaid my-6 p-4 rounded-xl bg-card border border-border text-center overflow-x-auto';
+        div.textContent = block.textContent;
+        block.parentNode.replaceWith(div);
+      });
+      mermaid.run();
     }
 
     // Update reading time estimate
