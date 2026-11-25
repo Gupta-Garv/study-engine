@@ -130,6 +130,7 @@ const App = {
     const isDark = document.documentElement.classList.toggle('dark');
     localStorage.setItem('study_engine_theme', isDark ? 'dark' : 'light');
     if (this.redrawCanvas) this.redrawCanvas();
+    if (window.FolioMotion) window.FolioMotion.updateThemeColors();
     if (window.lucide) window.lucide.createIcons();
   },
 
@@ -961,7 +962,61 @@ const App = {
     this.renderRecentLectureBanner();
     this.renderSubjectMasteryCards();
     this.renderChecklist();
+    this.updateDashboardTelemetry();
+    if (window.FolioMotion) {
+      if (!this._folioMotionInited) {
+        this._folioMotionInited = true;
+        window.FolioMotion.init();
+      } else {
+        window.FolioMotion.start3D();
+        window.FolioMotion.bindTiltCards();
+      }
+    }
     if (window.lucide) window.lucide.createIcons();
+  },
+
+  updateDashboardTelemetry() {
+    const all = this.getAllCurriculumTopics() || [];
+    const totalLectures = all.length || 543;
+    const studiedCount = this.studiedTopicIds ? this.studiedTopicIds.size : 0;
+
+    const lecEl = document.getElementById('metric-lectures-studied');
+    if (lecEl) lecEl.textContent = `${studiedCount} / ${totalLectures}`;
+
+    try {
+      const practiced = JSON.parse(localStorage.getItem('folio_practiced_uids') || '[]');
+      const pEl = document.getElementById('metric-questions-practiced');
+      if (pEl) pEl.textContent = `${Array.isArray(practiced) ? practiced.length : 0} / 587`;
+    } catch (e) {}
+
+    try {
+      const mocks = JSON.parse(localStorage.getItem('folio_mock_history') || '[]');
+      const mEl = document.getElementById('metric-mocks-completed');
+      if (mEl) mEl.textContent = `${Array.isArray(mocks) ? mocks.length : 0}`;
+    } catch (e) {}
+
+    const doneTasks = (this.checklistItems || []).filter(i => i.done).length;
+    const totalTasks = (this.checklistItems || []).length;
+    const cEl = document.getElementById('metric-checklist-done');
+    if (cEl) cEl.textContent = `${doneTasks} / ${totalTasks}`;
+  },
+
+  async openExamBankFor(slug) {
+    this.switchView('exam');
+    if (window.ExamHub) {
+      await window.ExamHub.init();
+      await window.ExamHub.selectCategory(slug, window.ExamHub.getSubjectCategories(slug)[0]?.key || 'mcq');
+      window.ExamHub.setMode('bank');
+    }
+  },
+
+  async openMockFor(slug) {
+    this.switchView('exam');
+    if (window.ExamHub) {
+      await window.ExamHub.init();
+      window.ExamHub.setMode('mock');
+      await window.ExamHub.startMock(slug);
+    }
   },
 
   updateDynamicLectureCounts() {
@@ -3046,19 +3101,22 @@ const App = {
 
     if (target === 'dashboard') {
       this.renderDashboard();
-    } else if (target === 'notes') {
-      this.updateStudioLayout();
-      if (!this.selectedTopicId) {
-        if (this.lastStudiedTopicId) {
-          this.loadTopicNotes(this.lastStudiedTopicId);
-        } else {
-          this.autoSelectFirstCompletedTopic();
+    } else {
+      if (window.FolioMotion) window.FolioMotion.stop3D();
+      if (target === 'notes') {
+        this.updateStudioLayout();
+        if (!this.selectedTopicId) {
+          if (this.lastStudiedTopicId) {
+            this.loadTopicNotes(this.lastStudiedTopicId);
+          } else {
+            this.autoSelectFirstCompletedTopic();
+          }
         }
+      } else if (target === 'exam') {
+        this.setupExamView();
+      } else if (target === 'oneshot') {
+        this.initOneShotView();
       }
-    } else if (target === 'exam') {
-      this.setupExamView();
-    } else if (target === 'oneshot') {
-      this.initOneShotView();
     }
 
     if (window.lucide) window.lucide.createIcons();

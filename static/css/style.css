@@ -1,33 +1,66 @@
-/* Clean Modern Ledger Design System (Aligned with cult-ui & aisdkagents.com) */
+/* Folio Design System: Obsidian Studio (Dark) & Archival Vellum (Light) */
 
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;450;500;600&family=Geist+Mono:wght@400;500&family=Silkscreen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;450;500;600&family=Geist+Mono:wght@400;500&display=swap');
 
 :root {
-  --canvas: #fafafa;
+  --canvas: #f7f5f0;
+  --rail: #efece5;
   --card: #ffffff;
-  --card-muted: #f4f4f5;
-  --ink: #171717;
-  --ink-secondary: #666666;
-  --ink-tertiary: #999999;
-  --border: #eaeaea;
+  --card-muted: #f0ede6;
+  --ink: #181715;
+  --ink-secondary: #686660;
+  --ink-tertiary: #9e9b93;
+  --border: rgba(24, 23, 21, 0.09);
+  --accent: #b07d32;
+  --accent-soft: rgba(176, 125, 50, 0.12);
   
-  --elevation-soft-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
-  --elevation-soft: 0 0 0 1px rgb(0 0 0 / 0.05), 0 1px 2px -1px rgb(0 0 0 / 0.05), 0 2px 6px 0 rgb(0 0 0 / 0.03);
-  --elevation-soft-md: 0 0 0 1px rgb(0 0 0 / 0.08), 0 4px 10px -2px rgb(0 0 0 / 0.06);
+  --elevation-soft-sm: 0 1px 2px 0 rgb(24 23 21 / 0.04);
+  --elevation-soft: 0 0 0 1px rgb(24 23 21 / 0.06), 0 4px 12px -2px rgb(24 23 21 / 0.05);
+  --elevation-soft-md: 0 0 0 1px rgb(24 23 21 / 0.1), 0 12px 28px -6px rgb(24 23 21 / 0.1);
 }
 
 .dark {
-  --canvas: #090909;
-  --card: #111111;
-  --card-muted: #181818;
-  --ink: #ededed;
-  --ink-secondary: #8f8f8f;
-  --ink-tertiary: #525252;
-  --border: rgba(255, 255, 255, 0.08);
+  --canvas: #0b0b0c;
+  --rail: #111113;
+  --card: #151518;
+  --card-muted: #1c1c20;
+  --ink: #f2f1ee;
+  --ink-secondary: #8e8d8a;
+  --ink-tertiary: #555452;
+  --border: rgba(242, 241, 238, 0.08);
+  --accent: #d4a359;
+  --accent-soft: rgba(212, 163, 89, 0.14);
 
-  --elevation-soft-sm: 0 1px 2px 0 rgb(0 0 0 / 0.35);
-  --elevation-soft: 0 0 0 1px rgb(255 255 255 / 0.06), 0 2px 8px -2px rgb(0 0 0 / 0.45);
-  --elevation-soft-md: 0 0 0 1px rgb(255 255 255 / 0.1), 0 8px 20px -4px rgb(0 0 0 / 0.55);
+  --elevation-soft-sm: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+  --elevation-soft: 0 0 0 1px rgb(242 241 238 / 0.06), 0 6px 20px -4px rgb(0 0 0 / 0.5);
+  --elevation-soft-md: 0 0 0 1px rgb(212 163 89 / 0.25), 0 16px 36px -8px rgb(0 0 0 / 0.65);
+}
+
+.folio-tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s ease, border-color 0.22s ease;
+  will-change: transform;
+}
+
+.folio-tilt-card:hover {
+  box-shadow: var(--elevation-soft-md);
+  border-color: rgba(212, 163, 89, 0.28);
+}
+
+.folio-accent-text {
+  color: var(--accent);
+}
+
+.folio-accent-bg {
+  background-color: var(--accent-soft);
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .folio-tilt-card {
+    transition: none !important;
+    transform: none !important;
+  }
 }
 
 body {

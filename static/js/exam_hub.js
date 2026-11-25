@@ -633,8 +633,21 @@ window.ExamHub = {
 
   toggleReveal(uid) {
     if (this.revealedIds.has(uid)) this.revealedIds.delete(uid);
-    else this.revealedIds.add(uid);
+    else {
+      this.revealedIds.add(uid);
+      this.recordPracticed(uid);
+    }
     this.renderBank();
+  },
+
+  recordPracticed(uid) {
+    try {
+      const list = JSON.parse(localStorage.getItem('folio_practiced_uids') || '[]');
+      if (Array.isArray(list) && !list.includes(uid)) {
+        list.push(uid);
+        localStorage.setItem('folio_practiced_uids', JSON.stringify(list));
+      }
+    } catch (e) {}
   },
 
   pickOption(uid, idx, qType) {
@@ -925,6 +938,11 @@ window.ExamHub = {
   submitMock() {
     if (this.mock.timerId) clearInterval(this.mock.timerId);
     this.mock.submitted = true;
+    try {
+      const hist = JSON.parse(localStorage.getItem('folio_mock_history') || '[]');
+      hist.push({ slug: this.mock.slug, course: this.mock.courseName, at: Date.now() });
+      localStorage.setItem('folio_mock_history', JSON.stringify(hist));
+    } catch (e) {}
     this.renderMockResults();
   },
 
