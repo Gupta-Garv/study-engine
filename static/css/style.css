@@ -10,7 +10,7 @@
   --ink: #181715;
   --ink-secondary: #686660;
   --ink-tertiary: #9e9b93;
-  --border: rgba(24, 23, 21, 0.09);
+  --border: #e4e1da;
   --accent: #b07d32;
   --accent-soft: rgba(176, 125, 50, 0.12);
   
@@ -22,12 +22,12 @@
 .dark {
   --canvas: #0b0b0c;
   --rail: #111113;
-  --card: #151518;
-  --card-muted: #1c1c20;
+  --card: #141417;
+  --card-muted: #1b1b1f;
   --ink: #f2f1ee;
   --ink-secondary: #8e8d8a;
   --ink-tertiary: #555452;
-  --border: rgba(242, 241, 238, 0.08);
+  --border: #232328;
   --accent: #d4a359;
   --accent-soft: rgba(212, 163, 89, 0.14);
 

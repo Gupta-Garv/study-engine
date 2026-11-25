@@ -853,7 +853,17 @@ const App = {
 
       const savedSchedule = localStorage.getItem('study_engine_exam_schedule');
       if (savedSchedule) {
-        this.examSchedule = JSON.parse(savedSchedule);
+        const parsed = JSON.parse(savedSchedule);
+        if (parsed && parsed.targetDate && new Date(parsed.targetDate).getTime() > Date.now()) {
+          this.examSchedule = parsed;
+        } else {
+          this.examSchedule = {
+            title: 'Term 7 Examinations',
+            targetDate: '2026-12-05T09:00',
+            notes: 'Dec 5 (DV & FB), Dec 6 (CT & CF)'
+          };
+          localStorage.setItem('study_engine_exam_schedule', JSON.stringify(this.examSchedule));
+        }
       }
 
       const savedChecklist = localStorage.getItem('study_engine_checklist');
