@@ -1,0 +1,727 @@
+{
+  "course": "Data Visualisation for Business Decisions",
+  "slug": "data_visualisation",
+  "edx_id": "course-v1:IIMBx+DS71x+BBA_DBE_B1",
+  "total_questions": 15,
+  "total_images": 5,
+  "assessments": [
+    {
+      "module": "Mid-Term 1",
+      "assessment": "Mid-Term 1 Quiz",
+      "seq_id": "block-v1:IIMBx+DS71x+BBA_DBE_B1+type@sequential+block@ea9e0d28a86f4a9196b7e553d9c963a9",
+      "status": "extracted",
+      "question_count": 15,
+      "image_count": 5,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Product wise sales for every store, refreshing every 15 minutes",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Weekly store performance against target, with trends over recent weeks and flags for stores that keep missing target",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Daily delivery performance for every store with red flags for late deliveries",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "A full export of transactions so he can analyse them in Excel himself",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A Pizza chain’s Regional manager for South India oversees 30 stores and asks for a dashboard. Which design best fits his role?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A Pizza chain’s Regional manager for South India oversees 30 stores and asks for a dashboard. Which design best fits his role?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "A dashboard for the delivery team and a report for leadership",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "A dashboard for both",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "A report for the delivery team and a single chart for leadership",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "A single chart for both",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "An ecommerce company’s delivery team wants to keep live order delays by zone on a wall screen all day. Leadership wants a Monday summary of last week, with commentary on the worst day and the corrective action taken. What should each group get?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>An ecommerce company’s delivery team wants to keep live order delays by zone on a wall screen all day. Leadership wants a Monday summary of last week, with commentary on the worst day and the corrective action taken. What should each group get?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "A few high-level numbers such as revenue growth and overall margin",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Detailed filters and drill downs on every chart so she can investigate root causes herself",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Views that export cleanly into a PowerPoint slide or PDF for board meetings",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "SKU-level stock positions for every store",
+              "was_selected": false
+            },
+            {
+              "index": 4,
+              "is_correct": false,
+              "text": "Alerts for each individual late order",
+              "was_selected": false
+            },
+            {
+              "index": 5,
+              "is_correct": true,
+              "text": "Comparisons with targets and trends over time",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A Retail company’s CEO likes to take data driven decisions and has asked for her own dashboard. Which of the following features suit her needs?\nNote: This is a multiple-select question and may have more than one correct answer. To receive full marks, you must select all correct options. Zero marks will be awarded if any correct option is missed or an incorrect option is selected.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A Retail company’s CEO likes to take data driven decisions and has asked for her own dashboard. Which of the following features suit her needs?</p>\n<p>Note: This is a multiple-select question and may have more than one correct answer. To receive full marks, you must select all correct options. Zero marks will be awarded if any correct option is missed or an incorrect option is selected.</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "multi_select",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            0,
+            2,
+            5
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Some orders are counted twice by the dashboard, for example logged by both the website and the payment gateway",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "The wrong chart type was used for city comparisons",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Finance and the dashboard may be defining 'sales' differently, for example including or excluding discounts",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Some months' records are missing in the dashboard’s backend data",
+              "was_selected": false
+            },
+            {
+              "index": 4,
+              "is_correct": true,
+              "text": "The front end team is entering data inconsistently while invoicing",
+              "was_selected": true
+            },
+            {
+              "index": 5,
+              "is_correct": false,
+              "text": "8% difference is within acceptable limits and should be ignored",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "TrendE's new sales-by-city bar chart in the company performance dashboard shows separate bars for 'Calcutta' and 'Kolkata'. The dashboard's total sales also come out about 8% higher than the figure finance reports. Which explanations are plausible?\nNote: This is a multiple-select question and may have more than one correct answer. To receive full marks, you must select all correct options. Zero marks will be awarded if any correct option is missed or an incorrect option is selected.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>TrendE's new sales-by-city bar chart in the company performance dashboard shows separate bars for 'Calcutta' and 'Kolkata'. The dashboard's total sales also come out about 8% higher than the figure finance reports. Which explanations are plausible?</p>\n<p>Note: This is a multiple-select question and may have more than one correct answer. To receive full marks, you must select all correct options. Zero marks will be awarded if any correct option is missed or an incorrect option is selected.</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "multi_select",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            0,
+            2,
+            4
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Users will be confused with inconsistent numbers; update the dashboard only once a month so that all three refresh at the same time",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "The dashboard is expected to be frequently updated; remove the marketing spend data",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Users will be confused with inconsistent numbers; feature the three metrics in different pages with “Last updated on…” status on every page",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Managers may treat month old marketing spend figures as current; show each metric's definition and “Last updated on…” status in the relevant charts",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "TrendE's dashboard shows website orders (updated every minute), delivery partner data (updated daily) and marketing spend (updated monthly) side by side as users want to see these as a single snapshot. What is the main risk, and how should the design address it?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>TrendE's dashboard shows website orders (updated every minute), delivery partner data (updated daily) and marketing spend (updated monthly) side by side as users want to see these as a single snapshot. What is the main risk, and how should the design address it?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Discomfort with newly visible performance; get the senior sponsor to encourage teams to use the dashboard to find and fix problems",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "A data quality problem; rebuild the data pipeline",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "The dashboard is too simple; add more metrics to make it worth opening",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Managers prefer PowerPoint; go back to monthly slide reports",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Three months after launch, two of TrendE's regional managers rarely open the new dashboard and insist 'the numbers must be wrong'. An audit confirms the data is accurate. Both regions are below target. What is the most likely issue, and the best response?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Three months after launch, two of TrendE's regional managers rarely open the new dashboard and insist 'the numbers must be wrong'. An audit confirms the data is accurate. Both regions are below target. What is the most likely issue, and the best response?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "On-time delivery % by fulfilment centre",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "On-time delivery % by product price band",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "On-time delivery % by courier company who deliver orders for each fulfilment center",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "On-time delivery % by customer segment",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "TrendE's on-time delivery rate fell from 95% to 82% in September. Industry data shows courier performance was stable across the market. Split by region, all four regions show a similar drop. Which of the following splits should be looked at next?\nNote: This is a multiple-select question and may have more than one correct answer. To receive full marks, you must select all correct options. Zero marks will be awarded if any correct option is missed or an incorrect option is selected.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>TrendE's on-time delivery rate fell from 95% to 82% in September. Industry data shows courier performance was stable across the market. Split by region, all four regions show a similar drop. Which of the following splits should be looked at next?</p>\n<p>Note: This is a multiple-select question and may have more than one correct answer. To receive full marks, you must select all correct options. Zero marks will be awarded if any correct option is missed or an incorrect option is selected.</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "multi_select",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            0,
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Ignore North's outliers, since outliers are usually noise",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Retrain North's staff, since its routine process is the weakest as shown by the outliers",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Introduce standardised workflows in North to reduce day-to-day variation",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Investigate the orders on specific days behind North's outliers; its everyday process is already consistent",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "The chart shows TrendE's daily return rates by region. The red dots show outliers. Based on it, what should TrendE do about the North region?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>The chart shows TrendE's daily return rates by region. The red dots show outliers. Based on it, what should TrendE do about the North region?</p>\n  <p style=\"text-align: center;\"><img height=\"629\" width=\"800\" src=\"/assets/courseware/v1/f0cf95af2150adf6710bbde226781d32/asset-v1:IIMBx+DS71x+BBA_DBE_B1+type@asset+block/Q8.png\" alt=\"Q8\"></p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [
+            "images/mid_term_1_mid_term_1_quiz_q8_img1.png"
+          ],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "North has the most extreme outliers",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "East, South and West have less predictable everyday return rates than North",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "South performs more consistently than North",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "East performs more consistently than North",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Using the same chart of TrendE's daily return rates, which statements are supported?\n  \nNote: This is a multiple-select question and may have more than one correct answer. To receive full marks, you must select all correct options. Zero marks will be awarded if any correct option is missed or an incorrect option is selected.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Using the same chart of TrendE's daily return rates, which statements are supported?</p>\n  <p style=\"text-align: center;\"><img height=\"629\" width=\"800\" src=\"/assets/courseware/v1/f0cf95af2150adf6710bbde226781d32/asset-v1:IIMBx+DS71x+BBA_DBE_B1+type@asset+block/Q9.png\" alt=\"Q9\"></p>\n<p>Note: This is a multiple-select question and may have more than one correct answer. To receive full marks, you must select all correct options. Zero marks will be awarded if any correct option is missed or an incorrect option is selected.</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "multi_select",
+          "question_number": 9,
+          "images": [
+            "images/mid_term_1_mid_term_1_quiz_q9_img1.png"
+          ],
+          "correct_indices": [
+            0,
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Store 2, because it has the lowest sales",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Store 6, because it is the one closest to its target",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Store 5, because it is furthest below its own target despite having the highest sales",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Store 3, because it has high sales and has exceeded its targets",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "The chart below shows September sales and targets for TrendE's seven stores. Which store most needs the Regional manager's attention?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>The chart below shows September sales and targets for TrendE's seven stores. Which store most needs the Regional manager's attention?</p>\n  <p style=\"text-align: center;\"><img height=\"629\" width=\"800\" src=\"/assets/courseware/v1/a43b3b537ac351ce9ec2e69289fa1e6f/asset-v1:IIMBx+DS71x+BBA_DBE_B1+type@asset+block/Q10.png\" alt=\"Q10\"></p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [
+            "images/mid_term_1_mid_term_1_quiz_q10_img1.png"
+          ],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Apparel returns rose to 55% in July because there was a significant delay in deliveries of the orders generated by the Gifting campaign",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Stop the Gifting campaign till the delivery delay issues are sorted out",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Apparel returns rose to 55% in July",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Apparel returns are worse than last year",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of these statements about TrendE is an insight, rather than an observation or a recommendation?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of these statements about TrendE is an insight, rather than an observation or a recommendation?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 11",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 11,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "A, because it explains a pattern that repeats every year",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "B, because it points to something management can act on",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Both are equally valuable, since both explain the drop",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Neither, because both insights are trivial",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Two analysts explain why TrendE's jacket sales fell. Analyst A: 'Sales fell in March because winter ended.' Analyst B: 'Sales fell in the North in January because the Delhi warehouse was out of stock for nine days.' Which is more valuable to management, and why?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Two analysts explain why TrendE's jacket sales fell. Analyst A: 'Sales fell in March because winter ended.' Analyst B: 'Sales fell in the North in January because the Delhi warehouse was out of stock for nine days.' Which is more valuable to management, and why?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 12",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 12,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "'Which of our eight cities brings in the most orders?' → donut chart",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "'Are accessories sales trending up compared with apparel and footwear over six weeks?' → line chart with three lines",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "'How consistent are delivery times across six fulfilment centres?' → side-by-side box plots",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "'Does higher marketing spend cause more orders?' → scatter plot, which will confirm whether spend causes orders",
+              "was_selected": false
+            },
+            {
+              "index": 4,
+              "is_correct": true,
+              "text": "'What caused the warehouse team's headcount to fall over the year?' → waterfall chart",
+              "was_selected": true
+            },
+            {
+              "index": 5,
+              "is_correct": false,
+              "text": "'How do sales compare across 15 cities?' → vertical column chart",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which pairings of a TrendE business question and a chart follow the course's guidance?\nNote: This is a multiple-select question and may have more than one correct answer. To receive full marks, you must select all correct options. Zero marks will be awarded if any correct option is missed or an incorrect option is selected.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which pairings of a TrendE business question and a chart follow the course's guidance?</p>\n<p>Note: This is a multiple-select question and may have more than one correct answer. To receive full marks, you must select all correct options. Zero marks will be awarded if any correct option is missed or an incorrect option is selected.</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 13",
+          "total_possible": "1.0",
+          "type": "multi_select",
+          "question_number": 13,
+          "images": [],
+          "correct_indices": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Cart to 'Buy', because cart abandonment is always the biggest problem",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "'Buy' to payment, because about half the customers who decided to buy didn't complete payment, which points to a potential payment-step problem\ncorrect",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Views to cart, because it loses the most people",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "None: every funnel narrows, so this is normal",
+              "was_selected": false
+            }
+          ],
+          "progress": "0.0/1.0 point (graded)",
+          "score": "0.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "The chart shows TrendE's app purchase funnel for October. Which stage should the team investigate first, and why?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>The chart shows TrendE's app purchase funnel for October. Which stage should the team investigate first, and why?</p>\n  <p style=\"text-align: center;\"><img height=\"629\" width=\"800\" src=\"/assets/courseware/v1/48d02416ca7fb819e8e49c26282d0f04/asset-v1:IIMBx+DS71x+BBA_DBE_B1+type@asset+block/Q14.png\" alt=\"Q14\"></p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 14",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 14,
+          "images": [
+            "images/mid_term_1_mid_term_1_quiz_q14_img1.png"
+          ],
+          "correct_indices": [
+            1,
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "June and July are the dull months. Increase marketing budget in these months",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Compare August with the same month last year before deciding",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Check data completeness first: June and July at exactly zero suggest missing uploads, and August may include their records",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Agree; August clearly outperformed every other month",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A TrendE manager looks at this chart and says: 'August was our best month ever. Let's repeat August's campaign.' What is the best response?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A TrendE manager looks at this chart and says: 'August was our best month ever. Let's repeat August's campaign.' What is the best response?</p>\n  <p style=\"text-align: center;\"><img height=\"629\" width=\"800\" src=\"/assets/courseware/v1/3830ffcbcab257a5934457eeaefdb55a/asset-v1:IIMBx+DS71x+BBA_DBE_B1+type@asset+block/Q15.png\" alt=\"Q15\"></p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 15",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 15,
+          "images": [
+            "images/mid_term_1_mid_term_1_quiz_q15_img1.png"
+          ],
+          "correct_indices": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Mid-Term 2",
+      "assessment": "Mid-Term 2 Quiz",
+      "seq_id": "block-v1:IIMBx+DS71x+BBA_DBE_B1+type@sequential+block@a88d97b04b634b54900a0d8ddfcfb633",
+      "status": "unavailable",
+      "reason": "No unit-iframe or timed out / unavailable",
+      "questions": []
+    }
+  ]
+}

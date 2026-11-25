@@ -1,0 +1,67 @@
+{
+  "corporate_finance": {
+    "course": "Corporate Finance",
+    "total_questions": 105,
+    "total_images": 0,
+    "extracted_modules": [
+      "Module 1 (15Q, 0img)",
+      "Module 3 (15Q, 0img)",
+      "Module 4 (15Q, 0img)",
+      "Module 5 (15Q, 0img)",
+      "Module 6 (15Q, 0img)",
+      "Module 7 (15Q, 0img)",
+      "Module 8 (15Q, 0img)"
+    ],
+    "unavailable_modules": [
+      "Module 2 (CLA 2): Unavailable (due date has passed)"
+    ],
+    "file": "/Users/apple/.gemini/study-engine/data/cla_questions/corporate_finance/cla_questions.json"
+  },
+  "critical_thinking": {
+    "course": "Critical Thinking",
+    "total_questions": 85,
+    "total_images": 0,
+    "extracted_modules": [
+      "Module 1 (15Q, 0img)",
+      "Module 3 (15Q, 0img)",
+      "Module 4 (15Q, 0img)",
+      "Module 5 (10Q, 0img)",
+      "Module 6 (15Q, 0img)",
+      "Module 7 (15Q, 0img)"
+    ],
+    "unavailable_modules": [
+      "Module 2 (CLA 2): Unavailable (due date has passed)"
+    ],
+    "file": "/Users/apple/.gemini/study-engine/data/cla_questions/critical_thinking/cla_questions.json"
+  },
+  "family_business": {
+    "course": "Family Business Strategy",
+    "total_questions": 70,
+    "total_images": 0,
+    "extracted_modules": [
+      "Module 1 (10Q, 0img)",
+      "Module 3 (10Q, 0img)",
+      "Module 4 (10Q, 0img)",
+      "Module 5 (10Q, 0img)",
+      "Module 6 (10Q, 0img)",
+      "Module 7 (10Q, 0img)",
+      "Module 8 (10Q, 0img)"
+    ],
+    "unavailable_modules": [
+      "Module 2 (CLA 2): Unavailable (due date has passed)"
+    ],
+    "file": "/Users/apple/.gemini/study-engine/data/cla_questions/family_business/cla_questions.json"
+  },
+  "data_visualisation": {
+    "course": "Data Visualisation for Business Decisions",
+    "total_questions": 15,
+    "total_images": 5,
+    "extracted_modules": [
+      "Mid-Term 1 (15Q, 5img)"
+    ],
+    "unavailable_modules": [
+      "Mid-Term 2 (Mid-Term 2 Quiz): No unit-iframe or timed out / unavailable"
+    ],
+    "file": "/Users/apple/.gemini/study-engine/data/cla_questions/data_visualisation/cla_questions.json"
+  }
+}

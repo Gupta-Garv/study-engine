@@ -1,0 +1,3101 @@
+{
+  "course": "Family Business Strategy",
+  "slug": "family_business",
+  "edx_id": "course-v1:IIMBx+ST71x+BBA_DBE_B1",
+  "total_questions": 70,
+  "total_images": 0,
+  "assessments": [
+    {
+      "module": "Module 1",
+      "assessment": "CLA 1",
+      "seq_id": "block-v1:IIMBx+ST71x+BBA_DBE_B1+type@sequential+block@bb659c4417c64963aeae2f37e82c20e6",
+      "status": "extracted",
+      "question_count": 10,
+      "image_count": 0,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "High family ownership with family management",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Low family ownership with professional management",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "High family ownership with professional management",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Low family ownership with family management",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A listed IT company is majority owned by a founding trust holding about 70% equity, while day-to-day operations are run entirely by non-family professional executives. Which quadrant of the ownership-management matrix best fits this company?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A listed IT company is majority owned by a founding trust holding about 70% equity, while day-to-day operations are run entirely by non-family professional executives. Which quadrant of the ownership-management matrix best fits this company? </p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "When a professional outside manager is hired to lead the corporation",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "When the founding family retains ownership but avoids holding active board seats",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "When institutional investors acquire the majority of voting control rights",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "When a family member serves as CEO instead of an outside professional",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Under which leadership condition do family-owned firms typically exhibit the strongest financial performance relative to non-family firms?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Under which leadership condition do family-owned firms typically exhibit the strongest financial performance relative to non-family firms?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "In a family business the shareholder is the family, so it becomes family value",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Family businesses reject shareholder value maximisation entirely",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Non-family businesses maximise employee value instead of shareholder value",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Family businesses only maximise value for minority shareholders",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "How does the principle of shareholder value maximisation differ in meaning between a typical non-family business and a family business?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>How does the principle of shareholder value maximisation differ in meaning between a typical non-family business and a family business?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Family-oriented economic goals",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Non-family oriented economic goals",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Family-oriented non-economic goals",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Non-family oriented non-economic goals",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "In the four-quadrant framework of family business goals, which combination describes growth of the firm and improvements in firm performance?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>In the four-quadrant framework of family business goals, which combination describes growth of the firm and improvements in firm performance?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Primary agency cost between principal and agent",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Secondary agency cost between two principals",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Transaction cost from asset specificity",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Entrenchment cost from minority expropriation",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "When two brothers with equal ownership stakes in a family firm disagree over strategic direction, which type of agency cost does this conflict primarily represent?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>When two brothers with equal ownership stakes in a family firm disagree over strategic direction, which type of agency cost does this conflict primarily represent?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Not a family business because it has two owners",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "A family business because it is unlisted",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "A family business because two related founders own it",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Not a family business until intent to succession is evident",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A technology startup founded by two siblings three years ago has not clarified whether they intend to pass the business to the next generation. Based on standard criteria for classifying family businesses, how should this company currently be classified?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A technology startup founded by two siblings three years ago has not clarified whether they intend to pass the business to the next generation. Based on standard criteria for classifying family businesses, how should this company currently be classified?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "The family always ignores external events while the business always ignores emotions",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "The business has no interaction with suppliers or customers at all",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "The business must interact with markets while the family is driven by internal emotional dynamics",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "The family subsystem is legally required to disclose all information publicly",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Applying systems theory to a family business, why is the family subsystem typically described as more closed while the business subsystem is described as more open?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Applying systems theory to a family business, why is the family subsystem typically described as more closed while the business subsystem is described as more open?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Generic tradable assets available across any firm",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Generic non-tradable assets unique to the family business",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Highly specific assets tied to a single machine",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Publicly disclosed intangible assets under SEBI norms",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Under transaction cost economics applied to family businesses, reputation, tacit knowledge, and bonding or bridging social capital are best classified as which type of asset?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Under transaction cost economics applied to family businesses, reputation, tacit knowledge, and bonding or bridging social capital are best classified as which type of asset?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Maintaining conservative capital expenditure and leveraging established lender relationships",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Aggressively acquiring distressed competitors and expanding into new markets",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Increasing short-term debt financing to fund high-risk projects",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Divesting core operating assets to maximize immediate cash reserves",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "During severe economic crises, family firms typically exhibit greater financial resilience than non-family firms. Which strategic behavior primarily drives this resilience?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>During severe economic crises, family firms typically exhibit greater financial resilience than non-family firms. Which strategic behavior primarily drives this resilience?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 9,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Revenue, employee count, and market share",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Listing status, brand name, and founder age",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Ownership, management, and intent to succession",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Capital structure, industry type, and location",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which three characteristics together determine whether a business qualifies as a family business?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which three characteristics together determine whether a business qualifies as a family business?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Module 2",
+      "assessment": "CLA 2",
+      "seq_id": "block-v1:IIMBx+ST71x+BBA_DBE_B1+type@sequential+block@4c709730c5254d24a7e3ddcaa9e2f13e",
+      "status": "unavailable",
+      "reason": "Unavailable (due date has passed)",
+      "questions": []
+    },
+    {
+      "module": "Module 3",
+      "assessment": "CLA 3",
+      "seq_id": "block-v1:IIMBx+ST71x+BBA_DBE_B1+type@sequential+block@14a1b1f044454ab39df29f45471f127c",
+      "status": "extracted",
+      "question_count": 10,
+      "image_count": 0,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Divide the business among next-gen members",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Sell the business to an outside buyer",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Transfer the entire business to next-gen",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Launch a new venture in the family galaxy",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A founder observes fading interest among the children, a weakening competitive position, and a highly attractive acquisition offer. Which transfer pathway best fits this situation?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A founder observes fading interest among the children, a weakening competitive position, and a highly attractive acquisition offer. Which transfer pathway best fits this situation?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Normative commitment",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Affective commitment",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Calculative commitment",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Imperative commitment",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which basis of successor commitment is characterized by a felt obligation to the family, often summarized by the phrase 'I ought to'?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which basis of successor commitment is characterized by a felt obligation to the family, often summarized by the phrase 'I ought to'?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Conservative syndrome",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Wavering syndrome",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Rebellious syndrome",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Circumstantial syndrome",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A new leader discards proven practices wholesale and alienates long-serving veterans while pursuing rapid change. Which failure syndrome does this illustrate?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A new leader discards proven practices wholesale and alienates long-serving veterans while pursuing rapid change. Which failure syndrome does this illustrate?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Working outside, then returning",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Bottom-up path within the firm",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Job rotation across functions",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "New venture in family galaxy",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A family-firm heir completes an MBA, spends several years at a consulting firm and a multinational, then joins the family business through a clearly defined entry role. Which succession path does this describe?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A family-firm heir completes an MBA, spends several years at a consulting firm and a multinational, then joins the family business through a clearly defined entry role. Which succession path does this describe?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Ready Leader",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Eager Apprentice",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Reluctant Talent",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Not (yet) a fit",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which quadrant of the Willingness–Ability matrix best describes Meera?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which quadrant of the Willingness–Ability matrix best describes Meera?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Premature power before the incumbent can let go",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Visible early failure due to sheltering an heir",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Forced entry breeds disengagement and resentment",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Soft accountability from running a pet project",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "What is the primary risk if Meera's father forces her into the CEO role despite her ambivalence?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>What is the primary risk if Meera's father forces her into the CEO role despite her ambivalence?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Build competence through outside roles and mentoring",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Surface her motives and redesign the role for autonomy",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Release her with dignity and appoint a non-family CEO",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Stage authority through stretch assignments immediately",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "What is the recommended move for a successor who fits Meera's quadrant?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>What is the recommended move for a successor who fits Meera's quadrant?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Withhold information until trust is firmly established",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Sequence change through pilots before scaling it",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Create early proof points to convert sceptics",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Retain by design through role clarity and incentives",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "What move could the new CEO have taken to reduce the risk of losing Vikram?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>What move could the new CEO have taken to reduce the risk of losing Vikram?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Protect and mentor",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Enable change",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Wait and watch for failure",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Leave the family firm",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which stakeholder response category does Vikram's departure best represent?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which stakeholder response category does Vikram's departure best represent?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 9,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "The successor is cast as an insurgent leader",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Knowledge and relationships walk out of the firm",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "An early stumble becomes a self-fulfilling story",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "The successor's promises remain untested by crisis",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "What is the main organisational risk illustrated by Vikram's exit?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>What is the main organisational risk illustrated by Vikram's exit?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Module 4",
+      "assessment": "CLA 4",
+      "seq_id": "block-v1:IIMBx+ST71x+BBA_DBE_B1+type@sequential+block@aec5e1ab771d4ea6b020cb251304fd61",
+      "status": "extracted",
+      "question_count": 10,
+      "image_count": 0,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Emotion: love and its opposites",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Competence: knowledge and skill",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Power: votes and voice",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Status: title and seniority",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"></div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Tunneling moves value to controllers while propping moves value into the firm",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Tunneling always involves cash, while propping only involves shares",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Propping harms minority shareholders while tunneling instead protects their interests",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Tunneling occurs only during a crisis while propping occurs only in normal times",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"></div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Legal invisibility",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Economic invisibility",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Organisational invisibility",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Narrative invisibility",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"></div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Too cold, because disagreements are being avoided beneath a surface of calm",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "In the Goldilocks zone, since all three conditions for healthy conflict are met",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Inconclusive, because satisfaction with direction cannot be assessed without unanimous agreement",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Too hot, because relationships show visible strain despite good decisions",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"></div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Equity for ownership, need for pay, equality for hardship support",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Equality for ownership, equity for pay, need for hardship support",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Need for ownership, equality for pay, equity for hardship support",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Equality for ownership, need for pay, equity for hardship support",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"></div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Legal representation always eliminates emotional elements from a dispute",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Hiring advocates automatically shifts the conflict from relationship to cognitive conflict",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Competitive moves tend to invite competitive responses, tightening the spiral",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Mediation sessions are only effective once lawyers are present on both sides",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"></div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Engage relatives in discussion, explain the reasoning, and set clear expectations for what follows",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Announce the entry rule, survey employee satisfaction, and revisit it after five years",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Consult only the founder, publish the decision, and discipline those who object",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Benchmark competitor family firms, adopt their rule, and inform the family afterward",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"></div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "The glass cliff",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "The mirrored ceiling",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Organisational and economic invisibility",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Primogeniture",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"></div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Applying objective, written succession criteria fairly",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Correcting for the mirrored ceiling through mentoring",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Establishing a transparent ceiling through published policy",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Using a perceived difference as an unjustified job filter",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"></div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 9,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Family war, suggesting litigation is now unavoidable",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Advocates being called in, suggesting lawyers have already taken over",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Communication breaking down, suggesting a need for ground rules before escalation",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Interests diverging, suggesting the conflict has only just begun",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"></div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Module 5",
+      "assessment": "CLA 5",
+      "seq_id": "block-v1:IIMBx+ST71x+BBA_DBE_B1+type@sequential+block@58e22e49de064c0aaca1750b40e2a40c",
+      "status": "extracted",
+      "question_count": 10,
+      "image_count": 0,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "The desire to remove all family members from the business entirely",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "The need for formal systems and specialised expertise beyond family capacity",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Government regulations mandating non-family ownership",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Pressure from competitors to merge with larger firms",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "What is the primary driver for family businesses to pursue professionalisation as they grow in size and complexity?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>What is the primary driver for family businesses to pursue professionalisation as they grow in size and complexity?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Shareholder agreement",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Memorandum of association",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Annual report",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Family constitution",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A third-generation family firm drafts a formal document outlining family values, employment policies for family members, and dispute resolution mechanisms. What is this document called?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A third-generation family firm drafts a formal document outlining family values, employment policies for family members, and dispute resolution mechanisms. What is this document called?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "They recommended appointing an external COO to support the new family leader",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "They demanded immediate sale of the company to outside investors",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "They insisted the daughter resign from all company roles",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "They proposed shutting down the research and development division",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "What role did the independent directors play in Raghavan Pharma's succession situation?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>What role did the independent directors play in Raghavan Pharma's succession situation?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "The external COO would demand majority ownership stakes",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "It implied the family could not manage the business independently",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "The external COO lacked any relevant industry experience",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "It would violate government pharmaceutical regulations",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "What was the primary concern of family members who opposed bringing in an external COO?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>What was the primary concern of family members who opposed bringing in an external COO?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "The presence of independent directors on the board",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "The complete removal of family members from management",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "The sale of company shares on a public stock exchange",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "The relocation of company headquarters overseas",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "What professionalisation practice from an earlier stage proved valuable during this leadership transition?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>What professionalisation practice from an earlier stage proved valuable during this leadership transition?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "The family council manages daily operations while the board handles only family disputes",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "The family council has legal authority over company finances while the board has none",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "The family council addresses family relationships and values while the board focuses on business strategy and oversight",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "The family council and board perform identical functions and are interchangeable",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "How does a family council differ functionally from a board of directors in a family business?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>How does a family council differ functionally from a board of directors in a family business?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Establishing a family constitution",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Conducting a formal succession ceremony",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Diversifying into unrelated industries",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Bringing in external talent for specialised functional roles",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A founder is considering hiring a professional, non-family CFO because the business has grown too complex for in-house family expertise. Which professionalisation practice does this illustrate?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A founder is considering hiring a professional, non-family CFO because the business has grown too complex for in-house family expertise. Which professionalisation practice does this illustrate?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Avoidance of all long-term capital commitments",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Faster exit through quick asset liquidation",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Longer investment horizons that support sustained research and development",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Immediate quarterly profit maximisation for shareholders",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Family firms often exhibit patient capital, meaning they are willing to accept lower short-term returns in exchange for what benefit relevant to innovation?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Family firms often exhibit patient capital, meaning they are willing to accept lower short-term returns in exchange for what benefit relevant to innovation?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Emotional attachment to existing products and resistance to changing established practices",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Excessive willingness to take uncalculated financial risks",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Overreliance on external venture capital funding",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Mandatory annual rotation of all leadership positions",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following is a common barrier to innovation adoption observed in family-owned businesses?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following is a common barrier to innovation adoption observed in family-owned businesses?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 9,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "The legal process of converting a sole proprietorship into a partnership",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "The capability of a family to create economic and social value across successive generations through continued entrepreneurial behaviour",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "The transfer of ownership shares equally among all generational heirs",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "The practice of each generation starting a completely unrelated new venture",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Trans-generational entrepreneurship in family businesses is best understood as:",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Trans-generational entrepreneurship in family businesses is best understood as:</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Module 6",
+      "assessment": "CLA 6",
+      "seq_id": "block-v1:IIMBx+ST71x+BBA_DBE_B1+type@sequential+block@57f1f0fd94a4491c8c887f95ef93fe1d",
+      "status": "extracted",
+      "question_count": 10,
+      "image_count": 0,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Proceed with the expansion because most family members support it",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Ask the board to evaluate the proposal against the company’s strategy and risks",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Ask the family council to approve the expansion on behalf of the company",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Let the founder make the final decision without further review",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"></div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "The board of directors",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "The management committee",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "The family forum",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "The audit committee",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"></div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "A family office\ncorrect",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "A family forum",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "A board of directors",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "A shareholders’ assembly",
+              "was_selected": false
+            }
+          ],
+          "progress": "0.0/1.0 point (graded)",
+          "score": "0.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"></div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            0,
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Control, service, resource provision",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Resource provision, control, service",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Service, control, resource provision",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Service, resource provision, control\ncorrect",
+              "was_selected": false
+            }
+          ],
+          "progress": "0.0/1.0 point (graded)",
+          "score": "0.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"></div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            0,
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Type I agency conflict between owners and hired managers",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Type II agency conflict between the controlling family and minority shareholders",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "A resource-provision failure caused by limited external networks",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "A succession-planning failure caused by insufficient next-generation development",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"></div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Reserve board seats for relevant competence and use a family council to represent family branches",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Give every branch a board seat and retain the existing board structure",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Replace the board with the family council so every branch can participate",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Allow the CEO to appoint all directors without consulting any governance body",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"></div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "It automatically binds all shareholders because the family council represents the family",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "It replaces the board’s responsibility to evaluate and decide on the proposed sale",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "It expresses the family’s preference, but the decision must follow the established ownership and board authority arrangements",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "It gives every family member an individual veto over the proposed sale",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"></div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Increase the number of board meetings without changing the appointment process",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Appoint additional directors with similar professional qualifications",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Transfer all board responsibilities to the management team",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Strengthen the independence of appointment and reappointment processes and create conditions for genuine challenge",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"></div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Publish the constitution immediately so that family members begin following it",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Obtain agreement from the people who hold the relevant authority and establish a process for review and revision",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Ask the family office to enforce the constitution independently of existing governance bodies",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Replace the constitution with informal discussions to avoid disagreements",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"></div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 9,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Proceed because preserving family legacy should take priority over financial risk",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Allow the family council to make the final decision because it represents the family’s shared values",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Let the board approve the acquisition without considering the owner council’s established authority",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Have the board evaluate the business case and risks, the owner council exercise its defined approval authority and the family council communicate the family’s perspective",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"></div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Module 7",
+      "assessment": "CLA 7",
+      "seq_id": "block-v1:IIMBx+ST71x+BBA_DBE_B1+type@sequential+block@3b56a7e3d92e4089a4d46a02d06eebb6",
+      "status": "extracted",
+      "question_count": 10,
+      "image_count": 0,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Longer time horizons spanning generations",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Mandatory CSR compliance requirements",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Short-term fiscal quarter planning",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Dispersed ownership structures",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A family-owned company commits to funding a community health program that will only show measurable benefits after 15 years, a horizon few publicly listed firms would accept. Which distinctive trait of family firms best explains this behavior?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A family-owned company commits to funding a community health program that will only show measurable benefits after 15 years, a horizon few publicly listed firms would accept. Which distinctive trait of family firms best explains this behavior?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Tata philanthropy rejects the concept of holding wealth in trust",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Tata philanthropy is rooted in Parsi community service rather than trusteeship doctrine",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Tata philanthropy began only after Gandhi's independence movement",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Tata philanthropy relies solely on corporate CSR arms",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "What distinguishes the philanthropic tradition of the Tata family from the Gandhian trusteeship doctrine followed by groups like Bajaj and Birla?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>What distinguishes the philanthropic tradition of the Tata family from the Gandhian trusteeship doctrine followed by groups like Bajaj and Birla?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "A standalone public charitable trust",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "A corporate CSR arm mandated by law",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "A dedicated family office impact desk",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Partnership with an external intermediary platform",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A business family with strong in-house investment expertise wants to combine grant-making with impact investing under a single structure. Which organizational model best fits this family's needs?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A business family with strong in-house investment expertise wants to combine grant-making with impact investing under a single structure. Which organizational model best fits this family's needs?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Transmission",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Renewal",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Articulation",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Reputation management",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A family drafts a formal family constitution explicitly naming its core shared values for the first time. Which component of value work does this action primarily represent?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A family drafts a formal family constitution explicitly naming its core shared values for the first time. Which component of value work does this action primarily represent?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Both families increased board size during generational transitions",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Both families signed the giving pledge after founder's death",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "One family dissolved its foundation while the other merged it",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "One family intensified hands-on control while the other disengaged for decades",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "What key contrast is drawn between the Walton Family Foundation's third-generation transition and the Ford Foundation's multi-decade family board absence?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>What key contrast is drawn between the Walton Family Foundation's third-generation transition and the Ford Foundation's multi-decade family board absence?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Impact investing",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Impact-first investing",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "ESG screening",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Pure philanthropy",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A family office invests in an education startup, accepting a return below market rate because the venture promises significant social impact in girls' education. Where does this investment fall on the spectrum of capital?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A family office invests in an education startup, accepting a return below market rate because the venture promises significant social impact in girls' education. Where does this investment fall on the spectrum of capital?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "5% of total annual revenue for the current year",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "2% of average net profit over the preceding three years",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "1% of total shareholder equity",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "3% of total assets under management",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "An Indian company meeting prescribed size thresholds calculates its CSR obligation based on which financial benchmark?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>An Indian company meeting prescribed size thresholds calculates its CSR obligation based on which financial benchmark?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Connection and transcendence",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Shared practices and rituals",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Emotional sharing",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Services and acts of kindness",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which family spirituality pillar is best reflected in the daughter's nature conservation retreats?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which family spirituality pillar is best reflected in the daughter's nature conservation retreats?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Parsi communitarian tradition",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Instrumental CSR motive",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Relational CSR motive",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Gandhian trusteeship doctrine",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "The patriarch's reference to holding wealth 'in trust for society' most closely reflects which moral root discussed in family philanthropy?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>The patriarch's reference to holding wealth 'in trust for society' most closely reflects which moral root discussed in family philanthropy?</p>\n<p> </p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 9,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Learning and education",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Shared practices and rituals\ncorrect",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Nature and art experience",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Spiritual growth and development",
+              "was_selected": true
+            }
+          ],
+          "progress": "0.0/1.0 point (graded)",
+          "score": "0.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "The family's annual festival-linked donations and temple renovations exemplify which spirituality pillar?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>The family's annual festival-linked donations and temple renovations exemplify which spirituality pillar?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [],
+          "correct_indices": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Module 8",
+      "assessment": "CLA 8",
+      "seq_id": "block-v1:IIMBx+ST71x+BBA_DBE_B1+type@sequential+block@6c2658fd54be4f9ebedfaf71a8c9a4f9",
+      "status": "extracted",
+      "question_count": 10,
+      "image_count": 0,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Regulative",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Normative",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Cultural-cognitive",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Mimetic",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A family business is required by company law to maintain a specific board composition and follow succession formalities. Which of Richard Scott's institutional pillars does this represent?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A family business is required by company law to maintain a specific board composition and follow succession formalities. Which of Richard Scott's institutional pillars does this represent?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Shareholder agreement",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Family council",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Family constitution",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Board of directors",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "In the three-circle model, which governance structure is the first direct target of SEBI's regulatory requirements on independent directors and audit committees?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>In the three-circle model, which governance structure is the first direct target of SEBI's regulatory requirements on independent directors and audit committees?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Family circle\ncorrect",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Business circle",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Ownership circle",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Management circle",
+              "was_selected": false
+            }
+          ],
+          "progress": "0.0/1.0 point (graded)",
+          "score": "0.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "The 2005 amendment making daughters coparceners by birth in an HUF primarily creates regulatory pressure on which circle of a family business?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>The 2005 amendment making daughters coparceners by birth in an HUF primarily creates regulatory pressure on which circle of a family business?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            0,
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Patient capital allocation",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Socio-emotional wealth preservation",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Regulatory compliance requirement",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Mimetic isomorphism",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A family firm continues operating in a declining home market rather than exiting, even though exit would be financially superior. Which concept best explains this decision?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A family firm continues operating in a declining home market rather than exiting, even though exit would be financially superior. Which concept best explains this decision?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Building internal capital markets and cross-subsidizing across group firms",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Waiting for regulators to create domestic rating agencies",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Relying entirely on foreign credit rating agencies for financing decisions",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Exiting capital-intensive businesses to avoid financing risk",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "In emerging markets with underdeveloped credit rating agencies and few merchant banks, family business groups typically respond by doing which of the following?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>In emerging markets with underdeveloped credit rating agencies and few merchant banks, family business groups typically respond by doing which of the following?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Normative pressure is sufficient to drive durable governance reform alone",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Regulatory compliance alone without normative alignment produces nominal change",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Cultural-cognitive beliefs always change before regulatory mandates are issued",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Coercive mechanisms guarantee genuine behavioral change in family firms",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A board seat quota for an independent director is filled on paper, but actual control still rests entirely with the family. What does this situation best illustrate about institutional pillars?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A board seat quota for an independent director is filled on paper, but actual control still rests entirely with the family. What does this situation best illustrate about institutional pillars?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Coercive",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Normative",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Regulative",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Mimetic",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "When a family firm copies the governance structure of a larger, more successful firm without any external mandate requiring it, this reflects which mechanism of institutional isomorphism?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>When a family firm copies the governance structure of a larger, more successful firm without any external mandate requiring it, this reflects which mechanism of institutional isomorphism?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Family-owned to family-run",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Formal to informal governance",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Family-run to family-owned",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Regulative to normative pillar dominance",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "This transition exemplifies which structural shift identified in studies of the future of family business?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>This transition exemplifies which structural shift identified in studies of the future of family business?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Family-only executive roles",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Informal decision-making",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Instinct-based risk appetite",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Patient capital orientation",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which attribute does the passage indicate remains unchanged despite professionalisation?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which attribute does the passage indicate remains unchanged despite professionalisation?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 9,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Changed risk appetite assessment",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Changed ownership structure",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Changed family circle composition",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Changed regulatory classification",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "The use of structured ROI frameworks instead of relying purely on family instinct reflects which component of the transition?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>The use of structured ROI frameworks instead of relying purely on family instinct reflects which component of the transition?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        }
+      ]
+    }
+  ]
+}

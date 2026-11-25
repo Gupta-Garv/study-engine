@@ -1,0 +1,1221 @@
+{
+  "course_id": "deb83564",
+  "course_name": "Data Visualisation for Business Decisions",
+  "exam_pattern": {
+    "exam_date": "2026-12-05",
+    "exam_timing": "09:00 AM to 10:00 AM",
+    "duration_mins": 60,
+    "total_marks": 30,
+    "negative_marking": true,
+    "calculator_allowed": false,
+    "sections": [
+      {
+        "name": "Section A",
+        "type": "MCQ",
+        "count": 14,
+        "marks_each": 1,
+        "total_marks": 14
+      },
+      {
+        "name": "Section B",
+        "type": "MSQ",
+        "count": 8,
+        "marks_each": 2,
+        "total_marks": 16
+      }
+    ]
+  },
+  "stats": {
+    "mcq_count": 40,
+    "msq_count": 24,
+    "total_predicted_questions": 64,
+    "cla_baseline_count": 15
+  },
+  "mcq_questions": [
+    {
+      "anticipation_rank": 1,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 3,
+      "module_name": "Module 3: Building Visualisations with Power BI",
+      "key_concept": "Calculated Columns vs. DAX Measures",
+      "question": "A Power BI analyst wants to compute Profit Margin % (`SUM(Profit) / SUM(Sales)`) so that it dynamically recalculates whenever a user filters by Region, Category, or Year in a report. Which DAX object must she create?",
+      "options": [
+        "A DAX Measure, because measures evaluate dynamically under the active filter context",
+        "A Calculated Column, because it automatically recalculates on every slicer click",
+        "A Power Query custom column, because M code responds to report-level slicers",
+        "A static Hierarchy level, because hierarchies aggregate ratios automatically"
+      ],
+      "correct_index": 0,
+      "explanation": "Measures are evaluated at query time under filter context (slicers/visual filters), making them essential for dynamic ratios like Profit Margin %. Calculated columns are computed row-by-row at data refresh and stored in memory.",
+      "distractor_analysis": "Calculated columns and Power Query columns are evaluated at refresh time (row context), not dynamically per slicer selection."
+    },
+    {
+      "anticipation_rank": 2,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 3,
+      "module_name": "Module 3: Building Visualisations with Power BI",
+      "key_concept": "Reports vs. Dashboards in Power BI",
+      "question": "In the Power BI ecosystem, what is the fundamental architectural distinction between a Report and a Dashboard?",
+      "options": [
+        "A Report can span multiple pages from a single semantic model, whereas a Dashboard is a single-page canvas in Power BI Service pinning visuals from one or more reports",
+        "A Dashboard is built in Power BI Desktop, whereas a Report can only be created in Power BI Service",
+        "A Report cannot use slicers or cross-filtering, whereas a Dashboard supports full multi-page drill-through",
+        "A Dashboard stores raw Excel tables directly, whereas a Report cannot connect to semantic models"
+      ],
+      "correct_index": 0,
+      "explanation": "Reports are multi-page interactive views built on one semantic model (typically in Power BI Desktop). Dashboards are single-page monitoring canvases in Power BI Service composed of pinned tiles from one or more reports.",
+      "distractor_analysis": "Dashboards cannot be created in Power BI Desktop and are single-canvas views, not multi-page."
+    },
+    {
+      "anticipation_rank": 3,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 4,
+      "module_name": "Module 4: Building Interactive Reports & Dashboards",
+      "key_concept": "Edit Interactions (Cross-Filtering Control)",
+      "question": "On a Power BI report page, clicking a bar in the 'Region Sales' chart unintentionally filters the '2018 Benchmark Target Card', distorting the fixed company-wide target. Which feature fixes this cleanly?",
+      "options": [
+        "Use 'Edit Interactions' on the Region Sales visual and set the interaction on the Target Card to 'None'",
+        "Delete the relationship between Date and FactSales in the Star Schema",
+        "Convert the Target Card into a Calculated Column",
+        "Disable all slicers across the entire workbook"
+      ],
+      "correct_index": 0,
+      "explanation": "'Edit Interactions' lets you explicitly control whether selecting a visual cross-filters, cross-highlights, or has 'None' (zero) effect on another specific visual.",
+      "distractor_analysis": "Breaking star-schema relationships breaks the whole model; disabling all slicers removes needed interactivity."
+    },
+    {
+      "anticipation_rank": 4,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 1,
+      "module_name": "Module 1: Understanding Business Data Visualisation",
+      "key_concept": "KPI Card 4-Part Framework",
+      "question": "An executive KPI card shows only 'Total Revenue: ₹4.2 Cr' in large bold text with no other context. According to the course's 4-Part KPI Card Framework, what three elements are missing to make it decision-ready?",
+      "options": [
+        "Comparison benchmark (e.g., vs. Target or Prior Year), variance/delta indicator (directional % or value), and a micro-trend (sparkline/time context)",
+        "A 3D pie chart, an embedded SQL query, and a rainbow gradient background",
+        "Raw transaction-level customer names, phone numbers, and invoice IDs",
+        "A 100-word paragraph explanation and three unrelated secondary KPIs"
+      ],
+      "correct_index": 0,
+      "explanation": "The 4-part KPI card pairs (1) the headline metric with (2) a comparison benchmark, (3) a directional variance/status cue, and (4) a compact trend/time-window reference.",
+      "distractor_analysis": "Raw tables, 3D pies, and prose paragraphs violate KPI card scannability."
+    },
+    {
+      "anticipation_rank": 5,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 2,
+      "module_name": "Module 2: Designing Effective Dashboards",
+      "key_concept": "Visual Hierarchy & Z/F Pattern",
+      "question": "When laying out an executive summary dashboard, where should the highest-priority KPI cards be placed according to visual hierarchy principles?",
+      "options": [
+        "Top-left / top-band anchor position, where Western/business readers' eyes naturally land first before scanning down and right",
+        "Bottom-right corner in small grey font so users explore the charts first",
+        "Hidden inside a secondary drill-through tooltip page",
+        "Inside a scrollable table below the fold"
+      ],
+      "correct_index": 0,
+      "explanation": "Top-left and top-row placement leverages natural F/Z reading patterns, ensuring high-level KPIs orient the viewer before detailed breakdowns below.",
+      "distractor_analysis": "Placing primary KPIs below the fold or in tooltips forces hunting and violates progressive disclosure."
+    },
+    {
+      "anticipation_rank": 6,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 1,
+      "module_name": "Module 1: Understanding Business Data Visualisation",
+      "key_concept": "Chart Selection Matrix",
+      "question": "A retail director wants to compare exact revenue contribution across 12 product sub-categories sorted from highest to lowest, with readable category names. Which chart is most appropriate?",
+      "options": [
+        "Sorted Horizontal Bar Chart",
+        "12-slice Pie Chart",
+        "Continuous Line Chart across sub-categories",
+        "Scatter Plot with sub-category on the X-axis"
+      ],
+      "correct_index": 0,
+      "explanation": "A sorted horizontal bar chart gives exact length-based comparison and ample horizontal space for long category labels without rotated text.",
+      "distractor_analysis": "Pie charts fail beyond 3–5 slices; line charts falsely imply continuous sequence/time across discrete categories."
+    },
+    {
+      "anticipation_rank": 7,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 3,
+      "module_name": "Module 3: Building Visualisations with Power BI",
+      "key_concept": "Star Schema (Fact vs Dimension)",
+      "question": "In a Power BI Star Schema for retail sales, which table should hold `OrderDate`, `SalesAmount`, `Quantity`, and `Discount`, and what cardinality should connect it to `DimProduct`?",
+      "options": [
+        "FactSales, connected via a Many-to-One (*:1) single-direction relationship from FactSales to DimProduct",
+        "DimSales, connected via a Many-to-Many (*:*) bidirectional relationship",
+        "DimProduct, with all daily order rows duplicated inside the product master",
+        "A disconnected flat CSV with no relationships"
+      ],
+      "correct_index": 0,
+      "explanation": "Quantitative events/transactions belong in the Fact table (`FactSales`), while descriptive attributes belong in Dimension tables (`DimProduct`) linked 1:* (Dimension → Fact).",
+      "distractor_analysis": "Bidirectional many-to-many joins cause ambiguity and performance degradation; flat unmodeled tables bloat memory."
+    },
+    {
+      "anticipation_rank": 8,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 4,
+      "module_name": "Module 4: Building Interactive Reports & Dashboards",
+      "key_concept": "Field Parameters (Dynamic Metric Switching)",
+      "question": "A dashboard designer wants a single trend line chart to let users toggle between viewing `Sales`, `Profit`, and `Discount %` without stacking three separate charts on the page. Which Power BI feature solves this?",
+      "options": [
+        "Field Parameters",
+        "Row-Level Security (RLS)",
+        "Power Query Merge Queries",
+        "Static Bookmarks with three hidden duplicate pages"
+      ],
+      "correct_index": 0,
+      "explanation": "Field Parameters allow a slicer to dynamically swap the measure/column plotted on a single visual, keeping layout clean and DRY.",
+      "distractor_analysis": "RLS controls user data access; Merge joins tables; duplicate pages create maintenance bloat."
+    },
+    {
+      "anticipation_rank": 9,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 1,
+      "module_name": "Module 1: Understanding Business Data Visualisation",
+      "key_concept": "Misleading Patterns (Simpson's Paradox / Aggregation Bias)",
+      "question": "Overall company conversion rate rose from 12% to 15% this quarter, yet conversion fell in BOTH Mobile and Desktop channels individually (due to a massive traffic shift toward high-converting Desktop). What analytical trap occurred if a manager celebrates 'improving channel performance'?",
+      "options": [
+        "Simpson's Paradox / mix-shift aggregation bias",
+        "Truncated Y-axis distortion",
+        "Over-fitting a regression line",
+        "Color-blind palette collision"
+      ],
+      "correct_index": 0,
+      "explanation": "When segment weights shift sharply, an aggregate metric can move in the opposite direction of every underlying segment—making segmentation essential before claiming improvement.",
+      "distractor_analysis": "The other options describe visual encoding or modeling issues, not mix-shift aggregation reversal."
+    },
+    {
+      "anticipation_rank": 10,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 2,
+      "module_name": "Module 2: Designing Effective Dashboards",
+      "key_concept": "60-30-10 Color Rule",
+      "question": "How should the '60-30-10' color rule be applied to an analytical business dashboard?",
+      "options": [
+        "60% neutral canvas/whitespace, 30% secondary structural surfaces/muted tones, and 10% purposeful accent/alert colors for key signals",
+        "60% bright neon red, 30% bright green, and 10% yellow across all bars",
+        "60% pie charts, 30% tables, and 10% text",
+        "60 distinct colors for 60 categories"
+      ],
+      "correct_index": 0,
+      "explanation": "Restraining saturated accent colors to ~10% of the visual field ensures true anomalies and alerts pop immediately instead of drowning in rainbow noise.",
+      "distractor_analysis": "60-30-10 is a visual color-proportion rule, not chart-type allocation or rainbow saturation."
+    },
+    {
+      "anticipation_rank": 11,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 4,
+      "module_name": "Module 4: Building Interactive Reports & Dashboards",
+      "key_concept": "Waterfall Chart for Growth/Variance Decomposition",
+      "question": "To show how 2017 Profit of ₹10 Cr changed to 2018 Profit of ₹13.5 Cr—breaking out positive contributions from Technology (+₹5 Cr) and Office Supplies (+₹1.2 Cr) alongside a drop in Furniture (-₹2.7 Cr)—which chart is most effective?",
+      "options": [
+        "Waterfall Chart",
+        "100% Stacked Area Chart",
+        "Donut Chart",
+        "Scatter Plot"
+      ],
+      "correct_index": 0,
+      "explanation": "A Waterfall chart explicitly bridges a starting baseline to an ending total by showing positive and negative intermediate drivers.",
+      "distractor_analysis": "100% stacked area shows composition shares (not negative drops from a baseline); donut/scatter cannot show cumulative bridge."
+    },
+    {
+      "anticipation_rank": 12,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 3,
+      "module_name": "Module 3: Building Visualisations with Power BI",
+      "key_concept": "Power Query Hygiene (Blank Rows & Data Types)",
+      "question": "Before loading an Excel sheet into the Power BI model, you notice the first three rows are report title headers and the `OrderDate` column was auto-detected as Text (`ABC`). Where should you fix both?",
+      "options": [
+        "In Power Query Editor (`Transform Data`): Remove Top Rows, Use First Row as Headers, and change column type to Date",
+        "In Report View by changing the font color of the title rows to white",
+        "By writing a DAX measure to hide text dates",
+        "By converting the visual into a Card"
+      ],
+      "correct_index": 0,
+      "explanation": "Structural data cleaning (removing junk header rows, promoting headers, enforcing Date/Decimal types) belongs upstream in Power Query before data enters the model.",
+      "distractor_analysis": "Formatting visuals or writing DAX workarounds downstream leaves corrupt model types."
+    },
+    {
+      "anticipation_rank": 13,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 2,
+      "module_name": "Module 2: Designing Effective Dashboards",
+      "key_concept": "Hybrid Dashboard Architecture",
+      "question": "Finance, Operations, and Marketing all request separate dashboards, yet 70% of their core KPIs (Revenue, Orders, Active Customers) overlap. Which architecture prevents 'metric drift' while meeting each team's needs?",
+      "options": [
+        "Hybrid Architecture: a shared certified core overview page paired with department-specific drill-down pages/views",
+        "Build three completely independent Excel-fed reports with separate metric formulas",
+        "Force all three teams onto one crowded 40-visual page",
+        "Remove all departmental metrics and show only Revenue"
+      ],
+      "correct_index": 0,
+      "explanation": "Hybrid architecture standardizes shared core definitions once (single source of truth) while giving each department tailored views for its operational levers.",
+      "distractor_analysis": "Separate formulas cause conflicting numbers; one 40-visual page destroys usability."
+    },
+    {
+      "anticipation_rank": 14,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 4,
+      "module_name": "Module 4: Building Interactive Reports & Dashboards",
+      "key_concept": "Pin Live Page vs Visual Tiles in Power BI Service",
+      "question": "When creating a Power BI Service Dashboard, what is the key advantage of using 'Pin Live Page' instead of pinning individual visual tiles?",
+      "options": [
+        "A pinned live page preserves cross-filtering and slicer interactivity directly on the dashboard tile, whereas individual visual tiles are static snapshots that redirect to the report on click",
+        "Pin Live Page allows combining visuals from 10 different semantic models onto one tile",
+        "Individual visual tiles update faster than semantic models",
+        "Pin Live Page automatically exports the data to PowerPoint every hour"
+      ],
+      "correct_index": 0,
+      "explanation": "Pinning a live page embeds interactive slicers and cross-highlighting from that report page onto the dashboard; individual tiles are non-interactive entry points.",
+      "distractor_analysis": "A live page comes from one report page (one semantic model), not 10 models."
+    },
+    {
+      "anticipation_rank": 15,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 1,
+      "module_name": "Module 1: Understanding Business Data Visualisation",
+      "key_concept": "Observation vs Insight vs Recommendation",
+      "question": "Which statement about an e-commerce store's return data is a true **Insight** (rather than a raw Observation or an Action Recommendation)?",
+      "options": [
+        "Returns in the North zone spiked 18% solely among Cash-on-Delivery footwear orders because size charts were missing on mobile product pages",
+        "North zone return rate is 24% in October",
+        "Add a verified size-guide popup to the mobile checkout flow by Friday",
+        "Total orders grew from 10,000 to 12,000 last month"
+      ],
+      "correct_index": 0,
+      "explanation": "An Observation states *what* happened (24% return rate); an Insight explains *why* / the underlying driver; a Recommendation states *what to do* next.",
+      "distractor_analysis": "24% and order counts are observations; adding a popup is a recommendation."
+    },
+    {
+      "anticipation_rank": 16,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 2,
+      "module_name": "Module 2: Designing Effective Dashboards",
+      "key_concept": "MVP Scoping & Phased Roadmap",
+      "question": "During requirements gathering, Marketing demands real-time social sentiment NLP, which will delay the whole company's sales dashboard by 4 months due to missing APIs. Under the course's MVP Strategy, what should the designer do?",
+      "options": [
+        "Launch Phase 1 (MVP) using high-impact, already-feasible sales/margin sources now, and schedule social sentiment for Phase 2 once data pipelines are ready",
+        "Delay the entire dashboard for 4 months until social sentiment is built",
+        "Fake the social sentiment numbers in Phase 1 so the page looks complete",
+        "Cancel the entire dashboard project"
+      ],
+      "correct_index": 0,
+      "explanation": "MVP sits at the intersection of high business value and immediate data feasibility; bottlenecked sources are deferred to Phase 2 so core decisions aren't blocked.",
+      "distractor_analysis": "Delaying high-value core metrics or faking data destroys adoption and trust."
+    },
+    {
+      "anticipation_rank": 17,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 4,
+      "module_name": "Module 4: Building Interactive Reports & Dashboards",
+      "key_concept": "Desktop Ctrl+Click Rule for Navigation Buttons",
+      "question": "A designer configures a 'Go to Profitability Page' navigation button in Power BI Desktop, clicks it normally, and nothing happens—though it works fine for users after publishing to Power BI Service. Why?",
+      "options": [
+        "In Power BI Desktop authoring mode, buttons require `Ctrl + Click` to trigger navigation, whereas published Service users just single-click",
+        "Page navigation buttons only work on Mac, not Windows",
+        "The button must be placed inside a Pie Chart to activate",
+        "Navigation buttons require a Pro license even inside Desktop"
+      ],
+      "correct_index": 0,
+      "explanation": "In Power BI Desktop, normal clicking selects a button for resizing/styling, so testing navigation requires `Ctrl + Click`.",
+      "distractor_analysis": "Buttons work identically once published; normal click in Desktop is reserved for editing."
+    },
+    {
+      "anticipation_rank": 18,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 3,
+      "module_name": "Module 3: Building Visualisations with Power BI",
+      "key_concept": "Data Hierarchies & Drill-Down",
+      "question": "When you build a `Category → Sub-Category → Product` hierarchy on a bar chart in Power BI, what capability does it unlock for report consumers?",
+      "options": [
+        "Progressive drill-down from high-level category totals into granular sub-categories and individual products on the same visual",
+        "Automatic conversion of text fields into numeric DAX measures",
+        "Real-time streaming every 1 second from Excel",
+        "Bypassing Power Query data types"
+      ],
+      "correct_index": 0,
+      "explanation": "Hierarchies enable clean progressive disclosure: executives see Category totals first and drill down only where anomalies appear.",
+      "distractor_analysis": "Hierarchies organize drill levels; they do not stream data or convert types."
+    },
+    {
+      "anticipation_rank": 19,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 4,
+      "module_name": "Module 4: Building Interactive Reports & Dashboards",
+      "key_concept": "100% Stacked Area vs Standard Stacked Area",
+      "question": "When analyzing how the *percentage share* of three product categories in total revenue shifted from 2015 to 2018 (ignoring absolute rupee growth), which visual is best?",
+      "options": [
+        "100% Stacked Area (or 100% Stacked Column) Chart",
+        "Waterfall Chart",
+        "Scatter Plot with constant reference lines",
+        "Single KPI Card"
+      ],
+      "correct_index": 0,
+      "explanation": "A 100% stacked chart normalizes every period to 100%, isolating composition/mix shifts cleanly.",
+      "distractor_analysis": "Waterfall tracks cumulative bridges; scatter shows correlation between two continuous measures."
+    },
+    {
+      "anticipation_rank": 20,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 4,
+      "module_name": "Module 4: Building Interactive Reports & Dashboards",
+      "key_concept": "Scatter Plot + Quadrant Reference Lines",
+      "question": "In a Superstore Profitability Matrix plotting Sub-Categories by `Discount %` (X-axis) vs `Profit Ratio %` (Y-axis), why do we add average/target reference lines on both axes?",
+      "options": [
+        "To partition the scatter into four actionable quadrants (e.g., High Discount + Negative Profit = urgent margin leak)",
+        "To force Power BI to hide negative profit values",
+        "To convert the scatter plot into a geographic map",
+        "To sort text labels alphabetically"
+      ],
+      "correct_index": 0,
+      "explanation": "Dual reference lines turn a raw cloud of dots into a diagnostic 2×2 decision matrix highlighting outliers and high-discount margin destroyers.",
+      "distractor_analysis": "Reference lines reveal rather than hide negative values."
+    },
+    {
+      "anticipation_rank": 21,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 1,
+      "module_name": "Module 1: Understanding Business Data Visualisation",
+      "key_concept": "Truncated Y-Axis & Visual Distortion",
+      "question": "A bar chart comparing Competitor A (revenue ₹102 Cr) and Firm B (revenue ₹104 Cr) starts its Y-axis at ₹100 Cr, making Firm B's bar look twice as tall as Competitor A's. What rule was violated?",
+      "options": [
+        "Bar/column charts encode magnitude by length and must always start at a zero baseline",
+        "Line charts must always start at zero even for tiny stock fluctuations",
+        "Bar charts should never use gridlines",
+        "Only 3D bars are allowed to start at non-zero baselines"
+      ],
+      "correct_index": 0,
+      "explanation": "Because bar charts encode values via bar length from baseline, a non-zero baseline exaggerates tiny differences visually (unlike line charts where non-zero zooms can be acceptable if labeled).",
+      "distractor_analysis": "Line charts can occasionally use zoomed baselines with clear labels; bar charts must always start at zero."
+    },
+    {
+      "anticipation_rank": 22,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 2,
+      "module_name": "Module 2: Designing Effective Dashboards",
+      "key_concept": "Requirements Framework (Why, What, How/When, Where)",
+      "question": "In the 4-category Requirements Gathering Framework, asking 'Will managers inspect this in a weekly Monday review on laptops or on warehouse TV screens?' belongs to which category?",
+      "options": [
+        "Where & How/When (usage context, cadence, and device)",
+        "Why (strategic business objective)",
+        "What (exact metric definitions)",
+        "Database normalization"
+      ],
+      "correct_index": 0,
+      "explanation": "Cadence (weekly vs real-time) and viewing environment/device (laptop vs wall TV vs mobile) belong to How/When and Where, dictating layout density and refresh frequency.",
+      "distractor_analysis": "'Why' defines the decision goal; 'What' defines the KPIs and dimensions."
+    },
+    {
+      "anticipation_rank": 23,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 4,
+      "module_name": "Module 4: Building Interactive Reports & Dashboards",
+      "key_concept": "Threshold Sign Traps in Conditional Formatting",
+      "question": "During QA of a Profitability table, a designer sets conditional formatting so `Profit > 0` is green and `Profit < 0` is red, but forgets `Profit = 0` or sets `< 0` as `<= 100` by mistake. What type of bug is this?",
+      "options": [
+        "Threshold / boundary sign trap in conditional formatting",
+        "Star-schema many-to-many join",
+        "Power BI Service licensing error",
+        "Field parameter syntax crash"
+      ],
+      "correct_index": 0,
+      "explanation": "Boundary/sign errors (`<` vs `<=`, or mis-typed percent `0.15` vs `15`) silently miscolor healthy or loss-making rows during QA.",
+      "distractor_analysis": "It is a visual rule-logic QA error, not a schema or licensing issue."
+    },
+    {
+      "anticipation_rank": 24,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 4,
+      "module_name": "Module 4: Building Interactive Reports & Dashboards",
+      "key_concept": "Combo Chart (Line + Clustered Column)",
+      "question": "To display monthly absolute Profit (in ₹) alongside monthly Profit Margin (%) on the same time axis without Profit % vanishing near zero, which visual should you use?",
+      "options": [
+        "Line and Clustered Column (Combo) Chart with a secondary Y-axis for Profit %",
+        "Single-axis Stacked Bar Chart",
+        "Treemap",
+        "Pie Chart"
+      ],
+      "correct_index": 0,
+      "explanation": "When two metrics have vastly different scales (crores vs percentages), a Combo Chart with a secondary axis keeps both readable over time.",
+      "distractor_analysis": "A single-axis chart squashes a 0.15 percentage flat against crores."
+    },
+    {
+      "anticipation_rank": 25,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 5,
+      "module_name": "Module 5: Live Session",
+      "key_concept": "Blank-Row & Unmatched Foreign Keys in Star Joins",
+      "question": "After joining `FactSales` to `DimCustomer` in Power BI, a `(Blank)` row suddenly appears in your Customer Segment bar chart. What caused it?",
+      "options": [
+        "Referential integrity mismatch: `FactSales` contains Customer IDs that do not exist in `DimCustomer`",
+        "Power BI automatically adds a Blank category to every chart for aesthetics",
+        "Your monitor resolution is too high",
+        "DAX measures always return Blank on Tuesdays"
+      ],
+      "correct_index": 0,
+      "explanation": "When a fact table contains foreign keys missing from the dimension table, Power BI's engine generates a virtual `(Blank)` row on the dimension to preserve fact totals.",
+      "distractor_analysis": "It is a classic data-hygiene / referential integrity issue, not cosmetic."
+    },
+    {
+      "anticipation_rank": 26,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 2,
+      "module_name": "Module 2: Designing Effective Dashboards",
+      "key_concept": "Progressive Disclosure",
+      "question": "How does 'Progressive Disclosure' improve dashboard adoption among busy executives?",
+      "options": [
+        "It shows high-level KPIs and major exceptions first, revealing granular breakdowns only when the user drills down, hovers tooltips, or clicks a detail tab",
+        "It hides all numbers until the user passes a SQL quiz",
+        "It puts 50 filters and 25 tables on the landing screen",
+        "It emails raw CSVs instead of charts"
+      ],
+      "correct_index": 0,
+      "explanation": "Progressive disclosure prevents cognitive overload by surfacing summary signals first and keeping details one click away.",
+      "distractor_analysis": "Putting 50 filters on screen is the exact opposite of progressive disclosure."
+    },
+    {
+      "anticipation_rank": 27,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 3,
+      "module_name": "Module 3: Building Visualisations with Power BI",
+      "key_concept": "Implicit vs Explicit Measures",
+      "question": "Why does Power BI best practice favor writing explicit DAX measures (e.g., `Total Sales = SUM(FactSales[Sales])`) rather than dragging raw numeric columns into visuals?",
+      "options": [
+        "Explicit measures are reusable across visuals, centralize business logic, work in Field Parameters, and prevent accidental wrong aggregations (like summing IDs or averaging averages)",
+        "Raw numeric columns cannot be summed in Power BI",
+        "Explicit measures compress the monitor pixels",
+        "Dragging raw columns deletes the Excel source file"
+      ],
+      "correct_index": 0,
+      "explanation": "Explicit DAX measures ensure single-source-of-truth logic, reuse inside compound ratios, and compatibility with Field Parameters and Analyze in Excel.",
+      "distractor_analysis": "Raw columns can be auto-summed (implicit), which is risky for ratios/IDs."
+    },
+    {
+      "anticipation_rank": 28,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 4,
+      "module_name": "Module 4: Building Interactive Reports & Dashboards",
+      "key_concept": "Multi-Year Slicer Sync & Visual Scope Separation",
+      "question": "On a 'Growth Drivers' page comparing 2017 vs. 2018 performance alongside a '2018-only Product Mix' bar chart, why should you lock or exclude the 2018-only chart from the multi-year Year slicer?",
+      "options": [
+        "So selecting 2017 in a multi-year slicer does not turn the 2018-labeled visual blank or silently display 2017 data under a '2018' title",
+        "Because Power BI forbids more than one chart per page",
+        "To double-count 2017 sales inside 2018",
+        "Because bar charts cannot show 2018 data"
+      ],
+      "correct_index": 0,
+      "explanation": "Separating fixed-scope visuals (locked filter + Edit Interactions = None) from dynamic slicer-driven visuals prevents misleading titles and blank-chart glitches.",
+      "distractor_analysis": "Misaligned chart titles vs. slicer state is a major QA/trust killer."
+    },
+    {
+      "anticipation_rank": 29,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 1,
+      "module_name": "Module 1: Understanding Business Data Visualisation",
+      "key_concept": "User Segmentation vs Stakeholder Mapping",
+      "question": "Why is mapping 'Dashboard Users' separately from 'Project Sponsors/Stakeholders' critical before designing wireframes?",
+      "options": [
+        "A VP Sponsor who signs off on the budget may never open the daily operational dashboard used by regional analysts—designing for the sponsor alone hurts daily usability",
+        "Sponsors are not allowed to see dashboard mockups",
+        "Users and sponsors always want identical granularity",
+        "Stakeholders only care about font selection"
+      ],
+      "correct_index": 0,
+      "explanation": "Sponsors fund and approve the project, whereas end-users act on it daily; confusing their needs produces shelfware.",
+      "distractor_analysis": "Sponsors and daily operators almost always need different granularity and cadence."
+    },
+    {
+      "anticipation_rank": 30,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 4,
+      "module_name": "Module 4: Building Interactive Reports & Dashboards",
+      "key_concept": "Top N Filtering in Tables",
+      "question": "In Power BI, you want a table to show ONLY the 'Top 5 Customers by Sales' dynamically as the user changes Region slicers. How do you configure this cleanly?",
+      "options": [
+        "Apply a Visual-Level Filter on `Customer Name` → Filter type: `Top N` → Show items: `Top 5` → By value: `[Total Sales]`",
+        "Manually uncheck 790 customers in the checkbox filter every morning",
+        "Sort the table descending and crop the screenshot",
+        "Delete all other customers in Power Query"
+      ],
+      "correct_index": 0,
+      "explanation": "Visual-level `Top N` filtering dynamically recomputes the top 5 entities within whatever Region/Year slicer context is active.",
+      "distractor_analysis": "Deleting in Power Query removes data needed by other visuals; manual checkboxes aren't dynamic."
+    },
+    {
+      "anticipation_rank": 31,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 2,
+      "module_name": "Module 2: Designing Effective Dashboards",
+      "key_concept": "Low-Fidelity Mockups Before Coding",
+      "question": "Why does the dashboard lifecycle insist on wireframing/mockups and stakeholder sign-off *before* building visuals in Power BI?",
+      "options": [
+        "Iterating layout, metric definitions, and user flow on paper/wireframes is 10x cheaper than rebuilding broken DAX and data models later",
+        "Power BI Desktop cannot move visuals after they are placed",
+        "Mockups automatically generate DAX code",
+        "Sign-off eliminates the need to audit data quality"
+      ],
+      "correct_index": 0,
+      "explanation": "Early wireframe sign-off locks scope, validates decisions, and prevents costly late-stage rework in data modeling.",
+      "distractor_analysis": "Data audits are still mandatory; mockups just prevent scope/layout rework."
+    },
+    {
+      "anticipation_rank": 32,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 4,
+      "module_name": "Module 4: Building Interactive Reports & Dashboards",
+      "key_concept": "Power BI Service Licensing & Sharing",
+      "question": "Why does publishing a report to 'My Workspace' and sharing a `.pbix` file via email fail as an enterprise governance practice compared to publishing a Semantic Model to a shared Workspace/App?",
+      "options": [
+        "Emailing `.pbix` files creates conflicting offline versions ('version sprawl'), whereas a shared Workspace/App maintains one governed Master Semantic Model",
+        "Power BI Desktop cannot save `.pbix` files locally",
+        "Shared Workspaces prohibit any user from viewing reports",
+        "Emailing `.pbix` automatically encrypts all Excel sheets with AI"
+      ],
+      "correct_index": 0,
+      "explanation": "Centralized Workspace publishing establishes one master semantic model and controlled access without duplicate stale `.pbix` copies.",
+      "distractor_analysis": "Emailing `.pbix` files causes version chaos and unmonitored data leaks."
+    },
+    {
+      "anticipation_rank": 33,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 1,
+      "module_name": "Module 1: Understanding Business Data Visualisation",
+      "key_concept": "Revised / Restated Data Handling",
+      "question": "When an ERP source system retroactively updates last month's sales returns (restated historical data), what should the dashboard's data audit and design account for?",
+      "options": [
+        "Automated incremental/full refresh schedules plus a clear 'Data Last Refreshed' timestamp so users know numbers reflect restatements",
+        "Hardcoding last month's numbers as static text so they never change",
+        "Turning off all refreshes permanently",
+        "Deleting the prior month's data entirely"
+      ],
+      "correct_index": 0,
+      "explanation": "Handling restated data requires aligned refresh windows and visible data-freshness timestamps to preserve user trust.",
+      "distractor_analysis": "Static hardcoding creates discrepancies against ERP reports."
+    },
+    {
+      "anticipation_rank": 34,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 2,
+      "module_name": "Module 2: Designing Effective Dashboards",
+      "key_concept": "Grid Alignment & Whitespace",
+      "question": "What visual purpose does consistent grid alignment and generous whitespace serve on a dense analytical dashboard?",
+      "options": [
+        "It reduces visual clutter, groups related metrics via Gestalt proximity, and guides the eye smoothly without decorative borders",
+        "It hides missing data",
+        "It increases GPU rendering latency",
+        "It forces users to scroll horizontally"
+      ],
+      "correct_index": 0,
+      "explanation": "Whitespace and grid alignment create clean visual grouping and lower cognitive friction.",
+      "distractor_analysis": "They improve clarity rather than hiding data."
+    },
+    {
+      "anticipation_rank": 35,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 3,
+      "module_name": "Module 3: Building Visualisations with Power BI",
+      "key_concept": "Unpivot Columns in Power Query",
+      "question": "You import a wide spreadsheet with 12 separate columns named `Jan_2025`, `Feb_2025`, ..., `Dec_2025`. Before building a clean time-series line chart in Power BI, which Power Query operation should you run?",
+      "options": [
+        "Unpivot Columns (converting wide month columns into two tall columns: `Month` and `Value`)",
+        "Pivot Columns to make it 24 columns wide",
+        "Merge all 12 columns into one text string",
+        "Delete 11 months"
+      ],
+      "correct_index": 0,
+      "explanation": "Unpivoting wide cross-tab spreadsheets into normalized `Attribute` (Month) and `Value` columns is essential for Star Schema time-series slicing.",
+      "distractor_analysis": "Pivoting makes it wider; merging destroys numeric aggregation."
+    },
+    {
+      "anticipation_rank": 36,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 1,
+      "module_name": "Module 1: Understanding Business Data Visualisation",
+      "key_concept": "Correlation vs Causation",
+      "question": "A dashboard shows ice-cream sales and drowning incidents rising together in summer. What mistake does a manager make if they conclude 'ice cream causes drownings'?",
+      "options": [
+        "Confusing correlation with causation by ignoring a confounding variable (summer temperature)",
+        "Using a horizontal bar chart instead of a pie chart",
+        "Failing to use Power Query",
+        "Truncating the X-axis"
+      ],
+      "correct_index": 0,
+      "explanation": "Co-movement on a chart can stem from a lurking third variable (seasonality/heat); visual correlation never proves causation alone.",
+      "distractor_analysis": "It is a statistical reasoning trap, not a chart-formatting error."
+    },
+    {
+      "anticipation_rank": 37,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 4,
+      "module_name": "Module 4: Building Interactive Reports & Dashboards",
+      "key_concept": "Button States (Default, Hover, Press)",
+      "question": "Why should report designers style distinct `Default`, `On Hover`, and `On Press` states on Power BI page navigation buttons?",
+      "options": [
+        "To provide immediate visual affordance and feedback so users recognize interactive navigation controls",
+        "Because Power BI crashes if Hover is not styled",
+        "To disable clicking on mobile phones",
+        "To automatically refresh the SQL database on hover"
+      ],
+      "correct_index": 0,
+      "explanation": "Clear hover/press feedback distinguishes clickable navigation buttons from static decorative shapes.",
+      "distractor_analysis": "It is a UX affordance best practice, not a crash prevention or database trigger."
+    },
+    {
+      "anticipation_rank": 38,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 3,
+      "module_name": "Module 3: Building Visualisations with Power BI",
+      "key_concept": "Dedicated Date Dimension Table",
+      "question": "Why is creating a dedicated `DimDate` (Calendar) table marked as a Date Table preferred over relying on Power BI's auto-generated date hierarchies on every fact column?",
+      "options": [
+        "A single `DimDate` allows slicing multiple fact tables consistently, supports fiscal calendars, and avoids bloated hidden auto-date tables",
+        "Power BI cannot plot dates without 10 separate calendar tables",
+        "Auto-date tables forbid showing years",
+        "`DimDate` deletes all weekend transactions"
+      ],
+      "correct_index": 0,
+      "explanation": "A centralized Date table keeps models lean, supports custom fiscal years, and enables time-intelligence DAX across fact tables.",
+      "distractor_analysis": "Auto-date works for quick demos but bloats memory and breaks multi-fact filtering."
+    },
+    {
+      "anticipation_rank": 39,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 2,
+      "module_name": "Module 2: Designing Effective Dashboards",
+      "key_concept": "Bottleneck Taxonomy",
+      "question": "In dashboard delivery, when a critical data source exists in a legacy PDF report rather than an API or database, what type of bottleneck is this?",
+      "options": [
+        "Data extraction / ingestion feasibility bottleneck",
+        "Visual color-contrast bottleneck",
+        "Executive presentation bottleneck",
+        "Browser zoom bottleneck"
+      ],
+      "correct_index": 0,
+      "explanation": "Unstructured or inaccessible source formats (PDFs, manual emails) create upstream extraction bottlenecks that should be scoped out of Phase 1 MVP.",
+      "distractor_analysis": "It is an upstream data-engineering bottleneck, not a UI styling issue."
+    },
+    {
+      "anticipation_rank": 40,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 5,
+      "module_name": "Module 5: Live Session",
+      "key_concept": "Pre-Publish Hygiene",
+      "question": "Before publishing a `.pbix` report to Power BI Service for leadership, which pre-publish hygiene check prevents broken user experiences?",
+      "options": [
+        "Resetting slicers to a clean default state, verifying page navigation, checking mobile/card alignment, and hiding technical ID/key columns",
+        "Leaving test filters active on a single obscure city",
+        "Exposing raw surrogate key IDs in every table",
+        "Deleting all measure descriptions"
+      ],
+      "correct_index": 0,
+      "explanation": "Publishing with clean default slicer states, hidden technical keys, and verified interactions ensures every viewer lands on a coherent overview.",
+      "distractor_analysis": "Leaving active test filters or exposing raw keys confuses end users."
+    }
+  ],
+  "msq_questions": [
+    {
+      "anticipation_rank": 1,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 3,
+      "module_name": "Module 3: Building Visualisations with Power BI",
+      "key_concept": "DAX Measures vs Calculated Columns",
+      "question": "Which statements accurately describe DAX Measures in Power BI? (Select all that apply — partial/negative marking applies)",
+      "options": [
+        "Measures are evaluated dynamically at query time based on the active filter context (slicers, rows, columns)",
+        "Measures do not consume row-level RAM storage in the data model for every single row",
+        "Measures should be used for ratios like Profit Margin % (`DIVIDE(SUM(Profit), SUM(Sales))`) instead of averaging row-level percentages",
+        "Measures are permanently frozen during Power Query refresh and cannot respond to slicers"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Measures compute dynamically under filter context, store almost no per-row RAM, and accurately aggregate ratios (`SUM/SUM`).",
+      "distractor_analysis": "Option D describes static refresh-time columns, not DAX measures."
+    },
+    {
+      "anticipation_rank": 2,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 1,
+      "module_name": "Module 1: Understanding Business Data Visualisation",
+      "key_concept": "Five Tools of Visual Hierarchy",
+      "question": "Which design levers belong to the core tools of Visual Hierarchy used to direct a reader's eye on a dashboard? (Select all that apply)",
+      "options": [
+        "Size & Scale (larger headline KPIs vs. smaller supporting details)",
+        "Position & Layout (top-left anchor for primary summaries)",
+        "Color Contrast & Accent Restraint (muting background context while highlighting exceptions)",
+        "Adding 3D bevels and spinning animations to every chart"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Size, position, contrast/color restraint, typography weight, and whitespace/grouping establish clear visual hierarchy.",
+      "distractor_analysis": "3D bevels and animations add chartjunk and destroy visual hierarchy."
+    },
+    {
+      "anticipation_rank": 3,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 3,
+      "module_name": "Module 3: Building Visualisations with Power BI",
+      "key_concept": "Star Schema Best Practices",
+      "question": "Which practices follow clean Star Schema data modeling in Power BI? (Select all that apply)",
+      "options": [
+        "Separating transactional numeric events into Fact tables and descriptive attributes into Dimension tables",
+        "Using One-to-Many (`1:*`) single-direction relationships flowing from Dimensions to Facts",
+        "Hiding technical foreign-key ID columns from Report View so users pick clean dimension attributes",
+        "Connecting every table to every other table with Many-to-Many bidirectional joins"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Star schemas separate Fact and Dimension tables with clean `1:*` single-direction filtering and hide surrogate/foreign keys from report builders.",
+      "distractor_analysis": "Many-to-many bidirectional spiderwebs introduce ambiguous filter paths and slow queries."
+    },
+    {
+      "anticipation_rank": 4,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 4,
+      "module_name": "Module 4: Building Interactive Reports & Dashboards",
+      "key_concept": "Overview QA & Consistency Checks",
+      "question": "During final QA of an interactive Power BI report before executive release, which checks should you perform? (Select all that apply)",
+      "options": [
+        "Verify Edit Interactions so fixed-scope/benchmark cards aren't accidentally altered by unrelated slicers",
+        "Check conditional-formatting threshold signs (`<` vs `<=`, percentage decimals) on loss-making rows",
+        "Confirm slicer presets are reset to the intended default view before saving and publishing",
+        "Remove all axis labels and titles so executives guess the units"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "QA audits interaction isolation, threshold sign accuracy, and clean default slicer states.",
+      "distractor_analysis": "Removing axis labels and titles causes ambiguity and misinterpretation."
+    },
+    {
+      "anticipation_rank": 5,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 2,
+      "module_name": "Module 2: Designing Effective Dashboards",
+      "key_concept": "Data Source Audit Criteria",
+      "question": "When auditing candidate data sources for a new business dashboard, which dimensions must be inspected before committing to a build timeline? (Select all that apply)",
+      "options": [
+        "Refresh cadence & latency (real-time vs. daily batch vs. monthly)",
+        "Data quality & entity standardization (e.g., duplicate city spellings, missing keys, nulls)",
+        "Access & extraction feasibility (API/database vs. manual CSV/PDF bottlenecks)",
+        "Whether the database server uses dark mode"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Data audits inspect latency/cadence, completeness/standardization quality, and technical extraction feasibility.",
+      "distractor_analysis": "Server dark mode is nonsensical."
+    },
+    {
+      "anticipation_rank": 6,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 1,
+      "module_name": "Module 1: Understanding Business Data Visualisation",
+      "key_concept": "Avoiding Misleading Visuals",
+      "question": "Which practices prevent misleading interpretations in business charts? (Select all that apply)",
+      "options": [
+        "Always starting Bar/Column chart axes at zero",
+        "Checking segment-level trends before celebrating an aggregate average (avoiding Simpson's Paradox)",
+        "Comparing rates/percentages (e.g., Return Rate %) rather than raw counts alone when store sizes differ vastly",
+        "Using dual Y-axes with wildly mismatched scales to make two unrelated lines look identical"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Zero baselines on bars, segment checks, and normalized rates prevent visual and statistical distortion.",
+      "distractor_analysis": "Manipulating dual axes to fake correlation is a classic misleading-chart tactic."
+    },
+    {
+      "anticipation_rank": 7,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 4,
+      "module_name": "Module 4: Building Interactive Reports & Dashboards",
+      "key_concept": "Power BI Reports vs Dashboards",
+      "question": "Which capabilities belong exclusively to Power BI **Reports** (rather than Power BI Service Dashboards)? (Select all that apply)",
+      "options": [
+        "Multiple navigable pages within one file",
+        "Direct authoring in Power BI Desktop with Field Parameters and page-level slicers",
+        "Drill-through to dedicated detail pages from a data point",
+        "Pinning individual tiles from five different semantic models onto one single canvas"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Reports support multiple pages, Desktop authoring, slicers, and drill-through on one semantic model.",
+      "distractor_analysis": "Combining tiles across multiple semantic models onto one canvas is a *Dashboard* feature in Power BI Service."
+    },
+    {
+      "anticipation_rank": 8,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 2,
+      "module_name": "Module 2: Designing Effective Dashboards",
+      "key_concept": "User Tiers & Tailoring",
+      "question": "How do Executive (Strategic) dashboards differ from Operational (Frontline) dashboards? (Select all that apply)",
+      "options": [
+        "Executive dashboards emphasize high-level KPIs, YoY/Target benchmarks, and monthly/weekly trends",
+        "Operational dashboards prioritize real-time or intraday alerts, exception queues, and granular transaction/zone detail",
+        "Executive dashboards use progressive disclosure so leaders aren't flooded with raw ticket logs",
+        "Operational dashboards must hide all current-day delays and show only 5-year averages"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Strategic views track periodic KPIs vs targets with progressive disclosure; operational views track live exceptions and granular queues.",
+      "distractor_analysis": "Operational teams need live/intraday exception visibility, not 5-year averages."
+    },
+    {
+      "anticipation_rank": 9,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 4,
+      "module_name": "Module 4: Building Interactive Reports & Dashboards",
+      "key_concept": "Diagnosing Growth & Profitability Drivers",
+      "question": "In the Superstore Profitability Diagnostics workflow, which visuals help diagnose *why* rising sales failed to lift net profit? (Select all that apply)",
+      "options": [
+        "A Discount % vs. Profit Ratio % Scatter Plot with average/target reference lines to spot discount-driven loss pockets",
+        "A Waterfall Chart decomposing profit gains and losses across product categories",
+        "A Combo Chart tracking Sales/Profit bars alongside Discount % or Profit Margin % lines over time",
+        "A single Pie Chart of Order IDs"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Scatter matrices with reference lines, category waterfalls, and dual-axis combo charts isolate where discounts erode margins.",
+      "distractor_analysis": "A pie chart of Order IDs is unreadable and uninformative."
+    },
+    {
+      "anticipation_rank": 10,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 3,
+      "module_name": "Module 3: Building Visualisations with Power BI",
+      "key_concept": "Power Query Essential Transformations",
+      "question": "Which data-cleaning operations should be performed inside Power Query Editor before loading tables into the model? (Select all that apply)",
+      "options": [
+        "Trimming whitespace and standardizing inconsistent text labels (e.g., 'Calcutta' → 'Kolkata')",
+        "Removing blank/subtotal/junk header rows and promoting the true header row",
+        "Enforcing correct column data types (Date, Whole Number, Fixed Decimal) and unpivoting wide month columns",
+        "Designing page navigation button hover colors"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Text standardization, row hygiene, data typing, and unpivoting are core Power Query ETL tasks.",
+      "distractor_analysis": "Button styling is a Report View UI task, not Power Query."
+    },
+    {
+      "anticipation_rank": 11,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 1,
+      "module_name": "Module 1: Understanding Business Data Visualisation",
+      "key_concept": "Chart Selection Rules",
+      "question": "Which pairings of analytical goal and chart type follow sound data visualisation guidance? (Select all that apply)",
+      "options": [
+        "Trend over continuous months → Line Chart",
+        "Ranking top 10 cities by revenue → Sorted Horizontal Bar Chart",
+        "Relationship between Marketing Spend and Revenue across 50 campaigns → Scatter Plot",
+        "Comparing 18 discrete product lines → 18-slice 3D Pie Chart"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Lines suit continuous time trends, horizontal bars suit category rankings, and scatter plots suit two-variable relationships.",
+      "distractor_analysis": "18-slice 3D pie charts distort angles and are illegible."
+    },
+    {
+      "anticipation_rank": 12,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 2,
+      "module_name": "Module 2: Designing Effective Dashboards",
+      "key_concept": "Requirements Gathering (Why/What/How/Where)",
+      "question": "Which questions must a dashboard designer answer during Requirements Gathering before opening Power BI? (Select all that apply)",
+      "options": [
+        "What concrete business decision or action will change because of this dashboard? (Why)",
+        "Which exact KPIs, definitions, targets, and filter dimensions are required? (What)",
+        "Who are the daily users, how often do they check it, and on what screen/device? (How/When/Where)",
+        "Which random stock photos should be used as the chart background?"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Clarifying decision purpose (Why), metric definitions (What), and user cadence/device (How/When/Where) prevents wasted builds.",
+      "distractor_analysis": "Background stock photos harm legibility."
+    },
+    {
+      "anticipation_rank": 13,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 4,
+      "module_name": "Module 4: Building Interactive Reports & Dashboards",
+      "key_concept": "Locking Visuals Against Drift",
+      "question": "On a multi-page report where Page 2 is strictly a '2018 Deep-Dive', how do you prevent a synced global Year slicer or accidental click from breaking the 2018 visuals? (Select all that apply)",
+      "options": [
+        "Apply a locked visual/page-level filter (`Year = 2018`) on the 2018-specific visuals",
+        "Configure 'Sync Slicers' carefully so global multi-year slicers do not override the 2018-only page",
+        "Use Edit Interactions to isolate fixed-scope cards from dynamic category filters where needed",
+        "Rename 2016 data to '2018' in Excel"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Locked filters, Sync Slicers control, and Edit Interactions keep fixed-scope visuals accurate.",
+      "distractor_analysis": "Falsifying year labels corrupts data integrity."
+    },
+    {
+      "anticipation_rank": 14,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 3,
+      "module_name": "Module 3: Building Visualisations with Power BI",
+      "key_concept": "Power BI Desktop Workspace Panes",
+      "question": "Which are the three primary views in Power BI Desktop's left navigation rail (excluding Query Editor)? (Select all that apply)",
+      "options": [
+        "Report View (canvas for building charts, slicers, and pages)",
+        "Table / Data View (inspecting loaded tables, columns, and formatted values)",
+        "Model View (managing Star Schema relationships and cardinalities)",
+        "Photoshop Layer View"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Power BI Desktop centers on Report View, Table/Data View, and Model View.",
+      "distractor_analysis": "Photoshop Layer View does not exist in Power BI."
+    },
+    {
+      "anticipation_rank": 15,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 4,
+      "module_name": "Module 4: Building Interactive Reports & Dashboards",
+      "key_concept": "Publishing & Master Copy Discipline",
+      "question": "Which practices reflect clean Power BI Service publishing and governance? (Select all that apply)",
+      "options": [
+        "Maintaining one Master `.pbix` / Semantic Model in a shared Workspace rather than emailing copies",
+        "Separating the Semantic Model from thin live-connected reports when multiple teams build views",
+        "Setting scheduled refresh and verifying gateway credentials after publishing",
+        "Publishing unreviewed draft pages with broken `Blank` errors directly to the CEO"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Master semantic model governance, thin reports, and scheduled refresh prevent metric drift and stale data.",
+      "distractor_analysis": "Publishing broken drafts destroys stakeholder trust."
+    },
+    {
+      "anticipation_rank": 16,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 1,
+      "module_name": "Module 1: Understanding Business Data Visualisation",
+      "key_concept": "Contextual Storytelling",
+      "question": "What transforms a static chart into an effective business data story? (Select all that apply)",
+      "options": [
+        "An action/takeaway title that states the key finding instead of a generic label like 'Sales Chart'",
+        "Reference lines, annotations, or muted colors that highlight the critical inflection point",
+        "Pairing the observation with its causal driver (Insight) and a clear next step (Recommendation)",
+        "Using 14 different font families on one slide"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Takeaway titles, visual focal annotations, and the Observation → Insight → Recommendation arc turn raw charts into decisions.",
+      "distractor_analysis": "14 fonts create visual chaos."
+    },
+    {
+      "anticipation_rank": 17,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 2,
+      "module_name": "Module 2: Designing Effective Dashboards",
+      "key_concept": "KPI Card Design Best Practices",
+      "question": "Which elements make an executive KPI card immediately scannable? (Select all that apply)",
+      "options": [
+        "Clear primary number with consistent unit scaling (e.g., `₹4.2 Cr`, not `42,184,912.43`)",
+        "Explicit benchmark comparison (vs. Target or vs. Prior Period)",
+        "Color-coded directional delta (`+8.4%` vs Target) paired with a directional arrow/label so color isn't the only cue",
+        "12 decimal places of precision on revenue"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Clean unit rounding, explicit benchmarks, and accessible directional deltas make KPI cards readable in 2 seconds.",
+      "distractor_analysis": "Excessive precision adds noise without aiding decisions."
+    },
+    {
+      "anticipation_rank": 18,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 5,
+      "module_name": "Module 5: Live Session",
+      "key_concept": "Debugging Blank Rows & Join Keys",
+      "question": "If a Power BI visual displays unexpected `(Blank)` values, which root causes should you check first? (Select all that apply)",
+      "options": [
+        "Unmatched foreign keys in the Fact table missing from the Dimension table",
+        "Trailing blank/summary rows at the bottom of an imported Excel sheet that weren't filtered out in Power Query",
+        "Actual `NULL` / empty cells in the source dimension column",
+        "Whether the user's laptop battery is below 50%"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Referential integrity gaps, uncleaned trailing Excel rows, and raw NULLs are the three main causes of `(Blank)` categories.",
+      "distractor_analysis": "Battery level has zero effect on data models."
+    },
+    {
+      "anticipation_rank": 19,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 3,
+      "module_name": "Module 3: Building Visualisations with Power BI",
+      "key_concept": "Calculated Columns Use Cases",
+      "question": "When IS a Calculated Column (rather than a DAX Measure) the right choice in Power BI? (Select all that apply)",
+      "options": [
+        "When you need a static row-level bucket/tier (e.g., `Order Size = Small / Medium / Large`) to place on a slicer or chart axis",
+        "When you need a static categorical flag evaluated row-by-row for filtering",
+        "When you want to dynamically recalculate a weighted ratio across changing slicer selections",
+        "When you want to avoid storing any row-level data in memory"
+      ],
+      "correct_indices": [
+        0,
+        1
+      ],
+      "explanation": "Calculated columns are ideal when you need a static row-level category to slice, group, or place on an axis.",
+      "distractor_analysis": "Dynamic ratios and zero-row-storage belong to DAX Measures."
+    },
+    {
+      "anticipation_rank": 20,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 4,
+      "module_name": "Module 4: Building Interactive Reports & Dashboards",
+      "key_concept": "Page Navigator & UX",
+      "question": "Which design choices improve multi-page report navigation in Power BI? (Select all that apply)",
+      "options": [
+        "Using a consistent top or left navigation bar across every report page",
+        "Highlighting the active page button state so users always know where they are",
+        "Using descriptive page names (`Executive Overview`, `Profitability Drivers`) instead of `Page 1`, `Page 2`",
+        "Hiding all navigation buttons so users only use keyboard shortcuts"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Consistent placement, active state styling, and clear labels make multi-page apps intuitive.",
+      "distractor_analysis": "Hiding navigation traps users."
+    },
+    {
+      "anticipation_rank": 21,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 1,
+      "module_name": "Module 1: Understanding Business Data Visualisation",
+      "key_concept": "Color Accessibility",
+      "question": "Why should dashboards avoid relying *solely* on red vs. green color to convey Good vs. Bad performance? (Select all that apply)",
+      "options": [
+        "Roughly 8% of men have red-green color vision deficiency (deuteranopia/protanopia)",
+        "Reports printed in grayscale or viewed on poor projectors lose red-green distinction",
+        "Pairing color with directional arrows (`▲` / `▼`), signs (`+` / `-`), or labels ensures universal readability",
+        "Because red and green cannot be rendered in Power BI"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Color-blind accessibility and grayscale printing require redundant encoding (icons, signs, or labels alongside color).",
+      "distractor_analysis": "Power BI renders red/green fine—the issue is human accessibility."
+    },
+    {
+      "anticipation_rank": 22,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 2,
+      "module_name": "Module 2: Designing Effective Dashboards",
+      "key_concept": "Phase-Wise Rollout & Sign-Off",
+      "question": "What benefits come from formal stakeholder sign-off at the end of Requirements & Mockup phases? (Select all that apply)",
+      "options": [
+        "Prevents mid-build scope creep and endless cosmetic revisions",
+        "Locks agreed KPI formulas so numbers aren't disputed after launch",
+        "Creates shared accountability for Phase 1 vs. Phase 2 boundaries",
+        "Guarantees source ERP systems will never have bugs"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Sign-off aligns expectations on KPI definitions, layout, and phased scope.",
+      "distractor_analysis": "Sign-off manages scope and alignment; it doesn't fix upstream ERP bugs automatically."
+    },
+    {
+      "anticipation_rank": 23,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 4,
+      "module_name": "Module 4: Building Interactive Reports & Dashboards",
+      "key_concept": "Tables & Matrices Best Practices",
+      "question": "When using a Table or Matrix visual in Power BI, which formatting practices improve readability? (Select all that apply)",
+      "options": [
+        "Right-aligning numeric columns and left-aligning text columns",
+        "Using consistent decimal places and currency symbols",
+        "Using Top/Bottom N filters or subtle data bars/heat cues to draw attention to extremes",
+        "Center-aligning 8-digit currency numbers with varying decimals"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Right-aligned numbers with consistent decimals let eyes scan place values vertically.",
+      "distractor_analysis": "Center-aligned ragged decimals make numeric comparison hard."
+    },
+    {
+      "anticipation_rank": 24,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 3,
+      "module_name": "Module 3: Building Visualisations with Power BI",
+      "key_concept": "Cardinality & Model Performance",
+      "question": "Which habits keep a Power BI semantic model fast and clean? (Select all that apply)",
+      "options": [
+        "Removing unused columns in Power Query before loading",
+        "Disabling 'Auto Date/Time' when using a dedicated `DimDate` table",
+        "Using integer/clean keys and avoiding high-cardinality unused timestamps",
+        "Importing 50 unused audit-log text columns into FactSales"
+      ],
+      "correct_indices": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "VertiPaq compression thrives on narrow tables with only required columns and low-cardinality keys.",
+      "distractor_analysis": "Importing unused high-cardinality text columns bloats model size."
+    }
+  ]
+}

@@ -1,0 +1,4606 @@
+{
+  "course": "Corporate Finance",
+  "slug": "corporate_finance",
+  "edx_id": "course-v1:IIMBx+FA71x+BBA_DBE_B1",
+  "total_questions": 105,
+  "total_images": 0,
+  "assessments": [
+    {
+      "module": "Module 1",
+      "assessment": "CLA 1",
+      "seq_id": "block-v1:IIMBx+FA71x+BBA_DBE_B1+type@sequential+block@7c65e258636f46f0ade4a75a5d5ea42f",
+      "status": "extracted",
+      "question_count": 15,
+      "image_count": 0,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Investors are generally risk-neutral, and therefore, they do not care about risk.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Investors are generally risk-averse, and therefore, they choose a safe rupee over a risky rupee at any given point in time.",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Investors are generally risk-loving, and therefore, they choose a risky rupee over a safe rupee at any given point in time.",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Investors prefer a safe rupee next year over a safe rupee today.",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following statements best reflects a fundamental principle of finance?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following statements best reflects a fundamental principle of finance?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "I and II",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "II and III",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "I, II, and III",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "I and III",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following statements are correct?\nI. ₹1 received today is worth more than ₹1 received tomorrow.\nII. A real asset cannot be an intangible asset. \nIII. A project is expected to add value when the expected return is greater than its opportunity cost of capital.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following statements are correct?</p>\n<p>I. ₹1 received today is worth more than ₹1 received tomorrow.</p>\n<p>II. A real asset cannot be an intangible asset. </p>\n<p>III. A project is expected to add value when the expected return is greater than its opportunity cost of capital.</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Deciding whether to issue equity or debt",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Deciding whether to acquire a new manufacturing plant",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Deciding the dividend payout ratio",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Deciding the amount of employee cost",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following is a corporate investment decision?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following is a corporate investment decision?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Investment B",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Investment A",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Both equally",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Neither investment",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "An investor has to choose between two mutually exclusive value-adding investments, A and B. Both of them require the same initial outlay, have the same economic life, and will give the same expected return. However, Investment A has substantially lower risk than Investment B. A rational risk-averse investor would generally prefer",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>An investor has to choose between two mutually exclusive value-adding investments, A and B. Both of them require the same initial outlay, have the same economic life, and will give the same expected return. However, Investment A has substantially lower risk than Investment B. A rational risk-averse investor would generally prefer</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "The liability of the sole proprietor is not limited to the value of the firm’s assets",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "The shareholders of a public company generally have limited liability",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "The sole member of the One Person Company (OPC) generally has limited liability",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Partners in a limited liability partnership firm generally have unlimited liability",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following statements is not correct?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following statements is not correct?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Managers selecting projects that are expected to increase shareholder wealth",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Shareholders receiving dividends in accordance with the company’s dividend policy",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Managers using company resources to provide themselves with personal benefits",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "A company consistently repaying its bank loans on time, including interest payments",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following demonstrates an agency problem between shareholders and managers?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following demonstrates an agency problem between shareholders and managers?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Project X should not be accepted because the funds would be locked in once invested in the project.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Project X should be accepted because its expected return exceeds its opportunity cost of capital.",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Project X should be rejected because the company should always keep surplus cash in liquid investments.",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "The 9% return available from the alternative investment is irrelevant for decision-making.",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Company A has ₹20 lakh of surplus cash. It can either invest in Project X or earn 9% by investing in a comparable-risk financial asset. Project X is expected to earn 14%. What is the most appropriate conclusion?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Company A has ₹20 lakh of surplus cash. It can either invest in Project X or earn 9% by investing in a comparable-risk financial asset. Project X is expected to earn 14%. What is the most appropriate conclusion?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Financing decision",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Investing decision",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Operating decision",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Dividend decision",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A company can finance a new project either by issuing equity or raising debt. The choice between these two alternatives is primarily a",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A company can finance a new project either by issuing equity or raising debt. The choice between these two alternatives is primarily a</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Increase the company’s accounting profit in the current year, regardless of risk",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Increase shareholder wealth by generating returns that exceed the opportunity cost of capital",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Increase the company’s sales revenue, regardless of the investment required",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Reduce the company’s dividend payout in the short term",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A company is considering purchasing a machine costing ₹50 lakh. The machine is expected to generate additional cash flows over the next five years. The company should undertake the investment if the project is expected to",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A company is considering purchasing a machine costing ₹50 lakh. The machine is expected to generate additional cash flows over the next five years. The company should undertake the investment if the project is expected to</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 9,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "1-C, 2-A, 3-B, 4-D",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "1-A, 2-C, 3-D, 4-B",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "1-B, 2-A, 3-C, 4-D",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "1-C, 2-A, 3-A, 4-D",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Match the terms listed in Column I with their respective features mentioned in Column II\nColumn I\t                      \n1. Wealth\t                  \n2. Profit\t                  \n3. Opportunity cost\t           \n4. Risk–return trade-off\t   \nColumn II\nA. Measured over a period of time\nB. Return available in the financial market at the same level of risk\nC. Measured at a particular point in time\nD. Higher expected return generally required for higher risk",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Match the terms listed in Column I with their respective features mentioned in Column II</p>\n<p>Column I\t                      </p>\n<p>1. Wealth\t                  </p>\n<p>2. Profit\t                  </p>\n<p>3. Opportunity cost\t           </p>\n<p>4. Risk–return trade-off\t   </p>\n<p>Column II</p>\n<p>A. Measured over a period of time</p>\n<p>B. Return available in the financial market at the same level of risk</p>\n<p>C. Measured at a particular point in time</p>\n<p>D. Higher expected return generally required for higher risk</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Maximise dividend payouts",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Maximise the borrowings",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Maximise the shareholder wealth",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Invest in any project",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "The primary financial objective of a corporation is to",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>The primary financial objective of a corporation is to</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 11",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 11,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "50",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "100",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "200",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Unlimited",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "What is the maximum number of shareholders a private limited company can have in India?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>What is the maximum number of shareholders a private limited company can have in India? </p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 12",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 12,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "The company is a separate legal entity",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "The shareholders of the company have limited liability",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "The company will cease to exist if its founding member passes away",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Companies are regulated under the Companies Act, 2013",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following is generally not a characteristic of a company form of business?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following is generally not a characteristic of a company form of business?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 13",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 13,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "The company can have a maximum of 1000 shareholders",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "The company’s name should end with the suffix ‘Pvt. Ltd.’",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "The company must have a minimum of 3 directors",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "The shares of the company cannot be transferred freely",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following applies to a public limited company?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following applies to a public limited company?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 14",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 14,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "All investors have identical objectives",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Managers and owners may have conflicting interests",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Companies always have to rely on external financing",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Shareholders directly manage every business decision",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Agency costs arise primarily because",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Agency costs arise primarily because</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 15",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 15,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Module 2",
+      "assessment": "CLA 2",
+      "seq_id": "block-v1:IIMBx+FA71x+BBA_DBE_B1+type@sequential+block@1bbf3d707b9c424db5976d7ae3c368b0",
+      "status": "unavailable",
+      "reason": "Unavailable (due date has passed)",
+      "questions": []
+    },
+    {
+      "module": "Module 3",
+      "assessment": "CLA 3",
+      "seq_id": "block-v1:IIMBx+FA71x+BBA_DBE_B1+type@sequential+block@cb49356bf91b44c2b00504e2de4c895f",
+      "status": "extracted",
+      "question_count": 15,
+      "image_count": 0,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "₹852.80",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "₹915.95",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "₹1084.25",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "₹1400",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "An investor purchased a five-year U.S. government bond. The bond has an coupon rate of 8%, and coupons will be paid semiannually. The face value of the bond is $1000. If the investors demand a return of 12% per year compounded semi-annually, what is the price of the bond?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>An investor purchased a five-year U.S. government bond. The bond has an coupon rate of 8%, and coupons will be paid semiannually. The face value of the bond is $1000. If the investors demand a return of 12% per year compounded semi-annually, what is the price of the bond?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "A premium",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "A discount",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Par value",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Face value",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "If a bond's coupon rate is lower than its yield to maturity (YTM), the bond will trade at",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>If a bond's coupon rate is lower than its yield to maturity (YTM), the bond will trade at</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Yield to maturity reflects the rate of return investors realise on the investment.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "The holding period return (or the rate of return) measures the future expected return on a bond investment.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Yield to maturity measures the historical return on the bond for the last two years.",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Yield to maturity is the return that investors expect from buying a bond today and holding it till maturity.",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following statements is most likely correct?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following statements is most likely correct?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "(a) Decrease, (b) Decrease",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "(a) Increase, (b) Increase",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "(a) Decrease, (b) Increase",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "(a) Increase, (b) Decrease",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A 10-year bond is issued with a face value of ₹1,000, paying interest (i.e., coupons) of ₹50 per year. If interest rates increase shortly after the bond is issued, the yield to maturity will (a)__________ and price will (b) _________",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A 10-year bond is issued with a face value of ₹1,000, paying interest (i.e., coupons) of ₹50 per year. If interest rates increase shortly after the bond is issued, the yield to maturity will (a)__________ and price will (b) _________</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "₹985.64",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "₹1,036.16",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "₹982.64",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "₹1,090.00",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A 4-year bond was originally issued with a 9% annual coupon rate and a face value of ₹1,000. At the end of Year 2, with 2 years remaining until maturity, the yield to maturity on the bond falls to 7% per year compounded annually. What is the approximate price of the bond at the end of Year 2?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A 4-year bond was originally issued with a 9% annual coupon rate and a face value of ₹1,000. At the end of Year 2, with 2 years remaining until maturity, the yield to maturity on the bond falls to 7% per year compounded annually. What is the approximate price of the bond at the end of Year 2?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "6.50%",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "7.00%",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "7.50%",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "8.00%",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A bond has a face value of ₹1,000 and pays ₹75 in annual interest. What is the bond's coupon rate?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A bond has a face value of ₹1,000 and pays ₹75 in annual interest. What is the bond's coupon rate?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Long-term bonds generally have greater interest-rate risk than comparable short-term bonds.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Less liquid bonds generally require higher yields to compensate for the liquidity risk.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Corporate bonds may offer higher yields than comparable government bonds because of greater default risk of corporate bonds",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Liquidity risk refers to the possibility that the issuer will fail to repay the coupons and face value.",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following statements is most likely not correct?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following statements is most likely not correct?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "If the yield to maturity (YTM) on a bond increases over a period, the rate of return over the period will be lower than the initial YTM.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "If the yield to maturity (YTM) on a bond decreases over a period, the rate of return over the period will be higher than the initial YTM.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "If the yield to maturity (YTM) on a bond decreases over a period, the rate of return over the period will be lower than the initial YTM.",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "If the yield to maturity (YTM) on a bond remains the same over a period, the rate of return over the period will be the same as the initial YTM.",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following statements is most likely not correct?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following statements is most likely not correct? </p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "1-A, 2-C, 3-D, 4-B",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "1-D, 2-B, 3-A, 4-C",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "1-D, 2-A, 3-B, 4-C",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "1-B, 2-D, 3-C, 4-A",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Match the bonds mentioned in column I with their suitable features listed in column II\nColumn I\t        \n1. Coupon bond\t    \n2. Zero-coupon bond\t\n3. Perpetual bond\t\n4. Treasury bonds\t\nColumn II\nA. No periodic coupon payment\nB. No maturity date\nC. Generally long-term bonds\nD. Periodic coupon payment",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Match the bonds mentioned in column I with their suitable features listed in column II</p>\n<p>Column I\t        </p>\n<p>1. Coupon bond\t    </p>\n<p>2. Zero-coupon bond\t</p>\n<p>3. Perpetual bond\t</p>\n<p>4. Treasury bonds\t</p>\n<p>Column II</p>\n<p>A. No periodic coupon payment</p>\n<p>B. No maturity date</p>\n<p>C. Generally long-term bonds</p>\n<p>D. Periodic coupon payment </p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 9,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "12.00%",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "13.27%",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "14.08%",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "10.10%",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Meera purchases a bond for ₹980 today. The bond pays an annual interest (i.e. coupon) of ₹90 one year from today. At the end of one year (after receiving the coupon), she sells the bond for ₹1,020. What is the rate of return on the bond for the one-year period?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Meera purchases a bond for ₹980 today. The bond pays an annual interest (i.e. coupon) of ₹90 one year from today. At the end of one year (after receiving the coupon), she sells the bond for ₹1,020. What is the rate of return on the bond for the one-year period?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "₹4,000",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "₹4,240",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "₹4,840",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "₹6,000",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "An investor purchases an inflation-indexed bond with a face value of ₹1,00,000. The bond pays a fixed real coupon rate of 4% per year. During the year, inflation turns out to be 6%. How much coupon payment will the investor receive (in nominal terms) at the end of the year?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>An investor purchases an inflation-indexed bond with a face value of ₹1,00,000. The bond pays a fixed real coupon rate of 4% per year. During the year, inflation turns out to be 6%. How much coupon payment will the investor receive (in nominal terms) at the end of the year?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 11",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 11,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "₹60",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "₹100",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "₹75",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "₹150",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Ravi is evaluating a company's stock. The company is expected to pay a dividend of ₹6 per share one year from today. If dividends are expected to grow at 4% per year and the required return (i.e., the cost of equity) is 10%, what should be the present value of the stock?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Ravi is evaluating a company's stock. The company is expected to pay a dividend of ₹6 per share one year from today. If dividends are expected to grow at 4% per year and the required return (i.e., the cost of equity) is 10%, what should be the present value of the stock?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 12",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 12,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "₹70",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "₹114",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "₹107",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "₹50",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A stock is expected to pay a dividend of ₹7 every year forever. If the cost of equity is 14%, what should be the present value of the stock?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A stock is expected to pay a dividend of ₹7 every year forever. If the cost of equity is 14%, what should be the present value of the stock? </p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 13",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 13,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "₹1,000",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "₹1,039.90",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "₹1,104.65",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "₹1,064.76",
+              "was_selected": false
+            }
+          ],
+          "progress": "0.0/1.0 point (graded)",
+          "score": "0.0",
+          "solution": "",
+          "status_text": "incorrect",
+          "stem": "A 15-year corporate bond has a face value of ₹1,000 and a coupon rate of 6%. The coupons will be paid semi-annually. If the bond's yield to maturity is 5%per year compounded semi-annually, what is the approximate price of the bond?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A 15-year corporate bond has a face value of ₹1,000 and a coupon rate of 6%. The coupons will be paid semi-annually. If the bond's yield to maturity is 5%per year compounded semi-annually, what is the approximate price of the bond?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 14",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 14,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Inflation risk",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Interest rate risk",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Liquidity risk",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Default risk",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "The sensitivity of bond prices to changes in interest rates is called _____________.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>The sensitivity of bond prices to changes in interest rates is called _____________.</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 15",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 15,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Module 4",
+      "assessment": "CLA 4",
+      "seq_id": "block-v1:IIMBx+FA71x+BBA_DBE_B1+type@sequential+block@a98656c677ce468f875fbaff9c5e3638",
+      "status": "extracted",
+      "question_count": 15,
+      "image_count": 0,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "NPV recognises the time value of money and discounts the future cash flows appropriately",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "NPV provides a clear benchmark for project acceptance",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "NPV of a project is affected by the company’s choice of accounting method",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "A positive NPV project increases the shareholder value",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following statements about the net present value (NPV) is not correct?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following statements about the net present value (NPV) is not correct?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "It considers the time value of money.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "It uses discounted cash flows to determine the recovery period.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "It considers all cash flows throughout the entire project life.",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "It suffers from the drawback of an arbitrary benchmark for project acceptance",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following statements about Discounted Payback Period is incorrect?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following statements about Discounted Payback Period is incorrect?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Multiple IRRs can arise when a project's cash flows change sign more than once.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Non-conventional cash flows can create multiple IRRs.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Multiple IRRs can make the traditional IRR decision rule difficult to apply.",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Multiple IRRs occur only when a project has a negative NPV.",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following statements about multiple IRRs is incorrect?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following statements about multiple IRRs is incorrect?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "2 years",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "4 years",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "3 years",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "5 years",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "What is the Payback Period?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>What is the Payback Period?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "₹15,000.34",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "₹21,187.08",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "₹10,876.35",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "₹2,00,000",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "If the opportunity cost of capital for the project is 10%, what is the approximate NPV?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>If the opportunity cost of capital for the project is 10%, what is the approximate NPV?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "+₹1,20,000",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "+₹20,000",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "−₹1,20,000",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "−₹20,000",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Assume that net working capital is fully recovered at the end of Year 4. What is the cash flow due to a change in net working capital required at the end of year 1?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Assume that net working capital is fully recovered at the end of Year 4. What is the cash flow due to a change in net working capital required at the end of year 1?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "I and II",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "II and III",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "III and IV",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "I and IV",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following project activities results in an incremental cash inflow?\nI. Increase in inventory in the current year as compared to last year (keeping other components of working capital fixed)\nII. Decrease in inventory in the current year as compared to last year (keeping other components of working capital fixed)\nIII. Increase in accounts payables in the current year as compared to last year (keeping other components of working capital fixed)\nIV. Increase in accounts receivables in the current year as compared to last year (keeping other components of working capital fixed)",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following project activities results in an incremental cash inflow?</p>\n<p>I. Increase in inventory in the current year as compared to last year (keeping other components of working capital fixed)</p>\n<p>II. Decrease in inventory in the current year as compared to last year (keeping other components of working capital fixed)</p>\n<p>III. Increase in accounts payables in the current year as compared to last year (keeping other components of working capital fixed)</p>\n<p>IV. Increase in accounts receivables in the current year as compared to last year (keeping other components of working capital fixed)</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "The rental income of ₹4,00,000 per year over the life of the project should be treated as a project-related incremental cash outflow as it is an opportunity cost of using the building in the project.",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Since the company owns the building, you should not include the use of the building as a project-related incremental cash flow.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "The current market price of the building, which is ₹50,00,000, should be treated as a project-related incremental cash outflow as it is an opportunity cost of using the building in the project.",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "The money spent on purchasing the building is a sunk cost, and it should therefore be ignored.",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A company owns a building that could potentially be rented to another company for ₹4,00,000 per year. Since the company plans to use it for a new project expected to last for 5 years, the building will not be rented during the life of the project. The current market price of the building is ₹50,00,000. How should the use of the building in the project be treated while forecasting project-related incremental cash flows?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A company owns a building that could potentially be rented to another company for ₹4,00,000 per year. Since the company plans to use it for a new project expected to last for 5 years, the building will not be rented during the life of the project. The current market price of the building is ₹50,00,000. How should the use of the building in the project be treated while forecasting project-related incremental cash flows?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "₹2,34,1000",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "₹3,34,000",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "₹4,34,000",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "₹1,34,000",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A company is considering purchasing a machine for ₹10,00,000 today. The machine has an expected useful life of 5 years and a salvage value of ₹1,00,000 at the end of Year 5. The machine will be depreciated using the straight-line method.\nThe project is expected to generate annual year-end revenue of ₹6,00,000 and year-end annual cash expenses of ₹2,00,000 for each of the five years. The corporate tax rate is 30%. The machine will be sold for ₹1,00,000 at the end of Year 5, and its book value at that time will be ₹1,00,000. The opportunity cost of capital for the project is 10%.\nWhat is the project-related net cash flow at the end of Year 1? Assume that the firm doesn’t maintain any inventory. Further, all sales and purchases are made in cash.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A company is considering purchasing a machine for ₹10,00,000 today. The machine has an expected useful life of 5 years and a salvage value of ₹1,00,000 at the end of Year 5. The machine will be depreciated using the straight-line method.</p>\n<p>The project is expected to generate annual year-end revenue of ₹6,00,000 and year-end annual cash expenses of ₹2,00,000 for each of the five years. The corporate tax rate is 30%. The machine will be sold for ₹1,00,000 at the end of Year 5, and its book value at that time will be ₹1,00,000. The opportunity cost of capital for the project is 10%.</p>\n<p>What is the project-related net cash flow at the end of Year 1? Assume that the firm doesn’t maintain any inventory. Further, all sales and purchases are made in cash.</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 9,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "₹3,28,214.91",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "₹2,17,000.67",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "₹2,64,514.91",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "₹1,58,345.67",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A company is considering purchasing a machine for ₹10,00,000 today. The machine has an expected useful life of 5 years and a salvage value of ₹1,00,000 at the end of Year 5. The machine will be depreciated using the straight-line method.\nThe project is expected to generate annual year-end revenue of ₹6,00,000 and annual year-end cash expenses of ₹2,00,000 for each of the five years. The corporate tax rate is 30%. The machine will be sold for ₹1,00,000 at the end of Year 5, and its book value at that time will be ₹1,00,000. The opportunity cost of capital for the project is 10%.\nWhat is the NPV of the project? Assume that the firm doesn’t maintain any inventory. Further, all sales and purchases are made in cash.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A company is considering purchasing a machine for ₹10,00,000 today. The machine has an expected useful life of 5 years and a salvage value of ₹1,00,000 at the end of Year 5. The machine will be depreciated using the straight-line method.</p>\n<p>The project is expected to generate annual year-end revenue of ₹6,00,000 and annual year-end cash expenses of ₹2,00,000 for each of the five years. The corporate tax rate is 30%. The machine will be sold for ₹1,00,000 at the end of Year 5, and its book value at that time will be ₹1,00,000. The opportunity cost of capital for the project is 10%.</p>\n<p>What is the NPV of the project? Assume that the firm doesn’t maintain any inventory. Further, all sales and purchases are made in cash.</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "A project with a shorter Payback Period will always yield a higher NPV as it recovers the initial investment faster.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "A project with a longer Payback Period cannot have a higher NPV than a project with a shorter Payback Period.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "A project may have a short Payback Period, but its NPV can still be negative",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Projects having the same Payback Period must have the same NPV",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following statements best describes the relationship between the Payback Period and Net Present Value (NPV)?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following statements best describes the relationship between the Payback Period and Net Present Value (NPV)?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 11",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 11,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Payback Period",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Discounted Payback Period",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Internal Rate of Return",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Net Present Value (NPV)",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following capital budgeting methods does not take into account the time value of money?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following capital budgeting methods does not take into account the time value of money?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 12",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 12,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Project X has a shorter Payback Period and a higher NPV.",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Project Y has a shorter Payback Period and a higher NPV.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Project X has a shorter Payback Period, but Project Y has a higher NPV.\ncorrect",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Both projects must have the same NPV because the initial investments are equal.",
+              "was_selected": false
+            }
+          ],
+          "progress": "0.0/1.0 point (graded)",
+          "score": "0.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Project X requires ₹10 lakh and produces cash inflows of ₹6 lakh in Year 1 and ₹6 lakh in Year 2. Project Y requires ₹10 lakh and produces cash inflows of ₹1 lakh in Year 1, ₹1 lakh in Year 2, and ₹15 lakh in Year 3. If both projects have an opportunity cost of capital as 10%, which statement is most likely to be true?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Project X requires ₹10 lakh and produces cash inflows of ₹6 lakh in Year 1 and ₹6 lakh in Year 2. Project Y requires ₹10 lakh and produces cash inflows of ₹1 lakh in Year 1, ₹1 lakh in Year 2, and ₹15 lakh in Year 3. If both projects have an opportunity cost of capital as 10%, which statement is most likely to be true?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 13",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 13,
+          "images": [],
+          "correct_indices": [
+            0,
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Project A because its IRR is higher",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Project B because its NPV is higher",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Project A because IRR is always superior to NPV",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Either project because the NPV difference is irrelevant",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Project A has an IRR of 22% and an NPV of ₹10 lakh. Project B has an IRR of 18% and an NPV of ₹16 lakh. If the projects are mutually exclusive, which project should generally be preferred?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Project A has an IRR of 22% and an NPV of ₹10 lakh. Project B has an IRR of 18% and an NPV of ₹16 lakh. If the projects are mutually exclusive, which project should generally be preferred?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 14",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 14,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Project A",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Project B",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Both projects can be accepted as they have positive IRR",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Neither Project A nor Project B",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which project would you choose? Use the IRR rule on incremental cash flows to make the choice.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which project would you choose? Use the IRR rule on incremental cash flows to make the choice. </p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 15",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 15,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Module 5",
+      "assessment": "CLA 5",
+      "seq_id": "block-v1:IIMBx+FA71x+BBA_DBE_B1+type@sequential+block@3f6909fe4d2c4966bc859077f38c37f7",
+      "status": "extracted",
+      "question_count": 15,
+      "image_count": 0,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "8.0%",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "8.8%",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "11.2%",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "10.2%",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "What is the expected return of the stock?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>What is the expected return of the stock?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "a: 12%, b: 20.5, c: 4.64%",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "a: 12%, b: 21.5, c: 4.64%",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "a: 12%, b: 21.5, c: 5.64%",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "a: 12.5%, b: 21.5, c: 4.64%",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following statements about Discounted Payback Period is incorrect?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following statements about Discounted Payback Period is incorrect?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "11.4%",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "12.0%",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "12.6%",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "13.0%",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "An investor allocates 60% of the portfolio to Stock A and 40% to Stock B. Their expected returns are 15% and 9%, respectively. What is the expected portfolio return?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>An investor allocates 60% of the portfolio to Stock A and 40% to Stock B. Their expected returns are 15% and 9%, respectively. What is the expected portfolio return?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "1.50%",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "1.84%",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "13.56%",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "16.00%",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "An investor allocates 60% of his fund to Stock A and 40% to Stock B. Stock A has a standard deviation of 20%, and Stock B has a standard deviation of 10%. The correlation coefficient between the returns on the two stocks is 0.25. Calculate the portfolio standard deviation.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>An investor allocates 60% of his fund to Stock A and 40% to Stock B. Stock A has a standard deviation of 20%, and Stock B has a standard deviation of 10%. The correlation coefficient between the returns on the two stocks is 0.25. Calculate the portfolio standard deviation. </p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "8.0%",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "10.0%",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "12.0%",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "13.0%",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Calculate the expected return on Security A.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Calculate the expected return on Security A.</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "4.00%",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "5.00%",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "5.66%",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "6.00%",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Calculate the standard deviation of Security B using the probability weights of the states.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Calculate the standard deviation of Security B using the probability weights of the states.</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Treasury Bills",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Stocks",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Corporate investment grade bonds",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Corporate junk grade bonds",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following can be classified as the safest investment?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following can be classified as the safest investment?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Macro-economic risk",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Inflation risk",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Market risk",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Company-specific risk",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following risks can be classified as diversifiable risk?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following risks can be classified as diversifiable risk?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Company producing luxury goods",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Company producing necessity goods",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Countercyclical company",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Company producing utility services",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following companies’ stock would generally have a beta of more than 1?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following companies’ stock would generally have a beta of more than 1?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 9,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "4%",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "7%",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "11%",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "15%",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "An investment analyst is evaluating whether investing in the U.S. stock market offers sufficient compensation for taking market risk. The current annual yield on a 3-month U.S. Treasury bill, used as a proxy for the risk-free rate, is 4%. The analyst expects the Nasdaq Composite Index (i.e., the market index) to provide an annual return of 11% over the next year. Based on these estimates, what is the expected market risk premium?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>An investment analyst is evaluating whether investing in the U.S. stock market offers sufficient compensation for taking market risk. The current annual yield on a 3-month U.S. Treasury bill, used as a proxy for the risk-free rate, is 4%. The analyst expects the Nasdaq Composite Index (i.e., the market index) to provide an annual return of 11% over the next year. Based on these estimates, what is the expected market risk premium?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "9%",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "10%",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "12%",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "15%",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A stock has a beta of 1.5. The risk-free rate is 3%, and the market risk premium is 6%. What is the stock's expected return?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A stock has a beta of 1.5. The risk-free rate is 3%, and the market risk premium is 6%. What is the stock's expected return?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 11",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 11,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "10%",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "12%",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "16%",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "14%\ncorrect",
+              "was_selected": false
+            }
+          ],
+          "progress": "0.0/1.0 point (graded)",
+          "score": "0.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A company has a market value of equity of ₹80 million and a market value of debt of ₹20 million. The equity beta is 1.25. The expected market risk premium is 8%, and the risk-free rate is 4%. The company’s cost of debt is 6%. Assume that the company pays no corporate taxes. What is the required return on the company's stock?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A company has a market value of equity of ₹80 million and a market value of debt of ₹20 million. The equity beta is 1.25. The expected market risk premium is 8%, and the risk-free rate is 4%. The company’s cost of debt is 6%. Assume that the company pays no corporate taxes. What is the required return on the company's stock?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 12",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 12,
+          "images": [],
+          "correct_indices": [
+            2,
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "10.0%",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "12.4%\ncorrect",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "11.2%",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "14.0%",
+              "was_selected": false
+            }
+          ],
+          "progress": "0.0/1.0 point (graded)",
+          "score": "0.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A company has a market value of equity of ₹80 million and a market value of debt of ₹20 million. The equity beta is 1.25. The expected market risk premium is 8%, and the risk-free rate is 4%. The company’s cost of debt is 6%. Assume that the company pays no corporate taxes. What is the company’s asset cost of capital?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A company has a market value of equity of ₹80 million and a market value of debt of ₹20 million. The equity beta is 1.25. The expected market risk premium is 8%, and the risk-free rate is 4%. The company’s cost of debt is 6%. Assume that the company pays no corporate taxes. What is the company’s asset cost of capital? </p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 13",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 13,
+          "images": [],
+          "correct_indices": [
+            1,
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Beta measures the total risk.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Beta measures the systematic risk.",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Beta measures only firm-specific risk.",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Beta measures the probability of high taxes.",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which statement about beta is correct?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which statement about beta is correct?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 14",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 14,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "The portfolio standard deviation is usually equal to the weighted average of individual security standard deviations.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "The portfolio standard deviation is usually more than the weighted average of individual security standard deviations.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "The portfolio standard deviation does not depend on the individual security standard deviations.",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "The portfolio standard deviation is usually less than the weighted average of individual security standard deviations.",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following statements is most likely correct?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following statements is most likely correct?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 15",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 15,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Module 6",
+      "assessment": "CLA 6",
+      "seq_id": "block-v1:IIMBx+FA71x+BBA_DBE_B1+type@sequential+block@1349df727ff3401f94c09d21c34cda06",
+      "status": "extracted",
+      "question_count": 15,
+      "image_count": 0,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "₹5",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "₹10",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "₹15",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "₹20",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "ABC Ltd. has 10 million shares outstanding. The company has surplus cash of ₹100 million. The market value of its assets, excluding cash, is ₹800 million. The company decides to distribute the entire surplus cash as a dividend. An investor owns 1,000 shares before the dividend. Assume no taxes, transaction costs, or market imperfections. What is the proposed dividend per share?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>ABC Ltd. has 10 million shares outstanding. The company has surplus cash of ₹100 million. The market value of its assets, excluding cash, is ₹800 million. The company decides to distribute the entire surplus cash as a dividend. An investor owns 1,000 shares before the dividend. Assume no taxes, transaction costs, or market imperfections. What is the proposed dividend per share?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "₹60",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "₹70",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "₹90",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "₹80",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "ABC Ltd. has 10 million shares outstanding. The company has surplus cash of ₹100 million. The market value of its assets, excluding cash, is ₹900 million. The company decides to distribute the entire surplus cash as a dividend. An investor owns 1,000 shares before the dividend. Assume no taxes, transaction costs, or market imperfections. The company is considering either paying the entire surplus cash as a dividend or using it to repurchase shares in the open market. Assume no taxes, transaction costs, or market imperfections.\nConsidering the given information, if the company decides to issue a dividend, what should be the ex-dividend share price?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>ABC Ltd. has 10 million shares outstanding. The company has surplus cash of ₹100 million. The market value of its assets, excluding cash, is ₹900 million. The company decides to distribute the entire surplus cash as a dividend. An investor owns 1,000 shares before the dividend. Assume no taxes, transaction costs, or market imperfections. The company is considering either paying the entire surplus cash as a dividend or using it to repurchase shares in the open market. Assume no taxes, transaction costs, or market imperfections.</p>\n<p>Considering the given information, if the company decides to issue a dividend, what should be the ex-dividend share price?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "0.5 million",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "1 million",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "2 million",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "4 million",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "ABC Ltd. has 10 million shares outstanding. The company has surplus cash of ₹100 million. The market value of its assets, excluding cash, is ₹900 million. The company decides to distribute the entire surplus cash as a dividend. An investor owns 1,000 shares before the dividend. Assume no taxes, transaction costs, or market imperfections. The company is considering either paying the entire surplus cash as a dividend or using it to repurchase shares in the open market. Assume no taxes, transaction costs, or market imperfections. Given the information provided, if the company decides to repurchase shares at the current market price, how many shares can it repurchase with ₹100 million?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>ABC Ltd. has 10 million shares outstanding. The company has surplus cash of ₹100 million. The market value of its assets, excluding cash, is ₹900 million. The company decides to distribute the entire surplus cash as a dividend. An investor owns 1,000 shares before the dividend. Assume no taxes, transaction costs, or market imperfections. The company is considering either paying the entire surplus cash as a dividend or using it to repurchase shares in the open market. Assume no taxes, transaction costs, or market imperfections. Given the information provided, if the company decides to repurchase shares at the current market price, how many shares can it repurchase with ₹100 million?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "50 shares",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "62.5 shares",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "17.50 shares",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "55 shares",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "ABC Ltd. has 10 million shares outstanding. The company has surplus cash of ₹100 million. The market value of its assets, excluding cash, is ₹800 million. The company decides to distribute the entire surplus cash as a dividend. An investor owns 1,000 shares before the dividend. Assume no taxes, transaction costs, or market imperfections. If the investor wants cash equal to ₹14 per original share but receives only ₹10 per share as a dividend, how many shares must the investor sell after the dividend to generate the additional cash?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>ABC Ltd. has 10 million shares outstanding. The company has surplus cash of ₹100 million. The market value of its assets, excluding cash, is ₹800 million. The company decides to distribute the entire surplus cash as a dividend. An investor owns 1,000 shares before the dividend. Assume no taxes, transaction costs, or market imperfections. If the investor wants cash equal to ₹14 per original share but receives only ₹10 per share as a dividend, how many shares must the investor sell after the dividend to generate the additional cash?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "20%",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "25%",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "40%",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "75%",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A company earns ₹400 lakhs in net income and pays total cash dividends of ₹100 lakhs. What is its dividend payout ratio?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A company earns ₹400 lakhs in net income and pays total cash dividends of ₹100 lakhs. What is its dividend payout ratio?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "400 shares with a price of ₹150 each",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "1,200 shares with a price of ₹450 each",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "100 shares with a price of ₹450 each",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "1,200 shares with a price of ₹150 each",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A company announces a 3-for-1 stock split. An investor owns 400 shares priced at ₹450 each before the split.  Immediately after the stock split, how many shares will the investor have and what will be the price per share?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A company announces a 3-for-1 stock split. An investor owns 400 shares priced at ₹450 each before the split.  Immediately after the stock split, how many shares will the investor have and what will be the price per share?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "₹4,000",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "₹2,000",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "₹8,000",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "₹1,20,000",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "An investor purchases 500 shares of a company at a price of ₹240 per share before the ex-dividend date. The company declares a dividend of ₹8 per share. How much cash dividend is the investor expected to receive?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>An investor purchases 500 shares of a company at a price of ₹240 per share before the ex-dividend date. The company declares a dividend of ₹8 per share. How much cash dividend is the investor expected to receive?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Open Market Repurchase",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Dutch Auction",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Targeted Repurchase",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Stock Dividend",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A company wants to reduce the stake held by a major shareholder. Instead of buying shares through the stock exchange or making a general offer to all shareholders, the company negotiates directly with that shareholder to repurchase a block of shares. Which method is being used?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A company wants to reduce the stake held by a major shareholder. Instead of buying shares through the stock exchange or making a general offer to all shareholders, the company negotiates directly with that shareholder to repurchase a block of shares. Which method is being used?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Cash holdings decrease by 15%.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Cash holdings increase by 15%.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Cash holdings remain unchanged.",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Cash holdings decrease by the market value of the stocks issued",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A company declares a 15% stock dividend. What happens to the company's cash holdings immediately as a result of the stock dividend?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A company declares a 15% stock dividend. What happens to the company's cash holdings immediately as a result of the stock dividend?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 9,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "10,000",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "20,000",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "30,000",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "40,000",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "ABC Ltd. has 2,00,000 shares outstanding and declares a 10% stock dividend. How many additional shares will be issued?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>ABC Ltd. has 2,00,000 shares outstanding and declares a 10% stock dividend. How many additional shares will be issued?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "4,80,000 shares and ₹250",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "4,20,000 shares and ₹238.10",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "5,00,000 shares and ₹200",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "4,80,000 shares and ₹208.33",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A company has 4,00,000 shares outstanding, trading at ₹250 per share. It declares a 20% stock dividend. Assuming no market reaction, what will be the total number of shares and the theoretical share price after the dividend?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A company has 4,00,000 shares outstanding, trading at ₹250 per share. It declares a 20% stock dividend. Assuming no market reaction, what will be the total number of shares and the theoretical share price after the dividend?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 11",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 11,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Dividend clientele theory",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Bird-in-hand theory",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Industry herding",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Agency cost of idle cash",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A mature company has ₹200 crore in surplus cash but few profitable investment opportunities. Management proposes acquiring an unrelated business with negative NPV. Which argument best supports distributing the surplus cash to shareholders?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A mature company has ₹200 crore in surplus cash but few profitable investment opportunities. Management proposes acquiring an unrelated business with negative NPV. Which argument best supports distributing the surplus cash to shareholders?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 12",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 12,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Issuing new shares through a stock split",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Consolidating shares through reverse stock split",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Issuing stock dividend",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Repurchasing shares",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following would reduce the cash balance of the company?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following would reduce the cash balance of the company? </p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 13",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 13,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Open Market Repurchase",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Tender Offer at a Fixed Price",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Dutch Auction",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Targeted Repurchase",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A company announces a share repurchase. It specifies a price range of ₹180–₹200 per share and asks shareholders to indicate how many shares they are willing to sell at different prices. The company then determines the lowest price at which it can repurchase the desired number of shares. Which repurchase method is this?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A company announces a share repurchase. It specifies a price range of ₹180–₹200 per share and asks shareholders to indicate how many shares they are willing to sell at different prices. The company then determines the lowest price at which it can repurchase the desired number of shares. Which repurchase method is this?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 14",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 14,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Industry herding",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Dividend irrelevance",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Dutch auction",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Reverse stock split",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Several firms in an industry maintain stable dividends. A company follows the same policy mainly to avoid appearing financially weak relative to competitors. This is an example of:",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Several firms in an industry maintain stable dividends. A company follows the same policy mainly to avoid appearing financially weak relative to competitors. This is an example of:</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 15",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 15,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Module 7",
+      "assessment": "CLA 7",
+      "seq_id": "block-v1:IIMBx+FA71x+BBA_DBE_B1+type@sequential+block@2dc735796a6f4fbd8a964b31be2bad65",
+      "status": "extracted",
+      "question_count": 15,
+      "image_count": 0,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Seasoned Equity Offering",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Initial Public Offering",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Rights Offering",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Private Placement",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A company offers its shares to the public for the first time and becomes a listed firm. Which of the following best describes this process?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A company offers its shares to the public for the first time and becomes a listed firm. Which of the following best describes this process?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "The company is going with only a primary offering",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "The company is going with only a secondary offering",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "The company is going with both primary and secondary offerings",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "The company is going with a fixed-price offering",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "In an IPO, 70% of the shares are newly issued by the company, and 30% are sold by existing shareholders. Which statement is correct?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>In an IPO, 70% of the shares are newly issued by the company, and 30% are sold by existing shareholders. Which statement is correct?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Fixed price issue",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Book-building issue",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Rights issue",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Bonus issue",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Under the __________ method, investors bid for different quantities of shares within a price range.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Under the __________ method, investors bid for different quantities of shares within a price range.</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "20%",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "25%",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "80%",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "100%",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A company offers shares at ₹80 in the initial public offering, and the stock closes at ₹100 on the first trading day. By how much the IPO is underpriced?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A company offers shares at ₹80 in the initial public offering, and the stock closes at ₹100 on the first trading day. By how much the IPO is underpriced?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Risk aggressiveness",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Dividend smoothing",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Dividend clientele",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "The disposition effect",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "An investor sells a stock that has risen by 30% shortly after an IPO but continues holding another stock that has fallen by 30%, despite having no new information justifying either decision. This behaviour is most consistent with",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>An investor sells a stock that has risen by 30% shortly after an IPO but continues holding another stock that has fallen by 30%, despite having no new information justifying either decision. This behaviour is most consistent with</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "The company receives proceeds from all 7 lakh shares",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "The founder receives proceeds from the 5 lakh newly issued shares.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "The company receives proceeds from 5 lakh shares, while the founder receives proceeds from 2 lakh shares.",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Neither party receives proceeds until the shares are sold again",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A listed company issues 5 lakh new shares, while one of its founders sells 2 lakh existing shares through the same offering. Which statement is correct?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A listed company issues 5 lakh new shares, while one of its founders sells 2 lakh existing shares through the same offering. Which statement is correct?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "₹80",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "₹92",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "₹96",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "₹100",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A company’s shares trade at ₹100 before a rights issue. It offers one new share for every four existing shares at ₹ 80. Assuming no market reaction or other costs, what should be the ex-rights price when the rights issue is fully subscribed?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A company’s shares trade at ₹100 before a rights issue. It offers one new share for every four existing shares at ₹ 80. Assuming no market reaction or other costs, what should be the ex-rights price when the rights issue is fully subscribed?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "3,00,000",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "2,00,0000",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "2,50,000",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "1,00,000",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Nova Corporation announces a rights issue to finance its expansion. Its share price is expected to decline from ₹120 to ₹116 after the issue. The company plans to raise ₹20 million by offering new shares at ₹80 per share. Assuming the increase in the total market value of equity equals the gross proceeds from the offering, determine the number of new shares issued.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Nova Corporation announces a rights issue to finance its expansion. Its share price is expected to decline from ₹120 to ₹116 after the issue. The company plans to raise ₹20 million by offering new shares at ₹80 per share. Assuming the increase in the total market value of equity equals the gross proceeds from the offering, determine the number of new shares issued.</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "2.25 million shares",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "2.5 million shares",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "2 million shares",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "2.75 million shares",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Nova Corporation announces a rights issue to finance its expansion. Its share price is expected to decline from ₹120 to ₹116 after the issue. The company plans to raise ₹20 million by offering new shares at ₹80 per share. Assuming the increase in the total market value of equity equals the gross proceeds from the offering, determine the number of shares outstanding before the rights issue.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Nova Corporation announces a rights issue to finance its expansion. Its share price is expected to decline from ₹120 to ₹116 after the issue. The company plans to raise ₹20 million by offering new shares at ₹80 per share. Assuming the increase in the total market value of equity equals the gross proceeds from the offering, determine the number of shares outstanding before the rights issue.</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 9,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "North American ₹16; European ₹4",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "North American ₹16; European ₹16",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "North American ₹4; European ₹4",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "North American ₹4; European ₹16\ncorrect",
+              "was_selected": false
+            }
+          ],
+          "progress": "0.0/1.0 point (graded)",
+          "score": "0.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A company has an ex-rights price of ₹96 and a subscription price of ₹80. Four North American rights are required to buy one new share. What is the value of one North American right, and how does it compare with the value of one European right under the same prices?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A company has an ex-rights price of ₹96 and a subscription price of ₹80. Four North American rights are required to buy one new share. What is the value of one North American right, and how does it compare with the value of one European right under the same prices?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [],
+          "correct_indices": [
+            2,
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Negative covenant",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Positive covenant",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Secured loan",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Unsecured loan",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A loan agreement requires a borrower to maintain a minimum interest coverage ratio of 3 times. This is an example of a",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A loan agreement requires a borrower to maintain a minimum interest coverage ratio of 3 times. This is an example of a </p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 11",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 11,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "₹1,12,000 and ₹48,000",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "₹1,12,000 and ₹46,080",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "₹1,07,520 and ₹48,000",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "₹1,07,520 and ₹46,080",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Orion Corporation offers 2,000 shares in an IPO at ₹80 per share. Of these, 70% are newly issued by the company and 30% are sold by existing shareholders. The underwriters charge a spread of 4% of the offer price, allocated proportionately between the company and selling shareholders. What are the net proceeds to the company and the selling shareholders, respectively?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Orion Corporation offers 2,000 shares in an IPO at ₹80 per share. Of these, 70% are newly issued by the company and 30% are sold by existing shareholders. The underwriters charge a spread of 4% of the offer price, allocated proportionately between the company and selling shareholders. What are the net proceeds to the company and the selling shareholders, respectively?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 12",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 12,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "₹18,000",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "₹19,920",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "₹28,000",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "₹30,000",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Orion Corporation offers 2,000 shares in an IPO at ₹80 per share. Of these, 70% are newly issued by the company and 30% are sold by existing shareholders. The underwriters charge a 4% spread on the offer price. The stock closes at ₹110 on the first trading day. What is the combined cost of underpricing and underwriting commission attributable to the selling shareholders?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Orion Corporation offers 2,000 shares in an IPO at ₹80 per share. Of these, 70% are newly issued by the company and 30% are sold by existing shareholders. The underwriters charge a 4% spread on the offer price. The stock closes at ₹110 on the first trading day. What is the combined cost of underpricing and underwriting commission attributable to the selling shareholders?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 13",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 13,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "₹950",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "₹1000",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "₹1050",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "₹900",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Meridian Corporation has an outstanding 20-year bond with a face value of ₹1,000 and a coupon rate of 8%, payable semi-annually. Due to possible changes in interest rates, the bond's market price at the end of one year could be either ₹900 or ₹1,100, with equal probability. What is the expected market price of the bond after one year?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Meridian Corporation has an outstanding 20-year bond with a face value of ₹1,000 and a coupon rate of 8%, payable semi-annually. Due to possible changes in interest rates, the bond's market price at the end of one year could be either ₹900 or ₹1,100, with equal probability. What is the expected market price of the bond after one year?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 14",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 14,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "₹950",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "₹1050",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "₹1000",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "₹900",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Meridian Corporation has an outstanding 20-year bond with a face value of ₹1,000 and a coupon rate of 8%, payable semi-annually. Due to possible changes in interest rates, the bond's market price at the end of one year could be either ₹900 or ₹1,100, with equal probability. What is the expected price after one year if the bond is callable at ₹1,000 and the issuer calls it whenever the market price exceeds the call price?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Meridian Corporation has an outstanding 20-year bond with a face value of ₹1,000 and a coupon rate of 8%, payable semi-annually. Due to possible changes in interest rates, the bond's market price at the end of one year could be either ₹900 or ₹1,100, with equal probability. What is the expected price after one year if the bond is callable at ₹1,000 and the issuer calls it whenever the market price exceeds the call price?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 15",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 15,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Module 8",
+      "assessment": "CLA 8",
+      "seq_id": "block-v1:IIMBx+FA71x+BBA_DBE_B1+type@sequential+block@cbf28fad7272451896101b48452bda4e",
+      "status": "extracted",
+      "question_count": 15,
+      "image_count": 0,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Vertical merger",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Horizontal merger",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Conglomerate merger",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "None of the above",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Two automobile manufacturers producing similar vehicles merge to reduce production costs and enhance economies of scale. This is an example of",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Two automobile manufacturers producing similar vehicles merge to reduce production costs and enhance economies of scale. This is an example of</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "200 shares",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "250 shares",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "100 shares",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "150 shares",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "There are two all-equity-financed firms, Alpha Ltd. and Beta Ltd. Alpha Ltd. has earnings of ₹120 per share, has 200 shares outstanding, and its stock price is ₹1,800. Beta Ltd., on the other hand, has earnings of ₹60 per share, has 300 shares outstanding, and its stock price is ₹600. Alpha Ltd. acquires Beta Ltd. by issuing its own shares. Assume no synergies, no acquisition premium, no transaction costs, and a perfect capital market. Calculate the number of new shares Alpha Ltd. must issue to acquire Beta Ltd.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>There are two all-equity-financed firms, Alpha Ltd. and Beta Ltd. Alpha Ltd. has earnings of ₹120 per share, has 200 shares outstanding, and its stock price is ₹1,800. Beta Ltd., on the other hand, has earnings of ₹60 per share, has 300 shares outstanding, and its stock price is ₹600. Alpha Ltd. acquires Beta Ltd. by issuing its own shares. Assume no synergies, no acquisition premium, no transaction costs, and a perfect capital market. Calculate the number of new shares Alpha Ltd. must issue to acquire Beta Ltd. </p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "90",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "₹84",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "₹140",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "₹42",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "There are two all-equity-financed firms, Alpha Ltd. and Beta Ltd. Alpha Ltd. has earnings of ₹120 per share, has 200 shares outstanding, and its stock price is ₹1,800. Beta Ltd., on the other hand, has earnings of ₹60 per share, has 300 shares outstanding, and its stock price is ₹600. Alpha Ltd. acquires Beta Ltd. by issuing its own shares. Assume no synergies, no acquisition premium, no transaction costs, and a perfect capital market. Find Alpha Ltd.’s earnings per share (EPS) after the acquisition.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>There are two all-equity-financed firms, Alpha Ltd. and Beta Ltd. Alpha Ltd. has earnings of ₹120 per share, has 200 shares outstanding, and its stock price is ₹1,800. Beta Ltd., on the other hand, has earnings of ₹60 per share, has 300 shares outstanding, and its stock price is ₹600. Alpha Ltd. acquires Beta Ltd. by issuing its own shares. Assume no synergies, no acquisition premium, no transaction costs, and a perfect capital market. Find Alpha Ltd.’s earnings per share (EPS) after the acquisition.</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "EPS-accretive",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "EPS-dilutive",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "EPS-neutral",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "None of the above",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "There are two all-equity-financed firms, Alpha Ltd. and Beta Ltd. Alpha Ltd. has earnings of ₹120 per share, has 200 shares outstanding, and its stock price is ₹1,800. Beta Ltd., on the other hand, has earnings of ₹60 per share, has 300 shares outstanding, and its stock price is ₹600. Alpha Ltd. acquires Beta Ltd. by issuing its own shares. Assume no synergies, no acquisition premium, no transaction costs, and a perfect capital market. For the shareholders of Alpha Ltd., this acquisition can be best described as",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>There are two all-equity-financed firms, Alpha Ltd. and Beta Ltd. Alpha Ltd. has earnings of ₹120 per share, has 200 shares outstanding, and its stock price is ₹1,800. Beta Ltd., on the other hand, has earnings of ₹60 per share, has 300 shares outstanding, and its stock price is ₹600. Alpha Ltd. acquires Beta Ltd. by issuing its own shares. Assume no synergies, no acquisition premium, no transaction costs, and a perfect capital market. For the shareholders of Alpha Ltd., this acquisition can be best described as </p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "₹3,60,000",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "₹1,80,000",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "₹7,20,000",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "₹5,40,000",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "There are two all-equity-financed firms, Alpha Ltd. and Beta Ltd. Alpha Ltd. has earnings of ₹120 per share, has 200 shares outstanding, and its stock price is ₹1,800. Beta Ltd., on the other hand, has earnings of ₹60 per share, has 300 shares outstanding, and its stock price is ₹600. Alpha Ltd. acquires Beta Ltd. by issuing its own shares. Assume no synergies, no acquisition premium, no transaction costs, and a perfect capital market. Find the market value of Alpha Ltd. after the acquisition.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>There are two all-equity-financed firms, Alpha Ltd. and Beta Ltd. Alpha Ltd. has earnings of ₹120 per share, has 200 shares outstanding, and its stock price is ₹1,800. Beta Ltd., on the other hand, has earnings of ₹60 per share, has 300 shares outstanding, and its stock price is ₹600. Alpha Ltd. acquires Beta Ltd. by issuing its own shares. Assume no synergies, no acquisition premium, no transaction costs, and a perfect capital market. Find the market value of Alpha Ltd. after the acquisition.</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "₹1600",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "₹2400",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "₹1800",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "₹800",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "There are two all-equity-financed firms, Alpha Ltd. and Beta Ltd. Alpha Ltd. has earnings of ₹120 per share, has 200 shares outstanding, and its stock price is ₹1,800. Beta Ltd., on the other hand, has earnings of ₹60 per share, has 300 shares outstanding, and its stock price is ₹600. Alpha Ltd. acquires Beta Ltd. by issuing its own shares. Assume no synergies, no acquisition premium, no transaction costs, and a perfect capital market. Find Alpha Ltd.’s expected stock price after the acquisition.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>There are two all-equity-financed firms, Alpha Ltd. and Beta Ltd. Alpha Ltd. has earnings of ₹120 per share, has 200 shares outstanding, and its stock price is ₹1,800. Beta Ltd., on the other hand, has earnings of ₹60 per share, has 300 shares outstanding, and its stock price is ₹600. Alpha Ltd. acquires Beta Ltd. by issuing its own shares. Assume no synergies, no acquisition premium, no transaction costs, and a perfect capital market. Find Alpha Ltd.’s expected stock price after the acquisition.</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "15.5",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "10.2",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "12.35",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "12.86",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "There are two all-equity-financed firms, Alpha Ltd. and Beta Ltd. Alpha Ltd. has earnings of ₹120 per share, has 200 shares outstanding, and its stock price is ₹1,800. Beta Ltd., on the other hand, has earnings of ₹60 per share, has 300 shares outstanding, and its stock price is ₹600. Alpha Ltd. acquires Beta Ltd. by issuing its own shares. Assume no synergies, no acquisition premium, no transaction costs, and a perfect capital market. Find Alpha Ltd.'s P/E ratio after the acquisition.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>There are two all-equity-financed firms, Alpha Ltd. and Beta Ltd. Alpha Ltd. has earnings of ₹120 per share, has 200 shares outstanding, and its stock price is ₹1,800. Beta Ltd., on the other hand, has earnings of ₹60 per share, has 300 shares outstanding, and its stock price is ₹600. Alpha Ltd. acquires Beta Ltd. by issuing its own shares. Assume no synergies, no acquisition premium, no transaction costs, and a perfect capital market. Find Alpha Ltd.'s P/E ratio after the acquisition.</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "10% increase",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "20% increase",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "20% decrease",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "No change",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "An acquirer has standalone earnings of ₹24 crore and 3 crore shares outstanding before the acquisition. It acquires a target with earnings of ₹8 crore and issues 1 crore new shares as consideration to the target. What is the percentage change in the earnings per share (EPS) of the acquirer due to the acquisition? Assume no synergies, no acquisition premium, no transaction costs, and a perfect capital market.",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>An acquirer has standalone earnings of ₹24 crore and 3 crore shares outstanding before the acquisition. It acquires a target with earnings of ₹8 crore and issues 1 crore new shares as consideration to the target. What is the percentage change in the earnings per share (EPS) of the acquirer due to the acquisition? Assume no synergies, no acquisition premium, no transaction costs, and a perfect capital market.</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Economies of scale",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "The agency problem",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Hubris hypothesis",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Effective Monitoring",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Ignoring the interests of shareholders, a CEO pursues a large acquisition primarily to increase the company's size, enhance personal prestige, and justify higher compensation. This is best explained by",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Ignoring the interests of shareholders, a CEO pursues a large acquisition primarily to increase the company's size, enhance personal prestige, and justify higher compensation. This is best explained by</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 9,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "₹8 crore",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "₹12 crore",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "₹42 crore",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "₹50 crore",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A merger reduces combined operating costs by ₹12 crore annually. The present value of these savings is ₹50 crore, while the present value of integration costs is ₹8 crore. Ignoring other effects, the net value created by these cost savings is:",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A merger reduces combined operating costs by ₹12 crore annually. The present value of these savings is ₹50 crore, while the present value of integration costs is ₹8 crore. Ignoring other effects, the net value created by these cost savings is:</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Synergy always exists whenever there is a merger of two companies",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Synergy is the excess of the combined firm value over the standalone values of merging firms",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Synergy equals the acquisition premium paid to target shareholders",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "None of the above",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which statement about synergy is correct?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which statement about synergy is correct?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 11",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 11,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Conglomerate merger",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Horizontal merger",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Vertical merger",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Reverse merger",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A pharmaceutical company acquires a hotel chain with no significant business relationship between them. This is an example of",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A pharmaceutical company acquires a hotel chain with no significant business relationship between them. This is an example of</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 12",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 12,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Bondholders always lose when two companies merge with different P/E ratios",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Bondholders gain at the expense of shareholders in deals with no synergies.",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Shareholders always benefit when a company becomes less risky.",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Bondholder gains can occur only when the merger creates positive synergies.",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which statement about bondholder gains and shareholder losses in mergers is most likely correct?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which statement about bondholder gains and shareholder losses in mergers is most likely correct?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 13",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 13,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Principal-agent conflict",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Principal-principal conflict",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "CEO-CFO conflict",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Blockholder-minority shareholder conflict",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Managers may undertake acquisitions against the interest of shareholders. What kind of conflict or problem does it represent?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Managers may undertake acquisitions against the interest of shareholders. What kind of conflict or problem does it represent?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 14",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 14,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Managers who consistently favour distributing high dividends",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Managers who hold in-the-money stock options until the year before expiration",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Managers who undertake no acquisitions at all",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Managers who invest only in projects with positive NPV",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following is commonly used as a proxy for managerial overconfidence in the context of mergers and acquisitions?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following is commonly used as a proxy for managerial overconfidence in the context of mergers and acquisitions?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 15",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 15,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        }
+      ]
+    }
+  ]
+}
