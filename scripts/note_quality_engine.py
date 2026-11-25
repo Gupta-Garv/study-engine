@@ -65,9 +65,9 @@ REAL EXAM PATTERN:
 
 NOTE DESIGN RULES FOR THIS EXAM:
 - Because >50% of marks are MSQs with penalty for wrong checkboxes, notes must clearly isolate multi-condition rules, subtle boundaries, and "Always True vs. Subtle Trap" distinctions.
-- For conceptual/design modules (M1-M2): Use Comparison Tables / Chart Selection Matrices (Which chart for which question? Why bar > pie? Gestalt & pre-attentive principles, stakeholder vs user, cognitive load rules).
+- For conceptual/design modules (M1-M2): Use Comparison Tables / Chart Selection Matrices (Which chart for which question? Why bar > pie? Gestalt & pre-attentive principles, stakeholder vs user, cognitive load rules). Do NOT expect Power BI/DAX steps in M1-M2 unless explicitly taught in that transcript!
 - For Power BI / hands-on modules (M3-M4): Skip verbose UI mouse-click narration ("move mouse to top left"). Extract ONLY: (1) Exact DAX formula / data modeling / relationship / filter-context rule, (2) Design rationale (why this visual/measure/drillthrough/tooltip/KPI card is chosen for which decision), and (3) Common Power BI pitfalls / MSQ traps.
-- Do NOT include practice MCQs inside the study notes."""
+- Do NOT include practice MCQs or exam scoring formulas inside the study notes."""
 
     elif course_id == "2989cdfe":  # Corporate Finance
         return """SUBJECT: Corporate Finance (IIMB BBA DBE)
@@ -176,6 +176,8 @@ def deterministic_audit(topic_title: str, notes_md: str, transcript_text: str, c
 
     if "—" in notes_md:
         issues.append("Contains forbidden em dash ('—'). Use commas, colons, or parentheses.")
+    if re.search(r"<<+\s*(?:TITLE|END_TITLE|NOTES|END_NOTES)\s*>>+|<<<|>>>", notes_md + " " + topic_title):
+        issues.append("Contains raw delimiter marker (<<< / >>> / TITLE / NOTES).")
 
     k_errs = check_katex_expressions(notes_md)
     issues.extend(k_errs)
@@ -184,20 +186,24 @@ def deterministic_audit(topic_title: str, notes_md: str, transcript_text: str, c
 
 
 def parse_delimited_note_output(raw: str, fallback_title: str) -> Tuple[str, str]:
-    """Extracts clean title and pure markdown notes without JSON backslash corruption."""
-    m_title = re.search(r"<<<TITLE>>>\s*(.*?)\s*<<<END_TITLE>>>", raw, re.DOTALL)
-    m_notes = re.search(r"<<<NOTES>>>\s*(.*?)\s*<<<END_NOTES>>>", raw, re.DOTALL)
+    """Extracts clean title and pure markdown notes cleanly regardless of bracket count."""
+    m_title = re.search(r"<+\s*TITLE\s*>+\s*(.*?)\s*<+\s*END_TITLE\s*>+", raw, re.DOTALL | re.IGNORECASE)
+    m_notes = re.search(r"<+\s*NOTES\s*>+\s*(.*?)(?:<+\s*END_NOTES\s*>+|$)", raw, re.DOTALL | re.IGNORECASE)
 
     if m_notes:
         notes = m_notes.group(1).strip()
     else:
         notes = raw.strip()
-        notes = re.sub(r"<<<TITLE>>>.*?<<<END_TITLE>>>", "", notes, flags=re.DOTALL).strip()
+        notes = re.sub(r"<+\s*TITLE\s*>+.*?<+\s*END_TITLE\s*>+", "", notes, flags=re.DOTALL | re.IGNORECASE).strip()
 
+    # Scrub any stray partial delimiter tags or <<<Title>>> lines
+    notes = re.sub(r"<+\s*(?:TITLE|END_TITLE|NOTES|END_NOTES)\s*>+", "", notes, flags=re.IGNORECASE).strip()
+    notes = re.sub(r"^<<<[^>\n]+>>>\s*\n?", "", notes, flags=re.MULTILINE).strip()
     notes = re.sub(r"\s*—\s*", ", ", notes)
     notes = notes.replace("—", ", ").replace("–", "-").strip()
 
     title = clean_text_formatting(m_title.group(1).strip()) if m_title else ""
+    title = re.sub(r"<+\s*(?:TITLE|END_TITLE|NOTES|END_NOTES)\s*>+", "", title, flags=re.IGNORECASE).strip()
     title = re.sub(r"^#+\s*", "", title).strip()
 
     # Never allow generic 'Video' title
