@@ -1,0 +1,26 @@
+{
+  "course_id": "2989cdfe",
+  "course_name": "Corporate Finance",
+  "module_id": "2989cdfe-m0",
+  "module_number": 0,
+  "module_name": "Module 0: Welcome to the Course",
+  "videos_processed": 1,
+  "videos_passed_gate": 1,
+  "min_score_target": 95,
+  "module_avg_accuracy": 97.0,
+  "module_gate_passed": true,
+  "oneshot_words": 0,
+  "oneshot_katex_errors": [],
+  "topics": [
+    {
+      "topic_id": "f4df6f08",
+      "title": "Corporate Finance Course Roadmap: Core Pillars & Exam Toolkit",
+      "transcript_words": 914,
+      "note_words": 206,
+      "max_allowed_words": 475,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    }
+  ]
+}

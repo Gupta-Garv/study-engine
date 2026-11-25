@@ -615,7 +615,9 @@ def _process_single_video(
         cand_audit = critic_evaluate_note(course_id, mod_name, cand_title, cand_notes, transcript)
         print(f"   🔍 [{idx}/{total}] [{tid}] Pass {attempt}: {cand_audit['final_score']}/100 (Passed={cand_audit['passed']}, Words={len(cand_notes.split())})")
 
-        if (cand_audit["final_score"] >= best_audit["final_score"]) or (len(cand_audit["hard_issues"]) < len(best_audit["hard_issues"])):
+        max_w_v = get_max_allowed_words(t_words)
+        shorter_progress = len(cand_notes.split()) < len(best_notes.split()) and len(best_notes.split()) > max_w_v
+        if (cand_audit["final_score"] >= best_audit["final_score"]) or (len(cand_audit["hard_issues"]) < len(best_audit["hard_issues"])) or shorter_progress:
             best_title, best_notes, best_audit = cand_title, cand_notes, cand_audit
 
     return {
@@ -702,7 +704,8 @@ def process_module(course_id: str, module_id: str, min_score: int = 95, max_iter
                         cur_t, cur_n = refine_topic_note(course_id, mod["name"], cur_t, cur_n, t_txt, aud_cur, use_strong_model=True)
                     aud_new = critic_evaluate_note(course_id, mod["name"], cur_t, cur_n, t_txt)
                     print(f"   🩹 Recovery [{r['topic_id']}] try {extra_try+1}: {aud_new['final_score']}/100 (Words={len(cur_n.split())}/{t_max})")
-                    if aud_new["final_score"] >= r["final_score"] or len(aud_new["hard_issues"]) < len(r["final_issues"]):
+                    shorter_rec = len(cur_n.split()) < len(r["notes"].split()) and len(r["notes"].split()) > t_max
+                    if aud_new["final_score"] >= r["final_score"] or len(aud_new["hard_issues"]) < len(r["final_issues"]) or shorter_rec:
                         r["new_title"] = cur_t
                         r["notes"] = cur_n
                         r["note_words"] = len(cur_n.split())

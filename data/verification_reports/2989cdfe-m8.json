@@ -1,0 +1,192 @@
+{
+  "course_id": "2989cdfe",
+  "course_name": "Corporate Finance",
+  "module_id": "2989cdfe-m8",
+  "module_number": 8,
+  "module_name": "Module 7: Corporate Financing Decisions",
+  "videos_processed": 16,
+  "videos_passed_gate": 16,
+  "min_score_target": 95,
+  "module_avg_accuracy": 97.0,
+  "module_gate_passed": true,
+  "oneshot_words": 445,
+  "oneshot_katex_errors": [],
+  "topics": [
+    {
+      "topic_id": "7299c449",
+      "idx": 1,
+      "title": "Module 7 Overview: Corporate Financing Decisions",
+      "transcript_words": 91,
+      "note_words": 107,
+      "max_allowed_words": 125,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "8f6083c6",
+      "idx": 2,
+      "title": "IPOs: Primary vs. Secondary (OFS) & Pricing Methods",
+      "transcript_words": 998,
+      "note_words": 262,
+      "max_allowed_words": 518,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "db6770b0",
+      "idx": 3,
+      "title": "Going Public: CFO Motives, Exit Routes & Listing Costs",
+      "transcript_words": 732,
+      "note_words": 175,
+      "max_allowed_words": 380,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "d43076cf",
+      "idx": 4,
+      "title": "IPO Characteristics: Underpricing, Cyclicality, Costs & Winner's Curse",
+      "transcript_words": 1591,
+      "note_words": 257,
+      "max_allowed_words": 680,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "4da31885",
+      "idx": 5,
+      "title": "IPO Numerical Problems: Winner's Curse & Issue Cost Breakdown",
+      "transcript_words": 1458,
+      "note_words": 239,
+      "max_allowed_words": 680,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "64592c11",
+      "idx": 6,
+      "title": "Investor Behaviour in Indian IPOs (SEBI Sept 2024 Study)",
+      "transcript_words": 480,
+      "note_words": 165,
+      "max_allowed_words": 249,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "0d9c500c",
+      "idx": 7,
+      "title": "Seasoned Equity Offerings (SEOs) & Follow-on Public Offerings (FPOs)",
+      "transcript_words": 837,
+      "note_words": 177,
+      "max_allowed_words": 435,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "ee403edc",
+      "idx": 8,
+      "title": "Rights Issues: Mechanics, Advantages & the US Rights Puzzle",
+      "transcript_words": 1156,
+      "note_words": 194,
+      "max_allowed_words": 601,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "c8687cde",
+      "idx": 9,
+      "title": "How Rights Issues Prevent Underpricing Wealth Transfer",
+      "transcript_words": 1118,
+      "note_words": 216,
+      "max_allowed_words": 581,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "a6c404ca",
+      "idx": 10,
+      "title": "North American vs. European Rights & Full Participation Math",
+      "transcript_words": 1125,
+      "note_words": 222,
+      "max_allowed_words": 585,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "f9535ebf",
+      "idx": 11,
+      "title": "Partial Participation & Wealth Transfer in Rights Issues",
+      "transcript_words": 1335,
+      "note_words": 211,
+      "max_allowed_words": 680,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "c3243dee",
+      "idx": 12,
+      "title": "Shareholder Options, Renunciation & Indian Rights Underwriting",
+      "transcript_words": 783,
+      "note_words": 179,
+      "max_allowed_words": 407,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "3396a55f",
+      "idx": 13,
+      "title": "Rights Issue Numerical Practice: Back-Solving Pre-Issue Shares",
+      "transcript_words": 694,
+      "note_words": 172,
+      "max_allowed_words": 360,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "4f5e715f",
+      "idx": 14,
+      "title": "Private Placements of Equity: Signaling, Benefits & Lock-In",
+      "transcript_words": 339,
+      "note_words": 112,
+      "max_allowed_words": 230,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "70465b1c",
+      "idx": 15,
+      "title": "Corporate Debt & Bond Indenture: Form, Collateral, Seniority & Covenants",
+      "transcript_words": 1117,
+      "note_words": 219,
+      "max_allowed_words": 580,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "89e722fc",
+      "idx": 16,
+      "title": "Callable Bond Valuation: Numerical Walkthrough",
+      "transcript_words": 426,
+      "note_words": 196,
+      "max_allowed_words": 221,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "course_id": "2989cdfe",
+  "course_name": "Corporate Finance",
+  "module_id": "2989cdfe-m1",
+  "module_number": 1,
+  "module_name": "Module 1",
+  "videos_processed": 16,
+  "videos_passed_gate": 16,
+  "min_score_target": 95,
+  "module_avg_accuracy": 97.0,
+  "module_gate_passed": true,
+  "oneshot_words": 546,
+  "oneshot_katex_errors": [],
+  "topics": [
+    {
+      "topic_id": "83f2fe10",
+      "title": "Module 1 Overview: Core Principles, Ownership & Governance",
+      "transcript_words": 96,
+      "note_words": 77,
+      "max_allowed_words": 125,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "7d802895",
+      "title": "Principle 1: The Time Value of Money (Today vs. Future Rupee)",
+      "transcript_words": 381,
+      "note_words": 126,
+      "max_allowed_words": 198,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "52bed587",
+      "title": "Principle 2: Risk Aversion, Expected Value & Risk-Return Trade-off",
+      "transcript_words": 816,
+      "note_words": 187,
+      "max_allowed_words": 424,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "16f9961c",
+      "title": "Sole Proprietorship & General Partnership: Liability, Limits & Indian Law",
+      "transcript_words": 489,
+      "note_words": 138,
+      "max_allowed_words": 254,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "e72bf3d6",
+      "title": "The Corporation (Company): Limited Liability, Perpetual Life & Double Taxation",
+      "transcript_words": 532,
+      "note_words": 150,
+      "max_allowed_words": 276,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "d70558e6",
+      "title": "Private Ltd vs. Public Ltd Companies in India: Capital, Limits & Listing",
+      "transcript_words": 807,
+      "note_words": 232,
+      "max_allowed_words": 419,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "d5956422",
+      "title": "Hybrid Business Forms: Limited Liability Partnership (LLP) & One Person Company (OPC)",
+      "transcript_words": 202,
+      "note_words": 120,
+      "max_allowed_words": 145,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "b0f7b88d",
+      "title": "Real Assets (Tangible & Intangible) vs. Financial Assets",
+      "transcript_words": 426,
+      "note_words": 133,
+      "max_allowed_words": 221,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "f541fb4e",
+      "title": "Corporate Investment Decisions vs. Financing Decisions",
+      "transcript_words": 439,
+      "note_words": 129,
+      "max_allowed_words": 228,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "f5f61cc3",
+      "title": "Cash Flow Cycle Between the Firm and Financial Markets",
+      "transcript_words": 194,
+      "note_words": 111,
+      "max_allowed_words": 139,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "71465450",
+      "title": "Financial Goal of the Corporation: Shareholder Wealth Maximization",
+      "transcript_words": 450,
+      "note_words": 124,
+      "max_allowed_words": 234,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "7713137b",
+      "title": "Stock vs. Flow Variables: Why Wealth Maximization Beats Profit Maximization",
+      "transcript_words": 519,
+      "note_words": 159,
+      "max_allowed_words": 269,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "dc21efc3",
+      "title": "Investment Decision Rule & Financial Opportunity Cost of Capital",
+      "transcript_words": 412,
+      "note_words": 134,
+      "max_allowed_words": 214,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "5c6e5b77",
+      "title": "Opportunity Cost of Capital, Project Risk & CAPM Intuition",
+      "transcript_words": 627,
+      "note_words": 132,
+      "max_allowed_words": 326,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "b23d1035",
+      "title": "Principal-Agent Problem & Three Forms of Agency Costs",
+      "transcript_words": 657,
+      "note_words": 137,
+      "max_allowed_words": 341,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "5285ce80",
+      "title": "Mitigating Agency Costs Through Corporate Governance Mechanisms",
+      "transcript_words": 358,
+      "note_words": 133,
+      "max_allowed_words": 190,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    }
+  ]
+}

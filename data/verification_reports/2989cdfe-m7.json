@@ -1,0 +1,192 @@
+{
+  "course_id": "2989cdfe",
+  "course_name": "Corporate Finance",
+  "module_id": "2989cdfe-m7",
+  "module_number": 7,
+  "module_name": "Module 6: Corporate Payout Decisions",
+  "videos_processed": 16,
+  "videos_passed_gate": 16,
+  "min_score_target": 95,
+  "module_avg_accuracy": 97.0,
+  "module_gate_passed": true,
+  "oneshot_words": 475,
+  "oneshot_katex_errors": [],
+  "topics": [
+    {
+      "topic_id": "31a8d2f6",
+      "idx": 1,
+      "title": "Module 6 Overview: Corporate Payout Decisions",
+      "transcript_words": 39,
+      "note_words": 96,
+      "max_allowed_words": 125,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "8c1c3bda",
+      "idx": 2,
+      "title": "Payout Policy: Cash Distribution Metrics & Excess Cash Choice",
+      "transcript_words": 351,
+      "note_words": 136,
+      "max_allowed_words": 190,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "f42592a5",
+      "idx": 3,
+      "title": "Cash Dividends: Types, Legal Constraints & Timeline (Ex-Dividend Drop)",
+      "transcript_words": 713,
+      "note_words": 278,
+      "max_allowed_words": 370,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "5bd2a609",
+      "idx": 4,
+      "title": "Share Repurchases (Buybacks): Four Execution Methods",
+      "transcript_words": 308,
+      "note_words": 171,
+      "max_allowed_words": 221,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "0c758645",
+      "idx": 5,
+      "title": "Stock Dividends (Bonus Issues): Valuation & Dilution Proof",
+      "transcript_words": 755,
+      "note_words": 227,
+      "max_allowed_words": 392,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "7d8064af",
+      "idx": 6,
+      "title": "Stock Splits and Reverse Stock Splits: Affordability & Listing Rules",
+      "transcript_words": 438,
+      "note_words": 153,
+      "max_allowed_words": 227,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "738f9fd2",
+      "idx": 7,
+      "title": "Comparing Cash Payouts and Non-Cash Corporate Actions",
+      "transcript_words": 321,
+      "note_words": 167,
+      "max_allowed_words": 230,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "95b39e01",
+      "idx": 8,
+      "title": "Information Content of Dividends: Smoothing & Asymmetric Market Reaction",
+      "transcript_words": 479,
+      "note_words": 155,
+      "max_allowed_words": 249,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "1386af2d",
+      "idx": 9,
+      "title": "Information Content of Share Repurchases: Flexibility & Undervaluation",
+      "transcript_words": 135,
+      "note_words": 93,
+      "max_allowed_words": 125,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "5ed3d7e2",
+      "idx": 10,
+      "title": "Dividend vs. Share Repurchase Math: Complete Equivalence Proof",
+      "transcript_words": 1163,
+      "note_words": 276,
+      "max_allowed_words": 604,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "642680ee",
+      "idx": 11,
+      "title": "Homemade Dividends: Replicating Any Desired Cash Flow Stream",
+      "transcript_words": 1261,
+      "note_words": 321,
+      "max_allowed_words": 655,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "5e8c897e",
+      "idx": 12,
+      "title": "Modigliani-Miller (MM) Payout Policy Irrelevance Theorem",
+      "transcript_words": 466,
+      "note_words": 168,
+      "max_allowed_words": 242,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "dd279d77",
+      "idx": 13,
+      "title": "Market Imperfection 1: Taxes & Why Idle Corporate Cash Loses Value",
+      "transcript_words": 746,
+      "note_words": 225,
+      "max_allowed_words": 387,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "980688f7",
+      "idx": 14,
+      "title": "Market Imperfection 2: Agency Costs of Idle Cash",
+      "transcript_words": 149,
+      "note_words": 89,
+      "max_allowed_words": 125,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "8fc165ca",
+      "idx": 15,
+      "title": "Market Imperfection 3: Firm Life Cycle & Issuance (Flotation) Costs",
+      "transcript_words": 223,
+      "note_words": 132,
+      "max_allowed_words": 160,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "3862dd39",
+      "idx": 16,
+      "title": "Market Imperfection 4: Behavioural Factors & Investor Clienteles",
+      "transcript_words": 318,
+      "note_words": 127,
+      "max_allowed_words": 228,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    }
+  ]
+}

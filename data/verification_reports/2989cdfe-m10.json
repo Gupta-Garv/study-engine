@@ -1,0 +1,137 @@
+{
+  "course_id": "2989cdfe",
+  "course_name": "Corporate Finance",
+  "module_id": "2989cdfe-m10",
+  "module_number": 10,
+  "module_name": "Module 8: Corporate Merger and Acquisitions (M&A) Decisions",
+  "videos_processed": 11,
+  "videos_passed_gate": 11,
+  "min_score_target": 95,
+  "module_avg_accuracy": 97.0,
+  "module_gate_passed": true,
+  "oneshot_words": 393,
+  "oneshot_katex_errors": [],
+  "topics": [
+    {
+      "topic_id": "2dc3c3ee",
+      "idx": 1,
+      "title": "Overview of Mergers & Acquisitions: Activity, Waves & Theories",
+      "transcript_words": 1070,
+      "note_words": 211,
+      "max_allowed_words": 556,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "80af07ee",
+      "idx": 2,
+      "title": "Types of M&As: Horizontal, Vertical (Backward/Forward) & Conglomerate",
+      "transcript_words": 560,
+      "note_words": 170,
+      "max_allowed_words": 291,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "86677091",
+      "idx": 3,
+      "title": "Rational Motive for M&As: Synergy Formula & Four Sources",
+      "transcript_words": 956,
+      "note_words": 240,
+      "max_allowed_words": 497,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "721dd0e4",
+      "idx": 4,
+      "title": "Synergy Sharing, Takeover Premium & Shareholder Wealth Effects",
+      "transcript_words": 909,
+      "note_words": 206,
+      "max_allowed_words": 472,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "916dc298",
+      "idx": 5,
+      "title": "Dubious M&A Motive 1: Managerial Overconfidence (Hubris Hypothesis)",
+      "transcript_words": 583,
+      "note_words": 131,
+      "max_allowed_words": 303,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "0764ce0d",
+      "idx": 6,
+      "title": "Dubious M&A Motive 2: Agency Motives & Principal-Principal Conflict",
+      "transcript_words": 861,
+      "note_words": 154,
+      "max_allowed_words": 447,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "24bab644",
+      "idx": 7,
+      "title": "Dubious M&A Motive 3: EPS Growth Fallacy (Part A)",
+      "transcript_words": 1020,
+      "note_words": 173,
+      "max_allowed_words": 530,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "d9181e0f",
+      "idx": 8,
+      "title": "Dubious M&A Motive 3: EPS Accretion & P/E Contraction Proof (Part B)",
+      "transcript_words": 860,
+      "note_words": 200,
+      "max_allowed_words": 447,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "545fe755",
+      "idx": 9,
+      "title": "Dubious M&A Motive 4: Diversification & Co-Insurance Pre-Merger Baseline (Part A)",
+      "transcript_words": 1414,
+      "note_words": 213,
+      "max_allowed_words": 680,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "7503bff7",
+      "idx": 10,
+      "title": "Dubious M&A Motive 4: Co-Insurance Wealth Transfer Proof (Part B)",
+      "transcript_words": 569,
+      "note_words": 192,
+      "max_allowed_words": 295,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "97aa6d33",
+      "idx": 11,
+      "title": "Module 8 Overview: Corporate Mergers & Acquisitions (M&A)",
+      "transcript_words": 72,
+      "note_words": 96,
+      "max_allowed_words": 125,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    }
+  ]
+}

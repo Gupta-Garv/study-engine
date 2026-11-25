@@ -1,0 +1,58 @@
+{
+  "course_id": "2989cdfe",
+  "course_name": "Corporate Finance",
+  "module_id": "2989cdfe-m9",
+  "module_number": 9,
+  "module_name": "Live Sessions (CF)",
+  "videos_processed": 4,
+  "videos_passed_gate": 4,
+  "min_score_target": 95,
+  "module_avg_accuracy": 97.0,
+  "module_gate_passed": true,
+  "topics": [
+    {
+      "topic_id": "b078734c",
+      "idx": 1,
+      "title": "Faculty Live Session 1: Time Value of Money & Bond Valuation Tutorial",
+      "transcript_words": 11764,
+      "note_words": 423,
+      "max_allowed_words": 680,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "83cb6105",
+      "idx": 2,
+      "title": "SME Live Session 1: Equity Valuation & Capital Budgeting Revision",
+      "transcript_words": 8425,
+      "note_words": 339,
+      "max_allowed_words": 680,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "e29b19b9",
+      "idx": 3,
+      "title": "Faculty Live Session 2: Risk, Return, Asset Beta & Order Book Tutorial",
+      "transcript_words": 11051,
+      "note_words": 446,
+      "max_allowed_words": 680,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "792cb2d0",
+      "idx": 4,
+      "title": "SME Live Session 2: Corporate Payout Decisions Revision",
+      "transcript_words": 9363,
+      "note_words": 334,
+      "max_allowed_words": 680,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    }
+  ]
+}
