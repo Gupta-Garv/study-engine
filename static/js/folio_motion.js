@@ -43,8 +43,8 @@ window.FolioMotion = {
     const camera = new THREE.PerspectiveCamera(40, w / Math.max(1, h), 0.1, 100);
     camera.position.set(0, 0, 5.2);
 
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'low-power' });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false, powerPreference: 'low-power' });
+    renderer.setPixelRatio(1);
     renderer.setSize(w, h, false);
 
     const group = new THREE.Group();
@@ -114,7 +114,13 @@ window.FolioMotion = {
       window.addEventListener('mousemove', (e) => {
         this.mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
         this.mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+        this._lastActivity = Date.now();
       }, { passive: true });
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) this.stop3D();
+        else if (window.App && window.App.currentView === 'dashboard') this.start3D();
+      });
 
       window.addEventListener('resize', () => this.resize3D(), { passive: true });
 
@@ -156,17 +162,21 @@ window.FolioMotion = {
   },
 
   start3D() {
-    if (this.isRunning || !this.renderer || this.prefersReducedMotion()) return;
+    if (this.isRunning || !this.renderer || this.prefersReducedMotion() || document.hidden) return;
     this.isRunning = true;
-    const tick = () => {
+    let lastFrame = 0;
+    const tick = (now) => {
       if (!this.isRunning) return;
+      this.rafId = requestAnimationFrame(tick);
+      // Cap at ~24 FPS to save battery & prevent Mac thermal throttling
+      if (now - lastFrame < 42) return;
+      lastFrame = now;
       if (this.group) {
-        this.group.rotation.y += 0.0028;
-        this.group.rotation.x += (this.mouseY * 0.25 + this.scrollProgress * 0.6 - this.group.rotation.x) * 0.04;
-        this.group.rotation.z += (this.mouseX * 0.20 - this.group.rotation.z) * 0.04;
+        this.group.rotation.y += 0.004;
+        this.group.rotation.x += (this.mouseY * 0.25 + this.scrollProgress * 0.6 - this.group.rotation.x) * 0.06;
+        this.group.rotation.z += (this.mouseX * 0.20 - this.group.rotation.z) * 0.06;
       }
       this.renderer.render(this.scene, this.camera);
-      this.rafId = requestAnimationFrame(tick);
     };
     this.rafId = requestAnimationFrame(tick);
   },
