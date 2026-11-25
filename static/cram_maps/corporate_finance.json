@@ -1,0 +1,345 @@
+{
+  "course_id": "2989cdfe",
+  "course_name": "Corporate Finance",
+  "triggers": [
+    {
+      "symptom": "Quoted 12% APR compounded monthly/quarterly, asks for true annual rate",
+      "framework": "EAR vs. APR Conversion",
+      "action": "EAR = (1 + APR/m)^m - 1. For 12% monthly: (1.01)^12 - 1 = 12.68%."
+    },
+    {
+      "symptom": "Annuity starts at t=4 (not t=1)",
+      "framework": "Delayed Annuity Time-Shift Rule",
+      "action": "Ordinary annuity formula gives PV at t=3 (one period before first CF). Then divide by (1+r)^3 to reach t=0."
+    },
+    {
+      "symptom": "Mutually exclusive projects: A has higher IRR (28%), B has higher NPV (5.1 Cr)",
+      "framework": "NPV Scale Dominance",
+      "action": "Always pick B (higher NPV). IRR is scale-blind and cannot be added across projects."
+    },
+    {
+      "symptom": "Cash flows flip signs twice (-, +, -)",
+      "framework": "Descartes' Rule of Signs (Multiple IRRs)",
+      "action": "2 sign changes = up to 2 positive IRRs. Discard IRR and decide strictly via NPV."
+    },
+    {
+      "symptom": "Equipment with unequal lives (2 yrs vs. 3 yrs) replaced repeatedly",
+      "framework": "Equivalent Annual Cost (EAC)",
+      "action": "Divide each machine's PV of total costs by its respective Annuity Factor PVAF(r, n); pick lowest EAC."
+    },
+    {
+      "symptom": "Peer has Equity Beta 1.5 and D/E = 0.5; evaluating an all-equity project",
+      "framework": "Unlevering Asset Beta",
+      "action": "Beta_A = Beta_E / (1 + D/E) = 1.5 / 1.5 = 1.00 (assuming Debt Beta = 0)."
+    },
+    {
+      "symptom": "Given ROE = 18% and dividend payout = 40%, asks for growth g",
+      "framework": "Sustainable Growth Rate (g = ROE * b)",
+      "action": "Use retention ratio b = 1 - 0.40 = 0.60 -> g = 18% * 0.60 = 10.8% (NOT 40%!)."
+    },
+    {
+      "symptom": "1-for-4 Rights Issue at Rs 80 when cum-rights price is Rs 120",
+      "framework": "TERP & Value of a Right",
+      "action": "TERP = (4*120 + 1*80)/5 = Rs 112. Value of 1 right (per existing share) = 120 - 112 = Rs 8."
+    },
+    {
+      "symptom": "High-P/E Acquirer buys Low-P/E Target in zero-synergy stock deal",
+      "framework": "EPS Accretion / Bootstrap Fallacy",
+      "action": "EPS rises mechanically, but combined P/E contracts so share price is unchanged without real synergy."
+    },
+    {
+      "symptom": "Unrelated firms merge with zero synergy; bankruptcy risk falls",
+      "framework": "Co-Insurance Wealth Transfer",
+      "action": "Debt gets safer (Bondholders gain), Equity loses an equal amount unless the firm re-leverages."
+    }
+  ],
+  "formula_web": {
+    "id": "formula_web",
+    "title": "Formula Dependency Web",
+    "sprint_mins": "15 min",
+    "summary": "See how every Corporate Finance equation derives from core Discounted Cash Flow (PV) and Risk-Return (Variance -> Beta -> CAPM) chains.",
+    "nodes": [
+      {
+        "id": "fw_pv",
+        "row": 1,
+        "core": true,
+        "tag": "Root TVM",
+        "label": "PV & Compounding",
+        "short": "Everything discounts back by (1 + r)^t.",
+        "formula": "$$PV = \\frac{CF_t}{(1+r)^t} \\quad|\\quad EAR = \\left(1 + \\frac{APR}{m}\\right)^m - 1$$",
+        "bullets": [
+          "Annuity Due = Ordinary Annuity * (1 + r).",
+          "Continuous compounding: FV = PV * e^(r * t)."
+        ],
+        "trap": "Always match rate frequency (r/m) with number of periods (n*m)."
+      },
+      {
+        "id": "fw_perp",
+        "row": 2,
+        "core": true,
+        "tag": "TVM -> Equity",
+        "label": "Perpetuity -> Growing -> DDM & PVGO",
+        "short": "Infinite cash flows collapse to C / (r - g), powering stock valuation.",
+        "formula": "$$PV = \\frac{C_1}{r - g} \\quad\\Rightarrow\\quad P_0 = \\frac{D_1}{r - g} = \\frac{E_1}{r} + PVGO$$",
+        "bullets": [
+          "g = ROE * Retention Ratio (b = 1 - payout).",
+          "Bond Price = Coupon * PVAF(YTM, N) + Face / (1+YTM)^N.",
+          "Exact Fisher: (1 + r_real) = (1 + r_nom) / (1 + inflation)."
+        ],
+        "trap": "Use D_1 (next year's dividend), not D_0; if D_0 is given, multiply by (1+g)."
+      },
+      {
+        "id": "fw_capb",
+        "row": 2,
+        "core": true,
+        "tag": "Capital Budgeting",
+        "label": "NPV, PI & EAC",
+        "short": "NPV obeys Value Additivity; PI handles rationing; EAC handles unequal lives.",
+        "formula": "$$NPV = -I_0 + \\sum \\frac{CF_t}{(1+r)^t} \\quad|\\quad EAC = \\frac{PV(\\text{Costs})}{PVAF(r, n)}$$",
+        "bullets": [
+          "Ignore sunk costs; include opportunity costs & cannibalization.",
+          "Capital rationing (divisible): rank by PI = PV / I_0."
+        ],
+        "trap": "For borrowing projects (+ at t=0, - at t=1), accept ONLY if IRR < r."
+      },
+      {
+        "id": "fw_capm",
+        "row": 3,
+        "core": true,
+        "tag": "Risk -> Return",
+        "label": "Portfolio Var -> Beta -> Asset Beta -> CAPM",
+        "short": "Diversification leaves only market Beta; unlever peer Beta before pricing.",
+        "formula": "$$\\sigma_p^2 = w_A^2\\sigma_A^2 + w_B^2\\sigma_B^2 + 2w_Aw_B\\rho\\sigma_A\\sigma_B \\quad|\\quad \\beta_A = \\frac{\\beta_E}{1 + D/E}$$",
+        "bullets": [
+          "CAPM: r_i = r_f + Beta_i * (E[R_m] - r_f). Alpha = E[R] - r_CAPM.",
+          "Beta = Cov(R_i, R_m) / Var(R_m)."
+        ],
+        "trap": "Do not forget the 2*wA*wB*Cov term or the square root when finding portfolio SD."
+      },
+      {
+        "id": "fw_fin_ma",
+        "row": 3,
+        "core": true,
+        "tag": "Financing & M&A",
+        "label": "Rights TERP & M&A Synergy",
+        "short": "Pro-rata rights preserve wealth; M&A NPV = Synergy minus Premium.",
+        "formula": "$$TERP = \\frac{N \\cdot P_{\\text{cum}} + P_{\\text{sub}}}{N + 1} \\quad|\\quad NPV_A = \\text{Synergy} - \\text{Premium}$$",
+        "bullets": [
+          "Value of 1 Right (per existing share) = P_cum - TERP = (TERP - P_sub) / N.",
+          "Synergy = V_AT - (V_A + V_T); Premium = Price Paid - V_T."
+        ],
+        "trap": "Check whether the question asks for value of 1 right (per old share) vs. rights needed per new share."
+      }
+    ],
+    "edges": [
+      ["fw_pv", "fw_perp"],
+      ["fw_pv", "fw_capb"],
+      ["fw_capb", "fw_capm"],
+      ["fw_perp", "fw_fin_ma"]
+    ]
+  },
+  "modules": [
+    {
+      "id": "cf_m1_m2",
+      "title": "M1 & M2: Principles & TVM",
+      "sprint_mins": "15 min",
+      "summary": "Corporate forms, wealth maximization, EAR/APR, annuities, and delayed cash-flow shifting.",
+      "nodes": [
+        {
+          "id": "cf_forms",
+          "row": 1,
+          "core": true,
+          "tag": "M1",
+          "label": "Corporate Goal & Business Forms",
+          "short": "Shareholder Wealth Maximization (NPV) beats accounting profit.",
+          "bullets": [
+            "Stock price (stock variable) prices timing & risk; accounting profit (flow) ignores both.",
+            "Public/Private Corp = limited liability + perpetual life; LLP/OPC = hybrid limited liability.",
+            "Real intangible assets (patents/brands) generate cash vs. Financial assets (claims)."
+          ]
+        },
+        {
+          "id": "cf_tvm",
+          "row": 2,
+          "core": true,
+          "tag": "M2",
+          "label": "EAR, Continuous, Delayed Annuities",
+          "short": "Shift cash flows cleanly; match compounding periods.",
+          "bullets": [
+            "Annuity formula PVAF lands at t-1 (1 period before first payment).",
+            "Amortized Loan PMT = Loan / PVAF(r, n). Rule of 72 = 72 / r%.",
+            "Negative yield -> PV > FV."
+          ],
+          "trap": "For payments starting at t=4, discount the t=3 annuity PV back 3 years, NOT 4."
+        }
+      ],
+      "edges": [
+        ["cf_forms", "cf_tvm"]
+      ]
+    },
+    {
+      "id": "cf_m3_m4",
+      "title": "M3 & M4: Bonds, Stocks & Cap Budget",
+      "sprint_mins": "20 min",
+      "summary": "Bond pricing/duration/HPR, Gordon DDM/PVGO, and why NPV beats IRR/Payback.",
+      "nodes": [
+        {
+          "id": "cf_bonds",
+          "row": 1,
+          "core": true,
+          "tag": "M3",
+          "label": "Bonds, Fisher, HPR & Stocks",
+          "short": "Coupon < YTM -> Discount; Longer maturity -> higher rate risk.",
+          "bullets": [
+            "Semi-annual bonds: halve annual coupon, halve YTM, double N.",
+            "HPR > YTM if market yields fall before maturity (capital gain).",
+            "P_0 = D_1/(r-g); PVGO = P_0 - E_1/r; Perpetual AT1 = Coupon / YTM."
+          ]
+        },
+        {
+          "id": "cf_npv",
+          "row": 2,
+          "core": true,
+          "tag": "M4",
+          "label": "NPV vs. IRR, Payback, PI & EAC",
+          "short": "NPV is King; watch Multiple IRRs, Borrowing IRRs & Scale Bias.",
+          "bullets": [
+            "Value Additivity: NPV(A+B) = NPV(A) + NPV(B).",
+            "Crossover Rate = IRR of incremental cash flows (B - A).",
+            "Discounted Payback adds TVM but still ignores post-cutoff cash flows."
+          ]
+        }
+      ],
+      "edges": [
+        ["cf_bonds", "cf_npv"]
+      ]
+    },
+    {
+      "id": "cf_m5_m6",
+      "title": "M5 & M6: Risk, CAPM & Payouts",
+      "sprint_mins": "20 min",
+      "summary": "Diversification, Beta/SML, MM Payout Equivalence, Homemade Dividends & Signaling.",
+      "nodes": [
+        {
+          "id": "cf_risk",
+          "row": 1,
+          "core": true,
+          "tag": "M5",
+          "label": "Diversification, Beta & SML",
+          "short": "Only systematic Beta is priced; positive alpha = above SML (underpriced).",
+          "bullets": [
+            "When correlation rho = -1, equal-risk 50/50 portfolio hits 0% SD.",
+            "Adding a high-SD stock can LOWER portfolio risk if covariance is low/negative.",
+            "Unlever peer Equity Beta -> Asset Beta = Beta_E / (1 + D/E)."
+          ]
+        },
+        {
+          "id": "cf_payout",
+          "row": 2,
+          "core": true,
+          "tag": "M6",
+          "label": "MM Irrelevance, Buybacks & Splits",
+          "short": "Dividends and Buybacks yield identical wealth in frictionless markets.",
+          "bullets": [
+            "Buyback reduces shares & cash equally -> share price stays unchanged at fair value.",
+            "Homemade Dividends: sell shares at ex-div price to manufacture cash.",
+            "Bonus/Splits = zero cash change; Reverse Split avoids exchange delisting."
+          ],
+          "trap": "Regular dividend cuts signal permanent earnings weakness; special dividends do not."
+        }
+      ],
+      "edges": [
+        ["cf_risk", "cf_payout"]
+      ]
+    },
+    {
+      "id": "cf_m7_m8",
+      "title": "M7 & M8: Financing, IPOs & M&A",
+      "sprint_mins": "15 min",
+      "summary": "Primary vs. OFS, Winner's Curse, Rights math, and real vs. dubious M&A motives.",
+      "nodes": [
+        {
+          "id": "cf_ipo_rights",
+          "row": 1,
+          "core": true,
+          "tag": "M7",
+          "label": "IPOs, SEOs, Rights & Callable Bonds",
+          "short": "OFS goes to sellers; Rights protect existing owners; Callable bonds pay higher yield.",
+          "bullets": [
+            "Money left on table = (Day-1 Close - Offer) * Shares (indirect underpricing cost).",
+            "Winner's Curse: uninformed retail gets full allotment in cold issues.",
+            "SEO negative announcement (-2% to -3%): Myers-Majluf overvaluation signal."
+          ]
+        },
+        {
+          "id": "cf_ma",
+          "row": 2,
+          "core": true,
+          "tag": "M8",
+          "label": "M&A Synergy vs. 4 Dubious Motives",
+          "short": "Targets capture most gains; beware Hubris, Agency, EPS Fallacy & Co-Insurance.",
+          "bullets": [
+            "Real synergy = scale/scope, complementary R&D, removing weak management.",
+            "Hubris = honest winner's curse overconfidence; Agency = self-interested empire-building.",
+            "EPS Accretion without synergy contracts blended P/E; Co-Insurance enriches bondholders."
+          ]
+        }
+      ],
+      "edges": [
+        ["cf_ipo_rights", "cf_ma"]
+      ]
+    }
+  ],
+  "traps": [
+    {
+      "module": "M2",
+      "trap": "Delayed Annuity off-by-one discounting",
+      "fix": "PVAF for first CF at t=4 lands at t=3; discount by (1+r)^3, not (1+r)^4."
+    },
+    {
+      "module": "M3",
+      "trap": "Using Payout Ratio instead of Retention Ratio in g = ROE * b",
+      "fix": "If payout is 40%, retention b = 60%."
+    },
+    {
+      "module": "M3",
+      "trap": "Using D_0 instead of D_1 in Gordon Growth P_0 = D_1 / (r - g)",
+      "fix": "Check whether the dividend just paid (D_0) or next year's dividend (D_1) is given."
+    },
+    {
+      "module": "M3",
+      "trap": "Approximating Fisher real rate as r_nom - inflation",
+      "fix": "Use exact Fisher: (1 + r_nom)/(1 + i) - 1."
+    },
+    {
+      "module": "M4",
+      "trap": "Picking highest IRR on mutually exclusive projects of different scale",
+      "fix": "Always pick highest NPV."
+    },
+    {
+      "module": "M4",
+      "trap": "Accepting a borrowing project (+ then -) because IRR > cost of capital",
+      "fix": "Borrowing projects reverse the rule: accept ONLY if IRR < r (check NPV directly)."
+    },
+    {
+      "module": "M5",
+      "trap": "Using peer Equity Beta directly for an unlevered project",
+      "fix": "Unlever first: Beta_A = Beta_E / (1 + D/E)."
+    },
+    {
+      "module": "M6",
+      "trap": "Thinking a share buyback automatically boosts stock price immediately",
+      "fix": "Fair-value buybacks reduce cash and shares proportionally—price per share stays unchanged."
+    },
+    {
+      "module": "M7",
+      "trap": "Adding Offer for Sale (OFS) proceeds to firm's primary capital raised",
+      "fix": "Only Fresh Issue proceeds enter the firm; OFS cash goes to selling shareholders."
+    },
+    {
+      "module": "M8",
+      "trap": "Assuming Co-Insurance from unrelated merger helps shareholders",
+      "fix": "Safer debt transfers value TO bondholders FROM equity unless the firm re-leverages."
+    }
+  ]
+}

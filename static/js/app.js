@@ -5135,6 +5135,9 @@ const App = {
 
   async renderOneShotContent() {
     const bodyEl = document.getElementById('oneshot-content-body');
+    if (window.VisualCram) {
+      await window.VisualCram.loadForCourse(this.currentOneShotCourseId);
+    }
     const tocListEl = document.getElementById('oneshot-toc-list');
     const tocCounterEl = document.getElementById('oneshot-toc-counter');
     const readTimeEl = document.getElementById('oneshot-read-time');

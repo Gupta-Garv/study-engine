@@ -1459,13 +1459,23 @@
           </button>
         </div>
 
-        <!-- Right: Actions (Print, Back to Top, Estimate) -->
+        <!-- Right: Actions (Visual/Text Switch, Print, Estimate) -->
         <div class="flex items-center gap-2 shrink-0">
-          <span id="oneshot-read-time" class="hidden md:inline text-[11px] font-mono text-neutral-400 bg-card px-2 py-1 rounded-lg border border-border">
-            ⚡ ~35 min cram
+          <div id="oneshot-visual-toggle" class="hidden inline-flex items-center p-0.5 rounded-full bg-card border border-border text-xs">
+            <button id="btn-oneshot-mode-visual" onclick="VisualCram.setMode('visual')"
+              class="px-3 py-1 rounded-full text-xs font-medium bg-ink text-canvas transition">
+              Visual Cram
+            </button>
+            <button id="btn-oneshot-mode-text" onclick="VisualCram.setMode('text')"
+              class="px-3 py-1 rounded-full text-xs font-medium text-ink-secondary hover:text-ink transition">
+              Text &amp; Print
+            </button>
+          </div>
+          <span id="oneshot-read-time" class="hidden md:inline text-[11px] font-mono text-ink-secondary bg-card px-2 py-1 rounded-lg border border-border">
+            ~35 min cram
           </span>
           <button onclick="App.printOneShot()" 
-            class="px-2.5 py-1 rounded-lg border border-border bg-card hover:bg-muted text-ink transition text-xs font-mono flex items-center gap-1.5 shadow-soft-sm"
+            class="px-2.5 py-1 rounded-lg border border-border bg-card hover:bg-muted text-ink transition text-xs font-mono flex items-center gap-1.5"
             title="Print or Save as PDF for Offline Revision">
             <i data-lucide="printer" class="w-3.5 h-3.5"></i>
             <span class="hidden sm:inline">Print / PDF</span>
@@ -1473,8 +1483,11 @@
         </div>
       </div>
 
-      <!-- One-Shot Body (Sidebar TOC + Continuous Scroll Content) -->
-      <div class="flex-1 overflow-hidden flex min-h-0">
+      <!-- Visual Cram Container (Default when available) -->
+      <div id="oneshot-visual-container" class="hidden flex-1 overflow-hidden flex min-h-0"></div>
+
+      <!-- One-Shot Text Body (Sidebar TOC + Continuous Scroll Content) -->
+      <div id="oneshot-text-container" class="flex-1 overflow-hidden flex min-h-0">
         
         <!-- Left Floating Sticky Table of Contents -->
         <aside id="oneshot-toc-sidebar" class="w-64 shrink-0 border-r border-border bg-card p-3.5 overflow-y-auto space-y-2 select-none hidden lg:block">
@@ -1651,10 +1664,11 @@
     </div>
   </div>
 
-  <!-- Folio Motion, Exam Hub & Core App -->
+  <!-- Folio Motion, Visual Cram, Exam Hub & Core App -->
   <script src="./static/js/folio_motion.js?v=1.0.0"></script>
+  <script src="./static/js/visual_cram.js?v=1.0.0"></script>
   <script src="./static/js/exam_hub.js?v=1.4.0"></script>
-  <script src="./static/js/app.js?v=3.0.0"></script>
+  <script src="./static/js/app.js?v=3.1.0"></script>
   <!-- Bundled Study Data for 24/7 GitHub Pages Access -->
   <script src="./study_data.js?v=2.5.0" defer></script>
 </body>

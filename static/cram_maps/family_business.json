@@ -1,0 +1,404 @@
+{
+  "course_id": "db945ff9",
+  "course_name": "Family Business Strategy",
+  "triggers": [
+    {
+      "symptom": "Siblings/in-laws fighting over dividends vs. reinvestment vs. family perks",
+      "framework": "Three-Circle Model (Tagiuri & Davis)",
+      "action": "Map each person to exact sector (Sector 7 = Family+Owner+Employee; Sector 4 = Family+Owner; Sector 5 = Family+Employee), then separate claims via Dividend + Employment Policies."
+    },
+    {
+      "symptom": "Rejects lucrative PE/acquisition offer to keep family name or board control",
+      "framework": "Socioemotional Wealth (SEW - FIBER)",
+      "action": "Cite Family Control & Influence + Identification with Firm; warn of long-term capital rationing / competitive obsolescence."
+    },
+    {
+      "symptom": "Heir has MBA/high skill but wants own startup instead of family firm",
+      "framework": "Willingness-Ability Matrix (Competent but Unwilling)",
+      "action": "Separate ownership from management: transition heir to informed Board/Owner role and hire a professional CEO."
+    },
+    {
+      "symptom": "Majority sibling (55%) unilaterally sells core division without consulting sister",
+      "framework": "Five Rights of Owners & Three Powers",
+      "action": "Diagnose abuse of Power to Destroy + breach of Right to Inform / Define Value; fix via Shareholders' Agreement reserved matters."
+    },
+    {
+      "symptom": "18 cousins in G3 argue at family dinners over jobs, cars, and dividends",
+      "framework": "Family Council vs. Constitution vs. Board",
+      "action": "Separate family deliberation (Council), moral entry/perk rules (Constitution), and corporate strategy/dividends (Board)."
+    },
+    {
+      "symptom": "72-year-old founder names successor twice but still signs every cheque",
+      "framework": "The Incumbent's Dilemma",
+      "action": "Diagnose identity fusion / fear of irrelevance; set binding handover calendar + move founder to Emeritus/Philanthropy role."
+    },
+    {
+      "symptom": "Non-family VP quits after unskilled son-in-law is hired at double pay",
+      "framework": "Family Employment Policy & Procedural Justice",
+      "action": "Enforce 3-5 yrs external work experience, real vacancy + independent evaluation, and market-benchmarked KPI pay."
+    },
+    {
+      "symptom": "Rich capital and fast decisions, yet fewer new products than rivals",
+      "framework": "Ability-Willingness Innovation Paradox",
+      "action": "High ability (patient capital) vs. low willingness (SEW loss aversion); fix via ring-fenced R&D / corporate venture unit."
+    },
+    {
+      "symptom": "Returning NextGen heir immediately fires loyalists and disrupts culture",
+      "framework": "Anand Group: Earning the Right to Change",
+      "action": "Sequence: Listen & learn operations -> win a bounded pilot project -> earn legitimacy -> modernize with trusted insiders."
+    },
+    {
+      "symptom": "Branch ignored Family Constitution in a dispute and sued in court",
+      "framework": "Constitution (Moral) vs. Shareholders' Agreement (Legal)",
+      "action": "Translate transfer, ROFR, valuation, and reserved-matter rules from the non-binding Constitution into a binding SHA + Articles."
+    }
+  ],
+  "modules": [
+    {
+      "id": "fb_m1",
+      "title": "M1: Foundations, Theories & India",
+      "sprint_mins": "12 min",
+      "summary": "Why family firms outperform or fail: Agency vs. Stewardship, SEW (FIBER), RBV Familiness, and Indian business history.",
+      "nodes": [
+        {
+          "id": "agency_steward",
+          "row": 1,
+          "core": true,
+          "tag": "Core Theory",
+          "label": "Alignment vs. Entrenchment (Inverted-U)",
+          "short": "Low Type I agency (Stewardship) vs. high Type II (Principal-Principal) risk.",
+          "bullets": [
+            "Anderson & Reeb (2003): Family firms outperform on average via long horizons + Alignment.",
+            "Type I (Owner-Manager) is low; Type II (Controlling Family vs. Minority) rises with unchecked power.",
+            "Entrenchment occurs when founders block succession, hoard cash, or extract private RPTs."
+          ],
+          "trap": "Never claim family firms have 'zero agency costs'—Type II conflicts replace Type I."
+        },
+        {
+          "id": "sew_fiber",
+          "row": 2,
+          "core": true,
+          "tag": "SEW",
+          "label": "SEW Theory (FIBER Dimensions)",
+          "short": "Non-financial utility often overrides pure NPV/profit maximization.",
+          "bullets": [
+            "F: Family control & influence. I: Identification of family with firm.",
+            "B: Binding social ties. E: Emotional attachment. R: Renewal of family bonds.",
+            "Explains debt aversion, PE rejection, and Crisis Resilience (Survivability Capital)."
+          ],
+          "trap": "SEW is double-edged: protects workforce loyalty in crises, but blocks needed capital/R&D."
+        },
+        {
+          "id": "rbv_tce",
+          "row": 2,
+          "core": true,
+          "tag": "Resources",
+          "label": "RBV 'Familiness' & TCE",
+          "short": "Idiosyncratic human, social, patient, and survivability capital.",
+          "bullets": [
+            "VRIO Familiness: hard-to-imitate trust, speed, and patient financial capital.",
+            "Constrictive Familiness: insularity, nepotism, and resistance to outside talent.",
+            "TCE: Kinship/community trust (e.g., Marwari/Chettiar Hundi networks) cuts contracting costs."
+          ]
+        },
+        {
+          "id": "india_hist",
+          "row": 3,
+          "core": false,
+          "tag": "India",
+          "label": "Managing Agency (1970) -> Pyramids",
+          "short": "How Indian groups evolved from License Raj to post-1991 global competition.",
+          "bullets": [
+            "Managing Agency System allowed sweeping control on small equity; abolished in 1970.",
+            "License Raj rewarded bureaucratic navigation ('active adaptation'); 1991 forced global quality ('proactive')."
+          ]
+        }
+      ],
+      "edges": [
+        ["agency_steward", "sew_fiber"],
+        ["agency_steward", "rbv_tce"],
+        ["rbv_tce", "india_hist"]
+      ]
+    },
+    {
+      "id": "fb_m2",
+      "title": "M2: Three-Circle, Rights & Stages",
+      "sprint_mins": "12 min",
+      "summary": "Diagnosing role overlaps, ownership rights/powers, and generational drift from G1 to G3.",
+      "nodes": [
+        {
+          "id": "three_circle",
+          "row": 1,
+          "core": true,
+          "tag": "Diagnostic",
+          "label": "Three-Circle Model (7 Sectors)",
+          "short": "Family, Ownership, and Business overlap creates competing claims.",
+          "bullets": [
+            "Sector 1: Family only. Sector 4: Family+Owner (wants dividends). Sector 5: Family+Employee (no shares).",
+            "Sector 7: Family+Owner+Employee (founder/active sibling seeking reinvestment + control).",
+            "Rule: Separate employment pay from ownership dividends and family care."
+          ],
+          "trap": "A spouse working in HR with 0% equity is Sector 5 (Family+Employee), NOT Sector 1."
+        },
+        {
+          "id": "rights_powers",
+          "row": 2,
+          "core": true,
+          "tag": "Ownership",
+          "label": "5 Rights & 3 Powers of Owners",
+          "short": "Balance Power to Create/Sustain against Power to Destroy.",
+          "bullets": [
+            "5 Rights: Design (structures), Decide (strategy/board), Define Value (purpose/risk), Inform (reporting), Transfer (exit).",
+            "Power to Destroy = unilateral 51% dominance, blocking capital, or weaponizing vetoes."
+          ]
+        },
+        {
+          "id": "stages_g1_g3",
+          "row": 2,
+          "core": true,
+          "tag": "Evolution",
+          "label": "G1 Owner -> G2 Siblings -> G3 Cousins",
+          "short": "Complexity jumps as shared household memory fades across branches.",
+          "bullets": [
+            "G1 Controlling Owner: key-person dependency & succession planning.",
+            "G2 Sibling Partnership: horizontal consensus without parent-referee.",
+            "G3 Cousin Consortium (Cousin Matrix): Active vs. Passive owner dividend clash + branch coalitions."
+          ]
+        }
+      ],
+      "edges": [
+        ["three_circle", "rights_powers"],
+        ["three_circle", "stages_g1_g3"]
+      ]
+    },
+    {
+      "id": "fb_m3",
+      "title": "M3: Succession & Handover",
+      "sprint_mins": "12 min",
+      "summary": "Beating the Three-Generation Rule through process, readiness tests, and separating Ownership from Management.",
+      "nodes": [
+        {
+          "id": "three_gen",
+          "row": 1,
+          "core": true,
+          "tag": "Baseline",
+          "label": "Three-Gen Rule & Dual Transfer",
+          "short": "Separate Management Transfer from Ownership Transfer.",
+          "bullets": [
+            "Shirtsleeves to shirtsleeves in 3 generations: dilution + entitlement + rigidity.",
+            "Management Transfer = operational CEO role (meritocratic). Ownership Transfer = equity/voting (trusts/SHA).",
+            "All heirs need Ownership Literacy (reading P&L/board decks), even passive ones."
+          ]
+        },
+        {
+          "id": "will_abil",
+          "row": 2,
+          "core": true,
+          "tag": "Matrix",
+          "label": "Willingness x Ability Matrix",
+          "short": "Match each successor quadrant to the right path.",
+          "bullets": [
+            "High Will + High Ability -> Groom via external experience + P&L ownership.",
+            "Low Will + High Ability -> Active Board Owner + Professional Non-Family CEO.",
+            "High Will + Low Ability -> Structured mentoring + pair with strong COO; defer CEO."
+          ],
+          "trap": "Never force a Competent-but-Unwilling heir into daily CEO operations."
+        },
+        {
+          "id": "incumbent",
+          "row": 2,
+          "core": true,
+          "tag": "Handover",
+          "label": "Incumbent's Dilemma & Credibility Tests",
+          "short": "Manage founder identity exit + NextGen external/internal tests.",
+          "bullets": [
+            "Incumbent fears irrelevance -> shadow leadership overturns successor.",
+            "Fix: Binding handover calendar + dignified Emeritus/Chairman/Foundation role.",
+            "Paths: Crown Prince (1 heir) vs. Horse Race (parallel P&L) vs. Regency (interim outsider)."
+          ]
+        }
+      ],
+      "edges": [
+        ["three_gen", "will_abil"],
+        ["three_gen", "incumbent"]
+      ]
+    },
+    {
+      "id": "fb_m4",
+      "title": "M4: Family Dynamics & Conflict",
+      "sprint_mins": "10 min",
+      "summary": "Employment charters, equality vs. equity, women leadership, RPTs, and containing conflict.",
+      "nodes": [
+        {
+          "id": "emp_policy",
+          "row": 1,
+          "core": true,
+          "tag": "HR Charter",
+          "label": "Employment Policy, Equality vs. Equity",
+          "short": "Equal ownership inheritance; equitable (market) executive pay.",
+          "bullets": [
+            "3 Policy Pillars: 3-5 yrs outside work, real vacancy + merit review, market-benchmarked KPI pay.",
+            "Prevents non-family talent flight ('glass ceiling') and abusive off-market RPTs."
+          ]
+        },
+        {
+          "id": "women_couples",
+          "row": 2,
+          "core": true,
+          "tag": "Inclusion",
+          "label": "Women Leadership & Working Couples",
+          "short": "Move women from 'Invisible Force' to formal meritocratic succession.",
+          "bullets": [
+            "Barriers: Primogeniture/patrilineal bias + stakeholder stereotyping.",
+            "CEO's Spouse & Working Couples: prevent home/office spillover via distinct functional domains."
+          ]
+        },
+        {
+          "id": "conflict_types",
+          "row": 2,
+          "core": true,
+          "tag": "Conflict",
+          "label": "Task -> Process -> Relationship Conflict",
+          "short": "Keep strategic debate constructive; block escalation into personal war.",
+          "bullets": [
+            "Task Conflict (what strategy?) = healthy if bounded by ROI data.",
+            "Process Conflict (budgets/roles) -> Relationship Conflict (personal hostility) destroys trust."
+          ]
+        }
+      ],
+      "edges": [
+        ["emp_policy", "women_couples"],
+        ["emp_policy", "conflict_types"]
+      ]
+    },
+    {
+      "id": "fb_m5_m6",
+      "title": "M5 & M6: Pro-Management & Governance",
+      "sprint_mins": "15 min",
+      "summary": "Professionalisation without losing familiness, Board roles, and wealth/ownership vehicles.",
+      "nodes": [
+        {
+          "id": "prof_innov",
+          "row": 1,
+          "core": true,
+          "tag": "Management",
+          "label": "Professionalisation & Innovation Paradox",
+          "short": "Structural systems (KPIs/ERP) + Bridge Executive; ring-fence Exploration.",
+          "bullets": [
+            "'Be like an MNC' fallacy destroys patient capital and speed; separate Structural vs. Managerial prof.",
+            "Innovation Paradox: High Ability vs. Low Willingness -> ring-fence corporate ventures.",
+            "Internationalisation: Slow Uppsala entry protects SEW; once in, patient capital + diaspora trust win."
+          ]
+        },
+        {
+          "id": "board_3",
+          "row": 2,
+          "core": true,
+          "tag": "Board",
+          "label": "Board: Control / Service / Resource",
+          "short": "Independent directors counter groupthink and open global networks.",
+          "bullets": [
+            "Control (oversight/RPTs/NRC), Service (strategic counsel), Resource Provisioning (legitimacy/networks).",
+            "Firms resist independents over privacy and RPT scrutiny."
+          ]
+        },
+        {
+          "id": "vehicles",
+          "row": 2,
+          "core": true,
+          "tag": "Vehicles",
+          "label": "Council / Constitution / SHA / Office / Trust",
+          "short": "Match the exact legal or family institution to the problem.",
+          "bullets": [
+            "Family Assembly (all kin) vs. Council (elected reps) vs. Constitution (moral charter).",
+            "Shareholders' Agreement + Articles = legally enforceable (ROFR, drag-along, buy-sell).",
+            "Holding Co (voting unity) vs. Trust (estate/succession) vs. Family Office (liquid wealth) vs. Family Bank (branch buyouts/NextGen)."
+          ],
+          "trap": "A Family Constitution is NOT legally binding in corporate court without a matching SHA."
+        }
+      ],
+      "edges": [
+        ["prof_innov", "board_3"],
+        ["prof_innov", "vehicles"]
+      ]
+    },
+    {
+      "id": "fb_m7_m8",
+      "title": "M7 & M8: Impact, Anand & Institutions",
+      "sprint_mins": "10 min",
+      "summary": "Dual wealth optimization, Anand Group NextGen playbook, and Scott/North institutional shift.",
+      "nodes": [
+        {
+          "id": "impact_anand",
+          "row": 1,
+          "core": true,
+          "tag": "Impact & Case",
+          "label": "Dual Wealth, Section 8 & Anand Case",
+          "short": "Philanthropy builds NextGen cohesion; NextGen must earn the right to change.",
+          "bullets": [
+            "Dual Wealth Optimization: financial resilience + measurable impact (Section 8 Co for CSR governance).",
+            "Anand Story: Returning heirs must listen -> prove wins on bounded unit -> modernize with loyalists."
+          ]
+        },
+        {
+          "id": "scott_north",
+          "row": 2,
+          "core": true,
+          "tag": "Institutions",
+          "label": "Voids, Scott's 3 Pillars & Trust -> Rules",
+          "short": "Why Indian conglomerates grew in voids and must now codify governance.",
+          "bullets": [
+            "Institutional Voids gave conglomerates internal capital/talent advantage.",
+            "Scott: Regulative (SEBI/RPTs), Normative (ESG/peers), Cultural-Cognitive (norms).",
+            "North: Formal rules fail if they ignore Informal filial deference -> harmonize both."
+          ]
+        }
+      ],
+      "edges": [
+        ["impact_anand", "scott_north"]
+      ]
+    }
+  ],
+  "traps": [
+    {
+      "module": "M2",
+      "trap": "Placing an in-law employee with 0% equity in Sector 1",
+      "fix": "They belong in Sector 5 (Family + Employee), not Sector 1 (Family only)."
+    },
+    {
+      "module": "M6",
+      "trap": "Treating a Family Constitution as court-enforceable",
+      "fix": "Only a Shareholders' Agreement mirrored in Articles of Association binds share transfers legally."
+    },
+    {
+      "module": "M6",
+      "trap": "Confusing Family Office with Holding Company",
+      "fix": "Holding Co consolidates operating voting control; Family Office manages liquid family wealth/tax."
+    },
+    {
+      "module": "M5",
+      "trap": "Equating 'professionalisation' with 'firing all family'",
+      "fix": "Distinguish Structural professionalisation (KPIs, ERP, boards) from Managerial (outside hires)."
+    },
+    {
+      "module": "M1",
+      "trap": "Saying family firms have zero agency problems",
+      "fix": "Type I (Owner-Manager) drops, but Type II (Majority Family vs. Minority) rises."
+    },
+    {
+      "module": "M4",
+      "trap": "Confusing Equality with Equity",
+      "fix": "Ownership shares can be equal, while executive pay must be equitable (market/KPI-based)."
+    },
+    {
+      "module": "M4",
+      "trap": "Labeling all conflict as destructive",
+      "fix": "Task conflict improves strategy until poor governance lets it spill into Relationship conflict."
+    },
+    {
+      "module": "M3",
+      "trap": "Forcing a Competent-but-Unwilling heir into CEO",
+      "fix": "Separate ownership from management: keep them on the Board and hire a professional CEO."
+    }
+  ]
+}

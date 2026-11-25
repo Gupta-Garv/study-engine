@@ -1,0 +1,340 @@
+{
+  "course_id": "deb83564",
+  "course_name": "Data Visualisation for Business Decisions",
+  "triggers": [
+    {
+      "symptom": "Bars look distorted because axis starts at 100 instead of 0",
+      "framework": "Zero-Baseline Rule (Bars vs. Lines)",
+      "action": "Bar/Column charts encode magnitude by length and MUST start at 0. Line charts may use a zoomed baseline if labeled."
+    },
+    {
+      "symptom": "Overall conversion rises, yet every individual channel drops",
+      "framework": "Simpson's Paradox / Mix-Shift Bias",
+      "action": "Segment traffic weights before concluding improvement; shifting mix toward a high-converting channel skews the aggregate."
+    },
+    {
+      "symptom": "Need dynamic Profit Margin % that updates when slicers change",
+      "framework": "DAX Measure vs. Calculated Column",
+      "action": "Use a DAX Measure (DIVIDE(SUM(Profit), SUM(Sales))) evaluated under filter context, never average row-level margins."
+    },
+    {
+      "symptom": "Clicking one chart accidentally filters a fixed Target Card",
+      "framework": "Edit Interactions (Isolation)",
+      "action": "Select the source visual -> Format -> Edit Interactions -> set Target Card icon to None."
+    },
+    {
+      "symptom": "One trend line must switch between Sales, Profit, and Discount %",
+      "framework": "Field Parameters",
+      "action": "Create a Field Parameter slicer so one chart dynamically swaps measures without stacking duplicate visuals."
+    },
+    {
+      "symptom": "Bridge 2017 Profit to 2018 Profit across positive & negative drivers",
+      "framework": "Waterfall Chart",
+      "action": "Use Waterfall to show cumulative positive gains and negative drops between two period totals."
+    },
+    {
+      "symptom": "Plot Monthly Revenue (Crores) and Profit Margin (%) together",
+      "framework": "Combo Chart (Line + Clustered Column)",
+      "action": "Use secondary Y-axis for Profit % so small percentages do not flatten near zero."
+    },
+    {
+      "symptom": "Unexpected (Blank) row appears in a Power BI visual",
+      "framework": "Referential Integrity / Power Query Hygiene",
+      "action": "Check for Fact foreign keys missing from the Dimension table, or uncleaned trailing blank rows in Excel."
+    },
+    {
+      "symptom": "Wide Excel sheet has 12 separate month columns (Jan..Dec)",
+      "framework": "Power Query Unpivot Columns",
+      "action": "Unpivot month columns into tall Attribute (Month) + Value columns before modeling."
+    },
+    {
+      "symptom": "Navigation button does nothing in Power BI Desktop",
+      "framework": "Desktop Ctrl+Click Authoring Rule",
+      "action": "In Desktop authoring mode, hold Ctrl + Click to test navigation buttons; Service users just single-click."
+    }
+  ],
+  "modules": [
+    {
+      "id": "dv_m1",
+      "title": "M1: Visualisation & Chart Matrix",
+      "sprint_mins": "15 min",
+      "summary": "Core narrative logic, chart selection rules, and visual/statistical distortion traps.",
+      "nodes": [
+        {
+          "id": "obs_ins_rec",
+          "row": 1,
+          "core": true,
+          "tag": "Storytelling",
+          "label": "Observation -> Insight -> Recommendation",
+          "short": "Never stop at raw numbers; state why it happened and what to do.",
+          "bullets": [
+            "Observation: What happened (e.g., North return rate hit 24% in Oct).",
+            "Insight: Causal driver (e.g., CoD footwear lacked mobile size charts).",
+            "Recommendation: Concrete action (e.g., Add mobile size-guide popup)."
+          ],
+          "trap": "Exam MCQs often ask you to pick the true Insight over a plain Observation or Action."
+        },
+        {
+          "id": "chart_matrix",
+          "row": 2,
+          "core": true,
+          "tag": "Selection",
+          "label": "Chart Selection Matrix",
+          "short": "Match the exact business question to its cleanest visual encoding.",
+          "bullets": [
+            "Time trend (continuous) -> Line Chart; Category ranking -> Sorted Horizontal Bar.",
+            "Profit bridge (+/- drivers) -> Waterfall; Mix share % over time -> 100% Stacked Area.",
+            "2 continuous metrics + outliers -> Scatter Plot with Avg/Target reference lines."
+          ],
+          "trap": "Avoid pie charts beyond 3-5 slices and never use a line chart across unordered categories."
+        },
+        {
+          "id": "mislead",
+          "row": 2,
+          "core": true,
+          "tag": "Distortion",
+          "label": "Misleading Patterns & Traps",
+          "short": "Zero-baseline bars, rate vs. count, and Simpson's Paradox.",
+          "bullets": [
+            "Bar charts MUST start at 0; truncated Y-axes exaggerate small gaps.",
+            "Compare rates (%) rather than raw counts when store/region sizes differ.",
+            "Always segment aggregates to rule out Simpson's Paradox and confounding variables."
+          ],
+          "trap": "Correlation on a dual-axis chart never proves causation without controlling confounders."
+        },
+        {
+          "id": "color_a11y",
+          "row": 3,
+          "core": false,
+          "tag": "Design",
+          "label": "60-30-10 Rule & Accessibility",
+          "short": "Restrain color to make real alerts pop; never rely on red/green alone.",
+          "bullets": [
+            "60% neutral canvas, 30% structural surfaces, 10% purposeful accent/alert color.",
+            "Pair red/green deltas with directional arrows or +/- signs for color-blind readers."
+          ],
+          "trap": "Rainbow charts destroy focal hierarchy."
+        }
+      ],
+      "edges": [
+        ["obs_ins_rec", "chart_matrix"],
+        ["obs_ins_rec", "mislead"],
+        ["chart_matrix", "color_a11y"]
+      ]
+    },
+    {
+      "id": "dv_m2",
+      "title": "M2: Dashboard Architecture",
+      "sprint_mins": "15 min",
+      "summary": "From stakeholder requirements and data audit to MVP scoping, KPI cards, and hybrid layouts.",
+      "nodes": [
+        {
+          "id": "req_4",
+          "row": 1,
+          "core": true,
+          "tag": "Discovery",
+          "label": "Why / What / How-When / Where",
+          "short": "Separate Project Sponsors from daily Dashboard Users early.",
+          "bullets": [
+            "Why: Concrete decision enabled. What: Exact KPIs, targets, and grain.",
+            "How/When/Where: Cadence (live vs. weekly) and device (wall TV vs. laptop).",
+            "Strategic (CEO) = periodic KPIs + targets; Operational = intraday exception queues."
+          ],
+          "trap": "Building for the VP sponsor instead of daily frontline users creates shelfware."
+        },
+        {
+          "id": "hybrid_arch",
+          "row": 2,
+          "core": true,
+          "tag": "Architecture",
+          "label": "Hybrid Architecture & Data Audit",
+          "short": "Shared certified core metrics + department views; audit data before building.",
+          "bullets": [
+            "Hybrid = 1 certified core overview (prevents metric drift) + tailored team pages.",
+            "Audit cadence, entity hygiene (Calcutta vs. Kolkata), and extraction bottlenecks.",
+            "MVP = High Value intersected with Immediate Feasibility (defer blocked PDFs to Phase 2)."
+          ],
+          "trap": "Never delay core Phase 1 dashboards waiting on one blocked external API."
+        },
+        {
+          "id": "kpi_card",
+          "row": 2,
+          "core": true,
+          "tag": "UI Atom",
+          "label": "4-Part KPI Card & Hierarchy",
+          "short": "Headline metric + benchmark + delta + micro-trend in top-left anchor.",
+          "bullets": [
+            "4 parts: Current Value (scaled cleanly) + Benchmark + Directional Delta + Trend.",
+            "Top-left Z/F anchor for primary KPIs; use Progressive Disclosure for detail.",
+            "Lock low-fidelity wireframes & sign-off before writing DAX."
+          ],
+          "trap": "A raw number alone without target/prior comparison is not decision-ready."
+        }
+      ],
+      "edges": [
+        ["req_4", "hybrid_arch"],
+        ["req_4", "kpi_card"]
+      ]
+    },
+    {
+      "id": "dv_m3",
+      "title": "M3: Power BI Modeling & DAX",
+      "sprint_mins": "15 min",
+      "summary": "Power Query ETL hygiene, Star Schema modeling, and Calculated Columns vs. DAX Measures.",
+      "nodes": [
+        {
+          "id": "pq_etl",
+          "row": 1,
+          "core": true,
+          "tag": "ETL",
+          "label": "Power Query Hygiene",
+          "short": "Clean junk rows, standardize labels, set types, and Unpivot upstream.",
+          "bullets": [
+            "Remove top junk rows, promote headers, trim text, fix Date/Decimal types.",
+            "Unpivot wide month columns (Jan..Dec) into tall Month + Value columns.",
+            "Remove unused columns early to keep VertiPaq memory lean."
+          ],
+          "trap": "Fixing data types or duplicates downstream in visuals leaves broken model joins."
+        },
+        {
+          "id": "star_schema",
+          "row": 2,
+          "core": true,
+          "tag": "Model",
+          "label": "Star Schema (Fact & Dimension)",
+          "short": "Facts hold numeric events; Dimensions hold attributes (1:* single-direction).",
+          "bullets": [
+            "FactSales (OrderDate, Sales, Profit, Qty) <- 1:* single-direction from DimProduct/DimCustomer/DimDate.",
+            "Dedicated DimDate table beats auto-date hierarchies for multi-fact time intelligence.",
+            "Hide technical foreign-key IDs in Report View."
+          ],
+          "trap": "Avoid Many-to-Many bidirectional joins; they create ambiguous filter paths."
+        },
+        {
+          "id": "dax_vs_col",
+          "row": 2,
+          "core": true,
+          "tag": "DAX",
+          "label": "DAX Measures vs. Calculated Columns",
+          "short": "Measures = dynamic filter context; Columns = static row-level buckets.",
+          "bullets": [
+            "DAX Measure: Evaluated at query time under slicers; zero row RAM; mandatory for ratios.",
+            "Calculated Column: Evaluated at refresh (row context); use ONLY for slicer/axis buckets.",
+            "Always write explicit measures rather than dragging raw columns."
+          ],
+          "trap": "Never average row-level Profit Margin %; compute DIVIDE(SUM(Profit), SUM(Sales))."
+        }
+      ],
+      "edges": [
+        ["pq_etl", "star_schema"],
+        ["star_schema", "dax_vs_col"]
+      ]
+    },
+    {
+      "id": "dv_m4",
+      "title": "M4 & M5: Interactivity & Service",
+      "sprint_mins": "15 min",
+      "summary": "Interactive controls, diagnostic visuals, QA sign-off, and Power BI Service publishing.",
+      "nodes": [
+        {
+          "id": "interactivity",
+          "row": 1,
+          "core": true,
+          "tag": "Controls",
+          "label": "Field Params, Top N & Edit Interactions",
+          "short": "Control what swaps, ranks, and isolates across every visual.",
+          "bullets": [
+            "Field Parameters: One visual switches measures dynamically via slicer.",
+            "Top N Visual Filter: Dynamic Top 5/6 items inside active slicer context.",
+            "Edit Interactions: Set to None to protect fixed-scope / benchmark cards."
+          ],
+          "trap": "Synced multi-year slicers can silently corrupt fixed-year (e.g. 2018-only) pages."
+        },
+        {
+          "id": "diagnostics",
+          "row": 2,
+          "core": true,
+          "tag": "Visuals",
+          "label": "Combo, Waterfall & Quadrant Scatter",
+          "short": "Isolate growth drivers and discount-driven margin leaks.",
+          "bullets": [
+            "Combo Chart: Bars (Sales/Profit) + Secondary-Axis Line (Margin % / Discount %).",
+            "Scatter Matrix: Discount % vs. Profit Ratio % with Avg reference lines -> 4 quadrants.",
+            "QA Check: Verify conditional formatting signs (< vs <=, 0.15 vs 15) and default slicers."
+          ],
+          "trap": "Testing navigation buttons in Power BI Desktop requires Ctrl + Click."
+        },
+        {
+          "id": "service_pub",
+          "row": 2,
+          "core": true,
+          "tag": "Cloud",
+          "label": "Reports vs. Dashboards & Pin Live Page",
+          "short": "One Master Semantic Model; Pin Live Page keeps dashboard interactivity.",
+          "bullets": [
+            "Report = multi-page, 1 semantic model (Desktop/Service).",
+            "Dashboard = single-page Service canvas pinning tiles from 1+ reports.",
+            "Pin Live Page retains slicers/cross-filtering; individual tiles are static links."
+          ],
+          "trap": "Emailing .pbix files causes version sprawl; publish once to a shared Workspace."
+        }
+      ],
+      "edges": [
+        ["interactivity", "diagnostics"],
+        ["interactivity", "service_pub"]
+      ]
+    }
+  ],
+  "traps": [
+    {
+      "module": "Sec B MSQ",
+      "trap": "Guessing blindly on MSQs (2 marks each)",
+      "fix": "Partial/negative scoring applies per question floored at 0: + (2/k) per right option, - (2/k) per wrong option. Never select options you are unsure of."
+    },
+    {
+      "module": "M1",
+      "trap": "Starting a Bar/Column chart Y-axis above zero",
+      "fix": "Bars encode magnitude by length and MUST start at 0; only line charts can zoom with clear axis labels."
+    },
+    {
+      "module": "M1",
+      "trap": "Confusing an Observation with an Insight",
+      "fix": "Observation = what happened (24% returns); Insight = why it happened (missing mobile size chart)."
+    },
+    {
+      "module": "M1",
+      "trap": "Trusting aggregate averages during mix shifts",
+      "fix": "Always check segment-level trends to catch Simpson's Paradox."
+    },
+    {
+      "module": "M3",
+      "trap": "Using a Calculated Column for Profit Margin %",
+      "fix": "Use a DAX Measure (DIVIDE(SUM(Profit), SUM(Sales))) so ratios recalculate dynamically under slicers."
+    },
+    {
+      "module": "M3 / M5",
+      "trap": "Ignoring unexpected (Blank) rows in Power BI visuals",
+      "fix": "Check unmatched Fact foreign keys missing in Dimension tables, or trailing blank Excel rows."
+    },
+    {
+      "module": "M4",
+      "trap": "Fixed 2018-only charts changing when global Year slicers move",
+      "fix": "Lock page/visual filter to 2018 and adjust Sync Slicers + Edit Interactions."
+    },
+    {
+      "module": "M4",
+      "trap": "Thinking page navigation buttons are broken in Power BI Desktop",
+      "fix": "Hold Ctrl + Click in Desktop authoring mode; single-click works after publishing to Service."
+    },
+    {
+      "module": "M4",
+      "trap": "Confusing Power BI Reports with Service Dashboards",
+      "fix": "Reports are multi-page from 1 semantic model; Dashboards are 1-page Service canvases pinning tiles from 1+ reports."
+    },
+    {
+      "module": "M4",
+      "trap": "Conditional formatting threshold sign mistakes (< vs <= or 0.15 vs 15)",
+      "fix": "Test zero and boundary values during pre-publish QA."
+    }
+  ]
+}

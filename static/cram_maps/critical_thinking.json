@@ -1,0 +1,275 @@
+{
+  "course_id": "d9173426",
+  "course_name": "Critical Thinking",
+  "triggers": [
+    {
+      "symptom": "Model is 89% accurate at predicting pregnancy, wants to mail baby coupons",
+      "framework": "Analytics-Ethics Gap (Target Case)",
+      "action": "Predictive accuracy does NOT equal ethical permissibility. Propose opt-in mixed bundles + flag stored-data breach risk."
+    },
+    {
+      "symptom": "Returning planes / active 6-month users surveyed -> 'everything works great'",
+      "framework": "Selection / Survivorship Bias (Wald's Invisible Record)",
+      "action": "Ask who is missing from the sample (non-returning planes, week-1 churned users)."
+    },
+    {
+      "symptom": "Press release blames 'pilot checklists' and calls fixes 'enhancements'",
+      "framework": "Close Reading: Framing, Euphemism & Omission (Boeing 737 MAX)",
+      "action": "Expose blame-shifting and omitted single-sensor flaws; audit claims against internal memos."
+    },
+    {
+      "symptom": "Engineers warned early, leadership suppressed delays to beat rival",
+      "framework": "Groupthink & Structural Devil's Advocacy",
+      "action": "Propose independent Safety Sign-Off reporting to Board Risk Committee + protected Red-Team stop-ship authority."
+    },
+    {
+      "symptom": "'1% of 1.4 billion Indians will buy our ₹2,000 desk every month'",
+      "framework": "Base-Rate / TAM-to-SOM & Purchase-Frequency Flaw",
+      "action": "Filter 1.4B down to actual office buyers and note durable goods are bought once in years, not monthly."
+    },
+    {
+      "symptom": "'Our campaign ran Tuesday, sales rose Thursday, so campaign worked'",
+      "framework": "Post Hoc Ergo Propter Hoc",
+      "action": "Temporal sequence does not prove causation; check seasonality, discounts, and confounders."
+    },
+    {
+      "symptom": "'Either slash R&D 40% today or we go bankrupt'",
+      "framework": "False Dilemma (Black-and-White Fallacy)",
+      "action": "Reject forced binary; surface middle options (phased capex, pricing tiers, working-capital release)."
+    },
+    {
+      "symptom": "'We already spent ₹300 Cr on slots, so keep flying the losing route'",
+      "framework": "Sunk Cost Fallacy",
+      "action": "Decide strictly on marginal future cash flows; historical spend is unrecoverable."
+    },
+    {
+      "symptom": "Junior spots fatal flaw in VP's plan during meeting, stays silent",
+      "framework": "Nyaya Tarka & Face-Saving Norms",
+      "action": "Use private pre-meeting hypothesis testing ('under what conditions could this fail?') to surface dissent safely."
+    },
+    {
+      "symptom": "'Survey says customers want classic white, so ignore new pastel prototypes'",
+      "framework": "Exposure Gap Analysis (Whites & Pastels)",
+      "action": "Customers only prefer what they have seen; validate novel designs via physical prototypes, not surveys."
+    }
+  ],
+  "modules": [
+    {
+      "id": "ct_m1_m2",
+      "title": "M1 & M2: Evidence & Close Reading",
+      "sprint_mins": "15 min",
+      "summary": "Separate logic from complete evidence, facts from inferences, and surface rhetoric from hidden omissions.",
+      "nodes": [
+        {
+          "id": "logic_vs_ct",
+          "row": 1,
+          "core": true,
+          "tag": "Foundation",
+          "label": "Logic vs. Critical Thinking & Challenger",
+          "short": "Logic checks conclusion from premises; CT checks if premises are complete and ethical.",
+          "bullets": [
+            "Challenger: Engineers had valid O-ring concern, but omitted zero-damage temperature baseline.",
+            "Target Case: Technical accuracy (89%) fails when ethical consent/privacy is ignored."
+          ],
+          "trap": "Soundness requires BOTH valid structure AND factually true, unbiased premises."
+        },
+        {
+          "id": "triad_wald",
+          "row": 2,
+          "core": true,
+          "tag": "Evidence",
+          "label": "Evidence Triad & Wald's Invisible Record",
+          "short": "Fact (verifiable) -> Inference (causal step) -> Interpretation (meaning).",
+          "bullets": [
+            "Test assertions vs. verifiable evidence; ask what missing data is invisible (survivorship bias).",
+            "Framing (₹100 surcharge vs. ₹100 discount) flips choices via Loss Aversion."
+          ]
+        },
+        {
+          "id": "close_read",
+          "row": 2,
+          "core": true,
+          "tag": "Reading",
+          "label": "Close Reading, Omission & 5 Cs",
+          "short": "Spot euphemisms, confident intensifiers, and retrospective narrative illusions.",
+          "bullets": [
+            "Explicit Claim vs. Implicit Position: audit word choice, repetition, and strategic omissions.",
+            "Reasonable Person Test: anchor meaning in plain text, not private author intent.",
+            "5 Cs (Hare-Tortoise): clean retrospective stories mask luck and survivor bias."
+          ]
+        }
+      ],
+      "edges": [
+        ["logic_vs_ct", "triad_wald"],
+        ["logic_vs_ct", "close_read"]
+      ]
+    },
+    {
+      "id": "ct_m3_m4",
+      "title": "M3 & M4: Arguments, Biases & Fallacies",
+      "sprint_mins": "20 min",
+      "summary": "Deconstruct pitches via C-E-R / Toulmin and spot the top cognitive biases and logical fallacies.",
+      "nodes": [
+        {
+          "id": "cer_toulmin",
+          "row": 1,
+          "core": true,
+          "tag": "Structure",
+          "label": "C-E-R & Toulmin's 6-Part Model",
+          "short": "Claim + Grounds + Warrant (bridge) + Backing + Qualifier + Rebuttal.",
+          "bullets": [
+            "Netflix 2006: Always expose unstated assumptions (studio licensing, bandwidth).",
+            "Deductive = necessary certainty (valid vs. sound); Inductive = probable generalization.",
+            "Ethos (credibility) + Pathos (emotion) collapse in due diligence without Logos (unit economics)."
+          ],
+          "trap": "Warrant is the logical bridge principle; Backing is the evidence supporting that warrant."
+        },
+        {
+          "id": "biases_kahneman",
+          "row": 2,
+          "core": true,
+          "tag": "Biases",
+          "label": "System 1, WYSIATI & Cognitive Traps",
+          "short": "Base Rate Neglect, Sunk Cost, Availability, Anchoring, Planning Fallacy.",
+          "bullets": [
+            "WYSIATI: System 1 builds confident stories from visible facts alone, ignoring base rates.",
+            "Confirmation Bias (passive) vs. Motivated Reasoning (active defense of desired outcome).",
+            "Hindsight Bias ('knew it all along') blocks honest post-mortems."
+          ]
+        },
+        {
+          "id": "fallacies",
+          "row": 2,
+          "core": true,
+          "tag": "Fallacies",
+          "label": "Top Exam Logical Fallacies",
+          "short": "Post Hoc, False Dilemma, Strawman/Steelman, Ad Hominem, Tu Quoque.",
+          "bullets": [
+            "Post Hoc (sequence != cause); False Dilemma (forced binary); Slippery Slope (unproven chain).",
+            "Strawman (distort to attack) vs. Steelman (reconstruct strongest case first).",
+            "Circular Reasoning, Equivocation (word-shift), Bandwagon, False Authority."
+          ]
+        }
+      ],
+      "edges": [
+        ["cer_toulmin", "biases_kahneman"],
+        ["cer_toulmin", "fallacies"]
+      ]
+    },
+    {
+      "id": "ct_m5_m6",
+      "title": "M5 & M6: Authority, Values & Nyaya",
+      "sprint_mins": "15 min",
+      "summary": "Audit experts, separate Facts from Values, and apply Nyaya logic + cross-cultural humility.",
+      "nodes": [
+        {
+          "id": "expert_val",
+          "row": 1,
+          "core": true,
+          "tag": "Credibility",
+          "label": "Expertise Audit & Fact-Value Gap",
+          "short": "Check domain scope + conflicts of interest; data ('is') never dictates ethics ('ought').",
+          "bullets": [
+            "False Authority = citing prestige outside competence or hiding paid advisory ties.",
+            "Epistemic Humility: state falsification conditions and update on disconfirming data."
+          ]
+        },
+        {
+          "id": "nyaya_culture",
+          "row": 2,
+          "core": true,
+          "tag": "Cross-Cultural",
+          "label": "Nyaya 5-Step Inference & Single Story",
+          "short": "Nyaya grounds deduction in Udaharana (concrete empirical example).",
+          "bullets": [
+            "5 steps add Udaharana (real-world example) + application, uniting logic with observation.",
+            "Blurry JPEG: executive summaries compress away edge cases.",
+            "Single Story: flattening regions/segments causes mispricing and missed niches."
+          ]
+        }
+      ],
+      "edges": [
+        ["expert_val", "nyaya_culture"]
+      ]
+    },
+    {
+      "id": "ct_m7_m8",
+      "title": "M7 & M8: Organisations & Practice",
+      "sprint_mins": "15 min",
+      "summary": "Institutional accountability, Pre-Mortems, Hustle Culture premise, and real-world prototyping.",
+      "nodes": [
+        {
+          "id": "org_account",
+          "row": 1,
+          "core": true,
+          "tag": "Organisations",
+          "label": "Accountability, Groupthink & Pre-Mortem",
+          "short": "Test espoused claims against promotion/memo records; institutionalize dissent.",
+          "bullets": [
+            "Structural Devil's Advocacy + independent Safety Sign-Off beats 'just speak up.'",
+            "Pre-Mortem: imagine failure 1 year out to surface risks safely before launch.",
+            "Hustle Culture Premise Problem: hours != output; fatigue degrades System 2."
+          ]
+        },
+        {
+          "id": "practice_cases",
+          "row": 2,
+          "core": true,
+          "tag": "Practice",
+          "label": "Exposure Gap, Prototyping & Artisans",
+          "short": "Test highest-risk assumptions cheaply via prototypes and stakeholder listening.",
+          "bullets": [
+            "Whites & Pastels: physical prototypes bridge the survey Exposure Gap.",
+            "Kolhapuri Artisans: protect craft authenticity via milestone working-capital advances.",
+            "Sangeeta Menon: frontline suppliers spot red flags before lagging financials."
+          ]
+        }
+      ],
+      "edges": [
+        ["org_account", "practice_cases"]
+      ]
+    }
+  ],
+  "traps": [
+    {
+      "module": "Sec B / C",
+      "trap": "Exceeding word limits (20-30w in Sec B, 40-50w in Sec C) with fluff",
+      "fix": "Hit exact deliverables cleanly: Framework name -> Diagnosis -> 1 Fix -> 1 Residual Risk."
+    },
+    {
+      "module": "M3",
+      "trap": "Confusing Valid with Sound",
+      "fix": "An argument can be structurally Valid while having false premises (Unsound)."
+    },
+    {
+      "module": "M3",
+      "trap": "Confusing Warrant with Backing in Toulmin",
+      "fix": "Warrant = logical rule connecting Grounds to Claim; Backing = evidence proving the Warrant."
+    },
+    {
+      "module": "M3",
+      "trap": "Calling every critique of a speaker 'Ad Hominem'",
+      "fix": "Exposing an undisclosed financial conflict of interest is a legitimate credibility check, not Ad Hominem."
+    },
+    {
+      "module": "M4",
+      "trap": "Ignoring the low prior base rate when test accuracy is 90%",
+      "fix": "Always check Base Rate Neglect before trusting posterior probabilities."
+    },
+    {
+      "module": "M1",
+      "trap": "Equating Confirmation Bias with Motivated Reasoning",
+      "fix": "Confirmation bias is passive selective attention; Motivated Reasoning actively defends a desired conclusion."
+    },
+    {
+      "module": "M6",
+      "trap": "Assuming Nyaya is just a longer Western syllogism",
+      "fix": "Its defining strength is Udaharana—anchoring universal rules in observed empirical examples."
+    },
+    {
+      "module": "M7",
+      "trap": "Recommending 'encourage people to speak up' to fix Groupthink",
+      "fix": "Always propose structural protection (rotating Devil's Advocate, independent risk reporting, Pre-Mortem)."
+    }
+  ]
+}
