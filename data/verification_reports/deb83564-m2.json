@@ -1,0 +1,126 @@
+{
+  "course_id": "deb83564",
+  "course_name": "Data Visualisation for Business Decisions",
+  "module_id": "deb83564-m2",
+  "module_number": 2,
+  "module_name": "Module 2: Designing Effective Dashboards",
+  "videos_processed": 11,
+  "videos_passed_gate": 11,
+  "min_score_target": 95,
+  "module_avg_accuracy": 97.0,
+  "module_gate_passed": true,
+  "oneshot_words": 581,
+  "oneshot_katex_errors": [],
+  "topics": [
+    {
+      "topic_id": "5853b611",
+      "idx": 1,
+      "title": "User Segments & Stakeholder Mapping for Dashboard Design",
+      "transcript_words": 1654,
+      "note_words": 411,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "f2e64e36",
+      "idx": 2,
+      "title": "Requirements Gathering Framework: Why, What, How/When & Where",
+      "transcript_words": 3073,
+      "note_words": 308,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "41f40aeb",
+      "idx": 3,
+      "title": "Hybrid Dashboard Architecture: Shared Core vs. Department-Specific Metrics",
+      "transcript_words": 2318,
+      "note_words": 305,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "24e365aa",
+      "idx": 4,
+      "title": "Data Audit Feasibility: Source, Quality & Revised Data Handling",
+      "transcript_words": 2195,
+      "note_words": 293,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "5c27cfe4",
+      "idx": 5,
+      "title": "Phase-Wise Roadmap: MVP Strategy & Bottleneck Shield",
+      "transcript_words": 1473,
+      "note_words": 277,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "3b8e33e1",
+      "idx": 6,
+      "title": "Anatomy of a Dashboard: Core Building Blocks",
+      "transcript_words": 715,
+      "note_words": 222,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "bbd4ebf0",
+      "idx": 7,
+      "title": "KPI Card Design: Four Pillars of Contextual Intelligence",
+      "transcript_words": 1655,
+      "note_words": 353,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "ea8daa04",
+      "idx": 8,
+      "title": "Designing Effective Dashboards: Hierarchy, Flow & Progressive Disclosure",
+      "transcript_words": 1897,
+      "note_words": 306,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "4e182966",
+      "idx": 9,
+      "title": "Module 2: Chart Selection Matrix for Business Questions",
+      "transcript_words": 2322,
+      "note_words": 316,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "dc3a4ccd",
+      "idx": 10,
+      "title": "Color, Grid & Mockups: The Look and Feel of Effective Dashboards",
+      "transcript_words": 1482,
+      "note_words": 286,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    },
+    {
+      "topic_id": "c500e5ae",
+      "idx": 11,
+      "title": "Module 2 Recap: End-to-End Dashboard Design Lifecycle",
+      "transcript_words": 900,
+      "note_words": 296,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    }
+  ]
+}

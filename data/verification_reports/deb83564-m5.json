@@ -1,0 +1,27 @@
+{
+  "course_id": "deb83564",
+  "course_name": "Data Visualisation for Business Decisions",
+  "module_id": "deb83564-m5",
+  "module_number": 5,
+  "module_name": "Live Session",
+  "videos_processed": 1,
+  "videos_passed_gate": 1,
+  "min_score_target": 95,
+  "module_avg_accuracy": 97.0,
+  "module_gate_passed": true,
+  "oneshot_words": 0,
+  "oneshot_katex_errors": [],
+  "topics": [
+    {
+      "topic_id": "3eb58fc8",
+      "idx": 1,
+      "title": "Power BI Live Walkthrough: Blank-Row Cleaning, Star Joins & Exam Clarity",
+      "transcript_words": 14417,
+      "note_words": 276,
+      "max_allowed_words": 680,
+      "final_score": 97,
+      "passed": true,
+      "final_issues": []
+    }
+  ]
+}
