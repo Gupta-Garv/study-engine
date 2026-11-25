@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StudyEngine | Clean Modern Lecture & Exam Vault</title>
+  <title>Folio — Lecture &amp; Exam Vault</title>
+  <link rel="icon" type="image/svg+xml" href="./static/favicon.svg">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -45,7 +46,7 @@
   </script>
 
   <!-- Custom Ledger CSS -->
-  <link rel="stylesheet" href="./static/css/style.css?v=2.7.0">
+  <link rel="stylesheet" href="./static/css/style.css?v=2.9.0">
 </head>
 
 <body class="h-screen flex flex-col bg-canvas text-ink transition-colors duration-200 overflow-hidden">
@@ -61,17 +62,20 @@
     <!-- Drawer Header -->
     <div class="p-4 border-b border-border flex items-center justify-between shrink-0 bg-card-muted/30">
       <div class="flex items-center gap-2.5">
-        <div
-          class="w-8 h-8 rounded-xl bg-ink text-canvas flex items-center justify-center font-pixel text-xs font-bold shadow-soft-sm">
-          SE
-        </div>
+        <svg class="w-7 h-7 shrink-0 text-ink" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="currentColor" fill-opacity="0.1"/>
+          <path d="M10 8.5C10 7.67157 10.6716 7 11.5 7H22.5C23.3284 7 24 7.67157 24 8.5V21.5C24 22.3284 23.3284 23 22.5 23H20" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M8 10.5C8 9.67157 8.67157 9 9.5 9H17.5L21 12.5V23.5C21 24.3284 20.3284 25 19.5 25H9.5C8.67157 25 8 24.3284 8 23.5V10.5Z" fill="currentColor"/>
+          <path d="M17.5 9V12.5H21" stroke="var(--card)" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M11 15.5H17.5M11 18.5H16M11 21.5H14.5" stroke="var(--card)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
         <div>
           <div class="text-sm font-semibold tracking-tight text-ink flex items-center gap-1.5">
-            <span>StudyEngine</span>
+            <span>Folio</span>
             <span
-              class="text-[9px] font-mono px-1.5 py-0.2 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-bold">MBA</span>
+              class="text-[9px] font-mono px-1.5 py-0.2 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-bold">DBE</span>
           </div>
-          <div class="text-[10px] font-mono text-neutral-400">IIMBx Degree Suite</div>
+          <div class="text-[10px] font-mono text-neutral-400">IIMBx Study Vault</div>
         </div>
       </div>
       <button onclick="App.closeNavDrawer()"
@@ -296,36 +300,39 @@
     </div>
   </div>
 
-  <!-- Universal Slim App Header (Shown on Dashboard & Exam Arena) -->
-  <header id="app-global-header" class="sticky top-0 z-40 shrink-0 backdrop-blur border-b border-border bg-canvas/80">
-    <div class="max-w-6xl mx-auto px-4 h-12 flex items-center justify-between gap-3">
+  <!-- Unified Persistent App Header (Visible on all views) -->
+  <header id="app-global-header" class="sticky top-0 z-40 shrink-0 backdrop-blur-md border-b border-border bg-canvas/85">
+    <div class="w-full px-4 sm:px-6 h-12 flex items-center justify-between gap-3">
 
-      <!-- Left: Hamburger Menu + Logo -->
-      <div class="flex items-center gap-3 shrink-0">
+      <!-- Left: Mobile Hamburger + Logo -->
+      <div class="flex items-center gap-2.5 shrink-0">
         <button onclick="App.openNavDrawer()"
-          class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink transition flex items-center gap-1.5"
+          class="sm:hidden p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink transition flex items-center"
           title="Open Navigation Menu (⌘M)">
           <i data-lucide="menu" class="w-4 h-4"></i>
         </button>
         <a href="#" onclick="App.switchView('dashboard')"
           class="flex items-center gap-2 text-ink font-medium tracking-tight">
-          <div
-            class="w-7 h-7 rounded-lg bg-ink text-canvas flex items-center justify-center font-pixel text-xs font-bold shadow-soft-sm">
-            SE
-          </div>
-          <span class="text-sm font-semibold hidden md:inline">StudyEngine</span>
+          <svg class="w-7 h-7 shrink-0 text-ink" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <rect width="32" height="32" rx="8" fill="currentColor" fill-opacity="0.1"/>
+            <path d="M10 8.5C10 7.67157 10.6716 7 11.5 7H22.5C23.3284 7 24 7.67157 24 8.5V21.5C24 22.3284 23.3284 23 22.5 23H20" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M8 10.5C8 9.67157 8.67157 9 9.5 9H17.5L21 12.5V23.5C21 24.3284 20.3284 25 19.5 25H9.5C8.67157 25 8 24.3284 8 23.5V10.5Z" fill="currentColor"/>
+            <path d="M17.5 9V12.5H21" stroke="var(--canvas)" stroke-width="1.4" stroke-linejoin="round"/>
+            <path d="M11 15.5H17.5M11 18.5H16M11 21.5H14.5" stroke="var(--canvas)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="text-sm font-medium tracking-tight hidden md:inline">Folio</span>
         </a>
       </div>
 
       <!-- Center: Quick Search Trigger Button (Command Palette) -->
       <button onclick="App.openSearchModal()"
-        class="flex-1 max-w-md mx-2 sm:mx-4 flex items-center justify-between px-3.5 py-1.5 rounded-full bg-card border border-border text-xs text-neutral-400 hover:text-ink hover:border-ink transition shadow-soft-sm group">
-        <div class="flex items-center gap-2">
-          <i data-lucide="search" class="w-3.5 h-3.5 text-neutral-400 group-hover:text-ink transition"></i>
-          <span class="truncate">Search all 505 lectures, concepts, equations...</span>
+        class="flex-1 max-w-sm mx-2 sm:mx-4 flex items-center justify-between px-3.5 py-1.5 rounded-full bg-card border border-border text-xs text-ink-secondary hover:text-ink hover:border-neutral-500 transition group">
+        <div class="flex items-center gap-2 min-w-0">
+          <i data-lucide="search" class="w-3.5 h-3.5 text-ink-secondary group-hover:text-ink transition shrink-0"></i>
+          <span class="truncate">Search lectures, concepts, equations...</span>
         </div>
         <kbd
-          class="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[9px] font-mono text-neutral-400 bg-card-muted border border-border rounded pointer-events-none select-none">⌘K</kbd>
+          class="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono text-ink-secondary bg-card-muted rounded pointer-events-none select-none">⌘K</kbd>
       </button>
 
       <!-- Right: Navigation Pills + User Profile + Theme -->
@@ -585,39 +592,33 @@
       <!-- Main Reader / Studio Section -->
       <section id="notes-content-section" class="flex-1 h-full overflow-hidden bg-card flex flex-col min-w-0">
 
-        <!-- Studio Sticky Top Bar (Unified Single 42px Toolbar) -->
+        <!-- Studio Sticky Sub-Toolbar (Purely lecture context, since global header stays visible) -->
         <div
-          class="shrink-0 flex items-center justify-between px-3 sm:px-5 py-2 border-b border-border bg-card-muted/40 backdrop-blur gap-2 flex-wrap">
+          class="shrink-0 flex items-center justify-between px-3 sm:px-5 py-2 border-b border-border bg-canvas/60 backdrop-blur gap-2 flex-wrap">
 
-          <!-- Left: Hamburger Menu, Syllabus Sidebar & Topic Navigation -->
+          <!-- Left: Syllabus Sidebar & Topic Navigation -->
           <div class="flex items-center gap-1.5 min-w-0">
-            <button onclick="App.openNavDrawer()"
-              class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink transition flex items-center gap-1 text-xs shrink-0"
-              title="Open Navigation Menu (⌘M)">
-              <i data-lucide="menu" class="w-4 h-4"></i>
-            </button>
-
             <button id="sidebar-toggle-btn" onclick="App.toggleSidebar()"
               class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink-secondary hover:text-ink transition flex items-center gap-1.5 text-xs shrink-0"
               title="Toggle Syllabus Sidebar">
               <i data-lucide="panel-left" class="w-3.5 h-3.5"></i>
-              <span id="sidebar-toggle-text" class="hidden sm:inline text-[11px] font-mono">Syllabus</span>
+              <span id="sidebar-toggle-text" class="hidden sm:inline text-xs font-medium">Syllabus</span>
             </button>
             <span id="reader-topic-badge"
-              class="text-[11px] font-mono px-2.5 py-1 rounded-full bg-muted text-ink-secondary font-medium truncate max-w-xs sm:max-w-md">Ready</span>
+              class="text-xs px-2.5 py-1 rounded-full bg-card-muted text-ink-secondary font-medium truncate max-w-xs sm:max-w-md">Ready</span>
 
             <!-- Quick Prev / Next Lecture Nav in Subheader -->
             <div class="flex items-center gap-1 shrink-0 ml-1">
               <span id="lecture-index-counter"
-                class="hidden sm:inline text-[10px] font-mono text-neutral-400 tabular-nums px-1"></span>
+                class="hidden sm:inline text-[11px] font-mono text-ink-secondary tabular-nums px-1.5"></span>
               <button id="btn-prev-lecture" onclick="App.goToPrevTopic()"
-                class="px-2 py-1 rounded-lg border border-border bg-card text-ink-secondary hover:text-ink hover:bg-muted transition flex items-center gap-1 text-[11px] font-mono disabled:opacity-30 disabled:pointer-events-none"
+                class="px-2 py-1 rounded-lg border border-border bg-card text-ink-secondary hover:text-ink hover:bg-muted transition flex items-center gap-1 text-xs disabled:opacity-30 disabled:pointer-events-none"
                 title="Previous Lecture (Shift+P)">
                 <i data-lucide="chevron-left" class="w-3.5 h-3.5"></i>
                 <span class="hidden xl:inline">Prev</span>
               </button>
               <button id="btn-next-lecture" onclick="App.goToNextTopic()"
-                class="px-2.5 py-1 rounded-lg bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-100 transition flex items-center gap-1 text-[11px] font-mono font-medium shadow-soft-sm disabled:opacity-30 disabled:pointer-events-none"
+                class="px-2.5 py-1 rounded-lg bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-100 transition flex items-center gap-1 text-xs font-medium disabled:opacity-30 disabled:pointer-events-none"
                 title="Next Lecture (Shift+N)">
                 <span>Next</span>
                 <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
@@ -625,58 +626,31 @@
             </div>
           </div>
 
-          <!-- Right: Individual Tool Toggles, Search, User Avatar, Theme -->
+          <!-- Right: Individual Tool Toggles -->
           <div class="flex items-center gap-1.5 shrink-0">
             <button id="toggle-video-btn" onclick="App.togglePane('video')"
-              class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition active border-border bg-card text-ink"
+              class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs flex items-center gap-1.5 transition active border-border bg-card text-ink"
               title="Toggle Embedded Video">
               <i data-lucide="video" class="w-3.5 h-3.5"></i>
               <span class="hidden sm:inline">Video</span>
             </button>
             <button id="toggle-notes-btn" onclick="App.togglePane('notes')"
-              class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition active font-semibold border-border bg-card text-ink"
+              class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs flex items-center gap-1.5 transition active font-medium border-border bg-card text-ink"
               title="Toggle Synthesized Notes">
               <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
               <span class="hidden sm:inline">Notes</span>
             </button>
             <button id="toggle-canvas-btn" onclick="App.togglePane('canvas')"
-              class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition border-border bg-card text-neutral-400 hover:text-ink"
+              class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs flex items-center gap-1.5 transition border-border bg-card text-ink-secondary hover:text-ink"
               title="Toggle Personal Canvas">
               <i data-lucide="layout" class="w-3.5 h-3.5"></i>
               <span class="hidden sm:inline">Canvas</span>
             </button>
             <button id="toggle-copilot-btn" onclick="App.togglePane('copilot')"
-              class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition border-border bg-card text-neutral-400 hover:text-ink"
+              class="tool-toggle-pill px-2.5 py-1 rounded-lg border text-xs flex items-center gap-1.5 transition border-border bg-card text-ink-secondary hover:text-ink"
               title="Toggle AI Copilot">
               <i data-lucide="bot" class="w-3.5 h-3.5"></i>
               <span class="hidden sm:inline">Copilot</span>
-            </button>
-
-            <!-- Thin Divider -->
-            <div class="w-px h-4 bg-border/60 mx-0.5"></div>
-
-            <!-- Quick Search (Cmd+K) button in subheader -->
-            <button onclick="App.openSearchModal()"
-              class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink-secondary hover:text-ink transition flex items-center gap-1 text-xs shrink-0"
-              title="Quick Search (⌘K)">
-              <i data-lucide="search" class="w-3.5 h-3.5"></i>
-              <span class="hidden md:inline text-[10px] font-mono text-neutral-400">⌘K</span>
-            </button>
-
-            <!-- User Account Profile Button -->
-            <button onclick="App.openUserProfileModal()"
-              class="flex items-center gap-1.5 p-1 px-1.5 rounded-lg border border-border bg-card hover:bg-muted text-xs transition"
-              title="Student Profile & Account">
-              <div
-                class="user-avatar-initials w-5 h-5 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 flex items-center justify-center text-[10px]">
-                GG</div>
-            </button>
-
-            <!-- Theme Toggle in Subheader -->
-            <button onclick="App.toggleTheme()"
-              class="p-1.5 rounded-lg border border-border bg-card hover:bg-muted text-ink-secondary hover:text-ink transition shrink-0"
-              title="Toggle Theme">
-              <i data-lucide="moon" class="w-3.5 h-3.5"></i>
             </button>
           </div>
 
@@ -1150,8 +1124,35 @@
     <!-- VIEW 3: EXAM ARENA (Timed MCQ Simulator) -->
     <!-- ============================================================= -->
     <div id="view-exam" class="hidden flex-1 w-full overflow-y-auto px-4 py-8">
-      <div class="max-w-3xl mx-auto space-y-6">
+      <div class="max-w-6xl mx-auto space-y-6">
 
+        <!-- Assessment Hub Mode Switcher -->
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="inline-flex items-center p-1 rounded-full bg-card border border-border shadow-soft-sm">
+            <button id="hub-tab-bank" onclick="ExamHub.setMode('bank')"
+              class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-soft-sm transition">
+              Question Bank
+            </button>
+            <button id="hub-tab-mock" onclick="ExamHub.setMode('mock')"
+              class="px-3.5 py-1.5 rounded-full text-xs font-medium text-ink-secondary hover:text-ink transition">
+              Term 7 Mock Exam
+            </button>
+            <button id="hub-tab-legacy" onclick="ExamHub.setMode('legacy')"
+              class="px-3.5 py-1.5 rounded-full text-xs font-medium text-ink-secondary hover:text-ink transition">
+              Module Sets
+            </button>
+          </div>
+          <span class="text-[11px] font-mono text-ink-secondary">Exam-Calibrated Revision &amp; Paper Simulator</span>
+        </div>
+
+        <!-- Mode 1: Question Bank -->
+        <div id="hub-mode-bank"></div>
+
+        <!-- Mode 2: Term 7 Mock Exam -->
+        <div id="hub-mode-mock" class="hidden"></div>
+
+        <!-- Mode 3: Legacy Module Sets -->
+        <div id="hub-mode-legacy" class="hidden space-y-6">
         <!-- Setup Box -->
         <div id="exam-setup-box" class="rounded-[1.5rem] bg-card border border-border shadow-soft p-6 sm:p-8 space-y-6">
           <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-border pb-4">
@@ -1342,6 +1343,7 @@
             </div>
           </div>
         </div>
+        </div><!-- /#hub-mode-legacy -->
 
       </div>
     </div>
@@ -1565,8 +1567,9 @@
     </div>
   </div>
 
-  <!-- App Script (Loaded with cache-buster so window.App is immediately ready) -->
-  <script src="./static/js/app.js?v=2.7.0"></script>
+  <!-- Term 7 Exam Hub + App Script -->
+  <script src="./static/js/exam_hub.js?v=1.3.0"></script>
+  <script src="./static/js/app.js?v=2.9.0"></script>
   <!-- Bundled Study Data for 24/7 GitHub Pages Access -->
   <script src="./study_data.js?v=2.5.0" defer></script>
 </body>

@@ -1,0 +1,84 @@
+{
+  "subjects": [
+    {
+      "slug": "family_business",
+      "course_id": "db945ff9",
+      "name": "Family Business Strategy",
+      "exam_date": "05 Dec 2026 • 12:00–02:00 PM",
+      "duration_mins": 120,
+      "total_marks": 75,
+      "calculator": false,
+      "negative_marking": false,
+      "pattern_summary": "Sec A: 30 MCQs (1m) + Sec B: 9 Short Answers (5m, ≤100w)",
+      "has_predicted": true,
+      "has_cla": true,
+      "predicted_counts": {
+        "subjective": 32,
+        "mcq": 64,
+        "msq": 0,
+        "case": 0
+      },
+      "cla_count": 70
+    },
+    {
+      "slug": "data_visualisation",
+      "course_id": "deb83564",
+      "name": "Data Visualisation for Business Decisions",
+      "exam_date": "05 Dec 2026 • 09:00–10:00 AM",
+      "duration_mins": 60,
+      "total_marks": 30,
+      "calculator": false,
+      "negative_marking": true,
+      "pattern_summary": "Sec A: 14 MCQs (1m) + Sec B: 8 MSQs (2m, partial/negative floored at 0)",
+      "has_predicted": false,
+      "has_cla": true,
+      "predicted_counts": {
+        "subjective": 0,
+        "mcq": 0,
+        "msq": 0,
+        "case": 0
+      },
+      "cla_count": 15
+    },
+    {
+      "slug": "critical_thinking",
+      "course_id": "d9173426",
+      "name": "Critical Thinking",
+      "exam_date": "06 Dec 2026 • 09:00–11:00 AM",
+      "duration_mins": 120,
+      "total_marks": 50,
+      "calculator": false,
+      "negative_marking": false,
+      "pattern_summary": "Sec A: 14 MCQs (1m) + Sec B: 6 Short (2m, 20–30w) + Sec C: 3 Cases (24m, 40–50w)",
+      "has_predicted": false,
+      "has_cla": true,
+      "predicted_counts": {
+        "subjective": 0,
+        "mcq": 0,
+        "msq": 0,
+        "case": 0
+      },
+      "cla_count": 85
+    },
+    {
+      "slug": "corporate_finance",
+      "course_id": "2989cdfe",
+      "name": "Corporate Finance",
+      "exam_date": "06 Dec 2026 • 01:00–03:00 PM",
+      "duration_mins": 120,
+      "total_marks": 75,
+      "calculator": true,
+      "negative_marking": false,
+      "pattern_summary": "Sec A: 50 MCQs (1.5m) • Scientific Calc + Formula Sheet allowed",
+      "has_predicted": false,
+      "has_cla": true,
+      "predicted_counts": {
+        "subjective": 0,
+        "mcq": 0,
+        "msq": 0,
+        "case": 0
+      },
+      "cla_count": 105
+    }
+  ]
+}

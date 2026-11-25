@@ -1,0 +1,3733 @@
+{
+  "course": "Critical Thinking",
+  "slug": "critical_thinking",
+  "edx_id": "course-v1:IIMBx+MD71x+BBA_DBE_B1",
+  "total_questions": 85,
+  "total_images": 0,
+  "assessments": [
+    {
+      "module": "Module 1",
+      "assessment": "CLA 1",
+      "seq_id": "block-v1:IIMBx+MD71x+BBA_DBE_B1+type@sequential+block@b5cad90c71f14e5cabd9441bdcc6d62d",
+      "status": "extracted",
+      "question_count": 15,
+      "image_count": 0,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "It presents only two options when more exist",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "It affirms the consequent, treating a shared trait as proof of the conclusion",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "It attacks the person making the argument rather than the claim",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "It relies on an unrepresentative sample to generalize",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A manager argues: 'All top-performing employees arrive early. Priya arrives early. Therefore, Priya is a top-performing employee.' What is the primary logical flaw in this argument?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A manager argues: 'All top-performing employees arrive early. Priya arrives early. Therefore, Priya is a top-performing employee.' What is the primary logical flaw in this argument?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Circular reasoning that assumes the conclusion in the premise",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Appeal to authority that relies on Raj's job title",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Slippery slope reasoning that exaggerates future consequences",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Ad hominem attack that dismisses the proposal by targeting Raj personally",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "During a budget meeting, an employee says, 'We shouldn't listen to Raj's proposal on cost-cutting because he was recently divorced and clearly isn't thinking straight.' Which reasoning error does this statement best illustrate?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>During a budget meeting, an employee says, 'We shouldn't listen to Raj's proposal on cost-cutting because he was recently divorced and clearly isn't thinking straight.' Which reasoning error does this statement best illustrate?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "It relies on outdated evidence rather than current customer needs",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "It generalizes from an unrepresentative small sample to the entire market",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "It confuses correlation between the product and sales with causation",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "It uses a false dichotomy between launching and not launching",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A company decides to launch a new product nationwide because three customers in a focus group loved it. What weakness best describes this decision-making approach?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A company decides to launch a new product nationwide because three customers in a focus group loved it. What weakness best describes this decision-making approach?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Framing effect, where identical information presented differently changes perception",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Anchoring bias, where the first number given sets a reference point",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Halo effect, where one positive trait influences overall judgment",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Confirmation bias, where patients only notice supporting evidence",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A hospital tells patients a surgery has a '90% survival rate' rather than a '10% mortality rate' to encourage them to proceed. Which critical thinking concept explains why patients respond more positively to the first phrasing?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A hospital tells patients a surgery has a '90% survival rate' rather than a '10% mortality rate' to encourage them to proceed. Which critical thinking concept explains why patients respond more positively to the first phrasing?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "The retailer's current market share is below industry average",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Advertising costs will remain constant over the campaign period",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Customers' purchase decisions are significantly influenced by advertising exposure",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Competitors will not respond by increasing their own advertising",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A retailer plans to double advertising spend, assuming that increased ad exposure will proportionally increase sales. What hidden assumption is this strategy most dependent on?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A retailer plans to double advertising spend, assuming that increased ad exposure will proportionally increase sales. What hidden assumption is this strategy most dependent on?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Both variables are influenced by a third factor such as warmer weather or population density",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "The sample size used in the study was too small to be reliable",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "The report relies on anecdotal evidence rather than statistical data",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "The report uses a false dichotomy between two unrelated outcomes",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A study finds that cities with more ice cream shops also have higher crime rates, and a report concludes that ice cream shops cause crime. What is the most likely explanation for this flawed conclusion?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A study finds that cities with more ice cream shops also have higher crime rates, and a report concludes that ice cream shops cause crime. What is the most likely explanation for this flawed conclusion?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "The 95% figure represents correlation rather than a causal relationship",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Email surveys generally have lower response rates than phone surveys",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Attendees are likely more engaged and positive than the average employee, biasing the sample",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "The survey question wording likely led respondents toward positive answers",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "An online survey about employee satisfaction is emailed only to staff who attended the last town hall meeting, and results show 95% satisfaction. Why might this result misrepresent overall employee sentiment?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>An online survey about employee satisfaction is emailed only to staff who attended the last town hall meeting, and results show 95% satisfaction. Why might this result misrepresent overall employee sentiment?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Using a small, unrepresentative sample of customer feedback to decide",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Presenting only two options when a range of alternatives exists",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Assuming success will transfer without evaluating differences in resources and context",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Rejecting the competitor's strategy without considering any evidence at all",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A CEO decides to enter a new market solely because a competitor recently succeeded there, without analyzing the competitor's specific advantages. Which reasoning weakness best describes this decision?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A CEO decides to enter a new market solely because a competitor recently succeeded there, without analyzing the competitor's specific advantages. Which reasoning weakness best describes this decision?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Employees are exhibiting confirmation bias toward retirement savings",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Employees are using deductive reasoning to evaluate long-term outcomes",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "The opt-out plan provides stronger statistical evidence of benefits",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "The default option frames the decision and reduces the effort needed to comply",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A retirement plan automatically enrolls employees but allows them to opt out, resulting in much higher participation than a plan requiring employees to actively opt in. What critical thinking principle explains this difference in behavior?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A retirement plan automatically enrolls employees but allows them to opt out, resulting in much higher participation than a plan requiring employees to actively opt in. What critical thinking principle explains this difference in behavior?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 9,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "It attacks the character of employees instead of addressing the issue",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "It ignores other possible options between the two extreme outcomes presented",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "It confuses a correlation between costs and bankruptcy with causation",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "It relies on a sample that is too small to support the conclusion",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A manager tells the team, 'Either we cut costs immediately or the company will go bankrupt within a year.' Why is this statement potentially a flawed argument?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A manager tells the team, 'Either we cut costs immediately or the company will go bankrupt within a year.' Why is this statement potentially a flawed argument?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Deductive reasoning, which guarantees the conclusion if premises are true",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Analogical reasoning, which compares two unrelated situations",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Circular reasoning, which assumes the conclusion within its own premise",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Inductive reasoning, which offers probable but not certain conclusions",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A quality inspector examines 50 out of 10,000 units and concludes the entire batch is defect-free based on finding no defects in the sample. What type of reasoning is being used, and what is its main limitation?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A quality inspector examines 50 out of 10,000 units and concludes the entire batch is defect-free based on finding no defects in the sample. What type of reasoning is being used, and what is its main limitation?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 11",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 11,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Question the sample size and selection method before accepting the statistic as representative",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Reject the claim outright because all advertising statistics are fabricated",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Accept the claim since dentists are credible professional authorities",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Assume the claim is valid because it uses a specific numerical ratio",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "An advertisement claims, 'Nine out of ten dentists recommend our toothpaste,' without disclosing the sample size or how dentists were selected. How should a critical thinker evaluate this claim?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>An advertisement claims, 'Nine out of ten dentists recommend our toothpaste,' without disclosing the sample size or how dentists were selected. How should a critical thinker evaluate this claim?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 12",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 12,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "It assumes a single cause for the competitor's failure without ruling out other factors",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "It relies on a false dichotomy between raising funding and generating revenue",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "It uses an appeal to authority by citing the competitor's experience",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "It generalizes from a large, statistically representative sample of startups",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A startup founder argues, 'Our competitor failed because they raised too much funding too early, so we should avoid raising funding until we have significant revenue.' What critical flaw undermines this reasoning?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A startup founder argues, 'Our competitor failed because they raised too much funding too early, so we should avoid raising funding until we have significant revenue.' What critical flaw undermines this reasoning?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 13",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 13,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Presenting the data as a false dichotomy between two design choices",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Relying on anecdotal customer testimonials instead of traffic data",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Using a sample size too small to draw any meaningful conclusion",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Failing to control for a confounding event that could independently explain the increase",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A marketing report shows that website traffic increased by 40% after a new design launch and concludes the redesign caused the traffic surge, without noting that the launch coincided with a major holiday sale. What analytical error is present here?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A marketing report shows that website traffic increased by 40% after a new design launch and concludes the redesign caused the traffic surge, without noting that the launch coincided with a major holiday sale. What analytical error is present here?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 14",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 14,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "It shifts the employer's focus from a personal cost to a loss the company could avoid",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "It relies on a slippery slope to exaggerate the consequences of refusal",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "It uses an appeal to authority to make the request seem more credible",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "It applies inductive reasoning to generalize from past salary negotiations",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "During a salary negotiation, an employee frames a request as 'protecting the company from losing me to a competitor' rather than 'wanting more money for personal reasons.' How does this framing strategically affect the employer's likely response?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>During a salary negotiation, an employee frames a request as 'protecting the company from losing me to a competitor' rather than 'wanting more money for personal reasons.' How does this framing strategically affect the employer's likely response?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 15",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 15,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Module 2",
+      "assessment": "CLA 2",
+      "seq_id": "block-v1:IIMBx+MD71x+BBA_DBE_B1+type@sequential+block@54bbfc0de0fd4dc08f928681e2a57256",
+      "status": "unavailable",
+      "reason": "Unavailable (due date has passed)",
+      "questions": []
+    },
+    {
+      "module": "Module 3",
+      "assessment": "CLA 3",
+      "seq_id": "block-v1:IIMBx+MD71x+BBA_DBE_B1+type@sequential+block@b17d699fe12b43fc9a61478ad03a8c16",
+      "status": "extracted",
+      "question_count": 15,
+      "image_count": 0,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Soundness",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Validity",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Strength",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Cogency",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A manager argues: 'All employees who miss the deadline will be penalised. Priya missed the deadline. Therefore, Priya will be penalised.' Assuming the structure holds regardless of whether the premises are actually true, which property does this argument demonstrate?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A manager argues: 'All employees who miss the deadline will be penalised. Priya missed the deadline. Therefore, Priya will be penalised.' Assuming the structure holds regardless of whether the premises are actually true, which property does this argument demonstrate?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Pathos",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Ethos",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Logos",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Warrant",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A startup founder highlights her fifteen years of industry experience before presenting her pitch to investors, before any data is shared. Which rhetorical appeal is she primarily using?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A startup founder highlights her fifteen years of industry experience before presenting her pitch to investors, before any data is shared. Which rhetorical appeal is she primarily using?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Deductive reasoning",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Analogical reasoning",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Statistical reasoning",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Inductive reasoning",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A retail analyst observes that footfall has risen every festive season for the past eight years and predicts it will rise again this year, while acknowledging the prediction is not guaranteed. What type of reasoning is this?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A retail analyst observes that footfall has risen every festive season for the past eight years and predicts it will rise again this year, while acknowledging the prediction is not guaranteed. What type of reasoning is this?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Evidence must always be numerical and statistical",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Reasoning is unnecessary when evidence is strong",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Warrants must always be stated explicitly",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Claims can be implied rather than explicitly stated",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "An advertisement shows a luxury car speeding through scenic roads with the tagline 'Live without limits', without ever stating that viewers should purchase the car. What does this illustrate about the structure of arguments?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>An advertisement shows a luxury car speeding through scenic roads with the tagline 'Live without limits', without ever stating that viewers should purchase the car. What does this illustrate about the structure of arguments?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Qualifier limiting the strength of the claim",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Backing supporting the warrant behind the claim",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Reasoning connecting the evidence to the claim",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Rebuttal anticipating objections to the claim",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "In 2006, Netflix's leadership asked the board to redirect resources from a profitable DVD-by-mail business into an unproven streaming model. Given that rising broadband adoption and changing consumption patterns alone would not persuade the board, which structural element was most critical to secure approval?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>In 2006, Netflix's leadership asked the board to redirect resources from a profitable DVD-by-mail business into an unproven streaming model. Given that rising broadband adoption and changing consumption patterns alone would not persuade the board, which structural element was most critical to secure approval?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Warrant",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Backing",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Qualifier",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Rebuttal",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A consultant states: 'Our six-month pilot showed productivity rose by 12%. Therefore, the company should permanently adopt a four-day workweek.' Which Toulmin element is missing to explain why this productivity gain justifies a permanent policy change?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A consultant states: 'Our six-month pilot showed productivity rose by 12%. Therefore, the company should permanently adopt a four-day workweek.' Which Toulmin element is missing to explain why this productivity gain justifies a permanent policy change?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "It is cogent but not strong",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "It is valid but not sound",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "It is strong but not cogent",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "It is sound but not valid",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "An inductive argument has a logically reasonable structure connecting its premises to its conclusion, but one of its premises later turns out to be false. How should this argument be classified?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>An inductive argument has a logically reasonable structure connecting its premises to its conclusion, but one of its premises later turns out to be false. How should this argument be classified?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "The evidence is insufficient in sample size",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "The evidence source lacks credibility and expertise",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "The evidence is no longer current",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "The evidence lacks relevance to the claim",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A manager proposing a new office in Chennai presents employee satisfaction scores from the Mumbai office as supporting evidence for the proposal. What evidentiary flaw does this illustrate?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A manager proposing a new office in Chennai presents employee satisfaction scores from the Mumbai office as supporting evidence for the proposal. What evidentiary flaw does this illustrate?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Ethos",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Pathos",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Logos",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Warrant",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "During an organisational restructuring, leadership explains how the change protects employees' long-term job security instead of only presenting cost-saving spreadsheets. Which rhetorical appeal are they primarily using to gain employee support?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>During an organisational restructuring, leadership explains how the change protects employees' long-term job security instead of only presenting cost-saving spreadsheets. Which rhetorical appeal are they primarily using to gain employee support?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 9,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Whether the reasoning connects the evidence to the conclusion",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Whether the statistics are precisely rounded",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Whether the report uses sophisticated vocabulary",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Whether the formatting appears professional and polished",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "An AI tool produces a market-entry report filled with accurate statistics on GDP growth and internet penetration, concluding that a company should enter a new market. What critical gap should a reader look for before accepting this recommendation?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>An AI tool produces a market-entry report filled with accurate statistics on GDP growth and internet penetration, concluding that a company should enter a new market. What critical gap should a reader look for before accepting this recommendation?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Disagreement centres on the credibility of expert witnesses",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Disagreement centres on the sufficiency of available evidence",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Disagreement centres on the warrant linking facts to legal conclusions",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Disagreement centres on the qualifier used in argument",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Two lawyers examine identical facts about a factory accident: one argues the company acted negligently, the other argues it acted reasonably under the circumstances. Both accept the same facts. What does this disagreement primarily illustrate about legal argumentation?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Two lawyers examine identical facts about a factory accident: one argues the company acted negligently, the other argues it acted reasonably under the circumstances. Both accept the same facts. What does this disagreement primarily illustrate about legal argumentation?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 11",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 11,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "The advertisement relied heavily on statistical evidence of damage",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "The advertisement used emotional storytelling about individual customers",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "The advertisement relied on logical cost-benefit calculations throughout",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "The advertisement reinforced credibility by acting consistently with company values",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Despite publishing a Black Friday advertisement urging customers not to buy its jacket, a clothing company strengthened consumer trust rather than losing it. The advertisement contained very little statistical detail. What explains this outcome in terms of rhetorical appeal?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Despite publishing a Black Friday advertisement urging customers not to buy its jacket, a clothing company strengthened consumer trust rather than losing it. The advertisement contained very little statistical detail. What explains this outcome in terms of rhetorical appeal?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 12",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 12,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Reject the findings outright as completely fabricated data",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Treat the findings with greater scrutiny due to conflict of interest",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Accept the findings since the company has relevant expertise",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Ignore the funding source as irrelevant to validity",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A beverage company funds and conducts its own study concluding that its drink improves long-term health outcomes, and later presents this as evidence supporting a public health claim. Applying evidence evaluation criteria, what is the most appropriate response to this study?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A beverage company funds and conducts its own study concluding that its drink improves long-term health outcomes, and later presents this as evidence supporting a public health claim. Applying evidence evaluation criteria, what is the most appropriate response to this study?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 13",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 13,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "The pattern may not hold if future conditions change unexpectedly",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "The conclusion is logically guaranteed by the stated premises",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "The argument lacks any supporting observations or patterns",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "The claim is stated only implicitly throughout",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A retail CEO in 2021 reasons: 'Digital payments have grown consistently, smartphone ownership keeps rising, and customers increasingly expect cashless options; therefore, our stores should be redesigned around digital payments.' Which risk is most directly associated with this style of reasoning?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A retail CEO in 2021 reasons: 'Digital payments have grown consistently, smartphone ownership keeps rising, and customers increasingly expect cashless options; therefore, our stores should be redesigned around digital payments.' Which risk is most directly associated with this style of reasoning?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 14",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 14,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Logos alone supported by strong data",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Pathos reinforced by qualifiers and rebuttals",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Ethos combined only with Toulmin backing",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Ethos, logos, and pathos working together",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Amazon combined its reputation for reliable delivery, a straightforward cost-saving calculation about shipping, and the promise of a frustration-free shopping experience to launch Prime successfully. Which combination of rhetorical appeals does this best represent?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Amazon combined its reputation for reliable delivery, a straightforward cost-saving calculation about shipping, and the promise of a frustration-free shopping experience to launch Prime successfully. Which combination of rhetorical appeals does this best represent?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 15",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 15,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Module 4",
+      "assessment": "CLA 4",
+      "seq_id": "block-v1:IIMBx+MD71x+BBA_DBE_B1+type@sequential+block@6796b28a7b004cb393d809487a38cfe9",
+      "status": "extracted",
+      "question_count": 15,
+      "image_count": 0,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "System 1",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "System 2",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Availability heuristic",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Confirmation bias",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A manager instantly senses that a client is frustrated just by glancing at her expression during a meeting, without consciously analyzing any of it. Which system of thinking is primarily responsible for this instant, effortless perception?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A manager instantly senses that a client is frustrated just by glancing at her expression during a meeting, without consciously analyzing any of it. Which system of thinking is primarily responsible for this instant, effortless perception?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Availability heuristic",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Anchoring bias",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Confirmation bias",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Hasty generalization",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "During a salary negotiation, a candidate mentions a very high expected salary figure right at the start, and the recruiter's counteroffer ends up closer to that number than company policy would normally allow. This pull toward an early number best illustrates which bias?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>During a salary negotiation, a candidate mentions a very high expected salary figure right at the start, and the recruiter's counteroffer ends up closer to that number than company policy would normally allow. This pull toward an early number best illustrates which bias?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Availability heuristic",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Anchoring bias",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Confirmation bias",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Appeal to tradition",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A founder who strongly believes her product idea will succeed reads ten customer reviews, and even though three are negative, she spends most of her energy explaining why those reviewers' don't understand the product' rather than investigating their concerns. This behaviour is best described as which bias?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A founder who strongly believes her product idea will succeed reads ten customer reviews, and even though three are negative, she spends most of her energy explaining why those reviewers' don't understand the product' rather than investigating their concerns. This behaviour is best described as which bias?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Straw man",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "False dichotomy",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Appeal to authority",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Ad hominem",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A junior analyst presents data showing that a popular product line has declining margins. A senior executive responds, 'You've been with us only three months, so you clearly don't understand our business,' without addressing the data at all. This response illustrates which fallacy?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A junior analyst presents data showing that a popular product line has declining margins. A senior executive responds, 'You've been with us only three months, so you clearly don't understand our business,' without addressing the data at all. This response illustrates which fallacy?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "The sample size was too small to be representative",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "The test measured preference but not what the decision truly required",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "The test suffered from anchoring the earliest comparison",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "The brand relied on anecdotal evidence from one customer",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A beauty brand tests a new fragrance on fifty thousand customers and finds that most prefer its scent over the existing one. The brand launches it, but sales collapse because loyal customers feel strong emotional attachment to the original scent, something the test never measured. This outcome is best explained by which error?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A beauty brand tests a new fragrance on fifty thousand customers and finds that most prefer its scent over the existing one. The brand launches it, but sales collapse because loyal customers feel strong emotional attachment to the original scent, something the test never measured. This outcome is best explained by which error?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Availability heuristic",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Anchoring bias",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Confirmation bias",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Appeal to novelty",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Before finalizing a major acquisition recommendation, a strategy team deliberately assigns one member to argue against the deal and actively search for data that would prove the recommendation wrong. This practice is best understood as a structural antidote to which bias?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Before finalizing a major acquisition recommendation, a strategy team deliberately assigns one member to argue against the deal and actively search for data that would prove the recommendation wrong. This practice is best understood as a structural antidote to which bias?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Availability heuristic",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Anchoring bias",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Appeal to authority",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Confirmation bias",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "After reading extensive media coverage of a cybersecurity breach at a competitor, a CFO insists that cyberattacks are now the company's biggest operational risk, even though internal audit data shows supply chain failures occur far more frequently. The CFO's judgment is most shaped by which bias?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>After reading extensive media coverage of a cybersecurity breach at a competitor, a CFO insists that cyberattacks are now the company's biggest operational risk, even though internal audit data shows supply chain failures occur far more frequently. The CFO's judgment is most shaped by which bias?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "The warrant linking evidence to the claim",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "The evidence showing a sales increase",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "The claim that sales rose",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "The sample size of the sales data",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A manager notes that sales rose by fifteen percent the month after a new logo was launched and immediately concludes the logo caused the sales increase. Which part of the argument's structure is most clearly weak in this reasoning?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A manager notes that sales rose by fifteen percent the month after a new logo was launched and immediately concludes the logo caused the sales increase. Which part of the argument's structure is most clearly weak in this reasoning?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Post hoc",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Slippery slope",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Appeal to authority",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "False dichotomy",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A board member opposes allowing employees one remote workday per week, arguing, 'If we allow\nthis, soon everyone will demand to work from home permanently, and then company culture will\ncompletely collapse.' This reasoning is best identified as which fallacy?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A board member opposes allowing employees one remote workday per week, arguing, 'If we allow</p>\n<p>this, soon everyone will demand to work from home permanently, and then company culture will</p>\n<p>completely collapse.' This reasoning is best identified as which fallacy?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 9,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Ad hominem",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "False dichotomy",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Slippery slope",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Straw man\ncorrect",
+              "was_selected": false
+            }
+          ],
+          "progress": "0.0/1.0 point (graded)",
+          "score": "0.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A marketing lead proposes trimming the budget for three low-performing social media channels to reinvest in email campaigns. A colleague replies, 'So you want to abandon social media entirely and lose all our younger customers?' This response is best described as which fallacy?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A marketing lead proposes trimming the budget for three low-performing social media channels to reinvest in email campaigns. A colleague replies, 'So you want to abandon social media entirely and lose all our younger customers?' This response is best described as which fallacy?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [],
+          "correct_indices": [
+            1,
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Straw man",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Appeal to novelty",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "False dichotomy",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Post hoc",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Facing a new low-cost competitor, a CEO tells the leadership team, 'We either match their prices immediately or we exit this market entirely.' A board member points out that bundling, loyalty programs, and service differentiation are also viable paths. The CEO's original framing illustrates which fallacy?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Facing a new low-cost competitor, a CEO tells the leadership team, 'We either match their prices immediately or we exit this market entirely.' A board member points out that bundling, loyalty programs, and service differentiation are also viable paths. The CEO's original framing illustrates which fallacy?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 11",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 11,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Appeal to tradition",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Appeal to nature",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Appeal to novelty",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Appeal to authority",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A retail chain's leadership rejects a proposal to use AI-based demand forecasting, stating, 'We have manually forecasted inventory for thirty years, and that experience is what keeps us profitable,' without examining whether the manual method still performs well. This justification most closely reflects which reasoning shortcut?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A retail chain's leadership rejects a proposal to use AI-based demand forecasting, stating, 'We have manually forecasted inventory for thirty years, and that experience is what keeps us profitable,' without examining whether the manual method still performs well. This justification most closely reflects which reasoning shortcut?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 12",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 12,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Legitimate persuasion",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Inductive reasoning",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Manufactured consent",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Hasty generalization",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A company's investor presentation highlights only the one product line showing growth while omitting three declining segments, and repeats the phrase 'market leader' throughout the deck without supporting data. This approach is best characterized as which type of communication?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A company's investor presentation highlights only the one product line showing growth while omitting three declining segments, and repeats the phrase 'market leader' throughout the deck without supporting data. This approach is best characterized as which type of communication?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 13",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 13,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Overestimating the company's long-term growth",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Being unconsciously pulled toward the investor's anchor",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Relying on anecdotal founder experience",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Falling into a false dichotomy during talks",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Ahead of a funding negotiation, a founder privately writes down her own valuation estimate based on comparable company data before hearing the investor's opening offer. This practice is designed to protect her judgment primarily against which risk?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Ahead of a funding negotiation, a founder privately writes down her own valuation estimate based on comparable company data before hearing the investor's opening offer. This practice is designed to protect her judgment primarily against which risk?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 14",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 14,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Confirmation bias and anchoring",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Availability heuristic and appeal to authority",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "In-group bias and social proof",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Hasty generalization and post hoc",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A leadership team, all graduates of the same business school, repeatedly approves a risky strategy partly because each member feels reassured that trusted former classmates on the team agree with it, while a non-alumnus's documented objections are given little weight. This pattern of reinforced confidence is best explained by which combination of biases?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A leadership team, all graduates of the same business school, repeatedly approves a risky strategy partly because each member feels reassured that trusted former classmates on the team agree with it, while a non-alumnus's documented objections are given little weight. This pattern of reinforced confidence is best explained by which combination of biases?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 15",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 15,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Module 5",
+      "assessment": "CLA 5",
+      "seq_id": "block-v1:IIMBx+MD71x+BBA_DBE_B1+type@sequential+block@c9c827811a2a4d9aae9dbdadb2cbdf91",
+      "status": "extracted",
+      "question_count": 10,
+      "image_count": 0,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Value is determined solely by the cost of raw materials used",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Value is a universal standard that stays the same across all contexts",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Value is socially constructed through cultural narratives and institutions",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Value is fixed by the physical composition of the object itself",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A jewelry brand prices a lab-grown diamond ring the same as a visually identical natural diamond, marketing it with the line 'real love, real diamond.' Customers happily pay the premium even though they know the stone's origin does not change its appearance. What does this scenario best illustrate about value?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A jewelry brand prices a lab-grown diamond ring the same as a visually identical natural diamond, marketing it with the line 'real love, real diamond.' Customers happily pay the premium even though they know the stone's origin does not change its appearance. What does this scenario best illustrate about value?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Michelin stars guarantee the best possible taste for every customer",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Price alone determines whether a certification will be trusted",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Certification labels have no real influence on purchasing decisions",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Certifications act as institutional signals that confer trust-based value",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A small restaurant proudly displays a Michelin Star plaque near its entrance, and customers become willing to pay significantly more for the same menu items after the plaque appears. What principle does this situation demonstrate?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A small restaurant proudly displays a Michelin Star plaque near its entrance, and customers become willing to pay significantly more for the same menu items after the plaque appears. What principle does this situation demonstrate?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Listeners in the concert hall had developed better musical taste overnight",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "External context such as venue reputation and setting shaped perceived value",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "The concert hall's acoustics made the music objectively superior in quality",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "The musician's technical skill improved significantly between the two performances",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A gifted musician performs in a crowded park and barely gets noticed by passersby. Months later, the same musician performs identical pieces on the same instrument in a sold-out concert hall and receives a standing ovation. What best explains the difference in audience response?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A gifted musician performs in a crowded park and barely gets noticed by passersby. Months later, the same musician performs identical pieces on the same instrument in a sold-out concert hall and receives a standing ovation. What best explains the difference in audience response?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "It relies primarily on tacit knowledge rather than formal explicit credentials.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "It forms through accidental algorithmic exclusion rather than active trust manipulation.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "It lacks internal peer recognition while demonstrating high interactional domain expertise.",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "It actively pre-discredits external sources rather than merely omitting them.",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "In social epistemology, how do the structural mechanics of an echo chamber differ fundamentally from an epistemic bubble when processing conflicting external evidence?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>In social epistemology, how do the structural mechanics of an echo chamber differ fundamentally from an epistemic bubble when processing conflicting external evidence?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Interactional expertise prevents experts from generating verifiable empirical predictions over extended durations.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Tacit knowledge cannot be evaluated using observational track records without direct apprenticeship.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Credentials and peer citations inherently supersede empirical performance in non-technical domains.",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "The domain lacks rapid, unambiguous feedback required to isolate skill from chance.",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "From an epistemological standpoint, why does an expert's historical track record fail to reliably signal genuine domain expertise in fields like political forecasting?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>From an epistemological standpoint, why does an expert's historical track record fail to reliably signal genuine domain expertise in fields like political forecasting?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Contributory expertise, demonstrated by directly performing the technical work",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Interactional expertise, gained by absorbing the field's language without doing the work",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Experiential expertise, gained through lived personal experience with the problem",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Credential-based expertise, demonstrated through formal degrees and licenses",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A science journalist cannot personally run a particle physics experiment but has spent years interviewing physicists and can discuss their findings fluently enough to hold expert-level conversations with them. What type of expertise does the journalist possess?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A science journalist cannot personally run a particle physics experiment but has spent years interviewing physicists and can discuss their findings fluently enough to hold expert-level conversations with them. What type of expertise does the journalist possess?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "It relies on peer consensus rather than direct environmental feedback.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "It requires credentialed board certification rather than documented field experience.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "It enables non-practitioners to evaluate experts without performing underlying work.",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "It develops through practical immersion rather than rule-based written manuals.",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "From a theoretical perspective, how is tacit expertise fundamentally distinguished from explicit expertise?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>From a theoretical perspective, how is tacit expertise fundamentally distinguished from explicit expertise?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Meta-expertise, the skill of judging experts without being an expert oneself",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Tacit expertise, developed only through years of personal practice",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Experiential expertise, gained from living with a chronic condition",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Contributory expertise, built by directly performing nutrition research",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A student with no background in nutrition wants to evaluate conflicting online claims about a new diet trend without becoming a nutrition expert herself. Which skill does she most need to develop?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A student with no background in nutrition wants to evaluate conflicting online claims about a new diet trend without becoming a nutrition expert herself. Which skill does she most need to develop?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "They rely on quantitative metrics that misrepresent an individual's explicit knowledge base.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "They replace direct domain expertise with subjective evaluations provided by non-expert peers.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "They capture past learning or social conformity rather than present tacit performance.",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "They reflect interactional expertise while ignoring whether basic formal training occurred.",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Why do formal credentials and peer recognition frequently fail as reliable proxies for an expert's real-time operational competence?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Why do formal credentials and peer recognition frequently fail as reliable proxies for an expert's real-time operational competence?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 9,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Identifying specific expert identities, verifying their precise domain specificity, and scrutinizing trust networks.",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Evaluating formal institutional credentials, counting peer citations, and assessing overall career longevity.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Analyzing inherent cognitive biases, auditing external financial incentives, and checking consensus alignment.",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Measuring historic prediction accuracy, assessing task feedback speed, and examining pattern recognition capabilities.",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "When exercising meta-expertise to evaluate claims grounded in generalized expert consensus, a critical thinker must analyze three core structural dimensions of authority. Which set of inquiries directly addresses these essential dimensions?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>When exercising meta-expertise to evaluate claims grounded in generalized expert consensus, a critical thinker must analyze three core structural dimensions of authority. Which set of inquiries directly addresses these essential dimensions?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Module 6",
+      "assessment": "CLA 6",
+      "seq_id": "block-v1:IIMBx+MD71x+BBA_DBE_B1+type@sequential+block@70b55c49f3b74bc4aa2fcebd09cb8cc0",
+      "status": "extracted",
+      "question_count": 15,
+      "image_count": 0,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "It asserts the initial claim or central proposition that must be formally established.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "It provides a shared real-world example linking the reason to a universal rule.",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "It applies the general rule directly to the specific case under current observation.",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "It re-states the final conclusion after all supporting grounds have been fully verified.",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "In the Nyaya five-step model of logical reasoning, what is the specific role of Udaharana?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>In the Nyaya five-step model of logical reasoning, what is the specific role of Udaharana?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "It assumes that informal evidence is inherently superior to research.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "It rejects all quantitative data in favor of personal anecdotes.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "It relies exclusively on fabricated data and false historical facts.",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "It treats one partial truth as the sole absolute reality.",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "From a critical thinking perspective, what is the main risk of relying on a single, dominant narrative when evaluating evidence?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>From a critical thinking perspective, what is the main risk of relying on a single, dominant narrative when evaluating evidence?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Udaharana (example), Hetu (reason), Pratigna (proposition), Upanaya (application), Nigamana (conclusion)",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Pratigna (proposition), Udaharana (example), Hetu (reason), Upanaya (application), Nigamana (conclusion)",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Hetu (reason), Pratigna (proposition), Udaharana (example), Nigamana (conclusion), Upanaya (application)",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Pratigna (proposition), Hetu (reason), Udaharana (example), Upanaya (application), Nigamana (conclusion)",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "What is the correct sequence of the five steps in the Nyaya syllogism?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>What is the correct sequence of the five steps in the Nyaya syllogism?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Demanding immediate compliance using standardized direct logic",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Softening directives while framing requests around relationships",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Explicitly stating requests while omitting relational framing",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Eliminating firm deadlines to prevent social confrontation",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "When adapting communication strategies for a high-context audience, which approach best aligns with cross-cultural communication principles?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>When adapting communication strategies for a high-context audience, which approach best aligns with cross-cultural communication principles?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "It compresses reality and omits important contextual details.",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "It fails to give a structured way to organize information.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "It replaces empirical data with unverified theoretical assumptions.",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "It prevents teams from formulating an initial working hypothesis.",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "In structured problem-solving, what is the primary limitation of using an analytical framework?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>In structured problem-solving, what is the primary limitation of using an analytical framework?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Nyaya eliminates the necessity for a supporting logical reason",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Nyaya incorporates an essential empirical example within reasoning",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Nyaya relies exclusively on abstract deductive universal premises",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Nyaya restricts valid inference strictly to three steps",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Comparing the Aristotelian syllogism with the Nyaya syllogism, what is a defining structural difference between them?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Comparing the Aristotelian syllogism with the Nyaya syllogism, what is a defining structural difference between them?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Gathering empirical survey data from a large population sample",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Citing an established authority who endorses the original claim",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Appealing to the emotional sentiment of the target audience",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Supposing its opposite and showing absurd consequences follow",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "In Nyaya philosophy, how does the method of Tarka test the validity of a claim?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>In Nyaya philosophy, how does the method of Tarka test the validity of a claim?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Applies the universal rule directly to current context.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Restates the initial claim as the final verdict.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Anchors the argument in a shared past experience.",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Establishes the core logical ground for the claim.",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A product manager argues that a new checkout feature causes user drop-off by citing how simplifying last year's login flow boosted completion rates. In this Nyaya-style argument, what function does citing the past login example serve?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A product manager argues that a new checkout feature causes user drop-off by citing how simplifying last year's login flow boosted completion rates. In this Nyaya-style argument, what function does citing the past login example serve?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Overcomplicating a simple linear cause by assuming multiple hidden market variables.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Confusing external systemic market changes with internal operational execution failures.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Substituting rigorous statistical model testing with purely qualitative customer feedback.",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Mistaking internal cognitive confusion for an inherently unanalyzable problem complexity.",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "When reviewing a drop in quarterly revenue, an analyst stops searching for patterns and states, 'The market has too many moving variables to analyze.' Which failure of analytical judgment is occurring?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>When reviewing a drop in quarterly revenue, an analyst stops searching for patterns and states, 'The market has too many moving variables to analyze.' Which failure of analytical judgment is occurring?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 9,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "It requires participants to adopt completely flattened corporate decision structures.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "It forces both teams to abandon empirical evidence for authority.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "It creates conflicting assumptions about participant credibility and decision authority.",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "It invalidates the logical structure of hypothetical Tarka reasoning.",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A German manager expects a formal decision-maker at a meeting, while an Indian team sends a respected senior figure for relationship-building. Why does this cross-cultural mismatch derail negotiations early?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A German manager expects a formal decision-maker at a meeting, while an Indian team sends a respected senior figure for relationship-building. Why does this cross-cultural mismatch derail negotiations early?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "It ignores that field workers require no formal verification procedures.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "It overlooks how localized testimony offers vital contextual precision.",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "It assumes local oral claims replace empirical scientific standards.",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "It presumes unverified personal intuition functions as universal evidence.",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A global policy analyst dismisses a local health worker's report on community mistrust as 'merely anecdotal' for lacking survey data. Why is this evaluation flawed?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A global policy analyst dismisses a local health worker's report on community mistrust as 'merely anecdotal' for lacking survey data. Why is this evaluation flawed?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 11",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 11,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Evaluating argument style over effect",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Overcorrecting into structural stereotyping",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Confusing unfamiliarity with irrationality",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Romanticizing alternative cultural traditions",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "In cross-cultural critical thinking, what error occurs when an evaluator uncritically idealizes another culture's reasoning as inherently superior or more holistic?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>In cross-cultural critical thinking, what error occurs when an evaluator uncritically idealizes another culture's reasoning as inherently superior or more holistic?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 12",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 12,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Assigning probabilistic outcome ranges based on actual evidence strength",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Treating long term financial projections as established baseline facts",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Selecting a single precise revenue target to reassure stakeholders",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Delaying all supply decisions until market demand is known",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A retail manager is developing demand forecasts for a new product launch under high uncertainty. Which approach best demonstrates calibrated judgment in this scenario?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A retail manager is developing demand forecasts for a new product launch under high uncertainty. Which approach best demonstrates calibrated judgment in this scenario?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 13",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 13,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Assuming frameworks eliminate need for empirical evidence",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Confusing a simplified model with complete reality",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Overestimating the statistical precision of categorical tools",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Expecting analytical frameworks to enforce objective consensus",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "An analyst uses a SWOT matrix to quickly structure a complex market shift and presents the neat slides as a final conclusion. What primary analytical trap is this analyst exhibiting?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>An analyst uses a SWOT matrix to quickly structure a complex market shift and presents the neat slides as a final conclusion. What primary analytical trap is this analyst exhibiting?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 14",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 14,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Discard the redesign hypothesis if pricing data shows strong correlation with cancellations.",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Focus primarily on product interface changes because UX issues generate immediate backlash.",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Select the price increase first since financial changes dominate user cancellation decisions.",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Evaluate evidence for both factors because multiple causes can simultaneously drive churn.",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A SaaS startup observes a 30% spike in customer churn immediately after releasing a new product interface and raising monthly subscription prices. How should an analyst approach evaluating these potential causes?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A SaaS startup observes a 30% spike in customer churn immediately after releasing a new product interface and raising monthly subscription prices. How should an analyst approach evaluating these potential causes?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 15",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 15,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Module 7",
+      "assessment": "CLA 7",
+      "seq_id": "block-v1:IIMBx+MD71x+BBA_DBE_B1+type@sequential+block@1ad943ffbfd04de6aba12601c6d3bab8",
+      "status": "extracted",
+      "question_count": 15,
+      "image_count": 0,
+      "questions": [
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "It is written in a confident, declarative and moral tone",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "It is specific enough to be checked, and someone stands to lose something identifiable if it turns out false",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "It has been reviewed by the legal and communications teams before release",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "It is issued in the name of the organisation rather than an individual",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "According to the claim versus performance distinction, what makes a statement a genuine claim?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>According to the claim versus performance distinction, what makes a statement a genuine claim?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 1",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 1,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "A performative",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "A felicity condition",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "A constative",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "A performance",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "In J.L. Austin's speech act theory, what is a sentence such as \"The meeting starts at 3 pm\" called?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>In J.L. Austin's speech act theory, what is a sentence such as \"The meeting starts at 3 pm\" called?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 2",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 2,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "The real-world conditions that must be in place for a performative statement to work as intended",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "The emotional effect a statement has on its audience",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "The legal disclaimers attached to a corporate statement",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "The conditions under which a statement can be proved false",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "What are \"felicity conditions\"?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>What are \"felicity conditions\"?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 3",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 3,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Specificity",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Named ownership",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Consequences for failure",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Emotional sincerity",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Which of the following is NOT one of the four criteria for telling a claim from a performance?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Which of the following is NOT one of the four criteria for telling a claim from a performance?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 4",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 4,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "None of the four",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Specificity only",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Named ownership only",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "All four",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A Pune-based lending app's annual report states: \"We are committed to becoming the most customer-friendly lender in India.\" How many of the four criteria does this statement meet?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A Pune-based lending app's annual report states: \"We are committed to becoming the most customer-friendly lender in India.\" How many of the four criteria does this statement meet?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 5",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 5,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Confirmation bias",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Groupthink",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Devil's advocacy",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "A failed felicity condition",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "At a Coimbatore textile firm, several senior managers privately doubt a proposed expansion into Bangladesh. None of them speaks up: each assumes someone else has already flagged the risks, and none wants to appear disloyal. The plan is approved. Which phenomenon does this best illustrate?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>At a Coimbatore textile firm, several senior managers privately doubt a proposed expansion into Bangladesh. None of them speaks up: each assumes someone else has already flagged the risks, and none wants to appear disloyal. The plan is approved. Which phenomenon does this best illustrate?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 6",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 6,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Because the Church doubted its own judgement in selecting candidates",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "To speed up the process by settling objections early",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Because a conclusion that has never been seriously attacked has not actually been tested",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "To represent the candidate's family during the proceedings",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "Why did the Catholic Church formally appoint an Advocatus Diaboli in its canonisation process?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>Why did the Catholic Church formally appoint an Advocatus Diaboli in its canonisation process?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 7",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 7,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "\"We are deeply and genuinely committed to protecting the oceans we depend on.\"",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "\"By March 2028, 80% of our packaging will be made from recycled material, verified by an independent auditor whose findings we will publish.\"",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "\"We leverage a holistic, stakeholder-centred marine sustainability framework across our value chain.\"",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "\"Our founder personally cares about the health of India's coastline.\"",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A Kochi seafood exporter's website says: \"Our products are made with care for the oceans.\" The communications head wants to turn this performance into a claim with minimal editing. Which revision does this best?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A Kochi seafood exporter's website says: \"Our products are made with care for the oceans.\" The communications head wants to turn this performance into a claim with minimal editing. Which revision does this best?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 8",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 8,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Confusing length with specificity",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Treating verifiability as all or nothing",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Mistaking honesty for vagueness",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Replacing blind trust with blind distrust",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "An analyst rates the line \"We leverage a holistic, stakeholder-centred framework to drive sustainable, future-ready outcomes across our value chain\" as highly specific because it is long and technical. Which common mistake is the analyst making?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>An analyst rates the line \"We leverage a holistic, stakeholder-centred framework to drive sustainable, future-ready outcomes across our value chain\" as highly specific because it is long and technical. Which common mistake is the analyst making?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 9",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 9,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "As a yes-or-no test: either a claim can be checked or it cannot",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "As irrelevant if the organisation reports its own progress regularly",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "As something only government regulators can establish",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "As a scale, where checks by an independent party give stronger evidence than the organisation's own reporting",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "How should verifiability be understood when evaluating an organisational statement?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>How should verifiability be understood when evaluating an organisational statement?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 10",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 10,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Assigned dissent always produces better decisions than genuine disagreement",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Devil's advocacy demoralises teams and should be avoided",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": true,
+              "text": "Charlan Nemeth's point that simply assigning someone to argue the opposite can become a formality, whereas genuine disagreement more reliably prompts independent thinking",
+              "was_selected": true
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "The associate's objections were probably wrong, so the partners were justified in ignoring them",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A Gurugram consulting firm assigns a junior associate to argue against every proposal in its weekly strategy meeting. Over time, partners treat this as a box-ticking step, defend their original positions even more firmly and rarely change course. Which insight best explains this outcome?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A Gurugram consulting firm assigns a junior associate to argue against every proposal in its weekly strategy meeting. Over time, partners treat this as a box-ticking step, defend their original positions even more firmly and rarely change course. Which insight best explains this outcome?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 11",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 11,
+          "images": [],
+          "correct_indices": [
+            2
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Because it contains statements that are factually false",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "Because every sentence could be said truthfully whether or not the hospital takes any corrective action, so it reveals nothing about what will actually happen",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Because it is too short to be taken seriously",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Because it apologises before an investigation has been completed",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "After overbilling hundreds of patients, a Hyderabad hospital chain issues this statement: \"We are deeply sorry for any inconvenience caused. Patient trust is our highest priority, and we are taking this matter extremely seriously.\" Why would a critical thinker consider this statement uninformative?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>After overbilling hundreds of patients, a Hyderabad hospital chain issues this statement: \"We are deeply sorry for any inconvenience caused. Patient trust is our highest priority, and we are taking this matter extremely seriously.\" Why would a critical thinker consider this statement uninformative?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 12",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 12,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "The colleague is right, because admitting uncertainty means the statement fails specificity",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": true,
+              "text": "The colleague is wrong, because being uncertain is not the same as being vague, and the statement sets out a process, a named owner and a deadline",
+              "was_selected": true
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "The colleague is right, because no independent auditor is mentioned, so the statement is a performance",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "The colleague is wrong, because the statement's honest tone makes it trustworthy",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A Jaipur solar panel manufacturer announces: \"We do not yet know how we will cut our factory emissions by 40%. Our head of operations will publish a costed plan by 30 June 2027 and report progress every quarter after that.\" A colleague dismisses this as vague corporate performance. Which assessment is most accurate?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A Jaipur solar panel manufacturer announces: \"We do not yet know how we will cut our factory emissions by 40%. Our head of operations will publish a costed plan by 30 June 2027 and report progress every quarter after that.\" A colleague dismisses this as vague corporate performance. Which assessment is most accurate?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 13",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 13,
+          "images": [],
+          "correct_indices": [
+            1
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": false,
+              "text": "Remove the devil's advocate role, since it clearly does not work",
+              "was_selected": false
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Choose a devil's advocate who personally believes the objections",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "Limit the devil's advocate to one objection per meeting to save time",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": true,
+              "text": "Require formal responses to significant objections, rotate the role, and allow further review when important questions remain unanswered",
+              "was_selected": true
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "At a Bengaluru edtech company, the assigned devil's advocate raises three serious objections to a product launch. The team thanks her, approves the plan unchanged and leaves reassured that it has \"considered the alternatives\". Which change would most directly stop this from recurring?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>At a Bengaluru edtech company, the assigned devil's advocate raises three serious objections to a product launch. The team thanks her, approves the plan unchanged and leaves reassured that it has \"considered the alternatives\". Which change would most directly stop this from recurring?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 14",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 14,
+          "images": [],
+          "correct_indices": [
+            3
+          ]
+        },
+        {
+          "options": [
+            {
+              "index": 0,
+              "is_correct": true,
+              "text": "Does \"leadership\" mean the executive committee only, all senior management, or everyone at manager level and above?",
+              "was_selected": true
+            },
+            {
+              "index": 1,
+              "is_correct": false,
+              "text": "Is the chief people officer or a particular business unit responsible for delivering the target?",
+              "was_selected": false
+            },
+            {
+              "index": 2,
+              "is_correct": false,
+              "text": "What happens if the company reaches only 38% by 2027?",
+              "was_selected": false
+            },
+            {
+              "index": 3,
+              "is_correct": false,
+              "text": "Will anyone independent of the company verify the results?",
+              "was_selected": false
+            }
+          ],
+          "progress": "1.0/1.0 point (graded)",
+          "score": "1.0",
+          "solution": "",
+          "status_text": "correct",
+          "stem": "A mid-sized company proposes publicly committing to \"50% women in leadership roles by 2027\". Which question tests the proposal against the specificity criterion?",
+          "stem_html": "<div>\n<div class=\"wrapper-problem-response\" tabindex=\"-1\" aria-label=\"Question 1\" role=\"group\"><p>A mid-sized company proposes publicly committing to \"50% women in leadership roles by 2027\". Which question tests the proposal against the specificity criterion?</p>\n</div>\n</div>",
+          "text_answers": [],
+          "title": "Question 15",
+          "total_possible": "1.0",
+          "type": "single_choice",
+          "question_number": 15,
+          "images": [],
+          "correct_indices": [
+            0
+          ]
+        }
+      ]
+    }
+  ]
+}

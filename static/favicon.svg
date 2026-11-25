@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <rect width="32" height="32" rx="8" fill="#111111"/>
+  <!-- Back offset ledger sheet -->
+  <path d="M10 8.5C10 7.67157 10.6716 7 11.5 7H22.5C23.3284 7 24 7.67157 24 8.5V21.5C24 22.3284 23.3284 23 22.5 23H20" stroke="#737373" stroke-width="1.6" stroke-linecap="round"/>
+  <!-- Front notched folio sheet -->
+  <path d="M8 10.5C8 9.67157 8.67157 9 9.5 9H17.5L21 12.5V23.5C21 24.3284 20.3284 25 19.5 25H9.5C8.67157 25 8 24.3284 8 23.5V10.5Z" fill="#EDEDED"/>
+  <!-- Folded corner notch -->
+  <path d="M17.5 9V12.5H21" stroke="#111111" stroke-width="1.4" stroke-linejoin="round"/>
+  <!-- Ledger lines -->
+  <path d="M11 15.5H17.5M11 18.5H16M11 21.5H14.5" stroke="#111111" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

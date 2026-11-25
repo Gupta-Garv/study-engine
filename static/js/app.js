@@ -3028,13 +3028,9 @@ const App = {
       }
     });
 
-    // 1. In Study Studio, hide the global header so studio toolbar is the ONLY top bar!
+    // Keep the unified global header visible across all views so navigation never disappears
     const globalHeader = document.getElementById('app-global-header');
-    if (target === 'notes') {
-      if (globalHeader) globalHeader.classList.add('hidden');
-    } else {
-      if (globalHeader) globalHeader.classList.remove('hidden');
-    }
+    if (globalHeader) globalHeader.classList.remove('hidden');
 
     // 2. Update Drawer navigation active pills
     ['dashboard', 'notes', 'exam', 'oneshot'].forEach(k => {
@@ -4077,6 +4073,7 @@ const App = {
   selectedExamSet: 1,
 
   setupExamView() {
+    if (window.ExamHub) window.ExamHub.init();
     const select = document.getElementById('exam-module-select');
     if (!select) return;
 
