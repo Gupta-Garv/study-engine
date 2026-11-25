@@ -1,0 +1,1389 @@
+{
+  "course_id": "2989cdfe",
+  "course_name": "Corporate Finance",
+  "exam_pattern": {
+    "exam_date": "2026-12-06",
+    "exam_timing": "01:00 PM to 03:00 PM",
+    "duration_mins": 120,
+    "total_marks": 75,
+    "negative_marking": false,
+    "calculator_allowed": true,
+    "formula_sheet_allowed": true,
+    "sections": [
+      {
+        "name": "Section A",
+        "type": "MCQ",
+        "count": 50,
+        "marks_each": 1.5,
+        "total_marks": 75
+      }
+    ]
+  },
+  "stats": {
+    "mcq_count": 80,
+    "total_predicted_questions": 80,
+    "cla_baseline_count": 102
+  },
+  "mcq_questions": [
+    {
+      "anticipation_rank": 1,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 2,
+      "module_name": "Module 2: Time Value of Money",
+      "key_concept": "EAR vs APR & Semi-Annual Compounding",
+      "question": "A corporate bond quotes an Annual Percentage Rate (APR) of 12% compounded monthly. What is the Effective Annual Rate (EAR)?",
+      "options": [
+        "12.68%",
+        "12.00%",
+        "12.36%",
+        "12.55%"
+      ],
+      "correct_index": 0,
+      "explanation": "EAR = (1 + 0.12 / 12)^12 - 1 = (1.01)^12 - 1 = 1.126825 - 1 = 12.68%.",
+      "distractor_analysis": "12.00% ignores compounding; 12.36% is semi-annual; 12.55% is quarterly."
+    },
+    {
+      "anticipation_rank": 2,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 4,
+      "module_name": "Module 4: Capital Budgeting",
+      "key_concept": "Mutually Exclusive Projects: NPV vs IRR",
+      "question": "Project Alpha (outlay ₹10 Cr) has IRR = 28% and NPV = ₹2.4 Cr. Project Beta (outlay ₹40 Cr) has IRR = 19% and NPV = ₹5.1 Cr. Both are mutually exclusive and the firm faces no capital rationing. Which should you pick?",
+      "options": [
+        "Project Beta, because NPV measures absolute rupee wealth added to shareholders whereas IRR is scale-blind",
+        "Project Alpha, because 28% > 19% always maximizes shareholder wealth",
+        "Project Alpha, because smaller outlay means zero risk",
+        "Neither, because NPV and IRR disagree"
+      ],
+      "correct_index": 0,
+      "explanation": "When mutually exclusive projects differ in scale or cash-flow timing, NPV always dominates IRR because shareholders care about total rupee value created (₹5.1 Cr > ₹2.4 Cr).",
+      "distractor_analysis": "Choosing Alpha falls into the classic IRR scale-bias trap."
+    },
+    {
+      "anticipation_rank": 3,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 3,
+      "module_name": "Module 3: Bonds and Stocks",
+      "key_concept": "Bond Price & Interest Rate Sensitivity",
+      "question": "A 10-year, 8% annual coupon bond (Face Value ₹1,000) currently trades at a Yield to Maturity (YTM) of 10%. Without computing exact decimals, which statement is strictly true?",
+      "options": [
+        "It trades at a discount (below ₹1,000), and its price sensitivity to a 1% rate hike is greater than an otherwise identical 3-year 8% coupon bond",
+        "It trades at a premium (above ₹1,000), and has lower duration than a 3-year bond",
+        "It trades at exact par (₹1,000)",
+        "Its current yield exceeds its YTM"
+      ],
+      "correct_index": 0,
+      "explanation": "Since Coupon (8%) < YTM (10%), the bond sells at a discount (< ₹1,000). Longer maturity (10y vs 3y) increases duration and interest-rate sensitivity.",
+      "distractor_analysis": "Premium occurs when Coupon > YTM; for a discount bond, YTM > Current Yield > Coupon Rate."
+    },
+    {
+      "anticipation_rank": 4,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 5,
+      "module_name": "Module 5: Risk and Return",
+      "key_concept": "CAPM & Expected Return",
+      "question": "The risk-free rate is 6%, expected market return is 14%, and Stock X has a Beta of 1.35. What is Stock X's CAPM required return?",
+      "options": [
+        "16.80%",
+        "18.90%",
+        "14.00%",
+        "15.40%"
+      ],
+      "correct_index": 0,
+      "explanation": "r_X = r_f + β_X * (E[R_m] - r_f) = 6% + 1.35 * (14% - 6%) = 6% + 10.80% = 16.80%.",
+      "distractor_analysis": "18.90% multiplies 1.35 × 14% forgetting to subtract r_f first."
+    },
+    {
+      "anticipation_rank": 5,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 6,
+      "module_name": "Module 6: Corporate Payout Decisions",
+      "key_concept": "Dividend vs Share Repurchase Equivalence",
+      "question": "A debt-free firm worth ₹500 Cr (10 Cr shares at ₹50) has ₹50 Cr excess cash. Under perfect capital markets (no taxes/frictions), compare paying a ₹5/share dividend vs. a ₹50 Cr share buyback at ₹50:",
+      "options": [
+        "Post-dividend share price drops to ₹45 (wealth = ₹45 + ₹5 cash = ₹50); post-buyback share price stays ₹50 across 9 Cr remaining shares—shareholder wealth is identical",
+        "Buyback raises the post-buyback share price to ₹55.56 immediately",
+        "Dividend destroys ₹50 Cr of firm value",
+        "Buyback lowers EPS permanently"
+      ],
+      "correct_index": 0,
+      "explanation": "Under MM equivalence, a ₹5 dividend drops ex-div price to ₹45 (+₹5 cash = ₹50). A ₹50 Cr buyback retires 1 Cr shares, leaving ₹450 Cr / 9 Cr = ₹50/share.",
+      "distractor_analysis": "Buybacks reduce share count *and* cash proportionately, leaving share price unchanged in fair-value markets."
+    },
+    {
+      "anticipation_rank": 6,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 7,
+      "module_name": "Module 7: Corporate Financing Decisions",
+      "key_concept": "Rights Issue: TERP & Value of a Right",
+      "question": "A company's shares trade at ₹120 cum-rights. It announces a 1-for-4 rights issue at a subscription price of ₹80. What is the Theoretical Ex-Rights Price (TERP) and the value of 1 right (per existing share)?",
+      "options": [
+        "TERP = ₹112; Value of 1 right (per existing share) = ₹8",
+        "TERP = ₹100; Value of 1 right = ₹20",
+        "TERP = ₹110; Value of 1 right = ₹10",
+        "TERP = ₹120; Value of 1 right = ₹40"
+      ],
+      "correct_index": 0,
+      "explanation": "4 old shares @ ₹120 + 1 new share @ ₹80 = ₹560 / 5 = ₹112 TERP. Value of 1 right (per existing share) = Cum-rights ₹120 - TERP ₹112 = ₹8 (or (112 - 80)/4 = ₹8).",
+      "distractor_analysis": "₹100 averages 120 and 80 equally (ignoring the 4:1 ratio); ₹32 is the value needed to buy 1 *new* share (4 rights)."
+    },
+    {
+      "anticipation_rank": 7,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 8,
+      "module_name": "Module 8: Corporate Merger and Acquisitions (M&A) Decisions",
+      "key_concept": "M&A Synergy & Net Gain to Acquirer",
+      "question": "Firm A (MV ₹400 Cr) acquires Firm T (MV ₹100 Cr) for ₹135 Cr in cash. The combined firm is worth ₹560 Cr. What is the Synergy, Takeover Premium, and NPV to Firm A's shareholders?",
+      "options": [
+        "Synergy = ₹60 Cr; Premium = ₹35 Cr; Acquirer NPV = +₹25 Cr",
+        "Synergy = ₹35 Cr; Premium = ₹60 Cr; Acquirer NPV = -₹25 Cr",
+        "Synergy = ₹60 Cr; Premium = ₹135 Cr; Acquirer NPV = +₹60 Cr",
+        "Synergy = ₹160 Cr; Premium = ₹35 Cr; Acquirer NPV = +₹125 Cr"
+      ],
+      "correct_index": 0,
+      "explanation": "Synergy = V_AT - (V_A + V_T) = 560 - (400 + 100) = ₹60 Cr. Premium = 135 - 100 = ₹35 Cr. Acquirer NPV = Synergy - Premium = 60 - 35 = +₹25 Cr.",
+      "distractor_analysis": "Do not subtract standalone V_T from total cash; Acquirer NPV = Synergy minus Premium paid."
+    },
+    {
+      "anticipation_rank": 8,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 3,
+      "module_name": "Module 3: Bonds and Stocks",
+      "key_concept": "Gordon Growth Model & PVGO",
+      "question": "A stock is expected to pay a dividend of ₹6 next year (`D_1`), has a required return of 14%, and grows dividends perpetually at 6%. If its expected EPS next year (`E_1`) is ₹10, what is its stock price and Present Value of Growth Opportunities (PVGO)?",
+      "options": [
+        "Price = ₹75.00; PVGO = ₹3.57",
+        "Price = ₹75.00; PVGO = ₹75.00",
+        "Price = ₹42.86; PVGO = ₹0",
+        "Price = ₹125.00; PVGO = ₹53.57"
+      ],
+      "correct_index": 0,
+      "explanation": "P_0 = D_1 / (r - g) = 6 / (0.14 - 0.06) = ₹75.00. No-growth value = E_1 / r = 10 / 0.14 = ₹71.43. PVGO = 75.00 - 71.43 = ₹3.57.",
+      "distractor_analysis": "Using D_0*(1+g) when D_1 is already given inflates price; PVGO is Price minus E_1/r."
+    },
+    {
+      "anticipation_rank": 9,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 2,
+      "module_name": "Module 2: Time Value of Money",
+      "key_concept": "Growing Perpetuity Valuation",
+      "question": "A project generates ₹20 lakh in Year 1, growing at 4% annually forever. If the discount rate is 12%, what is its Present Value at t=0?",
+      "options": [
+        "₹250 lakh",
+        "₹166.67 lakh",
+        "₹260 lakh",
+        "₹500 lakh"
+      ],
+      "correct_index": 0,
+      "explanation": "PV = C_1 / (r - g) = 20 / (0.12 - 0.04) = 20 / 0.08 = ₹250 lakh.",
+      "distractor_analysis": "₹166.67L ignores growth (20/0.12); ₹260L mistakenly multiplies C_1 by 1.04 again."
+    },
+    {
+      "anticipation_rank": 10,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 4,
+      "module_name": "Module 4: Capital Budgeting",
+      "key_concept": "Descartes' Rule of Signs (Multiple IRRs)",
+      "question": "A mining project has cash flows: `t=0: -100`, `t=1: +230`, `t=2: -132`. How many sign changes occur, and how should a CFO evaluate this project?",
+      "options": [
+        "2 sign changes (up to 2 IRRs: 10% and 20%); therefore discard IRR and accept/reject strictly using NPV at the cost of capital",
+        "1 sign change; accept if IRR > 10%",
+        "Zero IRRs exist",
+        "Take the average of the two IRRs"
+      ],
+      "correct_index": 0,
+      "explanation": "Sign sequence (-, +, -) has 2 sign changes → up to 2 positive IRRs (10% and 20% here). With non-normal cash flows, IRR is ambiguous; only NPV gives the correct decision.",
+      "distractor_analysis": "Averaging two IRRs has zero economic meaning."
+    },
+    {
+      "anticipation_rank": 11,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 5,
+      "module_name": "Module 5: Risk and Return",
+      "key_concept": "Two-Stock Portfolio Variance",
+      "question": "You invest 60% in Stock A (SD = 20%) and 40% in Stock B (SD = 30%), with correlation ρ = 0. What is the portfolio's standard deviation?",
+      "options": [
+        "16.97%",
+        "24.00%",
+        "2.88%",
+        "20.00%"
+      ],
+      "correct_index": 0,
+      "explanation": "Var = (0.6^2)(0.20^2) + (0.4^2)(0.30^2) + 0 = 0.0144 + 0.0144 = 0.0288. SD = sqrt(0.0288) = 16.97%.",
+      "distractor_analysis": "24.00% is the weighted average SD (valid only when ρ = +1); 2.88% forgets the square root."
+    },
+    {
+      "anticipation_rank": 12,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 8,
+      "module_name": "Module 8: Corporate Merger and Acquisitions (M&A) Decisions",
+      "key_concept": "EPS Accretion / Bootstrap Fallacy",
+      "question": "High-P/E Acquirer (P/E = 25, EPS = ₹4, Price = ₹100) acquires Low-P/E Target (P/E = 10, EPS = ₹5, Price = ₹50) in a zero-synergy all-stock deal (0.5 Acquirer shares per Target share). What happens immediately to combined EPS, and why is this NOT value creation?",
+      "options": [
+        "EPS rises mechanically, but with zero synergy the combined P/E contracts proportionately so share price remains unchanged",
+        "Combined P/E stays 25 and share price jumps 20% permanently",
+        "EPS falls because Target had a lower P/E",
+        "Stock deals always create tax shields equal to P/E difference"
+      ],
+      "correct_index": 0,
+      "explanation": "Buying lower-P/E earnings with higher-P/E stock mechanically inflates EPS, but in efficient markets the blended P/E drops so total value (without synergy) is unchanged.",
+      "distractor_analysis": "Assuming the market keeps the acquirer's old 25x P/E is the classic Bootstrap / EPS Growth Fallacy."
+    },
+    {
+      "anticipation_rank": 13,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 6,
+      "module_name": "Module 6: Corporate Payout Decisions",
+      "key_concept": "Homemade Dividends",
+      "question": "You own 1,000 shares of a firm trading at ₹100/share. The firm pays a ₹4/share dividend (ex-div price drops to ₹96), but you wanted ₹10,000 cash today. How do you construct a 'homemade dividend'?",
+      "options": [
+        "Receive ₹4,000 in dividends and sell 62.5 shares at ₹96 to raise the remaining ₹6,000 (total wealth remains ₹1,00,000)",
+        "Borrow ₹10,000 at 18% personal interest and sell zero shares",
+        "Demand the board issue a bonus share",
+        "Buy 100 more shares at ₹96"
+      ],
+      "correct_index": 0,
+      "explanation": "Under MM, investors manufacture any cash payout by selling shares at the ex-dividend price: 62.5 × ₹96 = ₹6,000 + ₹4,000 dividend = ₹10,000 cash + ₹90,000 equity.",
+      "distractor_analysis": "Bonus shares don't generate cash; buying shares uses cash."
+    },
+    {
+      "anticipation_rank": 14,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 7,
+      "module_name": "Module 7: Corporate Financing Decisions",
+      "key_concept": "Winner's Curse in IPOs",
+      "question": "Why does the 'Winner's Curse' explain average positive first-day returns (underpricing) in book-built IPOs?",
+      "options": [
+        "Uninformed retail investors get full allocations in overpriced ('cold') IPOs avoided by informed institutions, and small allocations in hot IPOs—so IPOs must be underpriced on average to keep uninformed investors participating",
+        "Underwriters legally cap IPO prices at ₹10",
+        "Informed investors always lose money on Day 1",
+        "SEBI forces every IPO to rise 15% on listing day"
+      ],
+      "correct_index": 0,
+      "explanation": "Rock's Winner's Curse shows rationing skews uninformed allocations toward bad issues unless average underpricing compensates them.",
+      "distractor_analysis": "There is no ₹10 cap or SEBI 15% listing guarantee."
+    },
+    {
+      "anticipation_rank": 15,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 3,
+      "module_name": "Module 3: Bonds and Stocks",
+      "key_concept": "Exact Fisher Equation (Real vs Nominal Rate)",
+      "question": "If the nominal interest rate is 10.25% and expected inflation is 5%, what is the **exact** real interest rate?",
+      "options": [
+        "5.00%",
+        "5.25%",
+        "4.75%",
+        "15.76%"
+      ],
+      "correct_index": 0,
+      "explanation": "1 + r_real = (1 + r_nom) / (1 + i) = 1.1025 / 1.05 = 1.05 → r_real = 5.00%.",
+      "distractor_analysis": "5.25% is only the rough approximation (10.25% - 5%)."
+    },
+    {
+      "anticipation_rank": 16,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 1,
+      "module_name": "Module 1: Corporate Finance Principles",
+      "key_concept": "Stock vs Flow & Wealth Maximization vs Profit Maximization",
+      "question": "Why does Shareholder Wealth Maximization (maximizing current stock price / NPV) dominate Accounting Profit Maximization as the corporate goal?",
+      "options": [
+        "Profit maximization ignores cash-flow timing (TVM), risk differences, and accounting manipulation, whereas NPV/share price prices all future cash flows and risk",
+        "Accounting profit includes cash flows from future decades",
+        "Shareholder wealth maximization ignores all ethical laws",
+        "Stock price is a flow variable"
+      ],
+      "correct_index": 0,
+      "explanation": "Accounting profit is a single-period flow metric blind to timing, capex, and risk; firm value is a stock variable discounting all risk-adjusted cash flows.",
+      "distractor_analysis": "Stock price is a *stock* (point-in-time) variable, not a flow."
+    },
+    {
+      "anticipation_rank": 17,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 4,
+      "module_name": "Module 4: Capital Budgeting",
+      "key_concept": "Equivalent Annual Cost (EAC) for Unequal Lives",
+      "question": "Machine X costs ₹10,000, lasts 2 years, and costs ₹2,000/yr to run. Machine Y costs ₹14,000, lasts 3 years, and costs ₹1,500/yr to run. Discount rate = 10%. Which metric correctly compares them for ongoing replacement?",
+      "options": [
+        "Equivalent Annual Cost (EAC), dividing each machine's PV of total costs by its respective annuity factor",
+        "Raw Payback Period",
+        "Comparing PV(X) over 2 years directly to PV(Y) over 3 years",
+        "Comparing initial purchase price only"
+      ],
+      "correct_index": 0,
+      "explanation": "When mutually exclusive equipment will be replaced repeatedly and has unequal lives (2y vs 3y), comparing raw PVs is biased; EAC puts both on an annual cost basis.",
+      "distractor_analysis": "Raw PV favors the shorter 2-year machine unfairly."
+    },
+    {
+      "anticipation_rank": 18,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 5,
+      "module_name": "Module 5: Risk and Return",
+      "key_concept": "Systematic vs Unsystematic Risk",
+      "question": "Why does CAPM price ONLY Beta (market/systematic risk) and assign zero risk premium to firm-specific (idiosyncratic) volatility?",
+      "options": [
+        "Because investors can eliminate firm-specific risk costlessly through diversification, so the market does not reward holding avoidable risk",
+        "Because firm-specific risk has zero effect on individual stock standard deviation",
+        "Because Beta is always equal to 1.0",
+        "Because T-Bills have high Beta"
+      ],
+      "correct_index": 0,
+      "explanation": "Diversification washes out idiosyncratic shocks; only non-diversifiable covariance with the market portfolio (Beta) earns an expected risk premium.",
+      "distractor_analysis": "Individual stocks have high idiosyncratic SD, but diversified portfolios eliminate it."
+    },
+    {
+      "anticipation_rank": 19,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 8,
+      "module_name": "Module 8: Corporate Merger and Acquisitions (M&A) Decisions",
+      "key_concept": "Co-Insurance Wealth Transfer in Conglomerate M&A",
+      "question": "When two unrelated firms merge with zero operating synergy, their imperfectly correlated cash flows reduce bankruptcy risk ('co-insurance'). Who captures value and who loses if total firm value (Debt + Equity) is unchanged?",
+      "options": [
+        "Bondholders gain (safer debt increases bond market value), while shareholders lose an equal amount unless the firm re-leverages",
+        "Shareholders gain at bondholders' expense",
+        "Both equity and debt double in value",
+        "Zero value shifts between debt and equity"
+      ],
+      "correct_index": 0,
+      "explanation": "Co-insurance lowers default risk, making existing bonds more valuable. With zero synergy (V_combined = V_A + V_T), higher Debt value comes directly out of Equity value.",
+      "distractor_analysis": "Classic M&A wealth-transfer trap: debt holders win, equity holders lose without added leverage/synergy."
+    },
+    {
+      "anticipation_rank": 20,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 2,
+      "module_name": "Module 2: Time Value of Money",
+      "key_concept": "Delayed Annuity Valuation",
+      "question": "An annuity pays ₹10,000 per year for 5 years, with the **first payment arriving at t=4** (years 4, 5, 6, 7, 8). At a 10% discount rate, what is its Present Value at t=0?",
+      "options": [
+        "₹28,480 (discounting the t=3 PV of ₹37,908 back 3 years by 1.10^3)",
+        "₹37,908",
+        "₹25,891",
+        "₹31,328"
+      ],
+      "correct_index": 0,
+      "explanation": "Ordinary annuity formula at t=3 (one period before first payment at t=4): 10,000 × [1 - 1.1^-5]/0.10 = ₹37,907.87. Discount back 3 years to t=0: 37,907.87 / 1.1^3 = ₹28,480.74.",
+      "distractor_analysis": "Discounting back 4 years (₹25,891) is the #1 off-by-one error; standard annuity gives PV one period *before* the first payment."
+    },
+    {
+      "anticipation_rank": 21,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 6,
+      "module_name": "Module 6: Corporate Payout Decisions",
+      "key_concept": "Stock Split vs Bonus Issue",
+      "question": "A company declares a 1:1 Bonus Issue (100% stock dividend) when its share trades at ₹200. Ignoring signaling effects, what happens to total market capitalization and an investor's wealth?",
+      "options": [
+        "Share count doubles, theoretical share price halves to ₹100, and total market cap & shareholder wealth remain unchanged",
+        "Share price stays ₹200 and shareholder wealth doubles",
+        "Firm cash decreases by 50%",
+        "Debt-to-equity ratio doubles"
+      ],
+      "correct_index": 0,
+      "explanation": "Stock splits and bonus issues are pure paper re-slicing of the equity pie—no cash leaves the firm and total economic value is unchanged.",
+      "distractor_analysis": "Thinking bonus shares create free wealth is the classic non-cash corporate action fallacy."
+    },
+    {
+      "anticipation_rank": 22,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 7,
+      "module_name": "Module 7: Corporate Financing Decisions",
+      "key_concept": "Rights Issue: Partial Participation Wealth Loss",
+      "question": "In a rights issue, an existing shareholder neither subscribes to the new shares nor sells/renounces her rights before expiration. What happens to her wealth?",
+      "options": [
+        "She suffers a direct wealth transfer to subscribing investors because the share price drops to TERP while her unused rights expire worthless",
+        "Her wealth is unaffected because she kept her original shares",
+        "The company refunds her the value of the unused right automatically",
+        "Her voting percentage increases"
+      ],
+      "correct_index": 0,
+      "explanation": "On the ex-rights date, share price falls to TERP; only exercising or selling the rights offsets that drop. Doing nothing forfeits the right's value.",
+      "distractor_analysis": "Inaction in a deeply discounted rights issue causes immediate wealth loss."
+    },
+    {
+      "anticipation_rank": 23,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 5,
+      "module_name": "Module 5: Risk and Return",
+      "key_concept": "Asset Beta vs Equity Beta (Unlevering)",
+      "question": "A listed peer has Equity Beta = 1.50, Debt/Equity = 0.50 (assume Debt Beta = 0, ignore taxes). What is the peer's Asset (Unlevered) Beta for evaluating an all-equity project in the same business?",
+      "options": [
+        "1.00",
+        "1.50",
+        "2.25",
+        "0.75"
+      ],
+      "correct_index": 0,
+      "explanation": "β_A = β_E / (1 + D/E) = 1.50 / (1 + 0.50) = 1.00.",
+      "distractor_analysis": "Using Equity Beta (1.50) directly overstates business risk by baking in the peer's financial leverage."
+    },
+    {
+      "anticipation_rank": 24,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 3,
+      "module_name": "Module 3: Bonds and Stocks",
+      "key_concept": "Bond Price Calculation",
+      "question": "What is the price of a 2-year bond with ₹1,000 Face Value, 10% annual coupon, and 8% YTM?",
+      "options": [
+        "₹1,035.67",
+        "₹1,000.00",
+        "₹965.35",
+        "₹1,040.00"
+      ],
+      "correct_index": 0,
+      "explanation": "PV = 100 / 1.08 + 1100 / 1.08^2 = 92.59 + 943.07 = ₹1,035.67.",
+      "distractor_analysis": "Since Coupon (10%) > YTM (8%), price must exceed ₹1,000."
+    },
+    {
+      "anticipation_rank": 25,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 4,
+      "module_name": "Module 4: Capital Budgeting",
+      "key_concept": "Profitability Index (Capital Rationing)",
+      "question": "A firm has a hard capital budget cap of ₹10 Cr and three independent divisible projects: P1 (Outlay ₹6 Cr, NPV ₹3 Cr), P2 (Outlay ₹5 Cr, NPV ₹2.2 Cr), P3 (Outlay ₹4 Cr, NPV ₹2.0 Cr). Using Profitability Index (PI = PV/I), which mix maximizes total NPV?",
+      "options": [
+        "P1 + P3 (Total Outlay ₹10 Cr, Total NPV = ₹5.0 Cr)",
+        "P1 + 0.8 of P2 (Total NPV = ₹4.76 Cr)",
+        "P2 + P3 (Total Outlay ₹9 Cr, Total NPV = ₹4.2 Cr)",
+        "P2 only"
+      ],
+      "correct_index": 0,
+      "explanation": "NPV/Outlay ratios: P1 = 0.50 (PI 1.50), P3 = 0.50 (PI 1.50), P2 = 0.44 (PI 1.44). Ranking by PI picks P1 + P3 for ₹5.0 Cr NPV.",
+      "distractor_analysis": "Picking P2 ahead of P3 leaves money on the table."
+    },
+    {
+      "anticipation_rank": 26,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 6,
+      "module_name": "Module 6: Corporate Payout Decisions",
+      "key_concept": "Dividend Signaling & Smoothing",
+      "question": "Why do stock prices typically drop sharply when a mature firm cuts its regular dividend, yet barely react when it skips a special one-time dividend?",
+      "options": [
+        "Regular dividend cuts signal management's pessimistic private information about permanent future earnings, whereas special dividends carry no ongoing commitment",
+        "Regular dividends are tax-free while special dividends are taxed at 90%",
+        "Special dividends violate MM irrelevance",
+        "Investors forget special dividends exist"
+      ],
+      "correct_index": 0,
+      "explanation": "Under Information Content / Lintner smoothing, regular dividends commit to sustainable cash flows, so cutting them signals structural trouble.",
+      "distractor_analysis": "Tax rates don't explain the asymmetric market reaction."
+    },
+    {
+      "anticipation_rank": 27,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 8,
+      "module_name": "Module 8: Corporate Merger and Acquisitions (M&A) Decisions",
+      "key_concept": "Roll's Hubris Hypothesis",
+      "question": "According to Roll's Hubris Hypothesis in M&A, why do winning bidders frequently overpay in competitive takeover auctions even when they act in good faith?",
+      "options": [
+        "Managerial overconfidence leads bidders to overestimate synergies—the bidder with the largest positive valuation error wins the auction ('winner's curse')",
+        "CEOs intentionally sabotage their own company for rival bribes",
+        "Regulators force acquirers to pay 50% premiums",
+        "Target shareholders refuse cash"
+      ],
+      "correct_index": 0,
+      "explanation": "Hubris is honest overconfidence in valuation rather than deliberate self-dealing (agency), causing overpayment.",
+      "distractor_analysis": "Deliberate self-dealing (empire-building for CEO perks) is the *Agency* motive, distinct from Hubris."
+    },
+    {
+      "anticipation_rank": 28,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 1,
+      "module_name": "Module 1: Corporate Finance Principles",
+      "key_concept": "Corporation vs LLP / Partnership",
+      "question": "Which combination accurately distinguishes a Public Limited Corporation from a General Partnership in India?",
+      "options": [
+        "Limited liability for shareholders, separate legal entity, perpetual succession, and ability to raise dispersed public equity (at the cost of double taxation on distributed profits/agency oversight)",
+        "Unlimited personal liability for public shareholders",
+        "Automatic dissolution whenever any shareholder sells shares",
+        "Inability to own real assets"
+      ],
+      "correct_index": 0,
+      "explanation": "Corporate form isolates shareholder personal assets via limited liability and grants perpetual life, enabling vast capital pooling.",
+      "distractor_analysis": "Unlimited liability and dissolution on partner exit apply to general partnerships."
+    },
+    {
+      "anticipation_rank": 29,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 2,
+      "module_name": "Module 2: Time Value of Money",
+      "key_concept": "Loan Amortization (EMI / Annual Payment)",
+      "question": "A firm borrows ₹10,00,000 at 10% p.a. to be repaid in 3 equal end-of-year installments. What is the annual installment (rounded to nearest rupee)?",
+      "options": [
+        "₹4,02,115",
+        "₹3,33,333",
+        "₹4,33,333",
+        "₹3,66,667"
+      ],
+      "correct_index": 0,
+      "explanation": "PMT = PV / [(1 - 1.1^-3)/0.10] = 10,00,000 / 2.486852 = ₹4,02,115.",
+      "distractor_analysis": "₹3,33,333 ignores interest; ₹4,33,333 adds flat 10% interest on full principal each year."
+    },
+    {
+      "anticipation_rank": 30,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 3,
+      "module_name": "Module 3: Bonds and Stocks",
+      "key_concept": "Holding Period Return (HPR) vs YTM",
+      "question": "You buy a 5-year 10% bond at par (₹1,000). One year later, after receiving the ₹100 coupon, market YTMs drop to 8% and you sell the bond. How does your 1-year Holding Period Return (HPR) compare to the original 10% YTM?",
+      "options": [
+        "HPR is significantly higher than 10% (approx. 16.6%) because falling yields created a capital gain on sale",
+        "HPR equals exactly 10% regardless of yield changes",
+        "HPR is below 10% because coupons shrunk",
+        "HPR is 8%"
+      ],
+      "correct_index": 0,
+      "explanation": "At 8% YTM with 4 years left, Price = 100*PVAF(8%,4) + 1000/1.08^4 = ₹1,066.24. HPR = (100 + 66.24)/1000 = 16.62% > 10%.",
+      "distractor_analysis": "YTM equals realized return ONLY if held to maturity (and coupons reinvested at YTM)."
+    },
+    {
+      "anticipation_rank": 31,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 4,
+      "module_name": "Module 4: Capital Budgeting",
+      "key_concept": "Payback vs Discounted Payback",
+      "question": "What flaw does Discounted Payback fix compared to Simple Payback, and what major flaw do BOTH still share?",
+      "options": [
+        "Discounted Payback accounts for Time Value of Money (preventing acceptance of negative-NPV projects before cutoff), but BOTH still ignore all cash flows occurring after the cutoff date",
+        "Both ignore cash flows before Year 2",
+        "Discounted Payback ignores interest rates",
+        "Both guarantee selecting the highest-NPV mutually exclusive project"
+      ],
+      "correct_index": 0,
+      "explanation": "Discounted Payback adds TVM discipline, but both payback rules remain blind to post-cutoff cash flows (biasing against long-lived R&D/infrastructure).",
+      "distractor_analysis": "Neither guarantees maximum NPV when cash flows extend beyond cutoff."
+    },
+    {
+      "anticipation_rank": 32,
+      "anticipation_tier": "Tier 1: Most Anticipated",
+      "module_number": 7,
+      "module_name": "Module 7: Corporate Financing Decisions",
+      "key_concept": "Callable Bonds",
+      "question": "Why must a firm issuing a **callable** bond typically offer a higher coupon/yield than an otherwise identical non-callable bond?",
+      "options": [
+        "To compensate bondholders for prepayment/reinvestment risk—the firm will call the bond when interest rates fall, capping bondholders' upside",
+        "Because callable bonds have zero credit risk",
+        "Because callable bonds never pay coupons",
+        "To reward equity holders with lower dividends"
+      ],
+      "correct_index": 0,
+      "explanation": "A call option belongs to the issuer, hurting the bondholder when rates drop; bondholders demand a higher yield for writing that embedded call.",
+      "distractor_analysis": "Callability favors the issuer, not the investor."
+    },
+    {
+      "anticipation_rank": 33,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 1,
+      "module_name": "Module 1: Corporate Finance Principles",
+      "key_concept": "Investment vs Financing Decisions",
+      "question": "Which corporate action is purely a **Financing Decision** (rather than an Investment Decision)?",
+      "options": [
+        "Choosing between issuing ₹200 Cr of 9% non-convertible debentures vs. a Qualified Institutional Placement (QIP) of equity",
+        "Acquiring a ₹200 Cr automated packaging plant",
+        "Investing ₹50 Cr in R&D for a new EV battery",
+        "Purchasing brand trademarks from a competitor"
+      ],
+      "correct_index": 0,
+      "explanation": "Financing decisions determine the right-hand side of the balance sheet (debt/equity mix); Investment decisions acquire real tangible/intangible assets.",
+      "distractor_analysis": "Plants, R&D, and trademarks are real-asset investment decisions."
+    },
+    {
+      "anticipation_rank": 34,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 1,
+      "module_name": "Module 1: Corporate Finance Principles",
+      "key_concept": "Real Intangible Assets vs Financial Assets",
+      "question": "Which of the following is an **intangible real asset** (not a financial asset)?",
+      "options": [
+        "A patented pharmaceutical formula and brand reputation used to manufacture drugs",
+        "A 10-year Government of India Treasury Bond held in surplus cash",
+        "1,000 shares of Infosys held in a trading account",
+        "A commercial bank fixed deposit"
+      ],
+      "correct_index": 0,
+      "explanation": "Patents, software, and brand equity generate operational cash flows directly—making them intangible real assets, whereas bonds/shares/FDs are financial claims.",
+      "distractor_analysis": "Financial assets are claims on cash flows generated by real assets."
+    },
+    {
+      "anticipation_rank": 35,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 2,
+      "module_name": "Module 2: Time Value of Money",
+      "key_concept": "Annuity Due vs Ordinary Annuity",
+      "question": "An ordinary 5-year annuity at 8% has a Present Value of ₹40,000. What is the Present Value of an **Annuity Due** (payments at the start of each year) with the exact same cash flows and discount rate?",
+      "options": [
+        "₹43,200",
+        "₹40,000",
+        "₹37,037",
+        "₹44,000"
+      ],
+      "correct_index": 0,
+      "explanation": "PV(Annuity Due) = PV(Ordinary Annuity) × (1 + r) = 40,000 × 1.08 = ₹43,200.",
+      "distractor_analysis": "Dividing by 1.08 shrinks value instead of shifting payments one period earlier."
+    },
+    {
+      "anticipation_rank": 36,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 2,
+      "module_name": "Module 2: Time Value of Money",
+      "key_concept": "Rule of 72 / Compounding Periods",
+      "question": "At a 9% annual compound interest rate, roughly how many years does it take for ₹1,00,000 to double to ₹2,00,000?",
+      "options": [
+        "~8.0 years (exact: 8.04 years)",
+        "11.1 years",
+        "6.0 years",
+        "12.5 years"
+      ],
+      "correct_index": 0,
+      "explanation": "Rule of 72: 72 / 9 = 8 years. Exact: ln(2) / ln(1.09) = 8.04 years.",
+      "distractor_analysis": "11.1 years (100/9) assumes simple interest, ignoring compounding."
+    },
+    {
+      "anticipation_rank": 37,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 3,
+      "module_name": "Module 3: Bonds and Stocks",
+      "key_concept": "Zero-Coupon Bond Valuation",
+      "question": "A 5-year zero-coupon bond (Face Value ₹1,000) is priced at ₹680.58. What is its Yield to Maturity (YTM)?",
+      "options": [
+        "8.00%",
+        "6.40%",
+        "9.39%",
+        "10.00%"
+      ],
+      "correct_index": 0,
+      "explanation": "YTM = (1000 / 680.58)^(1/5) - 1 = (1.46933)^0.2 - 1 = 8.00%.",
+      "distractor_analysis": "6.40% divides total gain by 5 linearly without compounding."
+    },
+    {
+      "anticipation_rank": 38,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 3,
+      "module_name": "Module 3: Bonds and Stocks",
+      "key_concept": "Sustainable Growth Rate (g = ROE × b)",
+      "question": "A firm earns a Return on Equity (ROE) of 18% and retains 60% of earnings (payout ratio = 40%). What is its sustainable dividend growth rate `g`?",
+      "options": [
+        "10.8%",
+        "7.2%",
+        "18.0%",
+        "12.0%"
+      ],
+      "correct_index": 0,
+      "explanation": "g = ROE × Retention Ratio (b) = 18% × 0.60 = 10.8%.",
+      "distractor_analysis": "7.2% mistakenly multiplies ROE by the 40% *payout* ratio instead of the 60% *plowback* ratio."
+    },
+    {
+      "anticipation_rank": 39,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 4,
+      "module_name": "Module 4: Capital Budgeting",
+      "key_concept": "Incremental Cash Flows & Sunk Costs",
+      "question": "Before deciding whether to build a new factory, a firm spent ₹40 lakh on a soil feasibility study last month. Should that ₹40 lakh be included in the factory's NPV calculation today?",
+      "options": [
+        "No—it is a sunk cost already incurred regardless of the accept/reject decision",
+        "Yes—it must be added to the Year-0 outlay",
+        "Yes—only if the study was favorable",
+        "Yes—at half its cost"
+      ],
+      "correct_index": 0,
+      "explanation": "Capital budgeting counts strictly incremental future cash flows; sunk costs cannot be recovered by rejecting the project.",
+      "distractor_analysis": "Including sunk costs biases against profitable new investments."
+    },
+    {
+      "anticipation_rank": 40,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 4,
+      "module_name": "Module 4: Capital Budgeting",
+      "key_concept": "Opportunity Cost & Side Effects (Cannibalization)",
+      "question": "A beverage firm launches a new zero-sugar soda using an idle warehouse it could otherwise lease out for ₹12 lakh/year, and expects ₹8 lakh/year lost profit on its existing regular soda. How should both enter the project's cash flows?",
+      "options": [
+        "Include BOTH the ₹12 lakh/yr foregone rent (opportunity cost) and ₹8 lakh/yr cannibalized profit as annual project outflows",
+        "Ignore warehouse rent because the firm already owns the building",
+        "Ignore cannibalization because regular soda is a separate SKU",
+        "Add both as positive inflows"
+      ],
+      "correct_index": 0,
+      "explanation": "Incremental cash flow captures all opportunity costs (lost lease rent) and negative side-effects (cannibalization of existing lines).",
+      "distractor_analysis": "Ignoring owned-asset opportunity cost overstates true project NPV."
+    },
+    {
+      "anticipation_rank": 41,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 5,
+      "module_name": "Module 5: Risk and Return",
+      "key_concept": "Portfolio Beta",
+      "question": "You hold ₹3 lakh in Stock X (Beta 1.4), ₹2 lakh in Stock Y (Beta 0.7), and ₹5 lakh in Risk-Free T-Bills (Beta 0). What is your portfolio Beta?",
+      "options": [
+        "0.56",
+        "0.70",
+        "1.05",
+        "0.84"
+      ],
+      "correct_index": 0,
+      "explanation": "β_p = (0.3 × 1.4) + (0.2 × 0.7) + (0.5 × 0) = 0.42 + 0.14 + 0 = 0.56.",
+      "distractor_analysis": "1.05 averages 1.4 and 0.7 equally ignoring weights and T-Bills."
+    },
+    {
+      "anticipation_rank": 42,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 5,
+      "module_name": "Module 5: Risk and Return",
+      "key_concept": "Security Market Line (Alpha / Mispricing)",
+      "question": "Under CAPM (r_f = 5%, Market Risk Premium = 8%), Stock Z has Beta = 1.25 and is expected by analysts to return 17%. Where does Stock Z plot relative to the Security Market Line (SML)?",
+      "options": [
+        "Above the SML (required return = 15%, alpha = +2%), meaning Stock Z is currently underpriced",
+        "Below the SML, meaning Stock Z is overpriced",
+        "Exactly on the SML",
+        "Negative alpha of -2%"
+      ],
+      "correct_index": 0,
+      "explanation": "CAPM required return = 5% + 1.25 × 8% = 15%. Since expected return (17%) > required (15%), alpha = +2% above SML → underpriced.",
+      "distractor_analysis": "Positive alpha means higher expected return per unit of Beta, i.e., a bargain (underpriced)."
+    },
+    {
+      "anticipation_rank": 43,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 6,
+      "module_name": "Module 6: Corporate Payout Decisions",
+      "key_concept": "Tax Preference vs Clientele Effect",
+      "question": "If capital gains are taxed at 12.5% upon realization while cash dividends are taxed immediately at 30% slab rates, what does the Tax-Preference / Clientele view predict?",
+      "options": [
+        "High-tax-bracket investors prefer share buybacks / low-dividend growth stocks, while tax-exempt institutions or low-slab investors gravitate toward high-dividend stocks",
+        "All investors prefer 100% cash dividends",
+        "Firms must pay zero wages",
+        "Taxes have zero impact on payout preferences"
+      ],
+      "correct_index": 0,
+      "explanation": "Differential taxation creates natural investor clienteles sorting into low-payout (buyback/growth) vs high-dividend firms.",
+      "distractor_analysis": "Higher dividend taxes push taxable investors *away* from cash dividends."
+    },
+    {
+      "anticipation_rank": 44,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 6,
+      "module_name": "Module 6: Corporate Payout Decisions",
+      "key_concept": "Share Repurchase Execution Methods",
+      "question": "Which share repurchase method allows a company to buy back shares confidentially at prevailing market prices over several months via a broker, without announcing a fixed premium upfront?",
+      "options": [
+        "Open-market repurchase",
+        "Fixed-price tender offer",
+        "Dutch auction tender offer",
+        "Targeted greenmail negotiation"
+      ],
+      "correct_index": 0,
+      "explanation": "Open-market buybacks offer maximum timing flexibility and no locked-in tender premium, making them the most common global execution route.",
+      "distractor_analysis": "Tender offers (fixed or Dutch auction) specify explicit windows and price terms publicly."
+    },
+    {
+      "anticipation_rank": 45,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 7,
+      "module_name": "Module 7: Corporate Financing Decisions",
+      "key_concept": "Primary Issue vs Offer for Sale (OFS) in IPOs",
+      "question": "An IPO raises ₹1,200 Cr: ₹400 Cr via Fresh Issue and ₹800 Cr via Offer for Sale (OFS) by existing PE investors. How much cash actually enters the company's balance sheet for factory expansion (before issue expenses)?",
+      "options": [
+        "₹400 Cr (only the Primary / Fresh Issue proceeds go to the firm; ₹800 Cr goes to selling shareholders)",
+        "₹1,200 Cr",
+        "₹800 Cr",
+        "₹0"
+      ],
+      "correct_index": 0,
+      "explanation": "In an OFS (secondary sale), existing owners sell their shares to new investors and pocket the cash; only Fresh Issue proceeds fund corporate operations.",
+      "distractor_analysis": "Confusing total IPO size with primary capital raised is a common mistake."
+    },
+    {
+      "anticipation_rank": 46,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 7,
+      "module_name": "Module 7: Corporate Financing Decisions",
+      "key_concept": "Underpricing as an Indirect IPO Cost",
+      "question": "A startup sells 1 crore IPO shares to the public at ₹100/share (7% underwriting fee). On Day 1, the stock closes at ₹140/share. What was the total 'money left on the table' (indirect underpricing cost)?",
+      "options": [
+        "₹40 Cr",
+        "₹7 Cr",
+        "₹47 Cr",
+        "₹100 Cr"
+      ],
+      "correct_index": 0,
+      "explanation": "Money left on the table = (First-day closing price - Offer price) × Shares issued = (₹140 - ₹100) × 1 Cr = ₹40 Cr (while ₹7 Cr is the direct underwriting spread).",
+      "distractor_analysis": "₹7 Cr is the direct fee; ₹47 Cr combines direct and indirect costs."
+    },
+    {
+      "anticipation_rank": 47,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 8,
+      "module_name": "Module 8: Corporate Merger and Acquisitions (M&A) Decisions",
+      "key_concept": "Horizontal vs Vertical vs Conglomerate M&A",
+      "question": "An electric vehicle manufacturer acquires a lithium-refining company that supplies its battery cells. What type of M&A is this?",
+      "options": [
+        "Backward Vertical Merger",
+        "Forward Vertical Merger",
+        "Horizontal Merger",
+        "Conglomerate Merger"
+      ],
+      "correct_index": 0,
+      "explanation": "Acquiring an upstream raw-material supplier is Backward Vertical Integration (whereas acquiring a distributor/dealer is Forward Vertical).",
+      "distractor_analysis": "Horizontal merges direct competitors; conglomerate merges unrelated industries."
+    },
+    {
+      "anticipation_rank": 48,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 8,
+      "module_name": "Module 8: Corporate Merger and Acquisitions (M&A) Decisions",
+      "key_concept": "Cash vs Stock Payment in M&A",
+      "question": "When an acquirer's management privately believes its own stock is **undervalued**, and is confident about target synergies, which payment form should it prefer?",
+      "options": [
+        "Cash payment—so existing shareholders keep 100% of future synergy upside instead of sharing it via cheap undervalued stock",
+        "All-stock payment—to give away more shares at a discount",
+        "Stock payment only if synergies are huge",
+        "Zero payment"
+      ],
+      "correct_index": 0,
+      "explanation": "Paying cash avoids issuing undervalued equity and concentrates all post-merger synergy upside in current acquirer shareholders (whereas stock shares risk/overvaluation).",
+      "distractor_analysis": "Managers prefer paying with *overvalued* stock, not *undervalued* stock."
+    },
+    {
+      "anticipation_rank": 49,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 2,
+      "module_name": "Module 2: Time Value of Money",
+      "key_concept": "Continuous Compounding",
+      "question": "₹1,00,000 is invested for 2 years at a nominal rate of 10% compounded **continuously**. What is the Future Value (`e^0.20 ≈ 1.2214`)?",
+      "options": [
+        "₹1,22,140",
+        "₹1,21,000",
+        "₹1,20,000",
+        "₹1,21,551"
+      ],
+      "correct_index": 0,
+      "explanation": "FV = PV × e^(r×t) = 1,00,000 × e^(0.10×2) = 1,00,000 × 1.2214 = ₹1,22,140.",
+      "distractor_analysis": "1,21,000 is annual compounding; 1,21,551 is semi-annual."
+    },
+    {
+      "anticipation_rank": 50,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 3,
+      "module_name": "Module 3: Bonds and Stocks",
+      "key_concept": "Order Book / Bid-Ask Spread",
+      "question": "If a stock market dealer quotes Bid = ₹249.80 and Ask = ₹250.20, what happens if you place an immediate market **buy** order?",
+      "options": [
+        "You buy at the Ask price of ₹250.20 (crossing the ₹0.40 bid-ask spread)",
+        "You buy at the Bid price of ₹249.80",
+        "You buy at the midpoint ₹250.00 automatically",
+        "Market orders wait until price drops to ₹249"
+      ],
+      "correct_index": 0,
+      "explanation": "Market buyers hit the dealer's Ask (higher price), while market sellers hit the dealer's Bid (lower price).",
+      "distractor_analysis": "Only limit orders can sit on the book at your chosen price."
+    },
+    {
+      "anticipation_rank": 51,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 4,
+      "module_name": "Module 4: Capital Budgeting",
+      "key_concept": "Borrowing vs Investing Project IRR Rule",
+      "question": "A financing/borrowing-type project has `t=0: +₹100 Cr` inflow followed by `t=1: -₹115 Cr` outflow (`IRR = 15%`). If the firm's opportunity cost of capital is 12%, should it accept or reject?",
+      "options": [
+        "Reject—because for borrowing cash-flow patterns (+ then -), you accept ONLY if IRR < Cost of Capital (NPV = 100 - 115/1.12 = -₹2.68 Cr)",
+        "Accept—because IRR 15% > 12%",
+        "Accept—because Year 0 is positive",
+        "IRR is undefined"
+      ],
+      "correct_index": 0,
+      "explanation": "Borrowing at 15% when market cost of capital is 12% destroys value (negative NPV); the IRR rule reverses for borrowing projects.",
+      "distractor_analysis": "Blindly applying 'accept if IRR > r' to borrowing cash flows is a classic IRR pitfall."
+    },
+    {
+      "anticipation_rank": 52,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 5,
+      "module_name": "Module 5: Risk and Return",
+      "key_concept": "Minimum-Variance & Correlation Bounds",
+      "question": "If two risky stocks have equal standard deviations (20%) and correlation ρ = -1.0 (perfect negative correlation), what is the minimum possible standard deviation of a 50-50 portfolio?",
+      "options": [
+        "0% (risk-free portfolio)",
+        "10%",
+        "14.14%",
+        "20%"
+      ],
+      "correct_index": 0,
+      "explanation": "When ρ = -1 and weights match inverse volatility (50/50 here), SD_p = |w1*σ1 - w2*σ2| = |0.5(20) - 0.5(20)| = 0%.",
+      "distractor_analysis": "14.14% corresponds to ρ = 0; 20% corresponds to ρ = +1."
+    },
+    {
+      "anticipation_rank": 53,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 6,
+      "module_name": "Module 6: Corporate Payout Decisions",
+      "key_concept": "Ex-Dividend Date Mechanics",
+      "question": "To receive an upcoming declared corporate dividend in India (T+1 settlement), by when must an investor purchase the shares?",
+      "options": [
+        "Before the Ex-Dividend Date (purchasing *on* or after the Ex-Dividend Date does not entitle the buyer to the dividend)",
+        "On the Payment Date",
+        "On the Ex-Dividend Date",
+        "One week after the Record Date"
+      ],
+      "correct_index": 0,
+      "explanation": "Buyers on or after the Ex-Dividend Date buy 'ex-dividend' (without the payout), which is why the share price adjusts downward on the Ex-Date.",
+      "distractor_analysis": "Record date is administrative; eligibility cuts off at the Ex-Dividend Date."
+    },
+    {
+      "anticipation_rank": 54,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 7,
+      "module_name": "Module 7: Corporate Financing Decisions",
+      "key_concept": "Why Rights Issues Prevent Underpricing Wealth Transfer",
+      "question": "Why can a firm issue a Rights Offering at a deep 30% discount to existing shareholders without harming them, whereas a 30% discounted public SEO harms existing owners?",
+      "options": [
+        "In a Rights Issue, existing owners receive pro-rata rights capturing the discount themselves (or selling them), whereas in a discounted SEO outsiders capture the bargain at existing owners' expense",
+        "Rights issues are exempt from share dilution",
+        "Public SEOs pay double dividends",
+        "Rights issues cannot be renounced"
+      ],
+      "correct_index": 0,
+      "explanation": "Pro-rata rights keep the economic transfer internal to existing shareholders rather than gifting discounted equity to new public buyers.",
+      "distractor_analysis": "Share count still rises in a rights issue; it's pro-rata allocation that prevents wealth transfer."
+    },
+    {
+      "anticipation_rank": 55,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 8,
+      "module_name": "Module 8: Corporate Merger and Acquisitions (M&A) Decisions",
+      "key_concept": "Four Sources of Real M&A Synergy",
+      "question": "Which item is a **legitimate real economic synergy** in an M&A valuation (as opposed to a dubious motive)?",
+      "options": [
+        "Eliminating duplicate corporate headquarters and combining complementary R&D/distribution networks to lift incremental free cash flows",
+        "Smoothed accounting EPS via P/E arbitrage",
+        "Pure unrelated conglomerate diversification to lower manager employment risk",
+        "Managerial prestige from doubling total revenue"
+      ],
+      "correct_index": 0,
+      "explanation": "Real synergies come from economies of scale/scope, complementary capabilities, tax/financial efficiency, or removing inefficient target management.",
+      "distractor_analysis": "P/E arbitrage, pure diversification, and empire-building are dubious motives."
+    },
+    {
+      "anticipation_rank": 56,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 3,
+      "module_name": "Module 3: Bonds and Stocks",
+      "key_concept": "Perpetual (AT1) Bond Valuation",
+      "question": "A perpetual Additional Tier-1 (AT1) bank bond pays ₹950 annual coupon forever and investors require a 10% yield. Ignoring call features, what is its fair value?",
+      "options": [
+        "₹9,500",
+        "₹10,000",
+        "₹95,000",
+        "₹950"
+      ],
+      "correct_index": 0,
+      "explanation": "PV(Perpetuity) = Coupon / YTM = 950 / 0.10 = ₹9,500.",
+      "distractor_analysis": "Simple perpetuity divides periodic coupon by required yield."
+    },
+    {
+      "anticipation_rank": 57,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 4,
+      "module_name": "Module 4: Capital Budgeting",
+      "key_concept": "NPV Value Additivity",
+      "question": "If Project A has NPV = +₹15 Cr and independent Project B has NPV = +₹10 Cr, what is the combined NPV of undertaking both, and why does this property matter?",
+      "options": [
+        "+₹25 Cr (Value Additivity—allowing divisions to evaluate independent projects separately without distorting firm-wide value)",
+        "+₹15 Cr",
+        "+₹150 Cr",
+        "It cannot be summed without knowing IRR"
+      ],
+      "correct_index": 0,
+      "explanation": "NPV obeys Value Additivity (`NPV(A+B) = NPV(A) + NPV(B)`), unlike IRR or Payback.",
+      "distractor_analysis": "IRRs cannot be added together."
+    },
+    {
+      "anticipation_rank": 58,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 5,
+      "module_name": "Module 5: Risk and Return",
+      "key_concept": "State-Based Expected Return",
+      "question": "An equity fund yields +30% in a Boom (prob 0.30), +10% in Normal (prob 0.50), and -20% in Recession (prob 0.20). What is its expected return?",
+      "options": [
+        "10.0%",
+        "6.67%",
+        "14.0%",
+        "20.0%"
+      ],
+      "correct_index": 0,
+      "explanation": "E[R] = (0.30 × 30%) + (0.50 × 10%) + (0.20 × -20%) = 9% + 5% - 4% = 10.0%.",
+      "distractor_analysis": "6.67% takes an unweighted average across the 3 states."
+    },
+    {
+      "anticipation_rank": 59,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 6,
+      "module_name": "Module 6: Corporate Payout Decisions",
+      "key_concept": "Agency Cost of Excess Cash (Free Cash Flow Hypothesis)",
+      "question": "Why does returning excess cash via dividends or buybacks reduce agency costs in mature, slow-growth firms?",
+      "options": [
+        "It prevents managers from wasting idle cash on value-destroying pet projects or overpriced acquisitions, forcing them to face capital-market scrutiny when raising new funds",
+        "It increases idle cash on the balance sheet",
+        "It eliminates all corporate debt",
+        "It raises CEO bonuses automatically"
+      ],
+      "correct_index": 0,
+      "explanation": "Jensen's Free Cash Flow hypothesis favors distributing surplus cash when positive-NPV reinvestment opportunities are exhausted.",
+      "distractor_analysis": "Keeping idle cash *increases* empire-building risk."
+    },
+    {
+      "anticipation_rank": 60,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 7,
+      "module_name": "Module 7: Corporate Financing Decisions",
+      "key_concept": "SEBI Sept 2024 Indian IPO Investor Behaviour",
+      "question": "What key pattern did SEBI's Sept 2024 empirical study on Indian IPOs highlight regarding retail/short-term investor behavior?",
+      "options": [
+        "A large share of retail/NII IPO allottees flipped shares within the first week of listing, especially when listing-day gains were strong ('flipping' behavior)",
+        "100% of retail IPO investors held shares for at least 10 years",
+        "Zero retail investors applied via UPI",
+        "SEBI banned all retail participation in IPOs"
+      ],
+      "correct_index": 0,
+      "explanation": "The SEBI study documented heavy short-term flipping by retail and HNI investors chasing listing-day pops.",
+      "distractor_analysis": "The study specifically highlighted short-term flipping rather than 10-year holding."
+    },
+    {
+      "anticipation_rank": 61,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 1,
+      "module_name": "Module 1: Corporate Finance Principles",
+      "key_concept": "Cash Flow Cycle (Firm ↔ Financial Markets)",
+      "question": "In the corporate cash-flow cycle, what happens when the firm's projects earn returns *below* the opportunity cost of capital demanded by financial markets?",
+      "options": [
+        "The firm destroys shareholder wealth (negative NPV) and should return cash to investors rather than reinvesting",
+        "The firm creates positive economic value",
+        "Share price rises automatically",
+        "Financial markets stop charging risk premiums"
+      ],
+      "correct_index": 0,
+      "explanation": "Value is created only when ROIC > Opportunity Cost of Capital.",
+      "distractor_analysis": "Reinvesting below cost of capital destroys value."
+    },
+    {
+      "anticipation_rank": 62,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 2,
+      "module_name": "Module 2: Time Value of Money",
+      "key_concept": "Negative Interest Rates",
+      "question": "If a central bank sets safe sovereign yields at -0.5% (negative nominal interest rates), what happens to the Present Value of a safe ₹100 cash flow arriving in 1 year?",
+      "options": [
+        "Its Present Value exceeds ₹100 (₹100.50), because investors are willing to pay a storage/safety fee to hold safe future liquidity",
+        "Its Present Value becomes negative",
+        "Its Present Value drops to ₹50",
+        "Discounting stops working mathematically"
+      ],
+      "correct_index": 0,
+      "explanation": "PV = 100 / (1 - 0.005) = ₹100.50; discounting by (1 + r) with r < 0 yields PV > FV.",
+      "distractor_analysis": "The PV formula works identically; PV simply exceeds FV."
+    },
+    {
+      "anticipation_rank": 63,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 3,
+      "module_name": "Module 3: Bonds and Stocks",
+      "key_concept": "US vs Indian Bond Coupon Conventions",
+      "question": "If an Indian G-Sec and a US Treasury bond both quote an 8% annual coupon on ₹1,000/$1,000 Face Value with semi-annual payments, how much coupon cash arrives every 6 months?",
+      "options": [
+        "₹40 / $40 every 6 months",
+        "₹80 / $80 every 6 months",
+        "₹20 / $20 every 6 months",
+        "₹160 / $160 every 6 months"
+      ],
+      "correct_index": 0,
+      "explanation": "Annual coupon rate (8%) divided by 2 semi-annual periods = 4% per half-year = ₹40/$40.",
+      "distractor_analysis": "Don't forget to divide annual coupon by 2 and double N when valuing semi-annual bonds."
+    },
+    {
+      "anticipation_rank": 64,
+      "anticipation_tier": "Tier 2: High Probability",
+      "module_number": 8,
+      "module_name": "Module 8: Corporate Merger and Acquisitions (M&A) Decisions",
+      "key_concept": "Agency Motive in M&A",
+      "question": "A CEO pushes through a value-destroying conglomerate acquisition primarily because running a larger company boosts executive pay, media prestige, and job security. Which M&A motive is this?",
+      "options": [
+        "Agency Motive (empire-building at shareholders' expense)",
+        "Operating Synergy",
+        "Tax-loss carryforward optimization",
+        "Roll's innocent Hubris"
+      ],
+      "correct_index": 0,
+      "explanation": "Self-interested empire-building that knowingly prioritizes CEO perks/size over NPV is an Agency conflict.",
+      "distractor_analysis": "Hubris involves honest over-optimism; Agency involves misaligned incentives."
+    },
+    {
+      "anticipation_rank": 65,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 1,
+      "module_name": "Module 1: Corporate Finance Principles",
+      "key_concept": "OPC & LLP Hybrid Forms",
+      "question": "Why might a solo founder or boutique consulting team choose an **LLP (Limited Liability Partnership)** or **OPC (One Person Company)** over a General Partnership?",
+      "options": [
+        "To gain limited liability protection for personal assets while avoiding the heavy compliance burden of a full Public Limited firm",
+        "To list shares immediately on the NSE mainboard",
+        "To avoid keeping any accounting books",
+        "To receive automatic government equity grants"
+      ],
+      "correct_index": 0,
+      "explanation": "LLP and OPC blend limited liability with streamlined governance for small/professional ventures.",
+      "distractor_analysis": "Only Public Ltd firms list equity on mainboard exchanges."
+    },
+    {
+      "anticipation_rank": 66,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 2,
+      "module_name": "Module 2: Time Value of Money",
+      "key_concept": "Maximum Outlay & Fair Market Value",
+      "question": "If a 1-year project promises a single risk-adjusted cash inflow of ₹11.5 Cr and the required return is 15%, what is the **maximum** Year-0 outlay you should pay?",
+      "options": [
+        "₹10.0 Cr (Fair Market Value = PV)",
+        "₹11.5 Cr",
+        "₹9.5 Cr",
+        "₹13.2 Cr"
+      ],
+      "correct_index": 0,
+      "explanation": "Fair Market Value = PV = 11.5 / 1.15 = ₹10.0 Cr; paying anything above ₹10.0 Cr makes NPV negative.",
+      "distractor_analysis": "Paying ₹11.5 Cr gives 0% return and negative NPV."
+    },
+    {
+      "anticipation_rank": 67,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 3,
+      "module_name": "Module 3: Bonds and Stocks",
+      "key_concept": "Flight to Safety",
+      "question": "During a sudden financial crisis ('Flight to Safety'), what typically happens to US/sovereign Treasury yields and Treasury bond prices?",
+      "options": [
+        "Investors rush into safe Treasuries, driving bond prices UP and yields DOWN",
+        "Bond prices crash and yields skyrocket",
+        "Both prices and yields rise together",
+        "Treasuries convert into equity"
+      ],
+      "correct_index": 0,
+      "explanation": "High demand for safe-haven sovereign bonds bids up their prices, pushing yields inversely down.",
+      "distractor_analysis": "Bond prices and yields always move inversely."
+    },
+    {
+      "anticipation_rank": 68,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 4,
+      "module_name": "Module 4: Capital Budgeting",
+      "key_concept": "NPV Profile & Crossover Rate",
+      "question": "At what discount rate do two mutually exclusive projects A and B have the exact same NPV (the 'Crossover Rate' on their NPV profiles)?",
+      "options": [
+        "The IRR of the incremental cash flows (Project B minus Project A)",
+        "The risk-free T-Bill rate",
+        "The arithmetic sum of IRR_A and IRR_B",
+        "0%"
+      ],
+      "correct_index": 0,
+      "explanation": "Setting NPV(A) = NPV(B) is algebraically identical to finding the IRR of the differential cash-flow stream (B - A).",
+      "distractor_analysis": "At 0% discount rate, NPV equals undiscounted cash sum, not necessarily equal across projects."
+    },
+    {
+      "anticipation_rank": 69,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 5,
+      "module_name": "Module 5: Risk and Return",
+      "key_concept": "Historical Risk-Return Hierarchy",
+      "question": "Over long multi-decade horizons (e.g., 1900–2020), which asset ordering reflects the empirical historical Risk-Return Hierarchy from lowest to highest average return & volatility?",
+      "options": [
+        "Treasury Bills < Long-Term Government Bonds < Diversified Large-Cap Equities < Small-Cap Equities",
+        "Small-Cap Equities < T-Bills < Gov Bonds",
+        "Gov Bonds < T-Bills < Cash",
+        "All asset classes earned identical real returns"
+      ],
+      "correct_index": 0,
+      "explanation": "Empirical capital-market history consistently shows higher long-run average returns compensating higher volatility.",
+      "distractor_analysis": "T-Bills carry the lowest volatility and lowest long-term return."
+    },
+    {
+      "anticipation_rank": 70,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 5,
+      "module_name": "Module 5: Risk and Return",
+      "key_concept": "Adding a Risky Third Stock",
+      "question": "Can adding a high-volatility third stock (SD = 40%) to an existing two-stock portfolio (SD = 18%) ever **reduce** total portfolio risk?",
+      "options": [
+        "Yes—if the third stock has low or negative covariance/correlation with the existing portfolio",
+        "No—adding a higher-SD asset always raises portfolio SD",
+        "Only if its weight is 100%",
+        "Only if its Beta is 3.0"
+      ],
+      "correct_index": 0,
+      "explanation": "Portfolio risk depends on covariance with existing holdings, not standalone SD alone.",
+      "distractor_analysis": "Assuming standalone SD > portfolio SD raises risk ignores covariance."
+    },
+    {
+      "anticipation_rank": 71,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 6,
+      "module_name": "Module 6: Corporate Payout Decisions",
+      "key_concept": "Reverse Stock Split",
+      "question": "Why might a distressed exchange-listed firm execute a 1-for-10 **Reverse Stock Split**?",
+      "options": [
+        "To raise the per-share trading price above minimum exchange listing thresholds (or institutional price floors) without altering total market cap",
+        "To double total firm cash",
+        "To pay out retained earnings",
+        "To increase total share count 10x"
+      ],
+      "correct_index": 0,
+      "explanation": "Reverse splits consolidate shares (e.g., 10 shares at $0.50 become 1 share at $5.00) to avoid delisting.",
+      "distractor_analysis": "It reduces share count 10x while raising price 10x."
+    },
+    {
+      "anticipation_rank": 72,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 6,
+      "module_name": "Module 6: Corporate Payout Decisions",
+      "key_concept": "MM Payout Irrelevance Assumptions",
+      "question": "Which assumption is **required** for Modigliani–Miller's Dividend Irrelevance Theorem to hold strictly?",
+      "options": [
+        "Fixed investment policy (CAPEX is unchanged), zero taxes, zero transaction/issuance costs, and symmetric information",
+        "Dividends must be taxed at 50% while capital gains are 0%",
+        "Firms must change their investment projects whenever they pay a dividend",
+        "Investors cannot sell shares in the market"
+      ],
+      "correct_index": 0,
+      "explanation": "MM assumes frictionless markets and an invariant real investment policy.",
+      "distractor_analysis": "Taxes, issuance frictions, and signaling break strict irrelevance."
+    },
+    {
+      "anticipation_rank": 73,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 7,
+      "module_name": "Module 7: Corporate Financing Decisions",
+      "key_concept": "SEO Negative Announcement Effect",
+      "question": "Why does a company's stock price typically fall by 2–3% on the day it announces a public Seasoned Equity Offering (SEO)?",
+      "options": [
+        "Asymmetric information (Myers–Majluf): investors infer managers issue new equity when they believe the stock is overvalued",
+        "Because SEOs eliminate limited liability",
+        "Because existing shares are cancelled",
+        "Because debt holders automatically seize factories"
+      ],
+      "correct_index": 0,
+      "explanation": "Pecking-order / asymmetric information logic predicts managers prefer issuing equity when shares appear overpriced.",
+      "distractor_analysis": "It is an information signal, not cancellation of existing shares."
+    },
+    {
+      "anticipation_rank": 74,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 7,
+      "module_name": "Module 7: Corporate Financing Decisions",
+      "key_concept": "IPO Cyclicality (Hot vs Cold Markets)",
+      "question": "What does empirical evidence on 'IPO Cyclicality' show?",
+      "options": [
+        "IPO volume and average first-day underpricing cluster strongly in waves ('hot issue markets') during bull-market optimism and dry up during downturns",
+        "Exactly 10 IPOs occur every month regardless of market cycles",
+        "IPO underpricing disappears during tech booms",
+        "Firms prefer listing at the bottom of recessions"
+      ],
+      "correct_index": 0,
+      "explanation": "Issuers time equity offerings to coincide with high-valuation market windows.",
+      "distractor_analysis": "IPO markets are highly cyclical, not uniform."
+    },
+    {
+      "anticipation_rank": 75,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 8,
+      "module_name": "Module 8: Corporate Merger and Acquisitions (M&A) Decisions",
+      "key_concept": "Takeover Premium & Target vs Acquirer Returns",
+      "question": "Across empirical M&A studies, how are short-term announcement returns typically distributed between Target and Acquirer shareholders?",
+      "options": [
+        "Target shareholders earn large positive gains (20–30% premiums), whereas Acquirer shareholders earn roughly zero or slightly negative returns on average",
+        "Acquirer shareholders capture 100% of synergy and Target gets 0%",
+        "Both lose 30% on announcement day",
+        "Target share prices fall 20% on takeover bids"
+      ],
+      "correct_index": 0,
+      "explanation": "Competitive bidding transfers most expected synergy to Target owners via the takeover premium.",
+      "distractor_analysis": "Target shareholders are the clear empirical winners in M&A announcements."
+    },
+    {
+      "anticipation_rank": 76,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 2,
+      "module_name": "Module 2: Time Value of Money",
+      "key_concept": "Cash-Flow Shifting Rule",
+      "question": "If you have a stream of cash flows starting at `t=5`, why can you value it at `t=4` using standard annuity/perpetuity formulas and then discount back 4 years?",
+      "options": [
+        "Because TVM formulas are time-shift invariant: discounting from `t=k` to `t=k-1` applies the exact same factor `(1+r)` at any point on the timeline",
+        "Because cash flows before t=4 are taxed twice",
+        "Only if r = 0%",
+        "Because annuities always start at t=0"
+      ],
+      "correct_index": 0,
+      "explanation": "Standard annuity/perpetuity PV always lands one period before the first cash flow, and shifts cleanly across time via `(1+r)^t`.",
+      "distractor_analysis": "Ordinary annuities start at t=1 (giving PV at t=0), not t=0."
+    },
+    {
+      "anticipation_rank": 77,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 3,
+      "module_name": "Module 3: Bonds and Stocks",
+      "key_concept": "Bid-Ask Spread & Liquidity",
+      "question": "A corporate bond has a Bid-Ask spread of 1.5% while an on-the-run Treasury has a spread of 0.02%. What does this indicate?",
+      "options": [
+        "The Treasury is vastly more liquid with lower trading/transaction costs than the corporate bond",
+        "The corporate bond has zero default risk",
+        "The Treasury cannot be sold before maturity",
+        "Dealers lose money on Treasuries"
+      ],
+      "correct_index": 0,
+      "explanation": "Narrower bid-ask spreads reflect higher market liquidity and lower transaction friction.",
+      "distractor_analysis": "Wider spreads reflect *illiquidity*, not safety."
+    },
+    {
+      "anticipation_rank": 78,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 4,
+      "module_name": "Module 4: Capital Budgeting",
+      "key_concept": "Why CFOs Still Report IRR Alongside NPV",
+      "question": "Despite NPV's theoretical superiority, why do CFO surveys (Graham & Harvey) show over 75% of CFOs still compute IRR alongside NPV?",
+      "options": [
+        "IRR gives an intuitive percentage hurdle-rate margin of safety ('22% return vs 12% WACC') that is easy to communicate to non-finance boards",
+        "Because IRR never has multiple roots",
+        "Because NPV ignores Time Value of Money",
+        "Because Excel cannot compute NPV"
+      ],
+      "correct_index": 0,
+      "explanation": "Percentage spreads against WACC are intuitive for communication, even though NPV governs final capital allocation.",
+      "distractor_analysis": "IRR *can* have multiple roots, and Excel computes both."
+    },
+    {
+      "anticipation_rank": 79,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 5,
+      "module_name": "Module 5: Risk and Return",
+      "key_concept": "Beta Regression Slope",
+      "question": "Statistically, how is a stock's Beta (β) estimated from historical excess returns?",
+      "options": [
+        "As the slope of the linear regression of Stock excess returns (`R_i - r_f`) against Market excess returns (`R_m - r_f`), equal to `Cov(R_i, R_m) / Var(R_m)`",
+        "As `Var(R_m) / Cov(R_i, R_m)`",
+        "As the R-squared of the regression",
+        "As the stock's average dividend yield"
+      ],
+      "correct_index": 0,
+      "explanation": "Beta is the regression slope (`Cov / Var_m`), whereas R-squared measures the fraction of variance explained by the market.",
+      "distractor_analysis": "R-squared is always between 0 and 1, whereas Beta can exceed 1 or be negative."
+    },
+    {
+      "anticipation_rank": 80,
+      "anticipation_tier": "Tier 3: Targeted Coverage",
+      "module_number": 8,
+      "module_name": "Module 8: Corporate Merger and Acquisitions (M&A) Decisions",
+      "key_concept": "M&A Waves",
+      "question": "What primarily triggers historical 'M&A Waves' across industries?",
+      "options": [
+        "Clustering of technological, regulatory, or globalization shocks paired with buoyant capital-market valuations and cheap credit",
+        "Random coin flips by investment banks",
+        "Periods of severe stock market crashes with zero liquidity",
+        "Laws banning organic growth"
+      ],
+      "correct_index": 0,
+      "explanation": "Industry shocks (deregulation, tech shifts) plus favorable financing/valuation conditions drive clustered M&A waves.",
+      "distractor_analysis": "M&A activity dries up during illiquid market crashes."
+    }
+  ]
+}

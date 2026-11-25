@@ -756,6 +756,19 @@ window.ExamHub = {
           commonTrap: q.common_trap || '',
           moduleName: q.module_name,
         }));
+      } else if (sec.type === 'Case Study') {
+        const cases = shuffle(data.case_questions || []).slice(0, sec.count);
+        cases.forEach(q => pool.push({
+          section: sec.name,
+          qType: 'subjective',
+          marks: sec.marks_each,
+          wordLimit: sec.indicative_word_limit || 50,
+          question: (q.case_context ? q.case_context + '\n\n' : '') + q.question,
+          modelAnswer: q.model_answer,
+          rubric: q.examiner_rubric || [],
+          commonTrap: q.common_trap || '',
+          moduleName: q.module_name,
+        }));
       }
     });
 

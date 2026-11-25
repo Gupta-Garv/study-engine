@@ -30,12 +30,12 @@
       "calculator": false,
       "negative_marking": true,
       "pattern_summary": "Sec A: 14 MCQs (1m) + Sec B: 8 MSQs (2m, partial/negative floored at 0)",
-      "has_predicted": false,
+      "has_predicted": true,
       "has_cla": true,
       "predicted_counts": {
         "subjective": 0,
-        "mcq": 0,
-        "msq": 0,
+        "mcq": 40,
+        "msq": 24,
         "case": 0
       },
       "cla_count": 15
@@ -50,13 +50,13 @@
       "calculator": false,
       "negative_marking": false,
       "pattern_summary": "Sec A: 14 MCQs (1m) + Sec B: 6 Short (2m, 20–30w) + Sec C: 3 Cases (24m, 40–50w)",
-      "has_predicted": false,
+      "has_predicted": true,
       "has_cla": true,
       "predicted_counts": {
-        "subjective": 0,
-        "mcq": 0,
+        "subjective": 20,
+        "mcq": 40,
         "msq": 0,
-        "case": 0
+        "case": 12
       },
       "cla_count": 85
     },
@@ -70,11 +70,11 @@
       "calculator": true,
       "negative_marking": false,
       "pattern_summary": "Sec A: 50 MCQs (1.5m) • Scientific Calc + Formula Sheet allowed",
-      "has_predicted": false,
+      "has_predicted": true,
       "has_cla": true,
       "predicted_counts": {
         "subjective": 0,
-        "mcq": 0,
+        "mcq": 80,
         "msq": 0,
         "case": 0
       },
