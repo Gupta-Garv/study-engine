@@ -5,229 +5,200 @@
   "module_number": 3,
   "module_name": "Module 3: Constructing and Evaluating Arguments",
   "videos_processed": 9,
-  "videos_passed_75": 8,
-  "module_avg_accuracy": 78.8,
+  "videos_passed_gate": 9,
+  "min_score_target": 95,
+  "module_avg_accuracy": 95.7,
   "module_gate_passed": true,
-  "oneshot_words": 1689,
+  "oneshot_words": 1082,
   "oneshot_katex_errors": [],
   "topics": [
     {
+      "skipped": false,
+      "idx": 1,
       "topic_id": "fcd298f0",
-      "old_title": "Video",
+      "old_title": "Netflix 2006: C-E-R Framework & Assumptions",
       "new_title": "Netflix 2006: C-E-R Framework & Assumptions",
       "transcript_words": 1109,
-      "note_words": 286,
-      "initial_score": 73,
-      "final_score": 84,
+      "note_words": 501,
+      "initial_score": 94,
+      "final_score": 96,
       "attempts": 2,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'Assumptions' as a distinct framework component in the 2x2 table header row (only 'Reasoning' column labeled, 'Assumptions' appears only in diagnostic anchors)",
-        "Diagnostic anchor 1 phrasing 'reasoning gap' slightly misaligned with transcript's emphasis on the 'logical bridge' as the mechanism that persuades; transcript states reasoning 'ultimately persuaded the decision-makers'",
-        "Section 4 bullet 3 'Recommend fix' references 'market sizing data and phased rollout milestones' which, while sensible, are not explicitly mentioned in the 2006 Netflix transcript (transcript mentions 'broadband infrastructure' and 'consumer behaviour projections' but not market sizing/phased rollout as board persuasion tactics)",
-        "Note length (312 words) is within limit but approaches the upper boundary; a stricter edit could improve 'equilibrium' score by reducing verbosity around the AI section"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 22,
-        "framework_and_case_depth": 24,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 14
       }
     },
     {
+      "skipped": false,
+      "idx": 2,
       "topic_id": "afb33c3f",
-      "old_title": "Video",
+      "old_title": "Netflix 2006: Rhetorical Appeals & Argument Foundations",
       "new_title": "Netflix 2006: Rhetorical Appeals & Argument Foundations",
       "transcript_words": 1025,
-      "note_words": 279,
-      "initial_score": 57,
-      "final_score": 75,
+      "note_words": 424,
+      "initial_score": 93,
+      "final_score": 95,
       "attempts": 2,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit definition of Pathos mechanism (only stated as 'emotional appeal') from transcript",
-        "Missing explicit definition of Logos mechanism (only stated as 'reasoning that makes sense') from transcript",
-        "Patagonia case detail 'Black Friday timing' is inference/extrapolation; transcript only states 'On Black Friday' but not that timing was strategic for credibility",
-        "DVD vs Streaming context frames need tighter coupling to ethos gating mechanism per transcript",
-        "Formatting uses paragraph blocks instead of the required 2x2 grid/numbered checklist for contrasts"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 15
+        "fidelity": 29,
+        "framework_case_depth": 28,
+        "editorial_finish": 23,
+        "conciseness_and_fit": 15
       }
     },
     {
+      "skipped": false,
+      "idx": 3,
       "topic_id": "a9d9ae21",
-      "old_title": "Video",
+      "old_title": "Rhetorical Appeals: Ethos, Pathos, Logos in Business Arguments",
       "new_title": "Rhetorical Appeals: Ethos, Pathos, Logos in Business Arguments",
       "transcript_words": 1417,
-      "note_words": 297,
-      "initial_score": 82,
-      "final_score": 82,
+      "note_words": 529,
+      "initial_score": 96,
+      "final_score": 96,
       "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Pathos mechanism description reduced to 'convenience/benefit'; transcript emphasizes 'understanding why an issue becomes important' and 'helping audience understand what is at stake' during organizational change, not just personal benefit.",
-        "Logos mechanism description is 'Logical connection of evidence to recommendation'; transcript specifically defines logos as connecting data logically to a recommendation AND explaining why facts support the conclusion.",
-        "Ethos mechanism description is 'Speaker credibility & reputation'; transcript defines ethos as credibility and trustworthiness specifically regarding 'on-time delivery' and 'fair returns'.",
-        "Amazon Prime case: Pathos application omitted the 'subtle but powerful appeal' of 'not having to wait' and 'doing things as and when you wanted to do things' (control/speed). Logos application omitted the 'unlimited fast shipping' and 'annual subscription pays for itself' economic calculation detail.",
-        "AI Diagnosis section: Pathos risk description states 'Emotionally engaging language can mask weak reasoning'; transcript warns that AI can generate 'emotionally engaging language very, very well' but clarifies it 'doesn't necessarily make the recommendation more accurate' and distinguishes emotional appeal from accuracy.",
-        "Structural Foundation: The diagnostic anchor phrase 'if logos connects evidence to conclusion explicitly' is slightly narrower than transcript's definition which includes 'explains why the facts support the conclusion'."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 20,
-        "framework_and_case_depth": 24,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 14
       }
     },
     {
+      "skipped": false,
+      "idx": 4,
       "topic_id": "f953aef7",
-      "old_title": "Video",
+      "old_title": "Argument Anatomy: Claim, Evidence & Reasoning",
       "new_title": "Argument Anatomy: Claim, Evidence & Reasoning",
       "transcript_words": 1370,
-      "note_words": 321,
-      "initial_score": 74,
-      "final_score": 84,
-      "attempts": 2,
-      "passed": true,
-      "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit transcript reference to 'relevance' as a standalone quality of evidence beyond the Hyderabad/Bangalore example; the note defines relevance but omits the exact transcript phrase 'Evidence is information that helps answer the question that is under discussion' in the definition block, though the concept is present.",
-        "The 'Quick Diagnostic Check' (20-30 words) is a strong addition but the specific phrasing 'Does the evidence directly justify the claim, or does the audience have to guess?' is a derived synthesis rather than a direct quote, which is acceptable but slightly shifts from strict transcript fidelity to exam utility."
-      ],
-      "breakdown": {
-        "accuracy_fidelity": 20,
-        "framework_and_case_depth": 24,
-        "exam_pattern_fit": 22,
-        "equilibrium_and_formatting": 18
-      }
-    },
-    {
-      "topic_id": "c493c684",
-      "old_title": "Video",
-      "new_title": "Deductive vs. Inductive Reasoning: Direction & Evaluation",
-      "transcript_words": 1015,
-      "note_words": 256,
-      "initial_score": 79,
-      "final_score": 79,
+      "note_words": 549,
+      "initial_score": 95,
+      "final_score": 95,
       "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'Priya' and '75,000 rupees' case analogies in the diagnostic anchors; transcript uses these specific names/numbers but notes generalize to 'employees' and 'proposal'",
-        "Diagnostic anchor 'Does the conclusion necessarily follow from the premises?' is accurate but lacks the transcript's specific emphasis on 'no room for interpretation' and 'built into the rule itself' phrasing for deductive",
-        "Inductive diagnostic anchor 'Is the conclusion probable or guaranteed?' is accurate but misses transcript's specific 'likely' keyword and the 'open to revision' mechanism when new evidence arrives",
-        "Framework 'Business Fix: strengthen conclusions by increasing observation volume' is a valid addition but not explicitly spoken in the transcript; transcript focuses on 'open to revision when new evidence comes along' rather than active fixing strategies"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 20
+        "fidelity": 29,
+        "framework_case_depth": 28,
+        "editorial_finish": 23,
+        "conciseness_and_fit": 15
       }
     },
     {
+      "skipped": false,
+      "idx": 5,
+      "topic_id": "c493c684",
+      "old_title": "Deductive vs. Inductive Reasoning: Direction & Evaluation",
+      "new_title": "Deductive vs. Inductive Reasoning: Direction & Evaluation",
+      "transcript_words": 1015,
+      "note_words": 318,
+      "initial_score": 96,
+      "final_score": 96,
+      "attempts": 1,
+      "passed": true,
+      "has_hallucination": false,
+      "final_issues": [],
+      "breakdown": {
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 14
+      }
+    },
+    {
+      "skipped": false,
+      "idx": 6,
       "topic_id": "28ade0c3",
-      "old_title": "Video",
+      "old_title": "Inductive vs. Deductive Reasoning in Business Strategy",
       "new_title": "Inductive vs. Deductive Reasoning in Business Strategy",
       "transcript_words": 648,
       "note_words": 236,
-      "initial_score": 71,
-      "final_score": 83,
-      "attempts": 2,
+      "initial_score": 96,
+      "final_score": 96,
+      "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Note uses 'probabilistic predictions' terminology for AI which is accurate to transcript but could be more precisely tied to 'pattern recognition' mechanism explicitly mentioned in transcript.",
-        "Missing explicit transcript reference to 'engineering design' mechanism of induction described as 'extending a pattern beyond where the evidence actually supports it'.",
-        "The 'Diagnostic Framework' table uses 'Judge logic validity' for Deduction and 'Judge evidence strength' for Induction which is correct, but the transcript specifically frames Induction assessment as checking 'how strong the evidence is AND whether other explanations are possible' - the 'other explanations' part is slightly diluted in the note."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 20,
-        "framework_and_case_depth": 25,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 14
       }
     },
     {
+      "skipped": false,
+      "idx": 7,
       "topic_id": "337fce04",
-      "old_title": "Video",
+      "old_title": "Toulmin's Argumentation Model: Diagnosing Hidden Assumptions in Business Cases",
       "new_title": "Toulmin's Argumentation Model: Diagnosing Hidden Assumptions in Business Cases",
       "transcript_words": 1599,
-      "note_words": 479,
-      "initial_score": 66,
-      "final_score": 60,
-      "attempts": 3,
-      "passed": false,
+      "note_words": 498,
+      "initial_score": 96,
+      "final_score": 96,
+      "attempts": 1,
+      "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Notes too lengthy (479 words vs 1599 transcript words; HARD LIMIT <= 420 words).",
-        "Missing explicit transcript reference to Stephen Toulmin's interest in everyday life contexts (boardrooms, courtrooms, etc.)",
-        "Missing transcript's distinction between 'grounds' and 'evidence' - notes equate them directly without the transcript's nuance that grounds 'don't simply or automatically prove anything'",
-        "Missing transcript's critical explanation of the warrant as 'the most important part' and 'the bridge that connects evidence to conclusion'",
-        "Missing transcript's specific definition of backing as support for the warrant when evidence is challenged, including the Microsoft Japan example's backing (organizational psychology research)",
-        "Missing transcript's explanation of qualifier as indicating strength of claim and making arguments 'more honest' (not weakening them)",
-        "Missing transcript's definition of rebuttal as identifying conditions under which argument would no longer hold, and its role in demonstrating 'intellectual honesty'",
-        "Missing transcript's professional variation examples: Legal arguments disagree about meaning of facts, not facts themselves; Scientific arguments use caution phrases ('The evidence suggests') as intellectually honest inductive writing"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 16
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 23,
+        "conciseness_and_fit": 15
       }
     },
     {
+      "skipped": false,
+      "idx": 8,
       "topic_id": "d53f62fa",
-      "old_title": "Video",
+      "old_title": "Validity vs. Soundness & Strength vs. Cogency",
       "new_title": "Validity vs. Soundness & Strength vs. Cogency",
       "transcript_words": 1216,
-      "note_words": 292,
-      "initial_score": 85,
-      "final_score": 85,
+      "note_words": 362,
+      "initial_score": 96,
+      "final_score": 96,
       "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of the 'otters and submarines' counter-example from the transcript in the diagnostic anchor section",
-        "The 'Diagnostic Anchor' phrase 'To evaluate any argument, first check validity...' is a slight generalization not verbatim from the transcript's closing summary",
-        "The note could explicitly map the 'dolphin example' to the 'validity minimum bar' concept more tightly for exam trigger alignment"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 22,
-        "framework_and_case_depth": 25,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 14
       }
     },
     {
+      "skipped": false,
+      "idx": 9,
       "topic_id": "057bca18",
-      "old_title": "Video",
+      "old_title": "Evidence Evaluation Framework: Relevance, Sufficiency, Credibility, Currency & Counterevidence",
       "new_title": "Evidence Evaluation Framework: Relevance, Sufficiency, Credibility, Currency & Counterevidence",
       "transcript_words": 1073,
-      "note_words": 217,
-      "initial_score": 77,
-      "final_score": 77,
+      "note_words": 363,
+      "initial_score": 95,
+      "final_score": 95,
       "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'Cherry Picking' as the named mechanism for ignoring counterevidence in the notes, though the concept is present in the text",
-        "The 'diagnostic anchor' phrases are present but some exceed the 20-30 word limit for Section B style answers (e.g., the sufficiency anchor is 26 words, the credibility anchor is 28 words)",
-        "The 'Counterevidence' concept is framed generally rather than specifically tied to the transcript's 'big body of contrary evidence' example",
-        "The transition from the five evidence checks to the validity/soundness/probability framework at the end could be tighter for exam application"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 28,
+        "editorial_finish": 23,
+        "conciseness_and_fit": 15
       }
     }
   ]

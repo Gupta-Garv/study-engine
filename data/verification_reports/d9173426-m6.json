@@ -5,255 +5,221 @@
   "module_number": 6,
   "module_name": "Module 6: Analytical and Cross-Cultural Thinking",
   "videos_processed": 10,
-  "videos_passed_75": 9,
-  "module_avg_accuracy": 76.7,
+  "videos_passed_gate": 10,
+  "min_score_target": 95,
+  "module_avg_accuracy": 95.6,
   "module_gate_passed": true,
-  "oneshot_words": 1573,
+  "oneshot_words": 1544,
   "oneshot_katex_errors": [],
   "topics": [
     {
+      "skipped": false,
+      "idx": 1,
       "topic_id": "d28662d1",
-      "old_title": "Video",
+      "old_title": "Analytical Thinking: Generating & Weighing Competing Explanations",
       "new_title": "Analytical Thinking: Generating & Weighing Competing Explanations",
       "transcript_words": 1513,
-      "note_words": 241,
-      "initial_score": 60,
-      "final_score": 75,
-      "attempts": 3,
+      "note_words": 499,
+      "initial_score": 92,
+      "final_score": 95,
+      "attempts": 2,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'System 1 vs System 2' dual-process theory terminology from transcript",
-        "Diagnostic anchor (27 words) is slightly long; exam answers require 20-30 words, but notes can be slightly longer. However, the anchor should be tighter for quick recall.",
-        "The '100 Predictions Example' is correctly included, but the specific Netflix stock price detail ('fell sharply') is present, yet the 'price increase' context for other goods could be tighter.",
-        "No visual formatting elements (tables/grids/bullets) embedded in the text block as per the 'Clean visual formatting tailored to the lecture' rule."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 16
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 13
       }
     },
     {
+      "skipped": false,
+      "idx": 2,
       "topic_id": "2b9711e9",
-      "old_title": "Video",
+      "old_title": "Forecasting Under Uncertainty: From Point Estimates to Probabilistic Ranges",
       "new_title": "Forecasting Under Uncertainty: From Point Estimates to Probabilistic Ranges",
       "transcript_words": 1257,
-      "note_words": 328,
-      "initial_score": 71,
-      "final_score": 85,
-      "attempts": 2,
-      "passed": true,
-      "has_hallucination": false,
-      "final_issues": [
-        "Note 1: The '3-Question Diagnostic' phrasing for Q1 ('I'm about 70% confident') is a paraphrase. The transcript uses 'I'm about 70% confident' but the note formatting changes the context slightly from a direct quote to a labeled rule.",
-        "Note 2: The 'Cross-Cultural/Analytical Insight' section labels the transcript content as 'Transcript-Specific', which is accurate, but the formatting as a separate insight block could be merged with the diagnostic for better flow per the 'tight bullets' rule."
-      ],
-      "breakdown": {
-        "accuracy_fidelity": 22,
-        "framework_and_case_depth": 25,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 18
-      }
-    },
-    {
-      "topic_id": "f2324540",
-      "old_title": "Video",
-      "new_title": "Distinguishing Complexity vs. Confusion in Business Analysis",
-      "transcript_words": 1595,
-      "note_words": 369,
-      "initial_score": 73,
-      "final_score": 75,
-      "attempts": 2,
-      "passed": true,
-      "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'Failure Mode 1' diagnostic anchor: 'Before you call something complex, break it down'",
-        "Missing explicit mention of 'Failure Mode 2' diagnostic anchor: 'Am I simplifying because evidence supports it, or because a simple story is easier to tell?'",
-        "Missing the specific 'User Churn' breakdown sequence (1-week vs 3-month, onboarding, price increase) as a named case analogy",
-        "Missing the '2008 Financial Crisis' specific variables (housing prices, mortgage defaults, relationships between institutions, exposures to risks) in the detail block",
-        "The 'Diagnostic Questions' section lacks the exact 20-30 word framing required for Section B/C exam answers",
-        "Formatting: 'Framework: Failure Mode 1 vs. Failure Mode 2' header is verbose; should be tighter for visual scan",
-        "Missing the 'Analytical Imperative' 3-habit summary structure (competing explanations, calibrate confidence, distinguish complexity/confusion)"
-      ],
-      "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 16
-      }
-    },
-    {
-      "topic_id": "000b8b4f",
-      "old_title": "Video",
-      "new_title": "Analytical Frameworks & The \"Blurry JPEG\" Heuristic",
-      "transcript_words": 1269,
-      "note_words": 349,
-      "initial_score": 75,
-      "final_score": 75,
+      "note_words": 416,
+      "initial_score": 95,
+      "final_score": 95,
       "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'OODA loop' framework from transcript; note lists MECE, Pyramid, Hypothesis-driven but omits OODA despite transcript inclusion",
-        "Diagnostic anchor phrase 'What did this framework leave out?' is not explicitly tied to the 'blurry JPEG' analogy in the notes' numbered checklist, though the concept is present in the text",
-        "The 'Cross-Module Synthesis' section adds 'Competing Explanations', 'Calibration', and 'Complexity vs. Confusion' which are discussed in the transcript's conclusion but are not explicitly named as distinct framework mechanisms in the body of the lecture; this inflates the note's scope beyond a strict recap of the core frameworks discussed",
-        "Formatting uses paragraph bullets rather than the specified '2x2 grid for quadrants' or 'numbered checklist for methods' tailored to the lecture structure, though a checklist is present"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 16
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 13
       }
     },
     {
+      "skipped": false,
+      "idx": 3,
+      "topic_id": "f2324540",
+      "old_title": "Distinguishing Complexity vs. Confusion in Business Analysis",
+      "new_title": "Distinguishing Complexity vs. Confusion in Business Analysis",
+      "transcript_words": 1595,
+      "note_words": 511,
+      "initial_score": 93,
+      "final_score": 96,
+      "attempts": 2,
+      "passed": true,
+      "has_hallucination": false,
+      "final_issues": [],
+      "breakdown": {
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 14
+      }
+    },
+    {
+      "skipped": false,
+      "idx": 4,
+      "topic_id": "000b8b4f",
+      "old_title": "Analytical Frameworks & The \"Blurry JPEG\" Heuristic",
+      "new_title": "Analytical Frameworks & The \"Blurry JPEG\" Heuristic",
+      "transcript_words": 1269,
+      "note_words": 547,
+      "initial_score": 95,
+      "final_score": 95,
+      "attempts": 1,
+      "passed": true,
+      "has_hallucination": false,
+      "final_issues": [],
+      "breakdown": {
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 13
+      }
+    },
+    {
+      "skipped": false,
+      "idx": 5,
       "topic_id": "5b092446",
-      "old_title": "Video",
+      "old_title": "Cross-Cultural Analytical Thinking: Nyaya Logic, High-Context Persuasion & The \"Blurry JPEG\" Heuristic",
       "new_title": "Cross-Cultural Analytical Thinking: Nyaya Logic, High-Context Persuasion & The \"Blurry JPEG\" Heuristic",
       "transcript_words": 1022,
       "note_words": 414,
-      "initial_score": 75,
-      "final_score": 75,
+      "initial_score": 97,
+      "final_score": 97,
       "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'Tarka' as dialectical reasoning bridging contradictions when direct proof is absent (transcript says 'logical bridge')",
-        "Oversimplification of 'Blurry JPEG' heuristic: transcript links it to 'analysis paralysis' vs 'confusion' but notes frameworks impose structure while cultural lenses determine relevant variables; note claims frameworks diagnose the problem type without emphasizing the cultural lens role in variable selection",
-        "High-Context section attributes authority to 'seniority or relational networks' but transcript only mentions 'authority may stem from' generally; no specific Indian examples of authority structures provided in transcript",
-        "Diagnostic anchor 'Assuming my cultural reasoning framework is universal risks misdiagnosing valid cross-cultural arguments as fallacious' is accurate but lacks the transcript's specific warning about mistaking familiar forms as the only valid reason",
-        "Note uses 'Pramanas' term which appears in transcript but without deep explanation; transcript mentions 'valid knowledge sources' but the specific categorization of Pramanas is not detailed in the lecture",
-        "Missing the transcript's explicit disclaimer: 'no culture is monolithic' and the 'single story' problem; note generalizes cultural patterns as definitive",
-        "Exam diagnostic anchors are present but some are slightly broad; anchor for High vs. Low Context could better reflect the transcript's specific distinction between 'storytelling as rational' vs 'irrational' framing"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 15
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 15
       }
     },
     {
+      "skipped": false,
+      "idx": 6,
       "topic_id": "e1b45592",
-      "old_title": "Video",
+      "old_title": "Cross-Cultural Critical Thinking: The Single Story Heuristic & Epistemic Humility",
       "new_title": "Cross-Cultural Critical Thinking: The Single Story Heuristic & Epistemic Humility",
       "transcript_words": 1111,
-      "note_words": 317,
-      "initial_score": 78,
-      "final_score": 78,
+      "note_words": 337,
+      "initial_score": 97,
+      "final_score": 97,
       "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of Chimamanda Adichie's TED Talk title and her specific identity as a Nigerian novelist (though implied, the note could be stronger on the 'who')",
-        "The 'Blurry JPEG' analogy is the refiner's addition, not from the transcript; the transcript uses 'flattening' and 'robbing of complexity' but not the JPEG metaphor",
-        "The diagnostic anchor phrase is strong but could explicitly reference the 'single story' mechanism from the transcript rather than just 'statistical dominance'",
-        "The 'Cross-Cultural Evidence Hierarchy' table is well-constructed but merges two distinct transcript examples (Surat textile vs. Kochi spice) which the transcript separates thematically"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 15
       }
     },
     {
+      "skipped": false,
+      "idx": 7,
       "topic_id": "e3b901d8",
-      "old_title": "Video",
+      "old_title": "Cross-Cultural Analytical Thinking: Nyaya Logic, Authority Bias & The \"Blurry JPEG\" Heuristic",
       "new_title": "Cross-Cultural Analytical Thinking: Nyaya Logic, Authority Bias & The \"Blurry JPEG\" Heuristic",
       "transcript_words": 490,
-      "note_words": 230,
-      "initial_score": 59,
-      "final_score": 62,
-      "attempts": 3,
-      "passed": false,
+      "note_words": 164,
+      "initial_score": 65,
+      "final_score": 95,
+      "attempts": 17,
+      "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Notes too lengthy (230 words vs 490 transcript words; HARD LIMIT <= 220 words).",
-        "Missing explicit mention of 'Blurry JPEG' heuristic as a named framing device from the transcript's discussion on research validity and cultural boundaries",
-        "The 'Cross-Cultural Authority Evaluation' section lists categories but does not explicitly map the transcript's specific examples (MBA/PhD, elder trader, retired professor, local leader) to the 'contextual evaluation' diagnostic anchor in a way that mirrors the transcript's flow",
-        "The Nyaya Logic section states examples are 'structural components' but does not capture the transcript's specific contrast: Western examples decorate vs. Nyaya examples are structural for validity"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 13
       }
     },
     {
+      "skipped": false,
+      "idx": 8,
       "topic_id": "e161eb78",
-      "old_title": "Video",
+      "old_title": "Nyaya Logic vs. Western Syllogism: The 5-Step Diagnostic Framework",
       "new_title": "Nyaya Logic vs. Western Syllogism: The 5-Step Diagnostic Framework",
       "transcript_words": 1196,
-      "note_words": 334,
-      "initial_score": 85,
-      "final_score": 85,
-      "attempts": 1,
+      "note_words": 423,
+      "initial_score": 80,
+      "final_score": 96,
+      "attempts": 4,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of the Nyaya Sutras author attribution (Gautama/Akṣapāda) in the comparison table, though referenced in text",
-        "The generated notes invert the word order of the Udaharana example in the business case (login simplification increasing completion rates vs. checkout feature causing drop-off), though the concepts are present",
-        "The 'Upayaya' column header in the table is misspelled/transliterated as 'Upayaya' instead of the transcript's 'Upanaya' (Step 4)"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 22,
-        "framework_and_case_depth": 25,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 14
       }
     },
     {
+      "skipped": false,
+      "idx": 9,
       "topic_id": "85b88b28",
-      "old_title": "Video",
+      "old_title": "Nyaya Tarka: Authority, Face-Saving & Cross-Cultural Diagnostic Frameworks",
       "new_title": "Nyaya Tarka: Authority, Face-Saving & Cross-Cultural Diagnostic Frameworks",
       "transcript_words": 2138,
-      "note_words": 310,
-      "initial_score": 75,
-      "final_score": 75,
+      "note_words": 677,
+      "initial_score": 95,
+      "final_score": 95,
       "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'reductio ad absurdum' as the Western equivalent framework",
-        "Missing the specific 'Hyderabad logistics app' case study detail about 'database log issues during peak order volume' in the diagnostic anchor",
-        "Missing explicit contrast between 'win at all costs' aggressive culture vs. 'clarify while preserving relationship' culture in the framework depth",
-        "The 'Exam Diagnostic (20-30 words)' phrase is slightly long (34 words) and contains structural elements better suited for a separate answer sheet than embedded notes",
-        "Missing explicit reference to Edward T. Hall's high-context/low-context framework naming in the core takeaway or mechanism section"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 16
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 13
       }
     },
     {
+      "skipped": false,
+      "idx": 10,
       "topic_id": "5d3e5fcd",
-      "old_title": "Video",
+      "old_title": "Cross-Cultural Critical Thinking: Heuristics, Power & Epistemic Humility",
       "new_title": "Cross-Cultural Critical Thinking: Heuristics, Power & Epistemic Humility",
       "transcript_words": 1585,
-      "note_words": 357,
-      "initial_score": 59,
-      "final_score": 82,
+      "note_words": 509,
+      "initial_score": 82,
+      "final_score": 95,
       "attempts": 2,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Mistake 1: Note says 'arguments using story... follow different structures, not lack them'. Transcript says 'Just because someone uses story... it does not mean that they are thinking poorly. They may be thinking from a different layer.' Note slightly shifts meaning from 'not irrational' to 'different structure'.",
-        "Mistake 2: Note labels romanticizing as a 'Single Story'. Transcript labels it as a common error but does not explicitly use the term 'Single Story' here (that term appears in the Adichie conclusion). Note adds conceptual framing not verbatim in this segment.",
-        "Mistake 3: Note states 'Moral quality depends on intention, context, and effect'. Transcript states 'The moral quality of an argument depends on 3 things: intention, context, and effect, and not about how it looks or how stylistic it is.' Note omits the critical 'not about how it looks' qualifier.",
-        "Mistake 4: Note asks 'Who has authority to frame the argument itself?'. Transcript asks 'Who has the authority to frame the argument itself?' Note is accurate but loses the Adichie citation context present in the source.",
-        "Mistake 5: Note says 'Cultural patterns are broad, bounded patterns, not fate'. Transcript says 'This is how they think and act. You have stopped thinking critically...'. Note adds 'bounded' which is not an explicit transcript term in this segment."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 22
+        "fidelity": 29,
+        "framework_case_depth": 28,
+        "editorial_finish": 23,
+        "conciseness_and_fit": 15
       }
     }
   ]

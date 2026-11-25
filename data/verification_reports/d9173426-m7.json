@@ -5,179 +5,158 @@
   "module_number": 7,
   "module_name": "Module 7: Critical Thinking in Organisations and Society",
   "videos_processed": 7,
-  "videos_passed_75": 6,
-  "module_avg_accuracy": 77.7,
+  "videos_passed_gate": 7,
+  "min_score_target": 95,
+  "module_avg_accuracy": 95.7,
   "module_gate_passed": true,
-  "oneshot_words": 715,
+  "oneshot_words": 615,
   "oneshot_katex_errors": [],
   "topics": [
     {
+      "skipped": false,
+      "idx": 1,
       "topic_id": "ccb9efba",
-      "old_title": "Video",
+      "old_title": "Organizational Accountability: Claims vs. Performance",
       "new_title": "Organizational Accountability: Claims vs. Performance",
       "transcript_words": 1618,
-      "note_words": 324,
-      "initial_score": 84,
-      "final_score": 84,
+      "note_words": 376,
+      "initial_score": 97,
+      "final_score": 97,
       "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'Devil's Advocacy' as a named tool/mechanism in the notes, though referenced in transcript summary",
-        "The 'Diagnostic Anchor' phrase 'Does the statement name a specific remedy...' is good but could tighter bind to the transcript's 'Specificity Test' terminology for exam alignment",
-        "Case application section lacks the exact numerical timeline '90 days' reference from the transcript's 'critical thinker's version' example in the bullet structure"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 20,
-        "framework_and_case_depth": 24,
-        "exam_pattern_fit": 22,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 15
       }
     },
     {
+      "skipped": false,
+      "idx": 2,
       "topic_id": "a38cef6f",
-      "old_title": "Video",
+      "old_title": "The 4-Criteria Accountability Framework: Claims vs. Performances",
       "new_title": "The 4-Criteria Accountability Framework: Claims vs. Performances",
       "transcript_words": 1939,
-      "note_words": 452,
-      "initial_score": 52,
-      "final_score": 71,
-      "attempts": 3,
-      "passed": false,
+      "note_words": 518,
+      "initial_score": 96,
+      "final_score": 96,
+      "attempts": 1,
+      "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Notes too lengthy (452 words vs 1939 transcript words; HARD LIMIT <= 420 words).",
-        "Word count (398) is within limit but slightly bloated; could be trimmed to ~350 for tighter exam alignment.",
-        "Section 'Why Organizations Default to Performances' is descriptive but lacks a concise 20-30 word diagnostic anchor as required by the prompt's formatting rules.",
-        "The 'Critical Thinking Safeguard' section contains useful rules but the formatting is dense paragraphs rather than the requested 'numbered checklist' or 'tight bullets' style for quick scanning."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 22,
-        "framework_and_case_depth": 26,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 14
       }
     },
     {
+      "skipped": false,
+      "idx": 3,
       "topic_id": "00ad60dc",
-      "old_title": "Video",
+      "old_title": "Devil's Advocacy & Groupthink: Structural Fixes for Organizational Claims",
       "new_title": "Devil's Advocacy & Groupthink: Structural Fixes for Organizational Claims",
       "transcript_words": 1801,
-      "note_words": 277,
-      "initial_score": 84,
-      "final_score": 84,
-      "attempts": 1,
+      "note_words": 671,
+      "initial_score": 81,
+      "final_score": 96,
+      "attempts": 13,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of the 1961 Bay of Pigs invasion as the primary groupthink case study in the diagnostic anchor or implementation exercise.",
-        "The diagnostic anchor references the '4-criteria framework' but does not explicitly name the four conditions (Specificity, Verifiability, Named Ownership, Consequences for Failure) within the anchor text itself, requiring the reader to flip to the framework section.",
-        "The implementation exercise step 2 instructs to challenge 'using the 4-condition framework' but does not explicitly embed the four condition questions (Committed how? Measured how? Who's responsible? What happens if the company fails?) inside the exercise bullets, making it slightly less self-contained for rapid exam recall.",
-        "The note does not explicitly map the Nemeth research finding (that assigned dissent can become a 'performance') to the risk of superficial compliance in the exam answer, which a top examiner might expect as a 'nuance' point."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 20,
-        "framework_and_case_depth": 24,
-        "exam_pattern_fit": 22,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 14
       }
     },
     {
+      "skipped": false,
+      "idx": 4,
       "topic_id": "3489eea9",
-      "old_title": "Video",
+      "old_title": "Diagnosing Organizational Claims: The 4-Criteria Accountability Framework",
       "new_title": "Diagnosing Organizational Claims: The 4-Criteria Accountability Framework",
       "transcript_words": 1364,
-      "note_words": 358,
-      "initial_score": 75,
-      "final_score": 75,
+      "note_words": 597,
+      "initial_score": 96,
+      "final_score": 96,
       "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of J.L. Austin's constative vs. performative speech distinction and felicity conditions as the theoretical grounding for the 4 conditions test.",
-        "The 'Rewrite Example' uses 'CPO' (Chief People Officer) but the transcript only mentions 'Chief People Officer' as a hypothetical example; the actual transcript leaves ownership ambiguous, making the rewrite slightly presumptive.",
-        "The diagnostic anchor phrase is strong but does not explicitly reference the 'devil's advocacy' mechanism as a corrective tool, which is a core part of the lecture's final argument.",
-        "The notes omit the specific 'round 1' argument structure (stakeholder questioning + progress example) presented in the transcript's case opening.",
-        "Formatting is text-heavy; a 2x2 grid for the 4 conditions or a numbered checklist would better align with the 'Clean visual formatting' rule for this exam subject."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 16
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 14
       }
     },
     {
+      "skipped": false,
+      "idx": 5,
       "topic_id": "7929664f",
-      "old_title": "Video",
-      "new_title": "Critical Thinking in Organisations: Mental Health, Hustle Culture & Institutional Pressure",
+      "old_title": "Critical Thinking in Organisations: Mental Health, Hustle Culture & Institutional Pressure",
+      "new_title": "Mental Health, Hustle Culture & Institutional Pressure: A Critical Thinking Framework",
       "transcript_words": 2381,
-      "note_words": 408,
-      "initial_score": 63,
-      "final_score": 75,
-      "attempts": 3,
+      "note_words": 459,
+      "initial_score": 95,
+      "final_score": 95,
+      "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit transcript reference to 'Epistemic Bubble vs. Echo Chamber' framework names; transcript uses 'echo chamber' and 'repetition of limited knowledge' but not as a formal paired framework label.",
-        "Missing transcript reference to 'Devil's Advocacy' as a named mechanism; transcript discusses listening/listening to understand but does not name this specific structural safeguard.",
-        "Missing transcript reference to 'Accountability Mechanism' as a formal 4-test framework; transcript discusses specificity/ownership but not as a codified diagnostic tool.",
-        "Missing transcript reference to 'Devil's Advocacy' as a named mechanism; transcript discusses listening/listening to understand but does not name this specific structural safeguard.",
-        "Numbered checklist item 3 ('Research') is imprecise; transcript says 'everyone cannot give the same answer' and 'do your own research because everyone cannot give the same answer', but the note frames it as a general decision method rather than a specific response to cohort bias.",
-        "The 'Do It 100%' Mantra mapping to 'commitment mechanism' is an inference; the transcript quotes 'do it with everything that you've got so that you have no regrets' which is about regret avoidance, not institutional accountability."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 16
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 13
       }
     },
     {
+      "skipped": false,
+      "idx": 6,
       "topic_id": "d42f7c56",
-      "old_title": "Video",
+      "old_title": "Hustle Culture, Critical Thinking & Institutional Accountability",
       "new_title": "Hustle Culture, Critical Thinking & Institutional Accountability",
       "transcript_words": 2251,
-      "note_words": 325,
-      "initial_score": 75,
-      "final_score": 75,
+      "note_words": 403,
+      "initial_score": 95,
+      "final_score": 95,
       "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'Availability Heuristic' terminology from transcript (though concept captured)",
-        "Incomplete coverage of 'Institutional Accountability' discussion regarding professor bias vs student autonomy",
-        "Exam anchors are strong but some lack the precise 20-30 word constraint length for Section B",
-        "Checklist item 4 is vague ('Does the answer address the how') rather than a concrete diagnostic trigger"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 16
+        "fidelity": 29,
+        "framework_case_depth": 28,
+        "editorial_finish": 23,
+        "conciseness_and_fit": 15
       }
     },
     {
+      "skipped": false,
+      "idx": 7,
       "topic_id": "64df4ac0",
-      "old_title": "Video",
-      "new_title": "Strategic Rest, Hustle Culture & Institutional Accountability",
+      "old_title": "Strategic Rest, Hustle Culture & Institutional Accountability",
+      "new_title": "Critical Thinking in Organisations and Society: Strategic Rest, Hustle Culture & Institutional Accountability",
       "transcript_words": 2223,
-      "note_words": 379,
+      "note_words": 372,
       "initial_score": 80,
-      "final_score": 80,
-      "attempts": 1,
+      "final_score": 95,
+      "attempts": 7,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'WhatsApp University' as a stakeholder pressure source in the diagnostic anchors, though present in transcript.",
-        "Institutional accountability section lacks specific reference to 'stigma across the office' and 'separate counseling areas' as concrete failure mechanisms from the transcript.",
-        "The 'Binary Metrics Fallacy' section could explicitly tie the '40 hours' example to the transcript's commerce/statistics student quote for tighter fidelity."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 20,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 28,
+        "editorial_finish": 23,
+        "conciseness_and_fit": 15
       }
     }
   ]

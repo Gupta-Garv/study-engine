@@ -5,80 +5,74 @@
   "module_number": 5,
   "module_name": "Module 5: Expertise, Authority, and Value",
   "videos_processed": 3,
-  "videos_passed_75": 2,
-  "module_avg_accuracy": 76.7,
+  "videos_passed_gate": 3,
+  "min_score_target": 95,
+  "module_avg_accuracy": 95.3,
   "module_gate_passed": true,
-  "oneshot_words": 516,
+  "oneshot_words": 687,
   "oneshot_katex_errors": [],
   "topics": [
     {
+      "skipped": false,
+      "idx": 1,
       "topic_id": "61f7789d",
-      "old_title": "Video",
+      "old_title": "Module 5: Expertise, Authority, and Value",
       "new_title": "Module 5: Expertise, Authority, and Value",
       "transcript_words": 1994,
-      "note_words": 331,
-      "initial_score": 86,
-      "final_score": 86,
-      "attempts": 1,
+      "note_words": 627,
+      "initial_score": 66,
+      "final_score": 96,
+      "attempts": 7,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "1. 'Track Record' framework: Transcript states Tetlock found 'well-credentialed experts did barely better than chance' in politics, but notes do not explicitly mention the '20 years of experience vs. one year repeated 20 times' distinction or the 'quick feedback' requirement for track records to be valid signals. This omission risks students missing the critical nuance on when track records fail.",
-        "2. 'Meta-expertise' framework: Transcript emphasizes that meta-expertise 'depends on your surroundings' and cites Manan as an example of taught distrust. Notes list 'depends on chosen surroundings' but lack the specific case-analogy hook (Manan's family/friends teaching distrust) needed for the 'diagnose the reasoning error' exam question.",
-        "3. 'Expertise Limits' anchor: The phrase 'Track records fail without quick feedback' is present, but the specific Tetlock reference and the 'one year repeated 20 times' concept are missing from the diagnostic text, reducing its exam-link strength.",
-        "4. Formatting: The 2x2 grid for 'Explicit vs. Tacit' is well-executed, but the 'Doers vs. Language Soakers' grid lacks the 'Interactional Expert' label column header present in the transcript's definition (interactional expert cannot do the work but has soaked up the language)."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 22,
-        "framework_and_case_depth": 26,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 14
       }
     },
     {
+      "skipped": false,
+      "idx": 2,
       "topic_id": "fcd217ed",
-      "old_title": "Video",
+      "old_title": "Social Construction of Value: Expertise, Reputation, and Institutional Legitimacy",
       "new_title": "Social Construction of Value: Expertise, Reputation, and Institutional Legitimacy",
       "transcript_words": 1292,
-      "note_words": 370,
-      "initial_score": 84,
-      "final_score": 84,
-      "attempts": 1,
+      "note_words": 364,
+      "initial_score": 94,
+      "final_score": 95,
+      "attempts": 2,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Note 3 mentions 'organic' label twice; transcript only mentions 'organic' once and 'fair trade' as a separate example, creating a minor redundancy.",
-        "Note 4 anchor attributes value difference solely to 'external trappings'; transcript emphasizes that the *mechanism* is the audience's perception shaped by institutional lenses (reputation, crowd), not just the setting itself.",
-        "The 'Rankings & Labels' section combines academic rankings and Michelin stars/fair trade without distinguishing their distinct mechanisms (status signaling vs. quality certification), which may dilute diagnostic precision for exam application."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 22,
-        "framework_and_case_depth": 24,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 13
       }
     },
     {
+      "skipped": false,
+      "idx": 3,
       "topic_id": "ae71c66a",
-      "old_title": "Video",
-      "new_title": "Expertise, Authority & Social Value Construction",
+      "old_title": "Expertise, Authority & Social Value Construction",
+      "new_title": "Expertise, Authority, and the Social Construction of Value",
       "transcript_words": 9949,
-      "note_words": 256,
-      "initial_score": 70,
-      "final_score": 60,
-      "attempts": 3,
-      "passed": false,
+      "note_words": 351,
+      "initial_score": 95,
+      "final_score": 95,
+      "attempts": 1,
+      "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'Epistemic Bubbles' as a named concept from the transcript's discussion of engineers/designers working in echo chambers; notes reference it but the transcript frames it as a problem to navigate, not just a mechanism.",
-        "The 'Structured Translation' row's diagnostic phrase is too vague ('avoids data overload via simple logic') and does not capture the specific HR/Admin/IT case analogy mechanism described in the transcript where researchers translate manual labor processes into AI feature insights.",
-        "The 'Social Value Construction' diagnostic phrase inaccurately suggests 'institutions confer legitimacy' as the primary takeaway, whereas the transcript uses medical associations as an example of *established rigor* (control/test groups), not institutional trust per se, and the Ford/Jobs reference is about the *limits* of expertise, not value construction."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 12,
-        "framework_and_case_depth": 14,
-        "exam_pattern_fit": 16,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 28,
+        "editorial_finish": 23,
+        "conciseness_and_fit": 15
       }
     }
   ]

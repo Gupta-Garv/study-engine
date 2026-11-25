@@ -1,0 +1,58 @@
+{
+  "course_id": "d9173426",
+  "course_name": "Critical Thinking",
+  "module_id": "d9173426-m9",
+  "module_number": 9,
+  "module_name": "Live Sessions",
+  "videos_processed": 2,
+  "videos_passed_gate": 2,
+  "min_score_target": 95,
+  "module_avg_accuracy": 96.0,
+  "module_gate_passed": true,
+  "oneshot_words": 0,
+  "oneshot_katex_errors": [],
+  "topics": [
+    {
+      "skipped": false,
+      "idx": 1,
+      "topic_id": "dd158600",
+      "old_title": "SME Live Session - 1 (Part 1)",
+      "new_title": "Critical Thinking Foundations: Dual-Check Model, Cognitive Obstacles, and Narrative Evaluation",
+      "transcript_words": 5425,
+      "note_words": 590,
+      "initial_score": 94,
+      "final_score": 97,
+      "attempts": 10,
+      "passed": true,
+      "has_hallucination": false,
+      "final_issues": [],
+      "breakdown": {
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 15
+      }
+    },
+    {
+      "skipped": false,
+      "idx": 2,
+      "topic_id": "f3ff1570",
+      "old_title": "SME Live Session - 1 (Part 2)",
+      "new_title": "Critical Thinking Frameworks: From Fallacies to Analytical Reasoning",
+      "transcript_words": 5653,
+      "note_words": 539,
+      "initial_score": 81,
+      "final_score": 95,
+      "attempts": 4,
+      "passed": true,
+      "has_hallucination": false,
+      "final_issues": [],
+      "breakdown": {
+        "fidelity": 28,
+        "framework_case_depth": 27,
+        "editorial_finish": 23,
+        "conciseness_and_fit": 14
+      }
+    }
+  ]
+}

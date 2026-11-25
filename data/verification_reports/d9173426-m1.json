@@ -5,297 +5,263 @@
   "module_number": 1,
   "module_name": "Module 1: Foundations of Critical Thinking",
   "videos_processed": 12,
-  "videos_passed_75": 11,
-  "module_avg_accuracy": 76.8,
+  "videos_passed_gate": 12,
+  "min_score_target": 95,
+  "module_avg_accuracy": 95.7,
   "module_gate_passed": true,
-  "oneshot_words": 933,
+  "oneshot_words": 776,
   "oneshot_katex_errors": [],
   "topics": [
     {
+      "skipped": false,
+      "idx": 1,
       "topic_id": "8c1cd2eb",
-      "old_title": "Data Interpretation & Reasoning Errors",
-      "new_title": "Target Case: Data Precision vs. Ethical Scrutiny",
+      "old_title": "Data Precision vs. Ethical Scrutiny: The Target Case Study",
+      "new_title": "Data Precision vs. Ethical Scrutiny: The Target Case Study",
       "transcript_words": 1038,
-      "note_words": 278,
-      "initial_score": 73,
-      "final_score": 79,
+      "note_words": 343,
+      "initial_score": 94,
+      "final_score": 97,
       "attempts": 2,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'intellectual discipline' as the core mechanism linking the Target case to critical thinking definition; transcript emphasizes this phrase repeatedly but note only labels it in the definition section.",
-        "The 'Recommended Fix' section suggests inserting irrelevant ads/beer/lawnmowers as a standalone solution, but the transcript frames this as a *response* to public backlash, not a general 'fix' for critical thinking. It should be contextualized as a damage-control tactic, not a diagnostic step.",
-        "The 2x2 Grid labels the rows as 'Asked by Team' and 'Outcome of Absence', but the transcript contrasts 'Technical Question' vs 'Human Question' as parallel columns of inquiry. The grid structure slightly inverts the transcript's intended comparison logic."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 20
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 15
       }
     },
     {
+      "skipped": false,
+      "idx": 2,
       "topic_id": "6f5f6ddd",
-      "old_title": "Foundations of Critical Thinking: Logic vs. Critical Thinking",
-      "new_title": "Foundations of Critical Thinking: Logic vs. Critical Thinking",
+      "old_title": "Logic vs. Critical Thinking: Structure vs. Evidence Integrity",
+      "new_title": "Logic vs. Critical Thinking: Structure vs. Evidence Integrity",
       "transcript_words": 704,
-      "note_words": 311,
-      "initial_score": 63,
-      "final_score": 78,
-      "attempts": 3,
+      "note_words": 330,
+      "initial_score": 96,
+      "final_score": 96,
+      "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of Michael Scriven and Richard Paul as the cited scholars defining critical thinking in the transcript",
-        "Founder example simplified to a degree that loses the specific 'marketing push' nuance present in the transcript (Founder B checks for concurrent marketing push)",
-        "Diagnostic anchor phrase 'Logic: Does the conclusion follow? Critical Thinking: Are premises true/complete/relevant?' is not an exact match to the transcript's 'Logic is a check on structure... Critical thinking is the check on the premises themselves'",
-        "Reasoning mechanisms section uses 'Checks if' phrasing which is slightly less precise than the transcript's 'checks the structure'/'checks the material' distinction"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 14
       }
     },
     {
+      "skipped": false,
+      "idx": 3,
       "topic_id": "8fab8f65",
       "old_title": "Challenger Disaster: Evidence Completeness vs. Logical Validity",
       "new_title": "Challenger Disaster: Evidence Completeness vs. Logical Validity",
       "transcript_words": 594,
-      "note_words": 180,
-      "initial_score": 84,
-      "final_score": 84,
-      "attempts": 1,
+      "note_words": 280,
+      "initial_score": 82,
+      "final_score": 96,
+      "attempts": 2,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Note omits the specific temperature data points (53°F vs 29°F vs record cold) which are critical diagnostic anchors for the case.",
-        "Note does not explicitly name 'Roger Boisjoly' as the lead engineer, reducing case specificity for exam recall.",
-        "The diagnostic anchor phrase is present but could be tighter/more precise to the transcript's specific mechanism."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 22,
-        "framework_and_case_depth": 24,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 14
       }
     },
     {
+      "skipped": false,
+      "idx": 4,
       "topic_id": "e5103b49",
-      "old_title": "Video",
+      "old_title": "Logic vs. Critical Thinking: Structure vs. Evidence Integrity",
       "new_title": "Logic vs. Critical Thinking: Structure vs. Evidence Integrity",
       "transcript_words": 1032,
-      "note_words": 312,
-      "initial_score": 77,
-      "final_score": 77,
+      "note_words": 466,
+      "initial_score": 96,
+      "final_score": 96,
       "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of Scriven and Paul's definition of reasoning quality from the transcript's closing section",
-        "Missing the specific 'O-ring' NASA example detail: 'Tomorrow will be 29 degrees' premise is present but the 'recorded failures below 40 degrees' structural setup could be tighter to match transcript phrasing",
-        "Missing explicit mention of 'Challenger story' as the primary case analogy for logic vs. critical thinking failure (referenced but not named as the primary structural example)",
-        "Missing explicit mention of 'data-driven' trap phrase from transcript: 'Calling a decision data-driven doesn't automatically mean it's been reasoned through carefully'",
-        "Missing explicit mention of the 'which data?' and 'is there some data that also got left out?' diagnostic questions as direct transcript quotes"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 14
       }
     },
     {
+      "skipped": false,
+      "idx": 5,
       "topic_id": "d6408005",
-      "old_title": "Module 1: Foundations of Critical Thinking - Overcoming Cognitive Obstacles",
-      "new_title": "Module 1: Foundations of Critical Thinking - Overcoming Cognitive Obstacles",
+      "old_title": "Overcoming Cognitive Obstacles: Confirmation Bias, Motivated Reasoning, and Anchoring",
+      "new_title": "Overcoming Cognitive Obstacles: Confirmation Bias, Motivated Reasoning, and Anchoring",
       "transcript_words": 1118,
-      "note_words": 336,
-      "initial_score": 75,
-      "final_score": 75,
+      "note_words": 509,
+      "initial_score": 95,
+      "final_score": 95,
       "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Case analogy for Confirmation Bias: Transcript states founder reads 'only the reviews that are mentioning load times and skip past the ones about pricing', but the note says 'Founder of speed-focused product reads only load-time reviews, filing \"fast but expensive\" comments as compliments'. The note adds the interpretation 'as compliments' which is an inversion of the transcript's 'filed away as a compliment and not as a pricing complaint' nuance, slightly altering the mechanism.",
-        "Case analogy for Motivated Reasoning: Transcript says 'Maybe the tracking is off. Maybe it's a seasonal dip. Maybe it needs another month of data.' The note condenses this to 'challenged as \"seasonal dip\" or \"tracking error\"', which is accurate but loses the specific 'both numbers from same dashboard' context that drives the asymmetric scrutiny lesson.",
-        "Case analogy for Anchoring: Transcript uses 'Rs9.99 paise' example for the anchor, but the note changes it to 'Rs9.99 pen pricing'. The transcript example is a generic 'cost of a pen', the note specifies 'Rs9.99' which is technically present but changes the currency/format context from the transcript's generic 'Rs9.99 paise'.",
-        "Integrated Risk Diagnosis: The note states 'Conclusion feels \"fast, obvious, and convenient\"'. The transcript actually says 'What deserves scrutiny are the ones where a conclusion comes very fast, it feels obvious, and it looks very convenient.' The note's quotation marks are slightly misaligned with the transcript's exact phrasing.",
-        "Missing Mechanism Detail: The transcript explicitly states 'the 3 obstacles being confirmation bias, motivated reasoning, and anchoring. These obstacles, please understand, don't operate independently.' The notes present an integrated diagram but do not explicitly call out the 'independent vs. combined' operational distinction highlighted in the transcript's closing minutes, which is a key exam trigger."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 15
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 13
       }
     },
     {
+      "skipped": false,
+      "idx": 6,
       "topic_id": "2ed2d844",
-      "old_title": "Professional & Civic Critical Thinking: Mechanisms, Risks & Diagnostic Frameworks",
-      "new_title": "Professional & Civic Critical Thinking: Mechanisms, Risks & Diagnostic Frameworks",
+      "old_title": "Foundations of Critical Thinking: Mechanisms, Risks & Diagnostic Frameworks",
+      "new_title": "Foundations of Critical Thinking: Mechanisms, Risks & Diagnostic Frameworks",
       "transcript_words": 1523,
-      "note_words": 340,
-      "initial_score": 75,
-      "final_score": 75,
-      "attempts": 1,
+      "note_words": 566,
+      "initial_score": 80,
+      "final_score": 96,
+      "attempts": 4,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Case inversion: The transcript mentions 'confidence of delivery' and 'shared background' as anchoring triggers in hiring, but the notes list 'confidence of delivery' without 'shared background' as the primary anchor, missing a key mechanism.",
-        "Missing mechanism detail: The transcript explicitly states that in the COVID-19 example, people's willingness to believe claims tracked 'very closely whether it matched with what they already believed about institutions, about governments or certain medicines like vaccines.' The notes simplify this to 'COVID-19 pandemic treatments/vaccines' without capturing the confirmation bias mechanism regarding pre-existing beliefs about institutions.",
-        "Omission: The transcript discusses 'confident tone and a correct claim' as a psychological mechanism where people automatically assume truth. The notes mention this in the diagnostic anchor but do not include it as a distinct mechanism risk in the 'Mechanisms & Risks' section.",
-        "Formatting: The table has inconsistent column widths and the 'Diagnostic Question' column contains line breaks/spaces that disrupt the clean grid format expected for this exam style."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 15
+        "fidelity": 29,
+        "framework_case_depth": 28,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 14
       }
     },
     {
+      "skipped": false,
+      "idx": 7,
       "topic_id": "650f9600",
-      "old_title": "Module 1: Foundations of Critical Thinking - Cognitive Obstacles & Diagnostic Frameworks",
-      "new_title": "Foundations of Critical Thinking: Cognitive Obstacles & Diagnostic Frameworks",
+      "old_title": "Foundations of Critical Thinking: Obstacles & Frameworks",
+      "new_title": "Foundations of Critical Thinking: Obstacles & Frameworks",
       "transcript_words": 308,
-      "note_words": 141,
-      "initial_score": 47,
-      "final_score": 65,
-      "attempts": 3,
-      "passed": false,
+      "note_words": 218,
+      "initial_score": 80,
+      "final_score": 95,
+      "attempts": 4,
+      "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Notes too lengthy (141 words vs 308 transcript words; HARD LIMIT <= 125 words).",
-        "Note length (141 words) exceeds the strict ceiling of 125 words specified in the prompt rules.",
-        "The 'Mechanism of Reinforcement' section adds a conceptual detail ('synergistically reinforce each other') not explicitly stated as a standalone mechanism in the transcript's opening list, though it is implied by the text."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 20,
-        "framework_and_case_depth": 25,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 15
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 13
       }
     },
     {
+      "skipped": false,
+      "idx": 8,
       "topic_id": "d5e99e12",
       "old_title": "Evidence Framing & Interpretation: The Architecture of Credibility",
       "new_title": "Evidence Framing & Interpretation: The Architecture of Credibility",
       "transcript_words": 703,
-      "note_words": 224,
-      "initial_score": 75,
-      "final_score": 75,
-      "attempts": 1,
+      "note_words": 281,
+      "initial_score": 91,
+      "final_score": 95,
+      "attempts": 2,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'Patrick Hurley' and the 'cognitive vs emotive meaning' distinction as a named case analogy required by the transcript.",
-        "Diagnostic anchor phrase 'What if this were presented differently?' is slightly reworded from the transcript's 'What if this was presented differently?' and lacks the specific 'omitted data/alternative wording' mechanism for the exam-ready 20-30 word anchor.",
-        "The 2x2 grid labels 'Accepts Framing' and 'Resists Framing' are generic and do not map directly to the transcript's specific discussion of 'Premise Trust' vs 'Conclusion Validity' in the context of evidence interpretation.",
-        "The note omits the specific professional/civic life examples' nuance regarding 'investor memos' and 'competitor analysis' vs 'policy summaries'."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 16
+        "fidelity": 29,
+        "framework_case_depth": 28,
+        "editorial_finish": 23,
+        "conciseness_and_fit": 15
       }
     },
     {
+      "skipped": false,
+      "idx": 9,
       "topic_id": "ac8628ea",
       "old_title": "Evidence vs. Assertion: The Credibility Check Framework",
       "new_title": "Evidence vs. Assertion: The Credibility Check Framework",
       "transcript_words": 1324,
-      "note_words": 246,
-      "initial_score": 78,
-      "final_score": 78,
+      "note_words": 415,
+      "initial_score": 95,
+      "final_score": 95,
       "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'many people think' civic example and its assertion nature from transcript",
-        "Diagnostic anchor (24 words) is slightly outside the 20-30 word target range",
-        "Framework section lacks explicit linkage to the 'doctor's clinical judgment' case analogy mechanism from transcript",
-        "The '3-Point Verification' mechanism is a generated construct; transcript uses iterative questioning ('What would have to happen...') rather than a numbered checklist"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 28,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 14
       }
     },
     {
+      "skipped": false,
+      "idx": 10,
       "topic_id": "30f919f7",
       "old_title": "Evidence Triad: Facts, Inferences & Interpretations",
       "new_title": "Evidence Triad: Facts, Inferences & Interpretations",
       "transcript_words": 1167,
-      "note_words": 281,
-      "initial_score": 83,
-      "final_score": 83,
+      "note_words": 347,
+      "initial_score": 96,
+      "final_score": 96,
       "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of the 'Evidence Triad' name from the transcript title, though the content covers it.",
-        "The 'Diagnostic Anchor' phrase is strong but could explicitly map to the transcript's 'what happened/leads to/means' triad for tighter exam alignment.",
-        "The case application example (crime statistics) is accurate but the transition from Fact to Inference to Interpretation could be more tightly structured to mirror the transcript's specific logic flow."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 20,
-        "framework_and_case_depth": 25,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 14
       }
     },
     {
+      "skipped": false,
+      "idx": 11,
       "topic_id": "ad4a69a0",
-      "old_title": "Framing Mechanisms & Diagnostic Habits: Word Choice, Comparison Points, Visual Scale, Order, and Anchoring",
+      "old_title": "Framing Mechanisms: Word Choice, Comparison Points, Visual Scale, Order, and Anchoring",
       "new_title": "Framing Mechanisms: Word Choice, Comparison Points, Visual Scale, Order, and Anchoring",
       "transcript_words": 1463,
-      "note_words": 310,
-      "initial_score": 54,
-      "final_score": 77,
+      "note_words": 442,
+      "initial_score": 94,
+      "final_score": 95,
       "attempts": 2,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of Kahneman's real estate agent study detail regarding agents insisting listing price played no role (present in notes but missing the 'insisting' qualifier detail from transcript)",
-        "Comparison point examples slightly simplified; transcript mentions 'best result in company history' and 'industry's 12% average' but notes only reference 'benchmark' generally",
-        "Visual framing detail about 'line graph plotted over 3 months vs 3 years' partially captured but 'sharp spike' vs 'flat and unremarkable' phrasing from transcript could be tighter",
-        "Order & Emphasis example 'revenue grew 8% vs costs grew 14%' is auditor-inserted inference; transcript uses 'revenue grew 8%' and 'costs grew 14%' separately, not explicitly paired that way in single sentence"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 13
       }
     },
     {
+      "skipped": false,
+      "idx": 12,
       "topic_id": "79b02e15",
-      "old_title": "Selection Bias & The Invisible Record: Kahneman, Wald & The Missing Data",
+      "old_title": "Selection Bias & The Invisible Record: Kahneman, Wald & Missing Data",
       "new_title": "Selection Bias & The Invisible Record: Kahneman, Wald & Missing Data",
       "transcript_words": 1511,
-      "note_words": 410,
-      "initial_score": 74,
-      "final_score": 75,
-      "attempts": 2,
+      "note_words": 484,
+      "initial_score": 96,
+      "final_score": 96,
+      "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of Kahneman's WYSIATI acronym expansion in the notes (transcript says 'What you see is all there is. W-Y-S-I-A-T-I.')",
-        "The 'Startup Accelerator' analogy lacks the specific detail of 'program' from the transcript, making it slightly less precise.",
-        "The 'Risk Perception' analogy section shifts from Kahneman's specific 'vivid causes of death' mechanism to a general 'media coverage' explanation, losing the exact transcript linkage.",
-        "The Diagnostic Question anchor is accurate but the formatting as a separate blockquote reduces its 'diagnostic anchor' punchiness for the exam pattern.",
-        "The 'Raw Record Illusion' section combines video and data concepts well, but the transition between them could be tighter to match the transcript's flow."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 16
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 14
       }
     }
   ]

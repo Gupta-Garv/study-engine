@@ -5,231 +5,200 @@
   "module_number": 8,
   "module_name": "Module 8: Critical Thinking in Practice",
   "videos_processed": 9,
-  "videos_passed_75": 9,
-  "module_avg_accuracy": 76.6,
+  "videos_passed_gate": 9,
+  "min_score_target": 95,
+  "module_avg_accuracy": 95.3,
   "module_gate_passed": true,
-  "oneshot_words": 1301,
+  "oneshot_words": 1082,
   "oneshot_katex_errors": [],
   "topics": [
     {
+      "skipped": false,
+      "idx": 1,
       "topic_id": "750e139f",
-      "old_title": "Whites & Pastels: Aesthetic Taste & Market Opportunity",
-      "new_title": "Subjective Preference + Exposure Gap Analysis",
+      "old_title": "Subjective Preference + Exposure Gap Analysis",
+      "new_title": "Subjective Preference + Exposure Gap Analysis: Whites & Pastels Case Study",
       "transcript_words": 1128,
-      "note_words": 179,
-      "initial_score": 74,
-      "final_score": 75,
-      "attempts": 2,
+      "note_words": 404,
+      "initial_score": 96,
+      "final_score": 96,
+      "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Framework label 'Subjective Preference + Exposure Gap Analysis' is a synthetic construct not explicitly named as a single framework in the transcript; the content discusses preference formation and market gap separately.",
-        "Cognitive Mechanism 'Projection Bias' is an external academic term not discussed in the transcript; the transcript describes observation and realization, not a named bias.",
-        "Key Named Analogy '50 years behind' is a comparative statement, not an analogy explaining a reasoning mechanism.",
-        "Exam Diagnostic Anchor references 'availability gap' which is not a formally defined term in the transcript; the transcript discusses 'access' and 'quality deficit'.",
-        "Ultra-Short Exam Application contains 'international-standard offerings' which, while implied, is a slight extrapolation not explicitly stated as a recommendation in the source text.",
-        "Missing explicit linkage between Sheetal's finance background (attention to detail) and the specific tableware quality observation beyond general 'observation'."
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 16
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 14
       }
     },
     {
+      "skipped": false,
+      "idx": 2,
       "topic_id": "9be8b724",
-      "old_title": "Module 8: Critical Thinking in Practice - Diagnosing Market Gaps via Ikigai & Data Storytelling",
+      "old_title": "Ikigai & Data Storytelling: Diagnosing Homeware Market Gaps",
       "new_title": "Ikigai & Data Storytelling: Diagnosing Homeware Market Gaps",
       "transcript_words": 1365,
-      "note_words": 243,
-      "initial_score": 73,
-      "final_score": 78,
-      "attempts": 2,
+      "note_words": 427,
+      "initial_score": 95,
+      "final_score": 95,
+      "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Ikigai framework steps slightly reordered (Transcript: Passion -> Monetization -> Product Feasibility -> Market choice; Notes: Passion -> Monetization -> Product Feasibility -> Market choice - actually matches, but step descriptions need tightening)",
-        "Data storytelling section contains minor generalization about 'high-search-volume niches' not explicitly named in transcript as the primary diagnostic tool",
-        "2x2 Grid 'What it reveals' for Storytelling column states 'Market gap & intent' which is a derived interpretation rather than direct transcript quote"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 28,
+        "editorial_finish": 23,
+        "conciseness_and_fit": 15
       }
     },
     {
+      "skipped": false,
+      "idx": 3,
       "topic_id": "c536ed03",
-      "old_title": "Whites & Pastels: Assumption Validation & Ergonomic Standards in Luxury Branding",
+      "old_title": "Whites & Pastels: Blue Ocean Assumption Validation & Ergonomic Mechanism",
       "new_title": "Whites & Pastels: Blue Ocean Assumption Validation & Ergonomic Mechanism",
       "transcript_words": 1726,
-      "note_words": 256,
-      "initial_score": 74,
-      "final_score": 75,
+      "note_words": 463,
+      "initial_score": 94,
+      "final_score": 95,
       "attempts": 2,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'Ergonomic Mechanism' as a named framework from transcript; notes list it but don't anchor it to the spoon example mechanism",
-        "Assumption validation framework lacks the specific 'Blue Ocean Absence Analysis' step derived from the white/ivory cup search narrative",
-        "Feedback Filtering section missing the critical distinction between 'vocal minority' vs 'core brand trust' mechanism discussed in the failed economical product launch",
-        "Diagnostic anchors reference 'brand trust' and 'functional ergonomics' but don't cite the specific transcript mechanisms (customer trust on taste vs. ergonomic failure in katori)",
-        "Formatting uses standard bullet points rather than the required 2x2 grid/numbered checklist/tight bullets tailored to lecture structure"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 16
+        "fidelity": 29,
+        "framework_case_depth": 28,
+        "editorial_finish": 23,
+        "conciseness_and_fit": 15
       }
     },
     {
+      "skipped": false,
+      "idx": 4,
       "topic_id": "393ac79f",
       "old_title": "8.2 Market Entry & Brand Positioning: Import Benchmarking & Indigenous Design Integration",
-      "new_title": "8.2 Market Entry & Brand Positioning: Import Benchmarking & Indigenous Design Integration",
+      "new_title": "Market Entry & Brand Positioning: Import Benchmarking & Indigenous Design Integration",
       "transcript_words": 962,
-      "note_words": 175,
-      "initial_score": 75,
-      "final_score": 75,
+      "note_words": 380,
+      "initial_score": 95,
+      "final_score": 95,
       "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'stainless steel grades' (202 vs 304) as the core quality benchmark mechanism, though implied",
-        "Missing the specific 'Pinterest and AI' mechanism for visual communication with artisans",
-        "Diagnostic phrase exceeds 30-word limit (31 words)",
-        "Framework name 'Benchmark-Translation Gap' not explicitly stated in transcript; transcript uses 'benchmarking' and 'design translation' concepts separately"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 16
+        "fidelity": 29,
+        "framework_case_depth": 28,
+        "editorial_finish": 23,
+        "conciseness_and_fit": 15
       }
     },
     {
+      "skipped": false,
+      "idx": 5,
       "topic_id": "f255c7d6",
-      "old_title": "Module 8.3: Artisan Negotiations & Timeless Brand Positioning",
+      "old_title": "Artisan Negotiations & Timeless Positioning: Kolhapuri Chappal & B2B Payment Mechanisms",
       "new_title": "Artisan Negotiations & Timeless Positioning: Kolhapuri Chappal & B2B Payment Mechanisms",
       "transcript_words": 1019,
-      "note_words": 292,
-      "initial_score": 64,
-      "final_score": 84,
-      "attempts": 2,
+      "note_words": 440,
+      "initial_score": 97,
+      "final_score": 97,
+      "attempts": 1,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'advance payments' as the specific B2B payment mechanism discussed (only referenced in bullet points)",
-        "Trend vs. Quality framework references 'luxury brands' generally; transcript specifically cites Prada making Kolhapuri chappal as the primary case analogy"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 22,
-        "framework_and_case_depth": 24,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 29,
+        "editorial_finish": 24,
+        "conciseness_and_fit": 15
       }
     },
     {
+      "skipped": false,
+      "idx": 6,
       "topic_id": "660d48d7",
       "old_title": "8.3 Critical Thinking: Prototyping, Material Optimization & Bamboo Patience",
-      "new_title": "8.3 Critical Thinking: Prototyping, Material Optimization & Bamboo Patience",
+      "new_title": "Critical Thinking in Practice: Prototyping, Material Optimization & Bamboo Patience",
       "transcript_words": 2014,
-      "note_words": 268,
-      "initial_score": 77,
-      "final_score": 77,
-      "attempts": 1,
+      "note_words": 553,
+      "initial_score": 80,
+      "final_score": 95,
+      "attempts": 5,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'Sunk Cost Fallacy' name in transcript dialogue, though concept is accurately applied; note labels it but transcript does not use the term",
-        "Missing explicit mention of 'Ikigai' framework name in transcript dialogue, though concept is accurately applied; note references it but transcript does not use the term",
-        "Missing explicit mention of 'Confirmation Bias' or 'Bandwagon Effect' name in transcript dialogue, though concept is accurately described; transcript discusses 'Everyone is doing this' pressure",
-        "Missing explicit mention of 'Hasty Entry' or 'Hasty Decision' framework name in transcript dialogue, though concept is accurately applied",
-        "Note structure is text-dense paragraphs rather than the recommended visual formatting (tables/grids/numbered checklists) tailored to the lecture"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 18
+        "fidelity": 29,
+        "framework_case_depth": 28,
+        "editorial_finish": 23,
+        "conciseness_and_fit": 15
       }
     },
     {
+      "skipped": false,
+      "idx": 7,
       "topic_id": "cc3955fe",
       "old_title": "Sangeeta Menon: Stakeholder Listening & Red Flag Navigation in Manufacturing",
-      "new_title": "Sangeeta Menon: Stakeholder Listening & Red Flag Navigation in Manufacturing",
+      "new_title": "Stakeholder Listening & Red Flag Navigation: Sangeeta Menon on Manufacturing Resilience",
       "transcript_words": 4911,
-      "note_words": 274,
-      "initial_score": 74,
-      "final_score": 75,
+      "note_words": 528,
+      "initial_score": 95,
+      "final_score": 95,
+      "attempts": 1,
+      "passed": true,
+      "has_hallucination": false,
+      "final_issues": [],
+      "breakdown": {
+        "fidelity": 29,
+        "framework_case_depth": 28,
+        "editorial_finish": 23,
+        "conciseness_and_fit": 15
+      }
+    },
+    {
+      "skipped": false,
+      "idx": 8,
+      "topic_id": "7b98e88e",
+      "old_title": "8.4 Critical Thinking: Decision Framing & Stakeholder Bias in CSR",
+      "new_title": "Decision Framing & Stakeholder Bias in CSR",
+      "transcript_words": 4559,
+      "note_words": 451,
+      "initial_score": 92,
+      "final_score": 95,
+      "attempts": 4,
+      "passed": true,
+      "has_hallucination": false,
+      "final_issues": [],
+      "breakdown": {
+        "fidelity": 29,
+        "framework_case_depth": 28,
+        "editorial_finish": 23,
+        "conciseness_and_fit": 14
+      }
+    },
+    {
+      "skipped": false,
+      "idx": 9,
+      "topic_id": "17773d9b",
+      "old_title": "8.4 Critical Thinking: Personal Bias, Family Dynamics & Mentorship",
+      "new_title": "Critical Thinking in Practice: Passion, Obligation & Mentorship Ecosystems",
+      "transcript_words": 3832,
+      "note_words": 434,
+      "initial_score": 93,
+      "final_score": 95,
       "attempts": 2,
       "passed": true,
       "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'Confirmation Bias' and 'Authority Bias' as named cognitive mechanisms discussed in the transcript (though concepts are captured)",
-        "The 'Red Flag Navigation Protocol' table lacks a row for 'Minority Feedback vs. Core Pain Points' distinction explicitly tied to the 'Fly-on-the-wall' mechanism",
-        "The 'Devil's Advocate' framework is presented but the specific 'record yourself' technique detail is slightly condensed from the transcript's 'stand in a room, record yourself, listen' instruction",
-        "The 2x2 grid 'Execute & Scale' column header is ambiguous; transcript links 'Execute & Scale' to 'Pivot vs Persevere' decision, but the grid structure could imply 'Execute' is a separate quadrant from the pivot decision",
-        "No explicit mapping of 'Stakeholder Listening' to the broader 'Strategy-Execution' fluidity discussion near the end of the transcript"
-      ],
+      "final_issues": [],
       "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 20,
-        "equilibrium_and_formatting": 15
-      }
-    },
-    {
-      "topic_id": "7b98e88e",
-      "old_title": "8.4 Critical Thinking: Decision Framing & Stakeholder Bias in CSR",
-      "new_title": "8.4 Critical Thinking: Decision Framing & Stakeholder Bias in CSR",
-      "transcript_words": 4559,
-      "note_words": 270,
-      "initial_score": 75,
-      "final_score": 75,
-      "attempts": 1,
-      "passed": true,
-      "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of 'Confirmation Bias' name from transcript text; notes imply it but do not state the named bias explicitly in the header or bullet",
-        "Solar lamp case detail 'semi-knockdown condition' is correct, but 'employees relate to challenges' is a light inference; transcript says employees realize 'what are the challenges that are there' and 'what is on the other side'",
-        "Risk section references 'Analysis paralysis' which is not a term used in the transcript (transcript says 'you just sort of, you do the right, you do the research')",
-        "Founder mindset quote 'I knew that if I fall, I will get up' is a slight paraphrase; transcript says 'I knew that if I fall, I will get up' (exact match, but formatting as a bullet point claim needs verification)",
-        "Missing explicit mapping of the 'Solar lamp project' to the 'Confirmation Bias' mechanism as a direct cause-effect pair in the notes structure",
-        "Stakeholder co-referencing: Notes list 'Kerala spices company + NGO foundation' but transcript example uses a Kerala spices company wanting to do CSR in education, partnering with the NGO foundation that did libraries; the connection is correct but the notes could clarify the 'library' link faster"
-      ],
-      "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 16
-      }
-    },
-    {
-      "topic_id": "17773d9b",
-      "old_title": "8.4 Critical Thinking: Personal Bias, Family Dynamics & Mentorship",
-      "new_title": "8.4 Critical Thinking: Personal Bias, Family Dynamics & Mentorship",
-      "transcript_words": 3832,
-      "note_words": 266,
-      "initial_score": 75,
-      "final_score": 75,
-      "attempts": 1,
-      "passed": true,
-      "has_hallucination": false,
-      "final_issues": [
-        "Missing explicit mention of the 'Passion-Pivot-People' framework name and its three-step mechanism (write list → whittle → research) from the transcript's conclusion.",
-        "The 'Self-Vs-Other Bias' diagnostic phrase oversimplifies the transcript's nuanced discussion on gendered expectations of 'selfishness' vs. entrepreneurial agency.",
-        "Mentorship section lacks the specific '5-year stock option milestone' detail and the 'bidirectional' learning dynamic (seniors learning client filters from juniors) found in the transcript.",
-        "Family Ecosystem section does not capture the specific 'success contract' dialogue ('I will ensure your success, but you must ensure mine') or the 'kids need extra EQ nurturing time' insight.",
-        "The 'Passion-Pivot-People' visual summary is presented but the numbered checklist format for the 'methodical research start' step is less aligned with the transcript's specific 'write down lists, whittle to lowest hanging fruit, start methodical research & collaboration' sequence."
-      ],
-      "breakdown": {
-        "accuracy_fidelity": 18,
-        "framework_and_case_depth": 22,
-        "exam_pattern_fit": 19,
-        "equilibrium_and_formatting": 16
+        "fidelity": 29,
+        "framework_case_depth": 28,
+        "editorial_finish": 23,
+        "conciseness_and_fit": 15
       }
     }
   ]
