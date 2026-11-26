@@ -46,7 +46,7 @@
   </script>
 
   <!-- Custom Ledger CSS -->
-  <link rel="stylesheet" href="./static/css/style.css?v=3.3.0">
+  <link rel="stylesheet" href="./static/css/style.css?v=3.4.0">
 </head>
 
 <body class="h-screen flex flex-col bg-canvas text-ink transition-colors duration-200 overflow-hidden">
@@ -346,23 +346,24 @@
           class="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono text-ink-secondary bg-card-muted rounded pointer-events-none select-none">⌘K</kbd>
       </button>
 
-      <!-- Right: Navigation Pills + User Profile + Theme -->
+      <!-- Right: Navigation Pills (Direction-Aware) + User Profile + Theme -->
       <div class="flex items-center gap-2 shrink-0">
-        <nav class="hidden sm:flex items-center gap-1 p-0.5 rounded-full bg-card-muted border border-border text-xs">
+        <nav id="global-nav-track" class="relative hidden sm:flex items-center gap-0.5 p-1 rounded-full bg-card-muted border border-border text-xs">
+          <div id="nav-active-pill" class="folio-nav-pill absolute top-1 bottom-1 left-0 rounded-full bg-ink pointer-events-none opacity-0" aria-hidden="true"></div>
           <button id="tab-dashboard" onclick="App.switchView('dashboard')"
-            class="px-3 py-1 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-medium">
+            class="relative z-10 px-3.5 py-1 rounded-full text-canvas font-medium transition-colors whitespace-nowrap">
             Dashboard
           </button>
           <button id="tab-notes" onclick="App.switchView('notes')"
-            class="px-3 py-1 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium">
+            class="relative z-10 px-3.5 py-1 rounded-full text-ink-secondary hover:text-ink font-medium transition-colors whitespace-nowrap">
             Study Studio
           </button>
           <button id="tab-exam" onclick="App.switchView('exam')"
-            class="px-3 py-1 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium">
+            class="relative z-10 px-3.5 py-1 rounded-full text-ink-secondary hover:text-ink font-medium transition-colors whitespace-nowrap">
             Exam Arena
           </button>
           <button id="tab-oneshot" onclick="App.switchView('oneshot')"
-            class="px-3 py-1 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium whitespace-nowrap">
+            class="relative z-10 px-3.5 py-1 rounded-full text-ink-secondary hover:text-ink font-medium transition-colors whitespace-nowrap">
             One-Shot
           </button>
         </nav>
@@ -479,22 +480,21 @@
           </div>
         </div>
 
-        <!-- 4-Metric Live Telemetry Strip -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
-          <div class="rounded-2xl bg-card border border-border p-4 space-y-1">
+        <!-- 4-Metric Unified Architectural Ledger Strip -->
+        <div class="rounded-2xl bg-card border border-border grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-border overflow-hidden">
+          <div class="p-4 sm:p-5 space-y-1">
             <span class="text-xs text-ink-secondary">Lectures Studied</span>
             <div class="text-xl font-medium font-mono tabular-nums text-ink" id="metric-lectures-studied">0 / 543</div>
           </div>
-          <div class="rounded-2xl bg-card border border-border p-4 space-y-1">
+          <div class="p-4 sm:p-5 space-y-1">
             <span class="text-xs text-ink-secondary">Exam Bank Practiced</span>
-            <div class="text-xl font-medium font-mono tabular-nums text-ink" id="metric-questions-practiced">0 / 587
-            </div>
+            <div class="text-xl font-medium font-mono tabular-nums text-ink" id="metric-questions-practiced">0 / 587</div>
           </div>
-          <div class="rounded-2xl bg-card border border-border p-4 space-y-1">
+          <div class="p-4 sm:p-5 space-y-1">
             <span class="text-xs text-ink-secondary">Mock Exams Completed</span>
             <div class="text-xl font-medium font-mono tabular-nums text-ink" id="metric-mocks-completed">0</div>
           </div>
-          <div class="rounded-2xl bg-card border border-border p-4 space-y-1">
+          <div class="p-4 sm:p-5 space-y-1">
             <span class="text-xs text-ink-secondary">Sprint Checklist</span>
             <div class="text-xl font-medium font-mono tabular-nums text-ink" id="metric-checklist-done">0 / 0</div>
           </div>
@@ -1695,7 +1695,7 @@
   <script src="./static/js/folio_motion.js?v=2.0.0"></script>
   <script src="./static/js/visual_cram.js?v=1.0.0"></script>
   <script src="./static/js/exam_hub.js?v=1.4.0"></script>
-  <script src="./static/js/app.js?v=3.3.0"></script>
+  <script src="./static/js/app.js?v=3.4.0"></script>
   <!-- Bundled Study Data for 24/7 GitHub Pages Access -->
   <script src="./study_data.js?v=2.5.0" defer></script>
 </body>

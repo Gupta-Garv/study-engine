@@ -1090,8 +1090,8 @@ const App = {
             <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
           </div>
           <div class="min-w-0 pr-2">
-            <div class="text-[10px] font-mono text-neutral-400 uppercase truncate">Continue where you left off &bull; ${this.escapeHtml(recentCourse.name)}</div>
-            <div class="text-xs font-semibold text-ink truncate max-w-sm">${this.escapeHtml(recentTopic.title)}</div>
+            <div class="text-[11px] text-ink-secondary truncate">Continue / ${this.escapeHtml(recentCourse.name)}</div>
+            <div class="text-xs font-medium text-ink truncate max-w-sm">${this.escapeHtml(recentTopic.title)}</div>
           </div>
           <button onclick="App.jumpToTopic('${recentTopic.id}')" class="pill-ink text-xs px-3.5 py-1.5 shrink-0 flex items-center gap-1">
             <span>Resume Lecture</span>
@@ -1138,42 +1138,42 @@ const App = {
       const firstModuleId = (c.modules && c.modules[0]) ? c.modules[0].id : null;
 
       return `
-        <div class="rounded-[1.5rem] bg-card border border-border shadow-soft p-5 flex flex-col justify-between space-y-4 hover:shadow-soft-md transition">
+        <div class="folio-tilt-card rounded-2xl bg-card border border-border p-5 flex flex-col justify-between space-y-4">
           <div class="space-y-2">
             <div class="flex items-center justify-between gap-2">
-              <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full border ${courseStyle.bg} font-medium">
+              <span class="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-card-muted border border-border text-ink-secondary">
                 ${c.modules ? c.modules.length : 0} Modules
               </span>
-              <span class="text-xs font-mono font-semibold text-ink">${pct}%</span>
+              <span class="text-xs font-mono font-medium tabular-nums folio-accent-text">${pct}%</span>
             </div>
             <div>
-              <h3 class="text-base font-semibold text-ink tracking-tight">${this.escapeHtml(c.name)}</h3>
-              <p class="text-xs text-neutral-400 line-clamp-1 mt-0.5">${this.escapeHtml(c.description || `${totalLectures} comprehensive video lectures & notes`)}</p>
+              <h3 class="text-base font-medium text-ink tracking-tight">${this.escapeHtml(c.name)}</h3>
+              <p class="text-xs text-ink-secondary line-clamp-1 mt-0.5">${this.escapeHtml(c.description || `${totalLectures} video lectures and notes`)}</p>
             </div>
           </div>
 
           <div class="space-y-2">
             <!-- Progress Bar -->
             <div class="w-full h-1.5 rounded-full bg-card-muted overflow-hidden">
-              <div class="h-full bg-ink rounded-full transition-all duration-300" style="width: ${pct}%"></div>
+              <div class="h-full rounded-full" style="width: ${pct}%; background: var(--accent);"></div>
             </div>
-            <div class="flex items-center justify-between text-[11px] font-mono text-neutral-400">
+            <div class="flex items-center justify-between text-[11px] font-mono tabular-nums text-ink-secondary">
               <span>${studiedCount} / ${totalLectures} studied</span>
-              <span>${totalLectures - studiedCount} remaining</span>
+              <span>${totalLectures - studiedCount} left</span>
             </div>
           </div>
 
           <!-- Action Buttons -->
-          <div class="grid grid-cols-3 gap-1.5 pt-2 border-t border-border/60">
+          <div class="grid grid-cols-3 gap-1.5 pt-2 border-t border-border">
             <button onclick="App.launchCourseStudy('${firstTopicId}')" class="pill-muted text-[11px] py-1.5 px-2 flex items-center justify-center gap-1 font-medium truncate">
               <i data-lucide="book-open" class="w-3 h-3"></i>
               <span>Studio</span>
             </button>
-            <button onclick="App.launchOneShot('${c.id}')" class="px-2 py-1.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 hover:bg-amber-500/20 text-[11px] flex items-center justify-center gap-1 font-medium transition truncate">
-              <i data-lucide="zap" class="w-3 h-3"></i>
+            <button onclick="App.launchOneShot('${c.id}')" class="px-2 py-1.5 rounded-full border border-border bg-card-muted hover:bg-muted text-ink text-[11px] flex items-center justify-center gap-1 font-medium transition truncate">
+              <i data-lucide="zap" class="w-3 h-3 folio-accent-text"></i>
               <span>One-Shot</span>
             </button>
-            <button onclick="App.launchCourseExam('${firstModuleId}')" class="px-2 py-1.5 rounded-full border border-border hover:bg-card-muted text-[11px] text-ink flex items-center justify-center gap-1 font-medium transition truncate">
+            <button onclick="App.launchCourseExam('${firstModuleId}')" class="px-2 py-1.5 rounded-full border border-border hover:bg-card-muted text-[11px] text-ink-secondary hover:text-ink flex items-center justify-center gap-1 font-medium transition truncate">
               <i data-lucide="award" class="w-3 h-3"></i>
               <span>Quiz</span>
             </button>
@@ -3051,6 +3051,21 @@ const App = {
   // -------------------------------------------------------------
   // Navigation / Views
   // -------------------------------------------------------------
+  updateNavPill(target) {
+    requestAnimationFrame(() => {
+      const pill = document.getElementById('nav-active-pill');
+      const activeTab = document.getElementById(`tab-${target}`);
+      if (!pill || !activeTab) return;
+      const x = activeTab.offsetLeft;
+      const w = activeTab.offsetWidth;
+      if (w > 0) {
+        pill.style.width = `${w}px`;
+        pill.style.transform = `translateX(${x}px)`;
+        pill.style.opacity = '1';
+      }
+    });
+  },
+
   switchView(viewName) {
     const target = (viewName === 'syllabus' || viewName === 'dashboard') ? 'dashboard' : viewName;
     this.currentView = target;
@@ -3086,12 +3101,16 @@ const App = {
 
       if (tab) {
         if (isActive) {
-          tab.className = 'px-3 py-1 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-medium text-xs transition shadow-soft-sm whitespace-nowrap';
+          tab.className = 'relative z-10 px-3.5 py-1 rounded-full text-canvas font-medium text-xs transition-colors whitespace-nowrap';
+          tab.setAttribute('aria-selected', 'true');
         } else {
-          tab.className = 'px-3 py-1 rounded-full text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium text-xs transition whitespace-nowrap';
+          tab.className = 'relative z-10 px-3.5 py-1 rounded-full text-ink-secondary hover:text-ink font-medium text-xs transition-colors whitespace-nowrap';
+          tab.setAttribute('aria-selected', 'false');
         }
       }
     });
+
+    this.updateNavPill(target);
 
     // Keep the unified global header visible across all views so navigation never disappears
     const globalHeader = document.getElementById('app-global-header');
