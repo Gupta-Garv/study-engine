@@ -1,39 +1,94 @@
-/* Folio Design System: Architectural Ledger (Obsidian Studio & Archival Vellum) */
+/* Folio Design System: Obys Swiss Grid & Artistic Editorial (Light & Dark) */
 
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;450;500;600&family=Geist+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&family=Geist:wght@300;400;450;500;600&family=Syne:wght@500;600;700;800&display=swap');
 
 :root {
-  --canvas: #f6f3ec;
-  --rail: #ede9df;
+  --canvas: #f5f2eb;
+  --rail: #ebe6db;
   --card: #ffffff;
-  --card-muted: #f0ece2;
-  --ink: #181715;
-  --ink-secondary: #68655e;
-  --ink-tertiary: #9c988e;
-  --border: #e3ded3;
-  --accent: #a8742a;
-  --accent-soft: rgba(168, 116, 42, 0.11);
-  
-  --elevation-soft-sm: 0 1px 2px 0 rgb(24 23 21 / 0.04);
-  --elevation-soft: 0 1px 3px 0 rgb(24 23 21 / 0.05), 0 4px 14px -4px rgb(24 23 21 / 0.04);
-  --elevation-soft-md: 0 4px 16px -4px rgb(24 23 21 / 0.09);
+  --card-muted: #eeeae0;
+  --ink: #121110;
+  --ink-secondary: #625e56;
+  --ink-tertiary: #969086;
+  --border: #dcd6ca;
+  --accent: #a66e22;
+  --accent-soft: rgba(166, 110, 34, 0.11);
+
+  --elevation-soft-sm: 0 1px 2px 0 rgb(18 17 16 / 0.04);
+  --elevation-soft: 0 1px 3px 0 rgb(18 17 16 / 0.05), 0 4px 14px -4px rgb(18 17 16 / 0.04);
+  --elevation-soft-md: 0 4px 16px -4px rgb(18 17 16 / 0.09);
 }
 
 .dark {
-  --canvas: #0a0a0b;
-  --rail: #101012;
-  --card: #131316;
-  --card-muted: #1a1a1e;
-  --ink: #f2f0eb;
-  --ink-secondary: #8e8c87;
-  --ink-tertiary: #52514d;
-  --border: #222227;
-  --accent: #d4a359;
-  --accent-soft: rgba(212, 163, 89, 0.13);
+  --canvas: #080809;
+  --rail: #0f0f11;
+  --card: #111114;
+  --card-muted: #18181c;
+  --ink: #f3f1ec;
+  --ink-secondary: #8b8882;
+  --ink-tertiary: #52504b;
+  --border: #202025;
+  --accent: #e2a856;
+  --accent-soft: rgba(226, 168, 86, 0.13);
 
   --elevation-soft-sm: 0 1px 2px 0 rgb(0 0 0 / 0.35);
   --elevation-soft: 0 2px 10px -2px rgb(0 0 0 / 0.45);
   --elevation-soft-md: 0 10px 28px -6px rgb(0 0 0 / 0.65);
+}
+
+.font-display {
+  font-family: 'Syne', 'Geist', sans-serif;
+}
+
+.font-mono,
+code,
+pre,
+kbd {
+  font-family: 'Fragment Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Obys-inspired 12-column subtle vertical architectural guide lines */
+.obys-swiss-grid {
+  background-image: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--ink) 4.5%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: calc(100% / 12) 100%;
+}
+
+/* Bare editorial nav link with animated bottom rule */
+.obys-nav-link {
+  position: relative;
+  padding: 0.35rem 0;
+  color: var(--ink-secondary);
+  transition: color 0.16s ease;
+}
+
+.obys-nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1.5px;
+  background-color: var(--ink);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.obys-nav-link:hover {
+  color: var(--ink);
+}
+
+.obys-nav-link:hover::after,
+.obys-nav-link.obys-nav-active::after {
+  transform: scaleX(1);
+}
+
+.obys-nav-link.obys-nav-active {
+  color: var(--ink);
 }
 
 /* Composite-only card lift (fixing-motion-performance compliant) */
@@ -216,28 +271,30 @@ body {
 .pill-ink {
   background-color: var(--ink);
   color: var(--canvas);
-  border-radius: 9999px;
-  padding: 0.5rem 1.25rem;
+  border-radius: 2px;
+  padding: 0.5rem 1.15rem;
   font-weight: 500;
   transition: opacity 0.15s ease, transform 0.1s ease;
 }
 .pill-ink:hover {
-  opacity: 0.9;
+  opacity: 0.88;
 }
 .pill-ink:active {
   transform: scale(0.98);
 }
 
 .pill-muted {
-  background-color: var(--card-muted);
+  background-color: transparent;
   color: var(--ink);
-  border-radius: 9999px;
-  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 0.5rem 1.15rem;
   font-weight: 500;
-  transition: background-color 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 .pill-muted:hover {
-  background-color: var(--border);
+  background-color: var(--card-muted);
+  border-color: var(--ink-tertiary);
 }
 
 /* Reading Typography */
@@ -246,12 +303,16 @@ body {
   line-height: 1.8;
   color: var(--ink);
 }
-.prose-ledger h1 {
-  font-size: 2.25rem;
-  font-weight: 450;
+.prose-ledger h1,
+#oneshot-content-body h1 {
+  font-family: 'Syne', 'Geist', sans-serif;
+  font-size: 2.35rem;
+  font-weight: 700;
   letter-spacing: -0.04em;
+  line-height: 1.05;
   margin-top: 1.5rem;
   margin-bottom: 1rem;
+  color: var(--ink);
 }
 .prose-ledger h2 {
   font-size: 1.4rem;

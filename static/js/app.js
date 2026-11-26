@@ -1085,16 +1085,16 @@ const App = {
 
     if (recentTopic && recentCourse) {
       banner.innerHTML = `
-        <div class="inline-flex items-center gap-3 p-2.5 px-4 rounded-2xl bg-card border border-border shadow-soft-sm">
-          <div class="w-8 h-8 rounded-xl bg-ink text-canvas flex items-center justify-center shrink-0">
-            <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+        <div class="inline-flex items-center gap-4 py-2.5 px-4 border border-border bg-card/60">
+          <div class="w-7 h-7 bg-ink text-canvas flex items-center justify-center shrink-0">
+            <i data-lucide="play" class="w-3 h-3 fill-current"></i>
           </div>
           <div class="min-w-0 pr-2">
-            <div class="text-[11px] text-ink-secondary truncate">Continue / ${this.escapeHtml(recentCourse.name)}</div>
+            <div class="text-[10px] font-mono uppercase tracking-wider text-ink-secondary truncate">Continue / ${this.escapeHtml(recentCourse.name)}</div>
             <div class="text-xs font-medium text-ink truncate max-w-sm">${this.escapeHtml(recentTopic.title)}</div>
           </div>
-          <button onclick="App.jumpToTopic('${recentTopic.id}')" class="pill-ink text-xs px-3.5 py-1.5 shrink-0 flex items-center gap-1">
-            <span>Resume Lecture</span>
+          <button onclick="App.jumpToTopic('${recentTopic.id}')" class="pill-ink text-xs px-3.5 py-1.5 shrink-0 flex items-center gap-1.5 font-mono">
+            <span>Resume</span>
             <i data-lucide="arrow-right" class="w-3 h-3"></i>
           </button>
         </div>
@@ -1102,9 +1102,9 @@ const App = {
     } else {
       const totalLectures = (this.getAllCurriculumTopics() || []).length || 505;
       banner.innerHTML = `
-        <button onclick="App.switchView('notes')" class="pill-ink text-xs px-4 py-2 inline-flex items-center gap-2">
-          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-          <span>Launch Study Studio (${totalLectures} Lectures Ready)</span>
+        <button onclick="App.switchView('notes')" class="pill-ink text-xs px-4 py-2.5 inline-flex items-center gap-2 font-mono">
+          <span>Launch Study Studio (${totalLectures} Lectures)</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
         </button>
       `;
     }
@@ -1116,15 +1116,14 @@ const App = {
     if (!container) return;
 
     if (!this.courses || this.courses.length === 0) {
-      container.innerHTML = '<div class="col-span-3 text-center py-8 text-neutral-400 text-xs">Loading curriculum...</div>';
+      container.innerHTML = '<div class="col-span-3 text-center py-8 text-neutral-400 text-xs font-mono">Loading curriculum...</div>';
       return;
     }
 
     let totalDegreeLectures = 0;
     let totalDegreeStudied = 0;
 
-    container.innerHTML = this.courses.map(c => {
-      const courseStyle = this.getCourseColor(c.name);
+    container.innerHTML = this.courses.map((c, idx) => {
       const totalLectures = (c.modules || []).reduce((acc, m) => acc + (m.topics ? m.topics.length : 0), 0);
       const studiedCount = (c.modules || []).reduce((acc, m) => {
         return acc + (m.topics ? m.topics.filter(t => this.studiedTopicIds.has(t.id)).length : 0);
@@ -1136,26 +1135,25 @@ const App = {
       const pct = totalLectures > 0 ? Math.round((studiedCount / totalLectures) * 100) : 0;
       const firstTopicId = (c.modules && c.modules[0] && c.modules[0].topics && c.modules[0].topics[0]) ? c.modules[0].topics[0].id : null;
       const firstModuleId = (c.modules && c.modules[0]) ? c.modules[0].id : null;
+      const indexNum = String(idx + 1).padStart(2, '0');
 
       return `
-        <div class="folio-tilt-card rounded-2xl bg-card border border-border p-5 flex flex-col justify-between space-y-4">
-          <div class="space-y-2">
-            <div class="flex items-center justify-between gap-2">
-              <span class="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-card-muted border border-border text-ink-secondary">
-                ${c.modules ? c.modules.length : 0} Modules
-              </span>
-              <span class="text-xs font-mono font-medium tabular-nums folio-accent-text">${pct}%</span>
+        <div class="border-r border-b border-border p-6 bg-canvas hover:bg-card transition-colors flex flex-col justify-between space-y-5">
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between gap-2 text-[11px] font-mono">
+              <span class="text-ink-secondary">${indexNum} / ${c.modules ? c.modules.length : 0} Modules</span>
+              <span class="font-medium tabular-nums folio-accent-text">${pct}%</span>
             </div>
             <div>
-              <h3 class="text-base font-medium text-ink tracking-tight">${this.escapeHtml(c.name)}</h3>
-              <p class="text-xs text-ink-secondary line-clamp-1 mt-0.5">${this.escapeHtml(c.description || `${totalLectures} video lectures and notes`)}</p>
+              <h3 class="font-display text-lg font-bold text-ink tracking-tight">${this.escapeHtml(c.name)}</h3>
+              <p class="text-xs text-ink-secondary line-clamp-1 mt-1">${this.escapeHtml(c.description || `${totalLectures} video lectures and notes`)}</p>
             </div>
           </div>
 
           <div class="space-y-2">
-            <!-- Progress Bar -->
-            <div class="w-full h-1.5 rounded-full bg-card-muted overflow-hidden">
-              <div class="h-full rounded-full" style="width: ${pct}%; background: var(--accent);"></div>
+            <!-- Sharp Progress Line -->
+            <div class="w-full h-0.5 bg-border overflow-hidden">
+              <div class="h-full" style="width: ${pct}%; background: var(--accent);"></div>
             </div>
             <div class="flex items-center justify-between text-[11px] font-mono tabular-nums text-ink-secondary">
               <span>${studiedCount} / ${totalLectures} studied</span>
@@ -1163,18 +1161,15 @@ const App = {
             </div>
           </div>
 
-          <!-- Action Buttons -->
-          <div class="grid grid-cols-3 gap-1.5 pt-2 border-t border-border">
-            <button onclick="App.launchCourseStudy('${firstTopicId}')" class="pill-muted text-[11px] py-1.5 px-2 flex items-center justify-center gap-1 font-medium truncate">
-              <i data-lucide="book-open" class="w-3 h-3"></i>
+          <!-- Sharp Action Bar -->
+          <div class="grid grid-cols-3 gap-1.5 pt-3 border-t border-border/70">
+            <button onclick="App.launchCourseStudy('${firstTopicId}')" class="py-1.5 px-2 border border-border hover:border-ink text-ink text-[11px] font-mono flex items-center justify-center gap-1 transition truncate">
               <span>Studio</span>
             </button>
-            <button onclick="App.launchOneShot('${c.id}')" class="px-2 py-1.5 rounded-full border border-border bg-card-muted hover:bg-muted text-ink text-[11px] flex items-center justify-center gap-1 font-medium transition truncate">
-              <i data-lucide="zap" class="w-3 h-3 folio-accent-text"></i>
-              <span>One-Shot</span>
+            <button onclick="App.launchOneShot('${c.id}')" class="py-1.5 px-2 border border-border hover:border-ink text-ink text-[11px] font-mono flex items-center justify-center gap-1 transition truncate">
+              <span class="folio-accent-text">One-Shot</span>
             </button>
-            <button onclick="App.launchCourseExam('${firstModuleId}')" class="px-2 py-1.5 rounded-full border border-border hover:bg-card-muted text-[11px] text-ink-secondary hover:text-ink flex items-center justify-center gap-1 font-medium transition truncate">
-              <i data-lucide="award" class="w-3 h-3"></i>
+            <button onclick="App.launchCourseExam('${firstModuleId}')" class="py-1.5 px-2 bg-ink text-canvas text-[11px] font-mono flex items-center justify-center gap-1 transition hover:opacity-90 truncate">
               <span>Quiz</span>
             </button>
           </div>
@@ -3101,10 +3096,10 @@ const App = {
 
       if (tab) {
         if (isActive) {
-          tab.className = 'relative z-10 px-3.5 py-1 rounded-full text-canvas font-medium text-xs transition-colors whitespace-nowrap';
+          tab.className = 'obys-nav-link obys-nav-active whitespace-nowrap flex items-baseline gap-1.5';
           tab.setAttribute('aria-selected', 'true');
         } else {
-          tab.className = 'relative z-10 px-3.5 py-1 rounded-full text-ink-secondary hover:text-ink font-medium text-xs transition-colors whitespace-nowrap';
+          tab.className = 'obys-nav-link whitespace-nowrap flex items-baseline gap-1.5';
           tab.setAttribute('aria-selected', 'false');
         }
       }
