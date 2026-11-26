@@ -3101,16 +3101,14 @@ const App = {
 
       if (tab) {
         if (isActive) {
-          tab.className = 'relative z-10 px-3.5 py-1 rounded-full text-canvas font-medium text-xs transition-colors whitespace-nowrap';
+          tab.className = 'px-3.5 py-1 rounded-full bg-ink text-canvas font-medium text-xs transition-colors whitespace-nowrap';
           tab.setAttribute('aria-selected', 'true');
         } else {
-          tab.className = 'relative z-10 px-3.5 py-1 rounded-full text-ink-secondary hover:text-ink font-medium text-xs transition-colors whitespace-nowrap';
+          tab.className = 'px-3.5 py-1 rounded-full text-ink-secondary hover:text-ink font-medium text-xs transition-colors whitespace-nowrap';
           tab.setAttribute('aria-selected', 'false');
         }
       }
     });
-
-    this.updateNavPill(target);
 
     // Keep the unified global header visible across all views so navigation never disappears
     const globalHeader = document.getElementById('app-global-header');

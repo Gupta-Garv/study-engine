@@ -46,7 +46,7 @@
   </script>
 
   <!-- Custom Ledger CSS -->
-  <link rel="stylesheet" href="./static/css/style.css?v=3.4.0">
+  <link rel="stylesheet" href="./static/css/style.css?v=3.5.0">
 </head>
 
 <body class="h-screen flex flex-col bg-canvas text-ink transition-colors duration-200 overflow-hidden">
@@ -346,24 +346,23 @@
           class="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono text-ink-secondary bg-card-muted rounded pointer-events-none select-none">⌘K</kbd>
       </button>
 
-      <!-- Right: Navigation Pills (Direction-Aware) + User Profile + Theme -->
+      <!-- Right: Navigation Pills + User Profile + Theme -->
       <div class="flex items-center gap-2 shrink-0">
-        <nav id="global-nav-track" class="relative hidden sm:flex items-center gap-0.5 p-1 rounded-full bg-card-muted border border-border text-xs">
-          <div id="nav-active-pill" class="folio-nav-pill absolute top-1 bottom-1 left-0 rounded-full bg-ink pointer-events-none opacity-0" aria-hidden="true"></div>
-          <button id="tab-dashboard" onclick="App.switchView('dashboard')"
-            class="relative z-10 px-3.5 py-1 rounded-full text-canvas font-medium transition-colors whitespace-nowrap">
+        <nav id="global-nav-track" class="hidden sm:flex items-center gap-1 p-1 rounded-full bg-card-muted border border-border text-xs">
+          <button id="tab-dashboard" onclick="App.switchView('dashboard')" aria-selected="true"
+            class="px-3.5 py-1 rounded-full bg-ink text-canvas font-medium transition-colors whitespace-nowrap">
             Dashboard
           </button>
-          <button id="tab-notes" onclick="App.switchView('notes')"
-            class="relative z-10 px-3.5 py-1 rounded-full text-ink-secondary hover:text-ink font-medium transition-colors whitespace-nowrap">
+          <button id="tab-notes" onclick="App.switchView('notes')" aria-selected="false"
+            class="px-3.5 py-1 rounded-full text-ink-secondary hover:text-ink font-medium transition-colors whitespace-nowrap">
             Study Studio
           </button>
-          <button id="tab-exam" onclick="App.switchView('exam')"
-            class="relative z-10 px-3.5 py-1 rounded-full text-ink-secondary hover:text-ink font-medium transition-colors whitespace-nowrap">
+          <button id="tab-exam" onclick="App.switchView('exam')" aria-selected="false"
+            class="px-3.5 py-1 rounded-full text-ink-secondary hover:text-ink font-medium transition-colors whitespace-nowrap">
             Exam Arena
           </button>
-          <button id="tab-oneshot" onclick="App.switchView('oneshot')"
-            class="relative z-10 px-3.5 py-1 rounded-full text-ink-secondary hover:text-ink font-medium transition-colors whitespace-nowrap">
+          <button id="tab-oneshot" onclick="App.switchView('oneshot')" aria-selected="false"
+            class="px-3.5 py-1 rounded-full text-ink-secondary hover:text-ink font-medium transition-colors whitespace-nowrap">
             One-Shot
           </button>
         </nav>
@@ -400,113 +399,124 @@
   <main class="flex-1 w-full flex flex-col min-h-0 overflow-hidden">
 
     <!-- ============================================================= -->
-    <!-- VIEW 1: OVERVIEW & EXAM COMMAND                               -->
+    <!-- VIEW 1: OVERVIEW & EXAM COMMAND (ARCHITECTURAL BROADSHEET)    -->
     <!-- ============================================================= -->
-    <div id="view-dashboard" class="flex-1 w-full overflow-y-auto px-4 sm:px-6 py-8">
-      <div class="max-w-6xl mx-auto space-y-8">
+    <div id="view-dashboard" class="flex-1 w-full overflow-y-auto">
 
-        <!-- Hero Stage with Interactive 3D Folded-Folio Backdrop -->
-        <div class="relative rounded-3xl bg-card border border-border overflow-hidden p-6 sm:p-8 lg:p-10 shadow-soft">
-          <!-- 3D WebGL Canvas (Right/Ambient) -->
-          <div class="pointer-events-none absolute inset-y-0 right-0 w-full lg:w-1/2 opacity-80">
-            <canvas id="folio-hero-canvas" class="w-full h-full block"></canvas>
-          </div>
+      <!-- Full-Bleed Editorial Broadsheet Hero -->
+      <section class="relative border-b border-border overflow-hidden">
+        <div class="pointer-events-none absolute inset-0 folio-dot-grid opacity-55"></div>
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 pt-10 pb-10 sm:pt-14 sm:pb-12">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-end">
 
-          <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <!-- Left Editorial Stack -->
-            <div class="lg:col-span-7 space-y-4">
-              <div
-                class="folio-hero-stagger inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card-muted border border-border text-xs text-ink-secondary">
-                <span class="w-1.5 h-1.5 rounded-full" style="background: var(--accent);"></span>
+            <!-- Left Editorial Headline & Resume Ledger -->
+            <div class="lg:col-span-7 space-y-6">
+              <div class="folio-hero-stagger flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.14em] text-ink-secondary">
+                <span class="inline-block w-1.5 h-1.5 rounded-full" style="background: var(--accent);"></span>
                 <span>IIMBx BBA DBE / Term 7</span>
+                <span class="text-ink-tertiary">/</span>
+                <span>Edition 2026</span>
               </div>
-              <h1
-                class="folio-hero-stagger text-3xl sm:text-4xl lg:text-[2.75rem] font-[450] tracking-[-0.04em] leading-[1.08] text-ink text-balance">
-                Read deeply. Practice for the exact paper.
+
+              <h1 class="folio-hero-stagger text-4xl sm:text-5xl lg:text-[3.5rem] font-[450] tracking-[-0.04em] leading-[1.02] text-ink text-balance">
+                Read deeply. Practice for the
+                <span class="font-editorial italic font-normal folio-accent-text">exact paper.</span>
               </h1>
-              <p class="folio-hero-stagger text-sm text-ink-secondary leading-relaxed max-w-xl">
-                Every lecture, transcript, visual canvas, one-shot cram sheet, and exam-calibrated question bank unified
-                in one quiet workspace.
+
+              <p class="folio-hero-stagger text-sm sm:text-[15px] text-ink-secondary leading-relaxed max-w-xl">
+                Every lecture, transcript, visual canvas, one-shot cram sheet, and exam-calibrated question bank unified in one quiet instrument.
               </p>
 
               <!-- Quick Action & Resume Banner -->
-              <div id="dashboard-recent-lecture-banner"
-                class="folio-hero-stagger pt-2 flex flex-wrap items-center gap-3">
+              <div id="dashboard-recent-lecture-banner" class="folio-hero-stagger pt-1 flex flex-wrap items-center gap-3">
                 <!-- Populated by JS -->
               </div>
             </div>
 
-            <!-- Right Exam Countdown Card -->
-            <div class="lg:col-span-5">
-              <div
-                class="folio-hero-stagger rounded-2xl bg-canvas border border-border p-5 space-y-4 shadow-soft">
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full" style="background: var(--accent);"></span>
-                    <span class="text-xs font-medium text-ink" id="exam-countdown-title">Term 7 Examinations</span>
-                  </div>
-                  <button onclick="App.openExamDateModal()"
-                    class="text-xs text-ink-secondary hover:text-ink flex items-center gap-1 transition px-2 py-1 rounded-lg hover:bg-card-muted">
-                    <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
-                    <span>Edit</span>
-                  </button>
+            <!-- Right Typographic Exam Chronometer (Open Instrument, No Heavy Box) -->
+            <div class="lg:col-span-5 lg:border-l lg:border-border lg:pl-10 space-y-5">
+              <div class="folio-hero-stagger flex items-center justify-between border-b border-border pb-3">
+                <div class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full" style="background: var(--accent);"></span>
+                  <span class="text-[11px] font-mono uppercase tracking-[0.12em] text-ink-secondary" id="exam-countdown-title">Term 7 Examinations</span>
                 </div>
+                <button onclick="App.openExamDateModal()"
+                  class="text-[11px] font-mono uppercase tracking-wider text-ink-secondary hover:text-ink flex items-center gap-1.5 transition px-2 py-1 rounded-md hover:bg-card-muted">
+                  <i data-lucide="calendar" class="w-3 h-3"></i>
+                  <span>Edit</span>
+                </button>
+              </div>
 
-                <!-- Tabular Countdown Grid -->
-                <div class="grid grid-cols-3 gap-2.5 text-center">
-                  <div class="p-3 rounded-xl bg-card border border-border">
-                    <div id="countdown-days"
-                      class="text-2xl font-medium font-mono tabular-nums text-ink tracking-tight">--</div>
-                    <div class="text-[11px] text-ink-secondary mt-0.5">Days</div>
+              <!-- Open Typographic Chronometer Readout -->
+              <div class="folio-hero-stagger flex items-baseline gap-4 sm:gap-6">
+                <div>
+                  <div class="flex items-baseline gap-1">
+                    <span id="countdown-days" class="text-4xl sm:text-5xl font-[450] font-mono tabular-nums text-ink tracking-[-0.04em]">--</span>
+                    <span class="text-xs font-mono text-ink-tertiary">d</span>
                   </div>
-                  <div class="p-3 rounded-xl bg-card border border-border">
-                    <div id="countdown-hours"
-                      class="text-2xl font-medium font-mono tabular-nums text-ink tracking-tight">--</div>
-                    <div class="text-[11px] text-ink-secondary mt-0.5">Hours</div>
-                  </div>
-                  <div class="p-3 rounded-xl bg-card border border-border">
-                    <div id="countdown-mins"
-                      class="text-2xl font-medium font-mono tabular-nums text-ink tracking-tight">--</div>
-                    <div class="text-[11px] text-ink-secondary mt-0.5">Mins</div>
-                  </div>
+                  <div class="text-[10px] font-mono uppercase tracking-widest text-ink-secondary mt-1">Days</div>
                 </div>
-
-                <div class="text-xs text-ink-secondary flex items-center justify-between pt-2 border-t border-border">
-                  <span id="countdown-target-display" class="font-mono">Dec 5 to Dec 6</span>
-                  <span class="font-medium folio-accent-text">4 Term 7 Papers</span>
+                <span class="text-2xl font-mono text-ink-tertiary/60 select-none">:</span>
+                <div>
+                  <div class="flex items-baseline gap-1">
+                    <span id="countdown-hours" class="text-4xl sm:text-5xl font-[450] font-mono tabular-nums text-ink tracking-[-0.04em]">--</span>
+                    <span class="text-xs font-mono text-ink-tertiary">h</span>
+                  </div>
+                  <div class="text-[10px] font-mono uppercase tracking-widest text-ink-secondary mt-1">Hours</div>
+                </div>
+                <span class="text-2xl font-mono text-ink-tertiary/60 select-none">:</span>
+                <div>
+                  <div class="flex items-baseline gap-1">
+                    <span id="countdown-mins" class="text-4xl sm:text-5xl font-[450] font-mono tabular-nums text-ink tracking-[-0.04em]">--</span>
+                    <span class="text-xs font-mono text-ink-tertiary">m</span>
+                  </div>
+                  <div class="text-[10px] font-mono uppercase tracking-widest text-ink-secondary mt-1">Mins</div>
                 </div>
               </div>
+
+              <div class="folio-hero-stagger text-xs text-ink-secondary flex items-center justify-between pt-3 border-t border-border">
+                <span id="countdown-target-display" class="font-mono">Dec 5 to Dec 6</span>
+                <span class="font-mono text-[11px] uppercase tracking-wider folio-accent-text">4 Term 7 Papers</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Open Hairline-Divided 4-Column Telemetry Strip -->
+      <section class="border-b border-border bg-card/40">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+          <div class="grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-border">
+            <div class="py-5 sm:pr-6 space-y-1">
+              <div class="text-[10px] font-mono uppercase tracking-[0.12em] text-ink-secondary">Lectures Studied</div>
+              <div class="text-2xl font-[450] font-mono tabular-nums text-ink tracking-tight" id="metric-lectures-studied">0 / 543</div>
+            </div>
+            <div class="py-5 sm:px-6 space-y-1">
+              <div class="text-[10px] font-mono uppercase tracking-[0.12em] text-ink-secondary">Exam Bank Practiced</div>
+              <div class="text-2xl font-[450] font-mono tabular-nums text-ink tracking-tight" id="metric-questions-practiced">0 / 587</div>
+            </div>
+            <div class="py-5 sm:px-6 space-y-1">
+              <div class="text-[10px] font-mono uppercase tracking-[0.12em] text-ink-secondary">Mock Exams Completed</div>
+              <div class="text-2xl font-[450] font-mono tabular-nums text-ink tracking-tight" id="metric-mocks-completed">0</div>
+            </div>
+            <div class="py-5 sm:pl-6 space-y-1">
+              <div class="text-[10px] font-mono uppercase tracking-[0.12em] text-ink-secondary">Sprint Checklist</div>
+              <div class="text-2xl font-[450] font-mono tabular-nums text-ink tracking-tight" id="metric-checklist-done">0 / 0</div>
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- 4-Metric Unified Architectural Ledger Strip -->
-        <div class="rounded-2xl bg-card border border-border grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-border overflow-hidden">
-          <div class="p-4 sm:p-5 space-y-1">
-            <span class="text-xs text-ink-secondary">Lectures Studied</span>
-            <div class="text-xl font-medium font-mono tabular-nums text-ink" id="metric-lectures-studied">0 / 543</div>
-          </div>
-          <div class="p-4 sm:p-5 space-y-1">
-            <span class="text-xs text-ink-secondary">Exam Bank Practiced</span>
-            <div class="text-xl font-medium font-mono tabular-nums text-ink" id="metric-questions-practiced">0 / 587</div>
-          </div>
-          <div class="p-4 sm:p-5 space-y-1">
-            <span class="text-xs text-ink-secondary">Mock Exams Completed</span>
-            <div class="text-xl font-medium font-mono tabular-nums text-ink" id="metric-mocks-completed">0</div>
-          </div>
-          <div class="p-4 sm:p-5 space-y-1">
-            <span class="text-xs text-ink-secondary">Sprint Checklist</span>
-            <div class="text-xl font-medium font-mono tabular-nums text-ink" id="metric-checklist-done">0 / 0</div>
-          </div>
-        </div>
+      <!-- Main Editorial Body -->
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 space-y-12">
 
-        <!-- Term 7 Paper Schedule & Quick Launch (Scroll-Linked Progress Line) -->
-        <div id="folio-exam-timeline" class="rounded-3xl bg-card border border-border p-6 space-y-5">
-          <div class="flex flex-wrap items-center justify-between gap-2">
+        <!-- Section 1: Term 7 Paper Schedule (Numbered 01-04 Editorial Grid) -->
+        <section id="folio-exam-timeline" class="space-y-5">
+          <div class="flex flex-wrap items-end justify-between gap-4 pb-3 border-b border-border">
             <div>
-              <h2 class="text-base font-medium tracking-tight text-ink">Term 7 Paper Schedule</h2>
-              <p class="text-xs text-ink-secondary mt-0.5">Jump directly into the calibrated question bank or full timed
-                mock for each exam.</p>
+              <div class="text-[10px] font-mono uppercase tracking-[0.14em] text-ink-secondary mb-1">Examination Schedule</div>
+              <h2 class="text-xl font-[450] tracking-tight text-ink">Term 7 Paper Schedule</h2>
             </div>
             <button onclick="App.switchView('exam')" class="pill-muted text-xs inline-flex items-center gap-1.5">
               <span>Open Exam Arena</span>
@@ -514,78 +524,89 @@
             </button>
           </div>
 
-          <div class="h-0.5 w-full bg-card-muted rounded-full overflow-hidden">
-            <div id="folio-timeline-progress" class="h-full w-full origin-left scale-x-0 rounded-full"
+          <div class="h-px w-full bg-border overflow-hidden">
+            <div id="folio-timeline-progress" class="h-full w-full origin-left scale-x-0"
               style="background: var(--accent);"></div>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
-            <div
-              class="folio-tilt-card rounded-2xl bg-canvas border border-border p-4 flex flex-col justify-between gap-3">
-              <div class="space-y-1">
-                <div class="text-[11px] font-mono folio-accent-text">Dec 5 / 09:00 AM</div>
-                <div class="text-sm font-medium text-ink">Data Visualisation</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="folio-tilt-card rounded-2xl bg-card border border-border p-5 flex flex-col justify-between gap-5 shadow-soft">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-[11px] font-mono">
+                  <span class="folio-accent-text">Dec 5 / 09:00 AM</span>
+                  <span class="text-ink-tertiary">01</span>
+                </div>
+                <div class="text-base font-medium tracking-tight text-ink">Data Visualisation</div>
                 <div class="text-xs text-ink-secondary">14 MCQs + 8 MSQs (30M, 60m)</div>
               </div>
-              <div class="flex gap-2 pt-1">
+              <div class="flex gap-2 pt-2 border-t border-border/60">
                 <button onclick="App.openExamBankFor('data_visualisation')"
-                  class="flex-1 py-1.5 rounded-xl bg-card border border-border hover:border-neutral-400 text-xs font-medium text-ink transition">Bank</button>
+                  class="flex-1 py-1.5 rounded-lg bg-canvas border border-border hover:border-ink-tertiary text-xs font-medium text-ink transition">Bank</button>
                 <button onclick="App.openMockFor('data_visualisation')"
-                  class="flex-1 py-1.5 rounded-xl bg-ink text-canvas text-xs font-medium transition hover:opacity-90">Mock</button>
+                  class="flex-1 py-1.5 rounded-lg bg-ink text-canvas text-xs font-medium transition hover:opacity-90">Mock</button>
               </div>
             </div>
 
-            <div
-              class="folio-tilt-card rounded-2xl bg-canvas border border-border p-4 flex flex-col justify-between gap-3">
-              <div class="space-y-1">
-                <div class="text-[11px] font-mono folio-accent-text">Dec 5 / 12:00 PM</div>
-                <div class="text-sm font-medium text-ink">Family Business</div>
+            <div class="folio-tilt-card rounded-2xl bg-card border border-border p-5 flex flex-col justify-between gap-5 shadow-soft">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-[11px] font-mono">
+                  <span class="folio-accent-text">Dec 5 / 12:00 PM</span>
+                  <span class="text-ink-tertiary">02</span>
+                </div>
+                <div class="text-base font-medium tracking-tight text-ink">Family Business</div>
                 <div class="text-xs text-ink-secondary">30 MCQs + 9 Short (75M, 120m)</div>
               </div>
-              <div class="flex gap-2 pt-1">
+              <div class="flex gap-2 pt-2 border-t border-border/60">
                 <button onclick="App.openExamBankFor('family_business')"
-                  class="flex-1 py-1.5 rounded-xl bg-card border border-border hover:border-neutral-400 text-xs font-medium text-ink transition">Bank</button>
+                  class="flex-1 py-1.5 rounded-lg bg-canvas border border-border hover:border-ink-tertiary text-xs font-medium text-ink transition">Bank</button>
                 <button onclick="App.openMockFor('family_business')"
-                  class="flex-1 py-1.5 rounded-xl bg-ink text-canvas text-xs font-medium transition hover:opacity-90">Mock</button>
+                  class="flex-1 py-1.5 rounded-lg bg-ink text-canvas text-xs font-medium transition hover:opacity-90">Mock</button>
               </div>
             </div>
 
-            <div
-              class="folio-tilt-card rounded-2xl bg-canvas border border-border p-4 flex flex-col justify-between gap-3">
-              <div class="space-y-1">
-                <div class="text-[11px] font-mono text-ink-secondary">Dec 6 / 09:00 AM</div>
-                <div class="text-sm font-medium text-ink">Critical Thinking</div>
+            <div class="folio-tilt-card rounded-2xl bg-card border border-border p-5 flex flex-col justify-between gap-5 shadow-soft">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-[11px] font-mono">
+                  <span class="text-ink-secondary">Dec 6 / 09:00 AM</span>
+                  <span class="text-ink-tertiary">03</span>
+                </div>
+                <div class="text-base font-medium tracking-tight text-ink">Critical Thinking</div>
                 <div class="text-xs text-ink-secondary">14 MCQ + 6 Short + 3 Cases (50M)</div>
               </div>
-              <div class="flex gap-2 pt-1">
+              <div class="flex gap-2 pt-2 border-t border-border/60">
                 <button onclick="App.openExamBankFor('critical_thinking')"
-                  class="flex-1 py-1.5 rounded-xl bg-card border border-border hover:border-neutral-400 text-xs font-medium text-ink transition">Bank</button>
+                  class="flex-1 py-1.5 rounded-lg bg-canvas border border-border hover:border-ink-tertiary text-xs font-medium text-ink transition">Bank</button>
                 <button onclick="App.openMockFor('critical_thinking')"
-                  class="flex-1 py-1.5 rounded-xl bg-ink text-canvas text-xs font-medium transition hover:opacity-90">Mock</button>
+                  class="flex-1 py-1.5 rounded-lg bg-ink text-canvas text-xs font-medium transition hover:opacity-90">Mock</button>
               </div>
             </div>
 
-            <div
-              class="folio-tilt-card rounded-2xl bg-canvas border border-border p-4 flex flex-col justify-between gap-3">
-              <div class="space-y-1">
-                <div class="text-[11px] font-mono text-ink-secondary">Dec 6 / 01:00 PM</div>
-                <div class="text-sm font-medium text-ink">Corporate Finance</div>
+            <div class="folio-tilt-card rounded-2xl bg-card border border-border p-5 flex flex-col justify-between gap-5 shadow-soft">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-[11px] font-mono">
+                  <span class="text-ink-secondary">Dec 6 / 01:00 PM</span>
+                  <span class="text-ink-tertiary">04</span>
+                </div>
+                <div class="text-base font-medium tracking-tight text-ink">Corporate Finance</div>
                 <div class="text-xs text-ink-secondary">50 MCQs (75M, 120m, Calc)</div>
               </div>
-              <div class="flex gap-2 pt-1">
+              <div class="flex gap-2 pt-2 border-t border-border/60">
                 <button onclick="App.openExamBankFor('corporate_finance')"
-                  class="flex-1 py-1.5 rounded-xl bg-card border border-border hover:border-neutral-400 text-xs font-medium text-ink transition">Bank</button>
+                  class="flex-1 py-1.5 rounded-lg bg-canvas border border-border hover:border-ink-tertiary text-xs font-medium text-ink transition">Bank</button>
                 <button onclick="App.openMockFor('corporate_finance')"
-                  class="flex-1 py-1.5 rounded-xl bg-ink text-canvas text-xs font-medium transition hover:opacity-90">Mock</button>
+                  class="flex-1 py-1.5 rounded-lg bg-ink text-canvas text-xs font-medium transition hover:opacity-90">Mock</button>
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
         <!-- Section 2: Subject Mastery Matrix -->
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <h2 class="text-base font-medium tracking-tight text-ink">Curriculum Mastery</h2>
+        <section class="space-y-5">
+          <div class="flex items-end justify-between pb-3 border-b border-border">
+            <div>
+              <div class="text-[10px] font-mono uppercase tracking-[0.14em] text-ink-secondary mb-1">Syllabus Index</div>
+              <h2 class="text-xl font-[450] tracking-tight text-ink">Curriculum Mastery</h2>
+            </div>
             <span id="overall-degree-progress" class="text-xs font-mono text-ink-secondary">0% Studied</span>
           </div>
 
@@ -593,17 +614,16 @@
           <div id="dashboard-subject-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <!-- Populated by JS -->
           </div>
-        </div>
+        </section>
 
         <!-- Section 3: Interactive Degree Study Checklist & Exam Sprint -->
-        <div class="rounded-3xl bg-card border border-border p-6 space-y-4">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-border">
+        <section class="space-y-5">
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 pb-3 border-b border-border">
             <div>
-              <h2 class="text-base font-medium tracking-tight text-ink">Exam Sprint Checklist</h2>
-              <p class="text-xs text-ink-secondary mt-0.5">Track critical concepts, formula derivations, and case
-                studies before exam day.</p>
+              <div class="text-[10px] font-mono uppercase tracking-[0.14em] text-ink-secondary mb-1">Revision Ledger</div>
+              <h2 class="text-xl font-[450] tracking-tight text-ink">Exam Sprint Checklist</h2>
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-3">
               <span id="checklist-progress-text" class="text-xs font-mono text-ink-secondary">0 of 7 completed</span>
               <button onclick="App.resetDefaultChecklist()"
                 class="text-xs text-ink-secondary hover:text-ink px-2.5 py-1 rounded-lg hover:bg-card-muted transition"
@@ -613,52 +633,54 @@
             </div>
           </div>
 
-          <!-- Subject Filter Pills -->
-          <div id="checklist-filter-pills" class="flex flex-wrap gap-1.5 text-xs">
-            <button onclick="App.filterChecklist('all')"
-              class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium bg-neutral-900 text-white dark:bg-white dark:text-neutral-900"
-              data-filter="all">All</button>
-            <button onclick="App.filterChecklist('corporate-finance')"
-              class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted"
-              data-filter="corporate-finance">Corporate Finance</button>
-            <button onclick="App.filterChecklist('family-business')"
-              class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted"
-              data-filter="family-business">Family Business</button>
-            <button onclick="App.filterChecklist('critical-thinking')"
-              class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted"
-              data-filter="critical-thinking">Critical Thinking</button>
-            <button onclick="App.filterChecklist('startup-dilemmas')"
-              class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted"
-              data-filter="startup-dilemmas">Startup Dilemmas</button>
-            <button onclick="App.filterChecklist('data-visualisation')"
-              class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-neutral-500 hover:text-ink bg-card-muted"
-              data-filter="data-visualisation">Data Visualisation</button>
-          </div>
+          <div class="rounded-2xl bg-card border border-border p-5 sm:p-6 space-y-4 shadow-soft">
+            <!-- Subject Filter Pills -->
+            <div id="checklist-filter-pills" class="flex flex-wrap gap-1.5 text-xs">
+              <button onclick="App.filterChecklist('all')"
+                class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium bg-ink text-canvas"
+                data-filter="all">All</button>
+              <button onclick="App.filterChecklist('corporate-finance')"
+                class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-ink-secondary hover:text-ink bg-card-muted"
+                data-filter="corporate-finance">Corporate Finance</button>
+              <button onclick="App.filterChecklist('family-business')"
+                class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-ink-secondary hover:text-ink bg-card-muted"
+                data-filter="family-business">Family Business</button>
+              <button onclick="App.filterChecklist('critical-thinking')"
+                class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-ink-secondary hover:text-ink bg-card-muted"
+                data-filter="critical-thinking">Critical Thinking</button>
+              <button onclick="App.filterChecklist('startup-dilemmas')"
+                class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-ink-secondary hover:text-ink bg-card-muted"
+                data-filter="startup-dilemmas">Startup Dilemmas</button>
+              <button onclick="App.filterChecklist('data-visualisation')"
+                class="checklist-filter-pill px-3 py-1 rounded-full text-xs font-medium text-ink-secondary hover:text-ink bg-card-muted"
+                data-filter="data-visualisation">Data Visualisation</button>
+            </div>
 
-          <!-- Add Task Input Form -->
-          <div class="flex flex-col sm:flex-row gap-2">
-            <input type="text" id="new-checklist-input"
-              placeholder="Add personal exam study goal (e.g. Solve 20 Beta practice questions)..."
-              class="flex-1 px-4 py-2 rounded-xl bg-card-muted border border-border text-xs text-ink placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-ink"
-              onkeydown="if(event.key==='Enter') App.addChecklistItem()" />
-            <select id="new-checklist-subject"
-              class="px-3 py-2 rounded-xl bg-card-muted border border-border text-xs text-ink focus:outline-none font-mono">
-              <option value="corporate-finance">Corporate Finance</option>
-              <option value="family-business">Family Business</option>
-              <option value="critical-thinking">Critical Thinking</option>
-              <option value="startup-dilemmas">Startup Dilemmas</option>
-              <option value="data-visualisation">Data Visualisation</option>
-            </select>
-            <button onclick="App.addChecklistItem()" class="pill-ink text-xs px-4 py-2 shrink-0">
-              Add Task
-            </button>
-          </div>
+            <!-- Add Task Input Form -->
+            <div class="flex flex-col sm:flex-row gap-2">
+              <input type="text" id="new-checklist-input"
+                placeholder="Add personal exam study goal (e.g. Solve 20 Beta practice questions)..."
+                class="flex-1 px-4 py-2 rounded-xl bg-canvas border border-border text-xs text-ink placeholder:text-ink-tertiary focus:outline-none"
+                onkeydown="if(event.key==='Enter') App.addChecklistItem()" />
+              <select id="new-checklist-subject"
+                class="px-3 py-2 rounded-xl bg-canvas border border-border text-xs text-ink focus:outline-none font-mono">
+                <option value="corporate-finance">Corporate Finance</option>
+                <option value="family-business">Family Business</option>
+                <option value="critical-thinking">Critical Thinking</option>
+                <option value="startup-dilemmas">Startup Dilemmas</option>
+                <option value="data-visualisation">Data Visualisation</option>
+              </select>
+              <button onclick="App.addChecklistItem()" class="pill-ink text-xs px-4 py-2 shrink-0">
+                Add Task
+              </button>
+            </div>
 
-          <!-- Checklist Items Container -->
-          <div id="checklist-items-container" class="space-y-2 pt-2 divide-y divide-border/40">
-            <!-- Populated by JS -->
+            <!-- Checklist Items Container -->
+            <div id="checklist-items-container" class="space-y-2 pt-2 divide-y divide-border/40">
+              <!-- Populated by JS -->
+            </div>
           </div>
-        </div>
+        </section>
 
       </div>
     </div>
@@ -1695,7 +1717,7 @@
   <script src="./static/js/folio_motion.js?v=2.0.0"></script>
   <script src="./static/js/visual_cram.js?v=1.0.0"></script>
   <script src="./static/js/exam_hub.js?v=1.4.0"></script>
-  <script src="./static/js/app.js?v=3.4.0"></script>
+  <script src="./static/js/app.js?v=3.5.0"></script>
   <!-- Bundled Study Data for 24/7 GitHub Pages Access -->
   <script src="./study_data.js?v=2.5.0" defer></script>
 </body>
