@@ -7,11 +7,6 @@
   <title>Folio | Lecture &amp; Exam Vault</title>
   <link rel="icon" type="image/svg+xml" href="./static/favicon.svg">
 
-  <!-- Three.js & GSAP (3D Architectural Backdrop + Scroll Choreography) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -312,7 +307,7 @@
 
   <!-- Unified Persistent App Header (Visible on all views) -->
   <header id="app-global-header"
-    class="sticky top-0 z-40 shrink-0 backdrop-blur-md border-b border-border bg-canvas/85">
+    class="sticky top-0 z-40 shrink-0 border-b border-border bg-canvas">
     <div class="w-full px-4 sm:px-6 h-12 flex items-center justify-between gap-3">
 
       <!-- Left: Mobile Hamburger + Logo -->
@@ -443,7 +438,7 @@
             <!-- Right Exam Countdown Card -->
             <div class="lg:col-span-5">
               <div
-                class="folio-hero-stagger rounded-2xl bg-canvas/85 backdrop-blur-md border border-border p-5 space-y-4 shadow-soft">
+                class="folio-hero-stagger rounded-2xl bg-canvas border border-border p-5 space-y-4 shadow-soft">
                 <div class="flex items-center justify-between">
                   <div class="flex items-center gap-2">
                     <span class="w-2 h-2 rounded-full" style="background: var(--accent);"></span>
@@ -713,7 +708,7 @@
 
         <!-- Studio Sticky Sub-Toolbar (Purely lecture context, since global header stays visible) -->
         <div
-          class="shrink-0 flex items-center justify-between px-3 sm:px-5 py-2 border-b border-border bg-canvas/60 backdrop-blur gap-2 flex-wrap">
+          class="shrink-0 flex items-center justify-between px-3 sm:px-5 py-2 border-b border-border bg-canvas gap-2 flex-wrap">
 
           <!-- Left: Syllabus Sidebar & Topic Navigation -->
           <div class="flex items-center gap-1.5 min-w-0">
@@ -1478,7 +1473,7 @@
 
       <!-- One-Shot Top Header Bar -->
       <div
-        class="shrink-0 border-b border-border bg-card-muted/60 backdrop-blur px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 z-10">
+        class="shrink-0 border-b border-border bg-card-muted px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 z-10">
 
         <!-- Left: Course Selection Pills -->
         <div class="flex items-center gap-1.5 overflow-x-auto py-0.5" id="oneshot-course-pills">
@@ -1697,7 +1692,7 @@
   </div>
 
   <!-- Folio Motion, Visual Cram, Exam Hub & Core App -->
-  <script src="./static/js/folio_motion.js?v=1.0.0"></script>
+  <script src="./static/js/folio_motion.js?v=2.0.0"></script>
   <script src="./static/js/visual_cram.js?v=1.0.0"></script>
   <script src="./static/js/exam_hub.js?v=1.4.0"></script>
   <script src="./static/js/app.js?v=3.3.0"></script>
