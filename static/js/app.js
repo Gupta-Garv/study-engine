@@ -21,9 +21,9 @@ const App = {
   studiedTopicIds: new Set(),
   lastStudiedTopicId: null,
   examSchedule: {
-    title: 'Term Examinations',
-    targetDate: '2026-11-05T09:30',
-    notes: 'Nov 5–6 Degree Examinations'
+    title: 'Term 7 Examinations',
+    targetDate: '2026-12-05T09:00',
+    notes: 'Dec 5 (DV & FB), Dec 6 (CT & CF)'
   },
   checklistFilter: 'all',
   checklistItems: [],
